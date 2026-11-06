@@ -1,4 +1,4 @@
-# Morphood v1 "Pizza Night": Design
+# Foodcraft v1 "Pizza Night": Design
 
 A Minecraft Bedrock add-on for advanced cooking, built by Ravn and Kasper (11) with Claude's help.
 v1 delivers one complete loop: find wild plants, farm them, craft ingredients, bake pizza in a pizza oven.

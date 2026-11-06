@@ -1,10 +1,10 @@
-# Pizza Night (Morphood v1) Implementation Plan
+# Pizza Night (Foodcraft v1) Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Ship the full v1 loop (wild plants, crops, ingredients, raw and baked pizzas, pizza oven) as a Minecraft Bedrock add-on that Ravn and Kasper can build one playable step at a time.
 
-**Architecture:** Two packs in the repo (`packs/morphood_bp`, `packs/morphood_rp`) deployed by a copy script into the Windows development pack folders. Items, recipes, blocks, loot tables and features are JSON. One JavaScript script module (`@minecraft/server` 2.11.0) registers two block custom components (`morphood:crop`, `morphood:pizza_oven`) and the raw-pizza nausea handler. Placeholder 16x16 textures are generated from the concept SVGs so every task is playable before the kids redraw art in Blockbench.
+**Architecture:** Two packs in the repo (`packs/foodcraft_bp`, `packs/foodcraft_rp`) deployed by a copy script into the Windows development pack folders. Items, recipes, blocks, loot tables and features are JSON. One JavaScript script module (`@minecraft/server` 2.11.0) registers two block custom components (`foodcraft:crop`, `foodcraft:pizza_oven`) and the raw-pizza nausea handler. Placeholder 16x16 textures are generated from the concept SVGs so every task is playable before the kids redraw art in Blockbench.
 
 **Tech Stack:** Minecraft Bedrock 1.26.60 (Windows GDK build), `@minecraft/server` 2.11.0, block/item/recipe `format_version` 1.26.50, plain JavaScript (no build step), Python 3 (placeholder texture tool), PowerShell (deploy and export scripts).
 
@@ -27,7 +27,7 @@ All checked 2026-11-06.
 | Current game version | github.com/Mojang/bedrock-samples `main` manifests | `min_engine_version: [1, 26, 60]`; vanilla items, blocks and recipes on `main` use `format_version "1.26.50"` |
 | Manifest format | learn.microsoft.com/minecraft/creator/documents/scripting/introduction | `format_version: 2`, script module `{type: "script", language: "javascript", entry: "scripts/main.js"}`, dependency `{module_name: "@minecraft/server", version: "..."}`; `/reload` hot-reloads scripts |
 | Windows dev pack paths | learn.microsoft.com/minecraft/creator/documents/gdkpcprojectfolder (and gettingstarted) | From 1.21.120 (GDK): `%appdata%\Minecraft Bedrock\users\shared\games\com.mojang\development_behavior_packs` and `...\development_resource_packs`; logs at `%appdata%\Minecraft Bedrock\logs\`; Preview uses `Minecraft Bedrock Preview` |
-| Custom Components V2 | learn.microsoft.com/.../documents/update1.21.90, `.../documents/scriptingv2.0.0overview`, `.../blockcomponents/minecraftblock_custom_components` | Available without experiments since 1.21.90 with `@minecraft/server` >= 2.0.0. Custom components are listed directly under `components` (`"morphood:crop": {}`); `minecraft:custom_components` is deprecated. Registration: `system.beforeEvents.startup.subscribe(e => e.blockComponentRegistry.registerCustomComponent(id, {...}))` |
+| Custom Components V2 | learn.microsoft.com/.../documents/update1.21.90, `.../documents/scriptingv2.0.0overview`, `.../blockcomponents/minecraftblock_custom_components` | Available without experiments since 1.21.90 with `@minecraft/server` >= 2.0.0. Custom components are listed directly under `components` (`"foodcraft:crop": {}`); `minecraft:custom_components` is deprecated. Registration: `system.beforeEvents.startup.subscribe(e => e.blockComponentRegistry.registerCustomComponent(id, {...}))` |
 | Block custom component hooks | learn.microsoft.com/.../scriptapi/minecraft/server/blockcustomcomponent | `onPlayerInteract(BlockComponentPlayerInteractEvent: block, dimension, face, faceLocation?, player?)`, `onRandomTick(BlockComponentRandomTickEvent: block, dimension)`, `onTick(BlockComponentTickEvent)`, `onPlayerBreak(BlockComponentPlayerBreakEvent: brokenBlockPermutation, player?)`, `onPlace`, `beforeOnPlayerPlace`. Second arg is `CustomComponentParameters` |
 | `minecraft:tick` | `.../blockcomponents/minecraftblock_tick` | `interval_range: [min, max]`, `looping`. A custom component with `onTick` on a block without `minecraft:tick` is a content error |
 | Block states and permutations | microsoft/minecraft-samples `casual_creator/gray_wave/.../fabricator.block.json`; wiki.bedrock.dev/blocks/block-states (states syntax) | `description.states: {"ns:name": [values]}`, `permutations: [{condition: "q.block_state('ns:name') == 'x'", components: {...}}]`, `traits.minecraft:placement_direction` with `minecraft:cardinal_direction` |
@@ -45,21 +45,21 @@ All checked 2026-11-06.
 
 ## Global Constraints
 
-- Namespace for every identifier: `morphood:` (spec 3).
+- Namespace for every identifier: `foodcraft:` (spec 3).
 - Game: Minecraft Bedrock 1.26.60 or newer on Windows; both manifests use `min_engine_version: [1, 26, 60]`.
 - `format_version` for items, blocks and recipes: `"1.26.50"`. Features and feature rules: `"1.21.10"` / `"1.13.0"` as in the official samples.
-- Script dependency: `@minecraft/server` version `"2.11.0"`. Plain JavaScript ES modules under `packs/morphood_bp/scripts/`. No TypeScript, no bundler.
+- Script dependency: `@minecraft/server` version `"2.11.0"`. Plain JavaScript ES modules under `packs/foodcraft_bp/scripts/`. No TypeScript, no bundler.
 - Textures are 16x16 PNG (spec 2.5). Placeholders come from `tools/render_placeholders.py`; the kids replace files in place with the same names.
-- Item lang keys: `item.morphood.<name>.name`. Block lang keys: `tile.morphood:<name>.name`. English in `en_US.lang`; Norwegian in `nb_NO.lang` (Task 9).
+- Item lang keys: `item.foodcraft.<name>.name`. Block lang keys: `tile.foodcraft:<name>.name`. English in `en_US.lang`; Norwegian in `nb_NO.lang` (Task 9).
 - Every task ends with: deploy, `/reload` (or re-enter the world for JSON changes), zero errors in the Content Log (Settings > Creator > Content Log, enable "Content Log GUI" and "Content Log File"), and the task's checklist lines ticked in `docs/test-checklist.md`.
-- Test world: flat, creative, cheats on, both packs active, named `Morphood Test`. Wild plants (Task 8) need a new non-flat world.
+- Test world: flat, creative, cheats on, both packs active, named `Foodcraft Test`. Wild plants (Task 8) need a new non-flat world.
 - Commit after each task. No co-author lines.
 
 ## File structure
 
 ```
 packs/
-  morphood_bp/
+  foodcraft_bp/
     manifest.json
     items/            one file per item (21 items)
     recipes/          one file per recipe (15 recipes)
@@ -70,9 +70,9 @@ packs/
     scripts/
       main.js         imports the three modules below
       food.js         raw pizza nausea
-      oven.js         morphood:pizza_oven component
-      crop.js         morphood:crop component
-  morphood_rp/
+      oven.js         foodcraft:pizza_oven component
+      crop.js         foodcraft:crop component
+  foodcraft_rp/
     manifest.json
     blocks.json       block sounds
     texts/            en_US.lang, nb_NO.lang, languages.json
@@ -83,11 +83,11 @@ packs/
       blocks/*.png
     models/blocks/pizza_oven.geo.json   (Task 6, Blockbench)
     sounds/sound_definitions.json       (Task 9)
-    sounds/morphood/ding.ogg            (Task 9)
+    sounds/foodcraft/ding.ogg            (Task 9)
 tools/
   render_placeholders.py   concept SVG -> 16x16 PNGs
   deploy.ps1               repo packs -> Windows development pack folders
-  export_mcaddon.ps1       packs -> dist/morphood.mcaddon
+  export_mcaddon.ps1       packs -> dist/foodcraft.mcaddon
 docs/test-checklist.md     one line per item, recipe, oven edge case
 ```
 
@@ -99,7 +99,7 @@ Claude does this task; it is tooling, not a kid session.
 
 **Files:**
 - Create: `tools/render_placeholders.py`
-- Create: `packs/morphood_rp/textures/items/*.png`, `packs/morphood_rp/textures/blocks/*.png` (generated)
+- Create: `packs/foodcraft_rp/textures/items/*.png`, `packs/foodcraft_rp/textures/blocks/*.png` (generated)
 
 **Interfaces:**
 - Consumes: `docs/superpowers/specs/images/{ingredients,pizzas,crops,oven}.svg`. Each tile is a background `<rect fill="#3b3b46">` of size 96/128/160 holding 16x16 pixel rects of size 6/8/10, with a `<text>` label under it.
@@ -107,12 +107,12 @@ Claude does this task; it is tooling, not a kid session.
 
 | SVG label | Output file |
 |---|---|
-| ingredients: `tomato`, `garlic`, `oregano`, `pineapple`, `tomato seeds`, `oregano seeds`, `flour`, `dough`, `tomato sauce`, `mozzarella`, `pepperoni`, `ham` | `textures/items/morphood_<label with spaces as _>.png` (`dough` -> `morphood_pizza_dough.png`) |
-| pizzas: `raw margherita` ... `raw hawaii` | `textures/items/morphood_raw_pizza_<name>.png` |
-| pizzas: `margherita` ... `hawaii` | `textures/items/morphood_pizza_<name>.png` |
-| crops: `tomato 0` ... `pineapple 3` | `textures/blocks/morphood_<plant>_crop_<n>.png` |
-| oven: `empty`, `baking`, `done` | `textures/blocks/morphood_oven_front_<state>.png` |
-| derived copies | `textures/items/morphood_pineapple_crown.png` (= pineapple), `textures/blocks/morphood_wild_<plant>.png` (= `<plant>_crop_3`), `textures/blocks/morphood_oven_side.png` and `morphood_oven_top.png` (= oven front empty) |
+| ingredients: `tomato`, `garlic`, `oregano`, `pineapple`, `tomato seeds`, `oregano seeds`, `flour`, `dough`, `tomato sauce`, `mozzarella`, `pepperoni`, `ham` | `textures/items/foodcraft_<label with spaces as _>.png` (`dough` -> `foodcraft_pizza_dough.png`) |
+| pizzas: `raw margherita` ... `raw hawaii` | `textures/items/foodcraft_raw_pizza_<name>.png` |
+| pizzas: `margherita` ... `hawaii` | `textures/items/foodcraft_pizza_<name>.png` |
+| crops: `tomato 0` ... `pineapple 3` | `textures/blocks/foodcraft_<plant>_crop_<n>.png` |
+| oven: `empty`, `baking`, `done` | `textures/blocks/foodcraft_oven_front_<state>.png` |
+| derived copies | `textures/items/foodcraft_pineapple_crown.png` (= pineapple), `textures/blocks/foodcraft_wild_<plant>.png` (= `<plant>_crop_3`), `textures/blocks/foodcraft_oven_side.png` and `foodcraft_oven_top.png` (= oven front empty) |
 
 - [ ] **Step 1: Write the tool**
 
@@ -124,7 +124,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SVG_DIR = ROOT / "docs/superpowers/specs/images"
-RP = ROOT / "packs/morphood_rp/textures"
+RP = ROOT / "packs/foodcraft_rp/textures"
 TILE_SIZES = {96: 6, 128: 8, 160: 10}
 TILE_BG = "#3b3b46"
 
@@ -169,14 +169,14 @@ def out_path(svg_name, label):
     if svg_name == "ingredients":
         if name == "dough":
             name = "pizza_dough"
-        return RP / "items" / f"morphood_{name}.png"
+        return RP / "items" / f"foodcraft_{name}.png"
     if svg_name == "pizzas":
-        return RP / "items" / (f"morphood_{name.replace('raw_', 'raw_pizza_')}.png" if name.startswith("raw_") else f"morphood_pizza_{name}.png")
+        return RP / "items" / (f"foodcraft_{name.replace('raw_', 'raw_pizza_')}.png" if name.startswith("raw_") else f"foodcraft_pizza_{name}.png")
     if svg_name == "crops":
         plant, stage = name.rsplit("_", 1)
-        return RP / "blocks" / f"morphood_{plant}_crop_{stage}.png"
+        return RP / "blocks" / f"foodcraft_{plant}_crop_{stage}.png"
     if svg_name == "oven":
-        return RP / "blocks" / f"morphood_oven_front_{name}.png"
+        return RP / "blocks" / f"foodcraft_oven_front_{name}.png"
     raise ValueError(svg_name)
 
 
@@ -188,12 +188,12 @@ def main():
             write_png(path, pixels)
             written.append(path)
     copies = {
-        RP / "items/morphood_pineapple_crown.png": RP / "items/morphood_pineapple.png",
-        RP / "blocks/morphood_oven_side.png": RP / "blocks/morphood_oven_front_empty.png",
-        RP / "blocks/morphood_oven_top.png": RP / "blocks/morphood_oven_front_empty.png",
+        RP / "items/foodcraft_pineapple_crown.png": RP / "items/foodcraft_pineapple.png",
+        RP / "blocks/foodcraft_oven_side.png": RP / "blocks/foodcraft_oven_front_empty.png",
+        RP / "blocks/foodcraft_oven_top.png": RP / "blocks/foodcraft_oven_front_empty.png",
     }
     for plant in ("tomato", "garlic", "oregano", "pineapple"):
-        copies[RP / f"blocks/morphood_wild_{plant}.png"] = RP / f"blocks/morphood_{plant}_crop_3.png"
+        copies[RP / f"blocks/foodcraft_wild_{plant}.png"] = RP / f"blocks/foodcraft_{plant}_crop_3.png"
     for dst, src in copies.items():
         shutil.copyfile(src, dst)
         written.append(dst)
@@ -210,15 +210,15 @@ if __name__ == "__main__":
 Run: `python3 tools/render_placeholders.py`
 Expected: `wrote 46 textures` (12 ingredients + 8 pizzas + 16 crop stages + 3 oven fronts + 7 copies).
 
-Run: `python3 -c "import struct,glob; [print(f, struct.unpack('>II', open(f,'rb').read()[16:24])) for f in sorted(glob.glob('packs/morphood_rp/textures/*/*.png'))]"`
+Run: `python3 -c "import struct,glob; [print(f, struct.unpack('>II', open(f,'rb').read()[16:24])) for f in sorted(glob.glob('packs/foodcraft_rp/textures/*/*.png'))]"`
 Expected: 46 lines, every one ending in `(16, 16)`.
 
-Open `packs/morphood_rp/textures/items/morphood_tomato.png` with the Read tool: a red tomato with a dark outline on a transparent background.
+Open `packs/foodcraft_rp/textures/items/foodcraft_tomato.png` with the Read tool: a red tomato with a dark outline on a transparent background.
 
 - [ ] **Step 3: Commit**
 
 ```bash
-git add tools/render_placeholders.py packs/morphood_rp/textures
+git add tools/render_placeholders.py packs/foodcraft_rp/textures
 git commit -m "Add placeholder texture tool and generated textures"
 ```
 
@@ -229,11 +229,11 @@ git commit -m "Add placeholder texture tool and generated textures"
 Build order step 1. Kid session: Ravn and Kasper type the JSON with Claude, deploy, and eat a tomato.
 
 **Files:**
-- Create: `packs/morphood_bp/manifest.json`
-- Create: `packs/morphood_rp/manifest.json`
-- Create: `packs/morphood_bp/items/tomato.json`
-- Create: `packs/morphood_rp/textures/item_texture.json`
-- Create: `packs/morphood_rp/texts/en_US.lang`, `packs/morphood_rp/texts/languages.json`
+- Create: `packs/foodcraft_bp/manifest.json`
+- Create: `packs/foodcraft_rp/manifest.json`
+- Create: `packs/foodcraft_bp/items/tomato.json`
+- Create: `packs/foodcraft_rp/textures/item_texture.json`
+- Create: `packs/foodcraft_rp/texts/en_US.lang`, `packs/foodcraft_rp/texts/languages.json`
 - Create: `tools/deploy.ps1`
 - Create: `docs/test-checklist.md`
 
@@ -242,13 +242,13 @@ Build order step 1. Kid session: Ravn and Kasper type the JSON with Claude, depl
 
 - [ ] **Step 1: Behavior pack manifest**
 
-`packs/morphood_bp/manifest.json`:
+`packs/foodcraft_bp/manifest.json`:
 
 ```json
 {
   "format_version": 2,
   "header": {
-    "name": "Morphood Behavior Pack",
+    "name": "Foodcraft Behavior Pack",
     "description": "Pizza Night: crops, ingredients and a pizza oven",
     "uuid": "7d9decc8-dc05-4900-9ee1-9ab1d2d07740",
     "version": [0, 1, 0],
@@ -256,7 +256,7 @@ Build order step 1. Kid session: Ravn and Kasper type the JSON with Claude, depl
   },
   "modules": [
     {
-      "description": "Morphood data",
+      "description": "Foodcraft data",
       "type": "data",
       "uuid": "b1a3afbc-9ffe-4882-a249-c29badf31a8f",
       "version": [0, 1, 0]
@@ -273,13 +273,13 @@ Build order step 1. Kid session: Ravn and Kasper type the JSON with Claude, depl
 
 - [ ] **Step 2: Resource pack manifest**
 
-`packs/morphood_rp/manifest.json`:
+`packs/foodcraft_rp/manifest.json`:
 
 ```json
 {
   "format_version": 2,
   "header": {
-    "name": "Morphood Resource Pack",
+    "name": "Foodcraft Resource Pack",
     "description": "Pizza Night textures, models, names and sounds",
     "uuid": "21c9e746-cd73-41fd-a163-83955769e6c2",
     "version": [0, 1, 0],
@@ -287,7 +287,7 @@ Build order step 1. Kid session: Ravn and Kasper type the JSON with Claude, depl
   },
   "modules": [
     {
-      "description": "Morphood resources",
+      "description": "Foodcraft resources",
       "type": "resources",
       "uuid": "6bb33493-8a0c-4438-9f00-7f4fca009c54",
       "version": [0, 1, 0]
@@ -298,19 +298,19 @@ Build order step 1. Kid session: Ravn and Kasper type the JSON with Claude, depl
 
 - [ ] **Step 3: The tomato item**
 
-`packs/morphood_bp/items/tomato.json`:
+`packs/foodcraft_bp/items/tomato.json`:
 
 ```json
 {
   "format_version": "1.26.50",
   "minecraft:item": {
     "description": {
-      "identifier": "morphood:tomato",
+      "identifier": "foodcraft:tomato",
       "menu_category": { "category": "items" }
     },
     "components": {
-      "minecraft:icon": { "textures": { "default": "morphood_tomato" } },
-      "minecraft:display_name": { "value": "item.morphood.tomato.name" },
+      "minecraft:icon": { "textures": { "default": "foodcraft_tomato" } },
+      "minecraft:display_name": { "value": "item.foodcraft.tomato.name" },
       "minecraft:food": { "nutrition": 2, "saturation_modifier": 0.3 },
       "minecraft:use_animation": { "value": "eat" },
       "minecraft:use_modifiers": { "start_using": "always", "use_duration": 1.6, "movement_modifier": 0.35 },
@@ -322,31 +322,31 @@ Build order step 1. Kid session: Ravn and Kasper type the JSON with Claude, depl
 
 - [ ] **Step 4: Texture atlas entry and names**
 
-`packs/morphood_rp/textures/item_texture.json`:
+`packs/foodcraft_rp/textures/item_texture.json`:
 
 ```json
 {
-  "resource_pack_name": "morphood_rp",
+  "resource_pack_name": "foodcraft_rp",
   "texture_name": "atlas.items",
   "texture_data": {
-    "morphood_tomato": { "textures": "textures/items/morphood_tomato" }
+    "foodcraft_tomato": { "textures": "textures/items/foodcraft_tomato" }
   }
 }
 ```
 
-`packs/morphood_rp/texts/languages.json`:
+`packs/foodcraft_rp/texts/languages.json`:
 
 ```json
 ["en_US", "nb_NO"]
 ```
 
-`packs/morphood_rp/texts/en_US.lang`:
+`packs/foodcraft_rp/texts/en_US.lang`:
 
 ```
-item.morphood.tomato.name=Tomato
+item.foodcraft.tomato.name=Tomato
 ```
 
-Also create `packs/morphood_rp/texts/nb_NO.lang` containing the single line `item.morphood.tomato.name=Tomat` so `languages.json` does not point at a missing file. Task 9 fills it in.
+Also create `packs/foodcraft_rp/texts/nb_NO.lang` containing the single line `item.foodcraft.tomato.name=Tomat` so `languages.json` does not point at a missing file. Task 9 fills it in.
 
 - [ ] **Step 5: Deploy script**
 
@@ -356,7 +356,7 @@ Also create `packs/morphood_rp/texts/nb_NO.lang` containing the single line `ite
 # Copies the packs from the repo into the Minecraft development pack folders (GDK build, 1.21.120+).
 $com = Join-Path $env:APPDATA "Minecraft Bedrock\users\shared\games\com.mojang"
 $repo = Split-Path $PSScriptRoot -Parent
-foreach ($pair in @(@("morphood_bp", "development_behavior_packs"), @("morphood_rp", "development_resource_packs"))) {
+foreach ($pair in @(@("foodcraft_bp", "development_behavior_packs"), @("foodcraft_rp", "development_resource_packs"))) {
     $src = Join-Path $repo "packs\$($pair[0])"
     $dst = Join-Path $com "$($pair[1])\$($pair[0])"
     robocopy $src $dst /MIR /NFL /NDL /NJH /NJS | Out-Null
@@ -375,16 +375,16 @@ foreach ($pair in @(@("morphood_bp", "development_behavior_packs"), @("morphood_
 Tick a line only after seeing it work in the test world with an empty Content Log.
 
 ## Items
-- [ ] Tomato: `/give @s morphood:tomato`, name "Tomato", eats, hunger goes up
+- [ ] Tomato: `/give @s foodcraft:tomato`, name "Tomato", eats, hunger goes up
 ```
 
 - [ ] **Step 7: Deploy and verify in game**
 
 1. In PowerShell: `powershell -ExecutionPolicy Bypass -File tools\deploy.ps1`
 2. Settings > Creator: turn on "Content Log GUI" and "Content Log File". Also turn on "Enable GameTest Framework"? No. Leave experiments off.
-3. Create world "Morphood Test": Flat, Creative, cheats on. Under Behavior Packs > Available activate "Morphood Behavior Pack" (the resource pack is pulled in by the dependency; confirm it shows under Resource Packs > Active).
+3. Create world "Foodcraft Test": Flat, Creative, cheats on. Under Behavior Packs > Available activate "Foodcraft Behavior Pack" (the resource pack is pulled in by the dependency; confirm it shows under Resource Packs > Active).
 4. Enter the world. Content Log: no red lines.
-5. `/give @s morphood:tomato` gives an item named "Tomato" with the red placeholder texture.
+5. `/give @s foodcraft:tomato` gives an item named "Tomato" with the red placeholder texture.
 6. `/gamemode s`, take damage or sprint until hunger drops, hold use on the tomato: hunger refills by 1 shank.
 7. Tick the Tomato line in `docs/test-checklist.md`.
 
@@ -404,12 +404,12 @@ git commit -m "Hello pizza: packs load with one edible tomato"
 Build order step 2. Kid session (can be split in two: items first, recipes second).
 
 **Files:**
-- Create: `packs/morphood_bp/items/{garlic,oregano,pineapple,tomato_seeds,oregano_seeds,pineapple_crown,flour,pizza_dough,tomato_sauce,mozzarella,pepperoni,ham}.json`
-- Create: `packs/morphood_bp/recipes/{flour,pizza_dough,tomato_sauce,mozzarella,pepperoni,ham}.json`
-- Modify: `packs/morphood_rp/textures/item_texture.json`, `packs/morphood_rp/texts/en_US.lang`, `docs/test-checklist.md`
+- Create: `packs/foodcraft_bp/items/{garlic,oregano,pineapple,tomato_seeds,oregano_seeds,pineapple_crown,flour,pizza_dough,tomato_sauce,mozzarella,pepperoni,ham}.json`
+- Create: `packs/foodcraft_bp/recipes/{flour,pizza_dough,tomato_sauce,mozzarella,pepperoni,ham}.json`
+- Modify: `packs/foodcraft_rp/textures/item_texture.json`, `packs/foodcraft_rp/texts/en_US.lang`, `docs/test-checklist.md`
 
 **Interfaces:**
-- Produces item ids used by Task 4 recipes: `morphood:pizza_dough`, `morphood:tomato_sauce`, `morphood:mozzarella`, `morphood:pepperoni`, `morphood:ham`, `morphood:pineapple`, `morphood:oregano`. Seed ids used by Task 7: `morphood:tomato_seeds`, `morphood:garlic`, `morphood:oregano_seeds`, `morphood:pineapple_crown`.
+- Produces item ids used by Task 4 recipes: `foodcraft:pizza_dough`, `foodcraft:tomato_sauce`, `foodcraft:mozzarella`, `foodcraft:pepperoni`, `foodcraft:ham`, `foodcraft:pineapple`, `foodcraft:oregano`. Seed ids used by Task 7: `foodcraft:tomato_seeds`, `foodcraft:garlic`, `foodcraft:oregano_seeds`, `foodcraft:pineapple_crown`.
 
 - [ ] **Step 1: Non-food items**
 
@@ -420,12 +420,12 @@ Every item in this task uses the same shape. Full file for `tomato_seeds.json`:
   "format_version": "1.26.50",
   "minecraft:item": {
     "description": {
-      "identifier": "morphood:tomato_seeds",
+      "identifier": "foodcraft:tomato_seeds",
       "menu_category": { "category": "items" }
     },
     "components": {
-      "minecraft:icon": { "textures": { "default": "morphood_tomato_seeds" } },
-      "minecraft:display_name": { "value": "item.morphood.tomato_seeds.name" }
+      "minecraft:icon": { "textures": { "default": "foodcraft_tomato_seeds" } },
+      "minecraft:display_name": { "value": "item.foodcraft.tomato_seeds.name" }
     }
   }
 }
@@ -435,12 +435,12 @@ Create these files with the same content, changing only the identifier, icon tex
 
 | File | identifier | icon texture | lang key |
 |---|---|---|---|
-| `oregano_seeds.json` | `morphood:oregano_seeds` | `morphood_oregano_seeds` | `item.morphood.oregano_seeds.name` |
-| `pineapple_crown.json` | `morphood:pineapple_crown` | `morphood_pineapple_crown` | `item.morphood.pineapple_crown.name` |
-| `flour.json` | `morphood:flour` | `morphood_flour` | `item.morphood.flour.name` |
-| `pizza_dough.json` | `morphood:pizza_dough` | `morphood_pizza_dough` | `item.morphood.pizza_dough.name` |
-| `tomato_sauce.json` | `morphood:tomato_sauce` | `morphood_tomato_sauce` | `item.morphood.tomato_sauce.name` |
-| `mozzarella.json` | `morphood:mozzarella` | `morphood_mozzarella` | `item.morphood.mozzarella.name` |
+| `oregano_seeds.json` | `foodcraft:oregano_seeds` | `foodcraft_oregano_seeds` | `item.foodcraft.oregano_seeds.name` |
+| `pineapple_crown.json` | `foodcraft:pineapple_crown` | `foodcraft_pineapple_crown` | `item.foodcraft.pineapple_crown.name` |
+| `flour.json` | `foodcraft:flour` | `foodcraft_flour` | `item.foodcraft.flour.name` |
+| `pizza_dough.json` | `foodcraft:pizza_dough` | `foodcraft_pizza_dough` | `item.foodcraft.pizza_dough.name` |
+| `tomato_sauce.json` | `foodcraft:tomato_sauce` | `foodcraft_tomato_sauce` | `item.foodcraft.tomato_sauce.name` |
+| `mozzarella.json` | `foodcraft:mozzarella` | `foodcraft_mozzarella` | `item.foodcraft.mozzarella.name` |
 
 Task 7 adds `minecraft:block_placer` to the seed items; do not add it now (the crop blocks do not exist yet and the Content Log would report the missing block).
 
@@ -453,12 +453,12 @@ Same file shape as `tomato.json` from Task 2 (with `minecraft:food`, `use_animat
   "format_version": "1.26.50",
   "minecraft:item": {
     "description": {
-      "identifier": "morphood:garlic",
+      "identifier": "foodcraft:garlic",
       "menu_category": { "category": "items" }
     },
     "components": {
-      "minecraft:icon": { "textures": { "default": "morphood_garlic" } },
-      "minecraft:display_name": { "value": "item.morphood.garlic.name" },
+      "minecraft:icon": { "textures": { "default": "foodcraft_garlic" } },
+      "minecraft:display_name": { "value": "item.foodcraft.garlic.name" },
       "minecraft:food": { "nutrition": 1, "saturation_modifier": 0.3 },
       "minecraft:use_animation": { "value": "eat" },
       "minecraft:use_modifiers": { "start_using": "always", "use_duration": 1.6, "movement_modifier": 0.35 },
@@ -470,10 +470,10 @@ Same file shape as `tomato.json` from Task 2 (with `minecraft:food`, `use_animat
 
 | File | identifier | icon | lang key | nutrition | saturation_modifier |
 |---|---|---|---|---|---|
-| `oregano.json` | `morphood:oregano` | `morphood_oregano` | `item.morphood.oregano.name` | 1 | 0.3 |
-| `pineapple.json` | `morphood:pineapple` | `morphood_pineapple` | `item.morphood.pineapple.name` | 3 | 0.3 |
-| `pepperoni.json` | `morphood:pepperoni` | `morphood_pepperoni` | `item.morphood.pepperoni.name` | 3 | 0.6 |
-| `ham.json` | `morphood:ham` | `morphood_ham` | `item.morphood.ham.name` | 4 | 0.6 |
+| `oregano.json` | `foodcraft:oregano` | `foodcraft_oregano` | `item.foodcraft.oregano.name` | 1 | 0.3 |
+| `pineapple.json` | `foodcraft:pineapple` | `foodcraft_pineapple` | `item.foodcraft.pineapple.name` | 3 | 0.3 |
+| `pepperoni.json` | `foodcraft:pepperoni` | `foodcraft_pepperoni` | `item.foodcraft.pepperoni.name` | 3 | 0.6 |
+| `ham.json` | `foodcraft:ham` | `foodcraft_ham` | `item.foodcraft.ham.name` | 4 | 0.6 |
 
 - [ ] **Step 3: Recipes**
 
@@ -483,11 +483,11 @@ Same file shape as `tomato.json` from Task 2 (with `minecraft:food`, `use_animat
 {
   "format_version": "1.26.50",
   "minecraft:recipe_shapeless": {
-    "description": { "identifier": "morphood:flour" },
+    "description": { "identifier": "foodcraft:flour" },
     "tags": ["crafting_table"],
     "ingredients": [{ "item": "minecraft:wheat" }],
     "unlock": [{ "item": "minecraft:wheat" }],
-    "result": { "item": "morphood:flour" }
+    "result": { "item": "foodcraft:flour" }
   }
 }
 ```
@@ -498,16 +498,16 @@ Same file shape as `tomato.json` from Task 2 (with `minecraft:food`, `use_animat
 {
   "format_version": "1.26.50",
   "minecraft:recipe_shapeless": {
-    "description": { "identifier": "morphood:tomato_sauce" },
+    "description": { "identifier": "foodcraft:tomato_sauce" },
     "tags": ["crafting_table"],
     "ingredients": [
-      { "item": "morphood:tomato", "count": 2 },
-      { "item": "morphood:garlic" },
-      { "item": "morphood:oregano" },
+      { "item": "foodcraft:tomato", "count": 2 },
+      { "item": "foodcraft:garlic" },
+      { "item": "foodcraft:oregano" },
       { "item": "minecraft:bowl" }
     ],
-    "unlock": [{ "item": "morphood:tomato" }],
-    "result": { "item": "morphood:tomato_sauce" }
+    "unlock": [{ "item": "foodcraft:tomato" }],
+    "result": { "item": "foodcraft:tomato_sauce" }
   }
 }
 ```
@@ -518,11 +518,11 @@ Same file shape as `tomato.json` from Task 2 (with `minecraft:food`, `use_animat
 {
   "format_version": "1.26.50",
   "minecraft:recipe_shapeless": {
-    "description": { "identifier": "morphood:pepperoni" },
+    "description": { "identifier": "foodcraft:pepperoni" },
     "tags": ["crafting_table"],
-    "ingredients": [{ "item": "minecraft:porkchop" }, { "item": "morphood:oregano" }],
+    "ingredients": [{ "item": "minecraft:porkchop" }, { "item": "foodcraft:oregano" }],
     "unlock": [{ "item": "minecraft:porkchop" }],
-    "result": { "item": "morphood:pepperoni" }
+    "result": { "item": "foodcraft:pepperoni" }
   }
 }
 ```
@@ -533,11 +533,11 @@ Same file shape as `tomato.json` from Task 2 (with `minecraft:food`, `use_animat
 {
   "format_version": "1.26.50",
   "minecraft:recipe_shapeless": {
-    "description": { "identifier": "morphood:ham" },
+    "description": { "identifier": "foodcraft:ham" },
     "tags": ["crafting_table"],
     "ingredients": [{ "item": "minecraft:cooked_porkchop" }],
     "unlock": [{ "item": "minecraft:cooked_porkchop" }],
-    "result": { "item": "morphood:ham", "count": 2 }
+    "result": { "item": "foodcraft:ham", "count": 2 }
   }
 }
 ```
@@ -548,16 +548,16 @@ Same file shape as `tomato.json` from Task 2 (with `minecraft:food`, `use_animat
 {
   "format_version": "1.26.50",
   "minecraft:recipe_shaped": {
-    "description": { "identifier": "morphood:pizza_dough" },
+    "description": { "identifier": "foodcraft:pizza_dough" },
     "tags": ["crafting_table"],
     "pattern": ["FFF", " W "],
     "key": {
-      "F": { "item": "morphood:flour" },
+      "F": { "item": "foodcraft:flour" },
       "W": { "item": "minecraft:water_bucket" }
     },
-    "unlock": [{ "item": "morphood:flour" }],
+    "unlock": [{ "item": "foodcraft:flour" }],
     "result": [
-      { "item": "morphood:pizza_dough" },
+      { "item": "foodcraft:pizza_dough" },
       { "item": "minecraft:bucket", "count": 1, "data": 0 }
     ]
   }
@@ -570,7 +570,7 @@ Same file shape as `tomato.json` from Task 2 (with `minecraft:food`, `use_animat
 {
   "format_version": "1.26.50",
   "minecraft:recipe_shaped": {
-    "description": { "identifier": "morphood:mozzarella" },
+    "description": { "identifier": "foodcraft:mozzarella" },
     "tags": ["crafting_table"],
     "pattern": ["M"],
     "key": {
@@ -578,7 +578,7 @@ Same file shape as `tomato.json` from Task 2 (with `minecraft:food`, `use_animat
     },
     "unlock": [{ "item": "minecraft:milk_bucket" }],
     "result": [
-      { "item": "morphood:mozzarella" },
+      { "item": "foodcraft:mozzarella" },
       { "item": "minecraft:bucket", "count": 1, "data": 0 }
     ]
   }
@@ -589,24 +589,24 @@ If the Content Log reports an unknown item for `minecraft:milk_bucket`, replace 
 
 - [ ] **Step 4: Atlas entries and names**
 
-Add to `item_texture.json` `texture_data` (one entry per new item, same pattern as `morphood_tomato`):
-`morphood_garlic`, `morphood_oregano`, `morphood_pineapple`, `morphood_tomato_seeds`, `morphood_oregano_seeds`, `morphood_pineapple_crown`, `morphood_flour`, `morphood_pizza_dough`, `morphood_tomato_sauce`, `morphood_mozzarella`, `morphood_pepperoni`, `morphood_ham`, each mapping to `textures/items/<same name>`.
+Add to `item_texture.json` `texture_data` (one entry per new item, same pattern as `foodcraft_tomato`):
+`foodcraft_garlic`, `foodcraft_oregano`, `foodcraft_pineapple`, `foodcraft_tomato_seeds`, `foodcraft_oregano_seeds`, `foodcraft_pineapple_crown`, `foodcraft_flour`, `foodcraft_pizza_dough`, `foodcraft_tomato_sauce`, `foodcraft_mozzarella`, `foodcraft_pepperoni`, `foodcraft_ham`, each mapping to `textures/items/<same name>`.
 
 Append to `en_US.lang`:
 
 ```
-item.morphood.garlic.name=Garlic
-item.morphood.oregano.name=Oregano
-item.morphood.pineapple.name=Pineapple
-item.morphood.tomato_seeds.name=Tomato Seeds
-item.morphood.oregano_seeds.name=Oregano Seeds
-item.morphood.pineapple_crown.name=Pineapple Crown
-item.morphood.flour.name=Flour
-item.morphood.pizza_dough.name=Pizza Dough
-item.morphood.tomato_sauce.name=Tomato Sauce
-item.morphood.mozzarella.name=Mozzarella
-item.morphood.pepperoni.name=Pepperoni
-item.morphood.ham.name=Ham
+item.foodcraft.garlic.name=Garlic
+item.foodcraft.oregano.name=Oregano
+item.foodcraft.pineapple.name=Pineapple
+item.foodcraft.tomato_seeds.name=Tomato Seeds
+item.foodcraft.oregano_seeds.name=Oregano Seeds
+item.foodcraft.pineapple_crown.name=Pineapple Crown
+item.foodcraft.flour.name=Flour
+item.foodcraft.pizza_dough.name=Pizza Dough
+item.foodcraft.tomato_sauce.name=Tomato Sauce
+item.foodcraft.mozzarella.name=Mozzarella
+item.foodcraft.pepperoni.name=Pepperoni
+item.foodcraft.ham.name=Ham
 ```
 
 - [ ] **Step 5: Checklist lines**
@@ -627,8 +627,8 @@ Add under `## Items` in `docs/test-checklist.md` one `/give` line per new item (
 
 1. `tools\deploy.ps1`, re-enter the world (item and recipe JSON needs a world reload, `/reload` is for scripts).
 2. Content Log clean.
-3. `/give @s morphood:<each item>` shows the right name and placeholder texture (12 items).
-4. `/give @s minecraft:wheat 3`, `/give @s minecraft:water_bucket`, `/give @s minecraft:milk_bucket`, `/give @s minecraft:bowl`, `/give @s minecraft:porkchop`, `/give @s minecraft:cooked_porkchop`, `/give @s morphood:tomato 2`, place a crafting table and craft all six recipes. Both bucket recipes leave an empty bucket.
+3. `/give @s foodcraft:<each item>` shows the right name and placeholder texture (12 items).
+4. `/give @s minecraft:wheat 3`, `/give @s minecraft:water_bucket`, `/give @s minecraft:milk_bucket`, `/give @s minecraft:bowl`, `/give @s minecraft:porkchop`, `/give @s minecraft:cooked_porkchop`, `/give @s foodcraft:tomato 2`, place a crafting table and craft all six recipes. Both bucket recipes leave an empty bucket.
 5. Tick the lines.
 
 - [ ] **Step 7: Commit**
@@ -645,14 +645,14 @@ git commit -m "Add produce and ingredient items with recipes"
 Build order step 3. Kid session. First script file; Claude writes `food.js` with them.
 
 **Files:**
-- Create: `packs/morphood_bp/items/raw_pizza_{margherita,pepperoni,prosciutto,hawaii}.json`
-- Create: `packs/morphood_bp/items/pizza_{margherita,pepperoni,prosciutto,hawaii}.json`
-- Create: `packs/morphood_bp/recipes/raw_pizza_{margherita,pepperoni,prosciutto,hawaii}.json`
-- Create: `packs/morphood_bp/scripts/main.js`, `packs/morphood_bp/scripts/food.js`
-- Modify: `packs/morphood_bp/manifest.json`, `item_texture.json`, `en_US.lang`, `docs/test-checklist.md`
+- Create: `packs/foodcraft_bp/items/raw_pizza_{margherita,pepperoni,prosciutto,hawaii}.json`
+- Create: `packs/foodcraft_bp/items/pizza_{margherita,pepperoni,prosciutto,hawaii}.json`
+- Create: `packs/foodcraft_bp/recipes/raw_pizza_{margherita,pepperoni,prosciutto,hawaii}.json`
+- Create: `packs/foodcraft_bp/scripts/main.js`, `packs/foodcraft_bp/scripts/food.js`
+- Modify: `packs/foodcraft_bp/manifest.json`, `item_texture.json`, `en_US.lang`, `docs/test-checklist.md`
 
 **Interfaces:**
-- Produces: item ids `morphood:raw_pizza_<name>` and `morphood:pizza_<name>` for `margherita|pepperoni|prosciutto|hawaii`. Task 5's oven derives the pizza type from the raw id by stripping `morphood:raw_pizza_`.
+- Produces: item ids `foodcraft:raw_pizza_<name>` and `foodcraft:pizza_<name>` for `margherita|pepperoni|prosciutto|hawaii`. Task 5's oven derives the pizza type from the raw id by stripping `foodcraft:raw_pizza_`.
 - Produces: `scripts/main.js` as the single entry; later tasks add one `import` line each.
 
 - [ ] **Step 1: Raw pizza items**
@@ -664,12 +664,12 @@ Build order step 3. Kid session. First script file; Claude writes `food.js` with
   "format_version": "1.26.50",
   "minecraft:item": {
     "description": {
-      "identifier": "morphood:raw_pizza_margherita",
+      "identifier": "foodcraft:raw_pizza_margherita",
       "menu_category": { "category": "items" }
     },
     "components": {
-      "minecraft:icon": { "textures": { "default": "morphood_raw_pizza_margherita" } },
-      "minecraft:display_name": { "value": "item.morphood.raw_pizza_margherita.name" },
+      "minecraft:icon": { "textures": { "default": "foodcraft_raw_pizza_margherita" } },
+      "minecraft:display_name": { "value": "item.foodcraft.raw_pizza_margherita.name" },
       "minecraft:max_stack_size": 16,
       "minecraft:food": { "nutrition": 3, "saturation_modifier": 0.3, "can_always_eat": true },
       "minecraft:use_animation": { "value": "eat" },
@@ -691,12 +691,12 @@ Same shape with the baked values. `items/pizza_margherita.json`:
   "format_version": "1.26.50",
   "minecraft:item": {
     "description": {
-      "identifier": "morphood:pizza_margherita",
+      "identifier": "foodcraft:pizza_margherita",
       "menu_category": { "category": "items" }
     },
     "components": {
-      "minecraft:icon": { "textures": { "default": "morphood_pizza_margherita" } },
-      "minecraft:display_name": { "value": "item.morphood.pizza_margherita.name" },
+      "minecraft:icon": { "textures": { "default": "foodcraft_pizza_margherita" } },
+      "minecraft:display_name": { "value": "item.foodcraft.pizza_margherita.name" },
       "minecraft:max_stack_size": 16,
       "minecraft:food": { "nutrition": 12, "saturation_modifier": 0.8 },
       "minecraft:use_animation": { "value": "eat" },
@@ -717,16 +717,16 @@ Repeat for `pepperoni`, `prosciutto`, `hawaii`. Nutrition 12 with saturation mod
 {
   "format_version": "1.26.50",
   "minecraft:recipe_shapeless": {
-    "description": { "identifier": "morphood:raw_pizza_margherita" },
+    "description": { "identifier": "foodcraft:raw_pizza_margherita" },
     "tags": ["crafting_table"],
     "ingredients": [
-      { "item": "morphood:pizza_dough" },
-      { "item": "morphood:tomato_sauce" },
-      { "item": "morphood:mozzarella" },
-      { "item": "morphood:oregano" }
+      { "item": "foodcraft:pizza_dough" },
+      { "item": "foodcraft:tomato_sauce" },
+      { "item": "foodcraft:mozzarella" },
+      { "item": "foodcraft:oregano" }
     ],
-    "unlock": [{ "item": "morphood:pizza_dough" }],
-    "result": { "item": "morphood:raw_pizza_margherita" }
+    "unlock": [{ "item": "foodcraft:pizza_dough" }],
+    "result": { "item": "foodcraft:raw_pizza_margherita" }
   }
 }
 ```
@@ -735,24 +735,24 @@ The other three replace the fourth ingredient:
 
 | File | identifier | ingredients after dough + sauce + mozzarella |
 |---|---|---|
-| `raw_pizza_pepperoni.json` | `morphood:raw_pizza_pepperoni` | `morphood:pepperoni` |
-| `raw_pizza_prosciutto.json` | `morphood:raw_pizza_prosciutto` | `morphood:ham` |
-| `raw_pizza_hawaii.json` | `morphood:raw_pizza_hawaii` | `morphood:ham`, `morphood:pineapple` |
+| `raw_pizza_pepperoni.json` | `foodcraft:raw_pizza_pepperoni` | `foodcraft:pepperoni` |
+| `raw_pizza_prosciutto.json` | `foodcraft:raw_pizza_prosciutto` | `foodcraft:ham` |
+| `raw_pizza_hawaii.json` | `foodcraft:raw_pizza_hawaii` | `foodcraft:ham`, `foodcraft:pineapple` |
 
 - [ ] **Step 4: Script module in the manifest**
 
-Replace `packs/morphood_bp/manifest.json` `modules` and `dependencies` with:
+Replace `packs/foodcraft_bp/manifest.json` `modules` and `dependencies` with:
 
 ```json
   "modules": [
     {
-      "description": "Morphood data",
+      "description": "Foodcraft data",
       "type": "data",
       "uuid": "b1a3afbc-9ffe-4882-a249-c29badf31a8f",
       "version": [0, 1, 0]
     },
     {
-      "description": "Morphood scripts",
+      "description": "Foodcraft scripts",
       "type": "script",
       "language": "javascript",
       "uuid": "c9db88ff-e049-4f1c-b4d4-fdab77690e4a",
@@ -779,7 +779,7 @@ Replace `packs/morphood_bp/manifest.json` `modules` and `dependencies` with:
 ```js
 import { world } from "@minecraft/server";
 
-const RAW_PIZZA_PREFIX = "morphood:raw_pizza_";
+const RAW_PIZZA_PREFIX = "foodcraft:raw_pizza_";
 const NAUSEA_TICKS = 200; // 10 seconds
 
 // The joke from the spec: raw pizza is edible but makes you queasy.
@@ -797,19 +797,19 @@ import "./food.js";
 
 - [ ] **Step 6: Atlas, names, checklist**
 
-Add eight `item_texture.json` entries: `morphood_raw_pizza_<name>` and `morphood_pizza_<name>` -> `textures/items/<same>`.
+Add eight `item_texture.json` entries: `foodcraft_raw_pizza_<name>` and `foodcraft_pizza_<name>` -> `textures/items/<same>`.
 
 Append to `en_US.lang`:
 
 ```
-item.morphood.raw_pizza_margherita.name=Raw Pizza Margherita
-item.morphood.raw_pizza_pepperoni.name=Raw Pizza Pepperoni
-item.morphood.raw_pizza_prosciutto.name=Raw Pizza Prosciutto
-item.morphood.raw_pizza_hawaii.name=Raw Pizza Hawaii
-item.morphood.pizza_margherita.name=Pizza Margherita
-item.morphood.pizza_pepperoni.name=Pizza Pepperoni
-item.morphood.pizza_prosciutto.name=Pizza Prosciutto
-item.morphood.pizza_hawaii.name=Pizza Hawaii
+item.foodcraft.raw_pizza_margherita.name=Raw Pizza Margherita
+item.foodcraft.raw_pizza_pepperoni.name=Raw Pizza Pepperoni
+item.foodcraft.raw_pizza_prosciutto.name=Raw Pizza Prosciutto
+item.foodcraft.raw_pizza_hawaii.name=Raw Pizza Hawaii
+item.foodcraft.pizza_margherita.name=Pizza Margherita
+item.foodcraft.pizza_pepperoni.name=Pizza Pepperoni
+item.foodcraft.pizza_prosciutto.name=Pizza Prosciutto
+item.foodcraft.pizza_hawaii.name=Pizza Hawaii
 ```
 
 Checklist: eight `/give` item lines, four recipe lines (`Raw pizza <name>: dough + sauce + mozzarella + <topping>`), and a new section:
@@ -824,8 +824,8 @@ Checklist: eight `/give` item lines, four recipe lines (`Raw pizza <name>: dough
 
 1. Deploy, re-enter the world (manifest changed).
 2. Content Log clean. If it says the `@minecraft/server` version `2.11.0` is not available, the game is older than 1.26.60: update Minecraft, do not change the version.
-3. `/give @s morphood:raw_pizza_margherita` and eat it: Nausea appears for 10 seconds.
-4. `/gamemode s`, empty hunger (`/effect @s hunger 30 255` then wait), eat `morphood:pizza_hawaii`: bar fills completely.
+3. `/give @s foodcraft:raw_pizza_margherita` and eat it: Nausea appears for 10 seconds.
+4. `/gamemode s`, empty hunger (`/effect @s hunger 30 255` then wait), eat `foodcraft:pizza_hawaii`: bar fills completely.
 5. Craft all four raw pizzas at a crafting table.
 6. Edit `food.js` to a 2-second nausea, run `/reload`, eat again, confirm the shorter effect, then restore 200 ticks and `/reload` again. This teaches the kids the script loop.
 7. Tick the lines.
@@ -844,16 +844,16 @@ git commit -m "Add raw and baked pizzas with the raw pizza nausea script"
 Build order step 4. Two kid sessions: (a) block JSON + recipe, playable as a decorative block; (b) `oven.js` with all edge cases from spec 4.2. Claude writes most of `oven.js`.
 
 **Files:**
-- Create: `packs/morphood_bp/blocks/pizza_oven.json`
-- Create: `packs/morphood_bp/recipes/pizza_oven.json`
-- Create: `packs/morphood_bp/scripts/oven.js`
-- Create: `packs/morphood_rp/textures/terrain_texture.json`
-- Create: `packs/morphood_rp/blocks.json`
+- Create: `packs/foodcraft_bp/blocks/pizza_oven.json`
+- Create: `packs/foodcraft_bp/recipes/pizza_oven.json`
+- Create: `packs/foodcraft_bp/scripts/oven.js`
+- Create: `packs/foodcraft_rp/textures/terrain_texture.json`
+- Create: `packs/foodcraft_rp/blocks.json`
 - Modify: `scripts/main.js`, `en_US.lang`, `docs/test-checklist.md`
 
 **Interfaces:**
-- Block `morphood:pizza_oven` with states `morphood:stage` in `["empty", "baking", "done"]` and `morphood:pizza` in `["none", "margherita", "pepperoni", "prosciutto", "hawaii"]`, plus `minecraft:cardinal_direction` from the placement trait.
-- Custom component id `morphood:pizza_oven` registered in `oven.js`. Task 6 swaps only the geometry and material instances; states and script stay.
+- Block `foodcraft:pizza_oven` with states `foodcraft:stage` in `["empty", "baking", "done"]` and `foodcraft:pizza` in `["none", "margherita", "pepperoni", "prosciutto", "hawaii"]`, plus `minecraft:cardinal_direction` from the placement trait.
+- Custom component id `foodcraft:pizza_oven` registered in `oven.js`. Task 6 swaps only the geometry and material instances; states and script stay.
 
 - [ ] **Step 1: Block JSON**
 
@@ -864,22 +864,22 @@ Build order step 4. Two kid sessions: (a) block JSON + recipe, playable as a dec
   "format_version": "1.26.50",
   "minecraft:block": {
     "description": {
-      "identifier": "morphood:pizza_oven",
+      "identifier": "foodcraft:pizza_oven",
       "menu_category": { "category": "construction" },
       "traits": {
         "minecraft:placement_direction": { "enabled_states": ["minecraft:cardinal_direction"] }
       },
       "states": {
-        "morphood:stage": ["empty", "baking", "done"],
-        "morphood:pizza": ["none", "margherita", "pepperoni", "prosciutto", "hawaii"]
+        "foodcraft:stage": ["empty", "baking", "done"],
+        "foodcraft:pizza": ["none", "margherita", "pepperoni", "prosciutto", "hawaii"]
       }
     },
     "components": {
       "minecraft:geometry": "minecraft:geometry.full_block",
       "minecraft:material_instances": {
-        "*": { "texture": "morphood_oven_side", "render_method": "opaque" },
-        "up": { "texture": "morphood_oven_top", "render_method": "opaque" },
-        "north": { "texture": "morphood_oven_front_empty", "render_method": "opaque" }
+        "*": { "texture": "foodcraft_oven_side", "render_method": "opaque" },
+        "up": { "texture": "foodcraft_oven_top", "render_method": "opaque" },
+        "north": { "texture": "foodcraft_oven_front_empty", "render_method": "opaque" }
       },
       "minecraft:collision_box": true,
       "minecraft:selection_box": true,
@@ -887,7 +887,7 @@ Build order step 4. Two kid sessions: (a) block JSON + recipe, playable as a dec
       "minecraft:destructible_by_explosion": { "explosion_resistance": 6 },
       "minecraft:map_color": "#8a4a2e",
       "minecraft:tick": { "interval_range": [10, 10], "looping": true },
-      "morphood:pizza_oven": {}
+      "foodcraft:pizza_oven": {}
     },
     "permutations": [
       {
@@ -907,23 +907,23 @@ Build order step 4. Two kid sessions: (a) block JSON + recipe, playable as a dec
         "components": { "minecraft:transformation": { "rotation": [0, 270, 0] } }
       },
       {
-        "condition": "q.block_state('morphood:stage') == 'baking'",
+        "condition": "q.block_state('foodcraft:stage') == 'baking'",
         "components": {
           "minecraft:light_emission": 10,
           "minecraft:material_instances": {
-            "*": { "texture": "morphood_oven_side", "render_method": "opaque" },
-            "up": { "texture": "morphood_oven_top", "render_method": "opaque" },
-            "north": { "texture": "morphood_oven_front_baking", "render_method": "opaque" }
+            "*": { "texture": "foodcraft_oven_side", "render_method": "opaque" },
+            "up": { "texture": "foodcraft_oven_top", "render_method": "opaque" },
+            "north": { "texture": "foodcraft_oven_front_baking", "render_method": "opaque" }
           }
         }
       },
       {
-        "condition": "q.block_state('morphood:stage') == 'done'",
+        "condition": "q.block_state('foodcraft:stage') == 'done'",
         "components": {
           "minecraft:material_instances": {
-            "*": { "texture": "morphood_oven_side", "render_method": "opaque" },
-            "up": { "texture": "morphood_oven_top", "render_method": "opaque" },
-            "north": { "texture": "morphood_oven_front_done", "render_method": "opaque" }
+            "*": { "texture": "foodcraft_oven_side", "render_method": "opaque" },
+            "up": { "texture": "foodcraft_oven_top", "render_method": "opaque" },
+            "north": { "texture": "foodcraft_oven_front_done", "render_method": "opaque" }
           }
         }
       }
@@ -940,7 +940,7 @@ Build order step 4. Two kid sessions: (a) block JSON + recipe, playable as a dec
 {
   "format_version": "1.26.50",
   "minecraft:recipe_shaped": {
-    "description": { "identifier": "morphood:pizza_oven" },
+    "description": { "identifier": "foodcraft:pizza_oven" },
     "tags": ["crafting_table"],
     "pattern": ["BBB", "BFB", "SSS"],
     "key": {
@@ -949,43 +949,43 @@ Build order step 4. Two kid sessions: (a) block JSON + recipe, playable as a dec
       "S": { "item": "minecraft:stone" }
     },
     "unlock": [{ "item": "minecraft:furnace" }],
-    "result": { "item": "morphood:pizza_oven" }
+    "result": { "item": "foodcraft:pizza_oven" }
   }
 }
 ```
 
-`packs/morphood_rp/textures/terrain_texture.json`:
+`packs/foodcraft_rp/textures/terrain_texture.json`:
 
 ```json
 {
-  "resource_pack_name": "morphood_rp",
+  "resource_pack_name": "foodcraft_rp",
   "texture_name": "atlas.terrain",
   "padding": 8,
   "num_mip_levels": 4,
   "texture_data": {
-    "morphood_oven_side": { "textures": "textures/blocks/morphood_oven_side" },
-    "morphood_oven_top": { "textures": "textures/blocks/morphood_oven_top" },
-    "morphood_oven_front_empty": { "textures": "textures/blocks/morphood_oven_front_empty" },
-    "morphood_oven_front_baking": { "textures": "textures/blocks/morphood_oven_front_baking" },
-    "morphood_oven_front_done": { "textures": "textures/blocks/morphood_oven_front_done" }
+    "foodcraft_oven_side": { "textures": "textures/blocks/foodcraft_oven_side" },
+    "foodcraft_oven_top": { "textures": "textures/blocks/foodcraft_oven_top" },
+    "foodcraft_oven_front_empty": { "textures": "textures/blocks/foodcraft_oven_front_empty" },
+    "foodcraft_oven_front_baking": { "textures": "textures/blocks/foodcraft_oven_front_baking" },
+    "foodcraft_oven_front_done": { "textures": "textures/blocks/foodcraft_oven_front_done" }
   }
 }
 ```
 
-`packs/morphood_rp/blocks.json`:
+`packs/foodcraft_rp/blocks.json`:
 
 ```json
 {
   "format_version": "1.26.50",
-  "morphood:pizza_oven": { "sound": "stone" }
+  "foodcraft:pizza_oven": { "sound": "stone" }
 }
 ```
 
-Append to `en_US.lang`: `tile.morphood:pizza_oven.name=Pizza Oven`
+Append to `en_US.lang`: `tile.foodcraft:pizza_oven.name=Pizza Oven`
 
 - [ ] **Step 3: Deploy the decorative oven (session a ends here)**
 
-Deploy, re-enter. Content Log clean. `/give @s morphood:pizza_oven`, place it facing you from four sides: the front (texture with the oven mouth) faces the player each time. If it faces away, swap the `north` and `south` rotation values in the two permutations. Craft one from 6 bricks blocks, a furnace and 3 stone. Add checklist lines:
+Deploy, re-enter. Content Log clean. `/give @s foodcraft:pizza_oven`, place it facing you from four sides: the front (texture with the oven mouth) faces the player each time. If it faces away, swap the `north` and `south` rotation values in the two permutations. Craft one from 6 bricks blocks, a furnace and 3 stone. Add checklist lines:
 
 ```markdown
 ## Oven
@@ -1002,9 +1002,9 @@ Commit: `git commit -am "Add pizza oven block and recipe"` (after `git add packs
 ```js
 import { system, ItemStack, GameMode, EquipmentSlot, EntityComponentTypes, Direction } from "@minecraft/server";
 
-const OVEN_ID = "morphood:pizza_oven";
-const RAW_PREFIX = "morphood:raw_pizza_";
-const BAKED_PREFIX = "morphood:pizza_";
+const OVEN_ID = "foodcraft:pizza_oven";
+const RAW_PREFIX = "foodcraft:raw_pizza_";
+const BAKED_PREFIX = "foodcraft:pizza_";
 const PIZZAS = ["margherita", "pepperoni", "prosciutto", "hawaii"];
 const BAKE_TICKS = 200; // 10 seconds
 const DING_SOUND = "random.orb"; // Task 9 swaps this for the custom ding
@@ -1017,15 +1017,15 @@ function keyOf(block) {
 }
 
 function stageOf(block) {
-  return block.permutation.getState("morphood:stage");
+  return block.permutation.getState("foodcraft:stage");
 }
 
 function pizzaOf(block) {
-  return block.permutation.getState("morphood:pizza");
+  return block.permutation.getState("foodcraft:pizza");
 }
 
 function setOven(block, stage, pizza) {
-  block.setPermutation(block.permutation.withState("morphood:stage", stage).withState("morphood:pizza", pizza));
+  block.setPermutation(block.permutation.withState("foodcraft:stage", stage).withState("foodcraft:pizza", pizza));
 }
 
 function faceOffset(face) {
@@ -1129,8 +1129,8 @@ export const pizzaOvenComponent = {
   onPlayerBreak(event) {
     const { block, brokenBlockPermutation } = event;
     cancelBakeTimer(block);
-    const stage = brokenBlockPermutation.getState("morphood:stage");
-    const pizza = brokenBlockPermutation.getState("morphood:pizza");
+    const stage = brokenBlockPermutation.getState("foodcraft:stage");
+    const pizza = brokenBlockPermutation.getState("foodcraft:pizza");
     if (stage === "baking") dropAt(block, new ItemStack(RAW_PREFIX + pizza, 1));
     if (stage === "done") dropAt(block, new ItemStack(BAKED_PREFIX + pizza, 1));
   },
@@ -1145,7 +1145,7 @@ import "./food.js";
 import { pizzaOvenComponent } from "./oven.js";
 
 system.beforeEvents.startup.subscribe((event) => {
-  event.blockComponentRegistry.registerCustomComponent("morphood:pizza_oven", pizzaOvenComponent);
+  event.blockComponentRegistry.registerCustomComponent("foodcraft:pizza_oven", pizzaOvenComponent);
 });
 ```
 
@@ -1190,19 +1190,19 @@ git commit -m "Add pizza oven baking script with all edge cases"
 Build order step 4, art half. Kid session in Blockbench. The block keeps every state and script from Task 5.
 
 **Files:**
-- Create: `packs/morphood_rp/models/blocks/pizza_oven.geo.json` (exported from Blockbench)
-- Create: `packs/morphood_rp/textures/blocks/morphood_pizza_oven.png` (the model's texture sheet, painted in Blockbench)
-- Modify: `packs/morphood_bp/blocks/pizza_oven.json`, `terrain_texture.json`
+- Create: `packs/foodcraft_rp/models/blocks/pizza_oven.geo.json` (exported from Blockbench)
+- Create: `packs/foodcraft_rp/textures/blocks/foodcraft_pizza_oven.png` (the model's texture sheet, painted in Blockbench)
+- Modify: `packs/foodcraft_bp/blocks/pizza_oven.json`, `terrain_texture.json`
 
 **Interfaces:**
-- Geometry identifier `geometry.morphood_pizza_oven`, bones named exactly: `body`, `flame`, `pizza_margherita`, `pizza_pepperoni`, `pizza_prosciutto`, `pizza_hawaii`. Bone visibility is driven by the block states from Task 5.
+- Geometry identifier `geometry.foodcraft_pizza_oven`, bones named exactly: `body`, `flame`, `pizza_margherita`, `pizza_pepperoni`, `pizza_prosciutto`, `pizza_hawaii`. Bone visibility is driven by the block states from Task 5.
 
 - [ ] **Step 1: Model in Blockbench**
 
-1. New project > Bedrock Block. Set the identifier to `geometry.morphood_pizza_oven`, texture size 64x64.
+1. New project > Bedrock Block. Set the identifier to `geometry.foodcraft_pizza_oven`, texture size 64x64.
 2. Build: a brick dome/box body (`body` bone) with an opening on the north face (-Z), a small flame cube (`flame`) inside the mouth, and four flat pizza discs (`pizza_<name>`), one bone each, overlapping at the same spot on the oven floor. Follow `docs/superpowers/specs/images/oven.svg` for colours.
-3. Paint the texture in Blockbench's paint tab. Save the texture as `morphood_pizza_oven.png` into `packs/morphood_rp/textures/blocks/`.
-4. File > Export > Export Bedrock Geometry to `packs/morphood_rp/models/blocks/pizza_oven.geo.json`.
+3. Paint the texture in Blockbench's paint tab. Save the texture as `foodcraft_pizza_oven.png` into `packs/foodcraft_rp/textures/blocks/`.
+4. File > Export > Export Bedrock Geometry to `packs/foodcraft_rp/models/blocks/pizza_oven.geo.json`.
 
 - [ ] **Step 2: Point the block at the model**
 
@@ -1210,23 +1210,23 @@ In `blocks/pizza_oven.json` replace the base `minecraft:geometry` and `minecraft
 
 ```json
       "minecraft:geometry": {
-        "identifier": "geometry.morphood_pizza_oven",
+        "identifier": "geometry.foodcraft_pizza_oven",
         "bone_visibility": {
-          "flame": "q.block_state('morphood:stage') == 'baking'",
-          "pizza_margherita": "q.block_state('morphood:stage') == 'done' && q.block_state('morphood:pizza') == 'margherita'",
-          "pizza_pepperoni": "q.block_state('morphood:stage') == 'done' && q.block_state('morphood:pizza') == 'pepperoni'",
-          "pizza_prosciutto": "q.block_state('morphood:stage') == 'done' && q.block_state('morphood:pizza') == 'prosciutto'",
-          "pizza_hawaii": "q.block_state('morphood:stage') == 'done' && q.block_state('morphood:pizza') == 'hawaii'"
+          "flame": "q.block_state('foodcraft:stage') == 'baking'",
+          "pizza_margherita": "q.block_state('foodcraft:stage') == 'done' && q.block_state('foodcraft:pizza') == 'margherita'",
+          "pizza_pepperoni": "q.block_state('foodcraft:stage') == 'done' && q.block_state('foodcraft:pizza') == 'pepperoni'",
+          "pizza_prosciutto": "q.block_state('foodcraft:stage') == 'done' && q.block_state('foodcraft:pizza') == 'prosciutto'",
+          "pizza_hawaii": "q.block_state('foodcraft:stage') == 'done' && q.block_state('foodcraft:pizza') == 'hawaii'"
         }
       },
       "minecraft:material_instances": {
-        "*": { "texture": "morphood_pizza_oven", "render_method": "alpha_test" }
+        "*": { "texture": "foodcraft_pizza_oven", "render_method": "alpha_test" }
       },
 ```
 
 Delete the `baking` and `done` permutations' `minecraft:material_instances` blocks (keep the `baking` permutation with only `minecraft:light_emission: 10`; delete the `done` permutation entirely). Keep the four rotation permutations.
 
-Add to `terrain_texture.json`: `"morphood_pizza_oven": { "textures": "textures/blocks/morphood_pizza_oven" }`.
+Add to `terrain_texture.json`: `"foodcraft_pizza_oven": { "textures": "textures/blocks/foodcraft_pizza_oven" }`.
 
 - [ ] **Step 3: Deploy and verify in game**
 
@@ -1250,14 +1250,14 @@ git commit -m "Add Blockbench pizza oven model with state-driven bones"
 Build order step 5. Two kid sessions: (a) tomato crop end to end, (b) the other three crops by copying.
 
 **Files:**
-- Create: `packs/morphood_bp/blocks/{tomato,garlic,oregano,pineapple}_crop.json`
-- Create: `packs/morphood_bp/loot_tables/blocks/{tomato,garlic,oregano,pineapple}_crop_seed.json` and `..._crop_mature.json`
-- Create: `packs/morphood_bp/scripts/crop.js`
+- Create: `packs/foodcraft_bp/blocks/{tomato,garlic,oregano,pineapple}_crop.json`
+- Create: `packs/foodcraft_bp/loot_tables/blocks/{tomato,garlic,oregano,pineapple}_crop_seed.json` and `..._crop_mature.json`
+- Create: `packs/foodcraft_bp/scripts/crop.js`
 - Modify: `items/{tomato_seeds,garlic,oregano_seeds,pineapple_crown}.json`, `scripts/main.js`, `terrain_texture.json`, `en_US.lang`, `docs/test-checklist.md`
 
 **Interfaces:**
-- Blocks `morphood:<plant>_crop` with state `morphood:growth` in `[0, 1, 2, 3]`.
-- Custom component id `morphood:crop` registered in `crop.js`; no parameters.
+- Blocks `foodcraft:<plant>_crop` with state `foodcraft:growth` in `[0, 1, 2, 3]`.
+- Custom component id `foodcraft:crop` registered in `crop.js`; no parameters.
 - Task 8 wild plants drop the seed items set up here.
 
 - [ ] **Step 1: Tomato crop block**
@@ -1269,14 +1269,14 @@ Build order step 5. Two kid sessions: (a) tomato crop end to end, (b) the other 
   "format_version": "1.26.50",
   "minecraft:block": {
     "description": {
-      "identifier": "morphood:tomato_crop",
+      "identifier": "foodcraft:tomato_crop",
       "menu_category": { "category": "none" },
-      "states": { "morphood:growth": [0, 1, 2, 3] }
+      "states": { "foodcraft:growth": [0, 1, 2, 3] }
     },
     "components": {
       "minecraft:geometry": "minecraft:geometry.cross",
       "minecraft:material_instances": {
-        "*": { "texture": "morphood_tomato_crop_0", "render_method": "alpha_test_single_sided", "ambient_occlusion": 0 }
+        "*": { "texture": "foodcraft_tomato_crop_0", "render_method": "alpha_test_single_sided", "ambient_occlusion": 0 }
       },
       "minecraft:collision_box": false,
       "minecraft:selection_box": { "origin": [-7, 0, -7], "size": [14, 10, 14] },
@@ -1286,30 +1286,30 @@ Build order step 5. Two kid sessions: (a) tomato crop end to end, (b) the other 
         "conditions": [{ "allowed_faces": ["up"], "block_filter": ["minecraft:farmland"] }]
       },
       "minecraft:loot": "loot_tables/blocks/tomato_crop_seed.json",
-      "morphood:crop": {}
+      "foodcraft:crop": {}
     },
     "permutations": [
       {
-        "condition": "q.block_state('morphood:growth') == 1",
+        "condition": "q.block_state('foodcraft:growth') == 1",
         "components": {
           "minecraft:material_instances": {
-            "*": { "texture": "morphood_tomato_crop_1", "render_method": "alpha_test_single_sided", "ambient_occlusion": 0 }
+            "*": { "texture": "foodcraft_tomato_crop_1", "render_method": "alpha_test_single_sided", "ambient_occlusion": 0 }
           }
         }
       },
       {
-        "condition": "q.block_state('morphood:growth') == 2",
+        "condition": "q.block_state('foodcraft:growth') == 2",
         "components": {
           "minecraft:material_instances": {
-            "*": { "texture": "morphood_tomato_crop_2", "render_method": "alpha_test_single_sided", "ambient_occlusion": 0 }
+            "*": { "texture": "foodcraft_tomato_crop_2", "render_method": "alpha_test_single_sided", "ambient_occlusion": 0 }
           }
         }
       },
       {
-        "condition": "q.block_state('morphood:growth') == 3",
+        "condition": "q.block_state('foodcraft:growth') == 3",
         "components": {
           "minecraft:material_instances": {
-            "*": { "texture": "morphood_tomato_crop_3", "render_method": "alpha_test_single_sided", "ambient_occlusion": 0 }
+            "*": { "texture": "foodcraft_tomato_crop_3", "render_method": "alpha_test_single_sided", "ambient_occlusion": 0 }
           },
           "minecraft:loot": "loot_tables/blocks/tomato_crop_mature.json"
         }
@@ -1328,7 +1328,7 @@ Build order step 5. Two kid sessions: (a) tomato crop end to end, (b) the other 
   "pools": [
     {
       "rolls": 1,
-      "entries": [{ "type": "item", "name": "morphood:tomato_seeds", "weight": 1 }]
+      "entries": [{ "type": "item", "name": "foodcraft:tomato_seeds", "weight": 1 }]
     }
   ]
 }
@@ -1344,7 +1344,7 @@ Build order step 5. Two kid sessions: (a) tomato crop end to end, (b) the other 
       "entries": [
         {
           "type": "item",
-          "name": "morphood:tomato",
+          "name": "foodcraft:tomato",
           "weight": 1,
           "functions": [{ "function": "set_count", "count": { "min": 2, "max": 3 } }]
         }
@@ -1355,7 +1355,7 @@ Build order step 5. Two kid sessions: (a) tomato crop end to end, (b) the other 
       "entries": [
         {
           "type": "item",
-          "name": "morphood:tomato_seeds",
+          "name": "foodcraft:tomato_seeds",
           "weight": 1,
           "functions": [{ "function": "set_count", "count": { "min": 1, "max": 2 } }]
         }
@@ -1371,7 +1371,7 @@ Add to `items/tomato_seeds.json` `components`:
 
 ```json
       "minecraft:block_placer": {
-        "block": "morphood:tomato_crop",
+        "block": "foodcraft:tomato_crop",
         "use_on": ["minecraft:farmland"]
       }
 ```
@@ -1383,7 +1383,7 @@ Add to `items/tomato_seeds.json` `components`:
 ```js
 import { GameMode, EquipmentSlot, EntityComponentTypes } from "@minecraft/server";
 
-const GROWTH = "morphood:growth";
+const GROWTH = "foodcraft:growth";
 const MAX_GROWTH = 3;
 const GROW_CHANCE = 0.34; // per random tick, roughly vanilla wheat pace
 const BONE_MEAL = "minecraft:bone_meal";
@@ -1432,18 +1432,18 @@ export const cropComponent = {
 In `scripts/main.js` add `import { cropComponent } from "./crop.js";` and inside the startup subscriber:
 
 ```js
-  event.blockComponentRegistry.registerCustomComponent("morphood:crop", cropComponent);
+  event.blockComponentRegistry.registerCustomComponent("foodcraft:crop", cropComponent);
 ```
 
 - [ ] **Step 5: Textures and names for tomato**
 
-Add to `terrain_texture.json`: `morphood_tomato_crop_0` … `morphood_tomato_crop_3` -> `textures/blocks/<same>`.
-Append to `en_US.lang`: `tile.morphood:tomato_crop.name=Tomato Crop`.
+Add to `terrain_texture.json`: `foodcraft_tomato_crop_0` … `foodcraft_tomato_crop_3` -> `textures/blocks/<same>`.
+Append to `en_US.lang`: `tile.foodcraft:tomato_crop.name=Tomato Crop`.
 
 - [ ] **Step 6: Deploy and verify the tomato crop (session a ends here)**
 
 1. Deploy, re-enter. Content Log clean.
-2. `/give @s morphood:tomato_seeds 8`, `/give @s minecraft:bone_meal 16`. Till dirt with a hoe. Seeds plant on farmland only; on grass nothing happens.
+2. `/give @s foodcraft:tomato_seeds 8`, `/give @s minecraft:bone_meal 16`. Till dirt with a hoe. Seeds plant on farmland only; on grass nothing happens.
 3. `/gamerule randomtickspeed 300`: crops visibly change texture through stages within a minute. Set back to `/gamerule randomtickspeed 1`. If no crop ever changes stage at 300, random ticks are not reaching the component: stop and report (that would be a plan change, not something to patch around).
 4. Bone meal a stage-0 crop: jumps one or two stages, green particles, one bone meal used in survival, none in creative.
 5. Break a stage-0/1/2 crop: one tomato seed only. Break a stage-3 crop: 2–3 tomatoes and 1–2 seeds.
@@ -1464,13 +1464,13 @@ Commit: `git add packs docs/test-checklist.md && git commit -m "Add tomato crop 
 
 - [ ] **Step 7: Garlic, oregano and pineapple crops (session b)**
 
-Copy the three tomato files for each plant and change only the values below. The block JSON changes identifier, the four texture names and the two loot paths. Lang line `tile.morphood:<plant>_crop.name=<Plant> Crop`. Add the twelve `terrain_texture.json` entries `morphood_<plant>_crop_<n>`.
+Copy the three tomato files for each plant and change only the values below. The block JSON changes identifier, the four texture names and the two loot paths. Lang line `tile.foodcraft:<plant>_crop.name=<Plant> Crop`. Add the twelve `terrain_texture.json` entries `foodcraft_<plant>_crop_<n>`.
 
 | Plant | Block id | Seed item (gets `block_placer` with `use_on: ["minecraft:farmland"]`) | Immature loot | Mature loot |
 |---|---|---|---|---|
-| garlic | `morphood:garlic_crop` | `morphood:garlic` (planted directly, like potatoes) | 1 `morphood:garlic` | `morphood:garlic` count 2–4 (one pool) |
-| oregano | `morphood:oregano_crop` | `morphood:oregano_seeds` | 1 `morphood:oregano_seeds` | `morphood:oregano` count 1–2 and `morphood:oregano_seeds` count 1–2 (two pools) |
-| pineapple | `morphood:pineapple_crop` | `morphood:pineapple_crown` | 1 `morphood:pineapple_crown` | `morphood:pineapple` count 1 and `morphood:pineapple_crown` count 1 (two pools, no set_count) |
+| garlic | `foodcraft:garlic_crop` | `foodcraft:garlic` (planted directly, like potatoes) | 1 `foodcraft:garlic` | `foodcraft:garlic` count 2–4 (one pool) |
+| oregano | `foodcraft:oregano_crop` | `foodcraft:oregano_seeds` | 1 `foodcraft:oregano_seeds` | `foodcraft:oregano` count 1–2 and `foodcraft:oregano_seeds` count 1–2 (two pools) |
+| pineapple | `foodcraft:pineapple_crop` | `foodcraft:pineapple_crown` | 1 `foodcraft:pineapple_crown` | `foodcraft:pineapple` count 1 and `foodcraft:pineapple_crown` count 1 (two pools, no set_count) |
 
 `loot_tables/blocks/garlic_crop_mature.json` in full, since it has one pool:
 
@@ -1482,7 +1482,7 @@ Copy the three tomato files for each plant and change only the values below. The
       "entries": [
         {
           "type": "item",
-          "name": "morphood:garlic",
+          "name": "foodcraft:garlic",
           "weight": 1,
           "functions": [{ "function": "set_count", "count": { "min": 2, "max": 4 } }]
         }
@@ -1510,14 +1510,14 @@ git commit -m "Add garlic, oregano and pineapple crops"
 Build order step 6. Kid session. Tested in a new, non-flat world.
 
 **Files:**
-- Create: `packs/morphood_bp/blocks/wild_{tomato,garlic,oregano,pineapple}.json`
-- Create: `packs/morphood_bp/loot_tables/blocks/wild_{tomato,garlic,oregano,pineapple}.json`
-- Create: `packs/morphood_bp/features/wild_{plant}_block.json` and `features/wild_{plant}_patch.json` (4 plants, 8 files)
-- Create: `packs/morphood_bp/feature_rules/wild_{plant}_rule.json` (4 files)
+- Create: `packs/foodcraft_bp/blocks/wild_{tomato,garlic,oregano,pineapple}.json`
+- Create: `packs/foodcraft_bp/loot_tables/blocks/wild_{tomato,garlic,oregano,pineapple}.json`
+- Create: `packs/foodcraft_bp/features/wild_{plant}_block.json` and `features/wild_{plant}_patch.json` (4 plants, 8 files)
+- Create: `packs/foodcraft_bp/feature_rules/wild_{plant}_rule.json` (4 files)
 - Modify: `terrain_texture.json`, `en_US.lang`, `blocks.json`, `docs/test-checklist.md`
 
 **Interfaces:**
-- Blocks `morphood:wild_<plant>`; feature ids `morphood:wild_<plant>_block`, `morphood:wild_<plant>_patch`; rule ids `morphood:wild_<plant>_rule`. File names must equal the part after the colon.
+- Blocks `foodcraft:wild_<plant>`; feature ids `foodcraft:wild_<plant>_block`, `foodcraft:wild_<plant>_patch`; rule ids `foodcraft:wild_<plant>_rule`. File names must equal the part after the colon.
 
 - [ ] **Step 1: Wild tomato block**
 
@@ -1528,13 +1528,13 @@ Build order step 6. Kid session. Tested in a new, non-flat world.
   "format_version": "1.26.50",
   "minecraft:block": {
     "description": {
-      "identifier": "morphood:wild_tomato",
+      "identifier": "foodcraft:wild_tomato",
       "menu_category": { "category": "nature" }
     },
     "components": {
       "minecraft:geometry": "minecraft:geometry.cross",
       "minecraft:material_instances": {
-        "*": { "texture": "morphood_wild_tomato", "render_method": "alpha_test_single_sided", "ambient_occlusion": 0 }
+        "*": { "texture": "foodcraft_wild_tomato", "render_method": "alpha_test_single_sided", "ambient_occlusion": 0 }
       },
       "minecraft:collision_box": false,
       "minecraft:selection_box": { "origin": [-7, 0, -7], "size": [14, 12, 14] },
@@ -1564,7 +1564,7 @@ Build order step 6. Kid session. Tested in a new, non-flat world.
       "entries": [
         {
           "type": "item",
-          "name": "morphood:tomato_seeds",
+          "name": "foodcraft:tomato_seeds",
           "weight": 1,
           "functions": [{ "function": "set_count", "count": { "min": 1, "max": 2 } }]
         }
@@ -1582,8 +1582,8 @@ Build order step 6. Kid session. Tested in a new, non-flat world.
 {
   "format_version": "1.21.10",
   "minecraft:single_block_feature": {
-    "description": { "identifier": "morphood:wild_tomato_block" },
-    "places_block": "morphood:wild_tomato",
+    "description": { "identifier": "foodcraft:wild_tomato_block" },
+    "places_block": "foodcraft:wild_tomato",
     "enforce_placement_rules": true,
     "enforce_survivability_rules": true,
     "may_replace": ["minecraft:air"],
@@ -1598,8 +1598,8 @@ Build order step 6. Kid session. Tested in a new, non-flat world.
 {
   "format_version": "1.21.10",
   "minecraft:scatter_feature": {
-    "description": { "identifier": "morphood:wild_tomato_patch" },
-    "places_feature": "morphood:wild_tomato_block",
+    "description": { "identifier": "foodcraft:wild_tomato_patch" },
+    "places_feature": "foodcraft:wild_tomato_block",
     "project_input_to_floor": true,
     "distribution": {
       "iterations": 4,
@@ -1618,8 +1618,8 @@ Build order step 6. Kid session. Tested in a new, non-flat world.
   "format_version": "1.13.0",
   "minecraft:feature_rules": {
     "description": {
-      "identifier": "morphood:wild_tomato_rule",
-      "places_feature": "morphood:wild_tomato_patch"
+      "identifier": "foodcraft:wild_tomato_rule",
+      "places_feature": "foodcraft:wild_tomato_patch"
     },
     "conditions": {
       "placement_pass": "surface_pass",
@@ -1646,19 +1646,19 @@ Copy the five tomato files per plant; change identifiers, texture, loot item, an
 
 | Plant | Loot item (count 1–2 unless noted) | Biome filter after the `overworld` test |
 |---|---|---|
-| garlic | `morphood:garlic` | `{ "test": "has_biome_tag", "operator": "==", "value": "forest" }` |
-| oregano | `morphood:oregano_seeds` | `{ "any_of": [ { "test": "has_biome_tag", "operator": "==", "value": "meadow" }, { "test": "has_biome_tag", "operator": "==", "value": "plains" } ] }` |
-| pineapple | `morphood:pineapple_crown`, fixed count 1 (no `set_count`) | `{ "test": "has_biome_tag", "operator": "==", "value": "jungle" }` |
+| garlic | `foodcraft:garlic` | `{ "test": "has_biome_tag", "operator": "==", "value": "forest" }` |
+| oregano | `foodcraft:oregano_seeds` | `{ "any_of": [ { "test": "has_biome_tag", "operator": "==", "value": "meadow" }, { "test": "has_biome_tag", "operator": "==", "value": "plains" } ] }` |
+| pineapple | `foodcraft:pineapple_crown`, fixed count 1 (no `set_count`) | `{ "test": "has_biome_tag", "operator": "==", "value": "jungle" }` |
 
-Add `terrain_texture.json` entries `morphood_wild_<plant>` -> `textures/blocks/<same>`, lang lines `tile.morphood:wild_<plant>.name=Wild <Plant>`, and in `blocks.json` give each wild block and each crop block `{ "sound": "grass" }`.
+Add `terrain_texture.json` entries `foodcraft_wild_<plant>` -> `textures/blocks/<same>`, lang lines `tile.foodcraft:wild_<plant>.name=Wild <Plant>`, and in `blocks.json` give each wild block and each crop block `{ "sound": "grass" }`.
 
 - [ ] **Step 4: Deploy and verify in a new world**
 
-1. Deploy. Create a new world "Morphood Wild": Infinite (not flat), Creative, cheats on, both packs active. Features only generate in new chunks.
+1. Deploy. Create a new world "Foodcraft Wild": Infinite (not flat), Creative, cheats on, both packs active. Features only generate in new chunks.
 2. Content Log clean. A wrong file name vs identifier shows here.
 3. `/locate biome plains`, `/tp` there, fly around: wild tomatoes appear in small patches on grass. Same for `forest` (garlic), `meadow` (oregano), `jungle` (pineapple).
 4. Break a wild tomato: 1–2 tomato seeds. Break a wild pineapple: 1 crown.
-5. `/give @s morphood:wild_tomato` and place it on grass and on stone: grass works, stone does not.
+5. `/give @s foodcraft:wild_tomato` and place it on grass and on stone: grass works, stone does not.
 
 Checklist:
 
@@ -1687,9 +1687,9 @@ git commit -m "Add wild plants with per-biome feature rules"
 Build order step 7. Kid session for names and sound; Stig handles the Realm upload.
 
 **Files:**
-- Modify: `packs/morphood_rp/texts/nb_NO.lang`
-- Create: `packs/morphood_rp/sounds/sound_definitions.json`, `packs/morphood_rp/sounds/morphood/ding.ogg`
-- Modify: `packs/morphood_bp/scripts/oven.js` (`DING_SOUND`)
+- Modify: `packs/foodcraft_rp/texts/nb_NO.lang`
+- Create: `packs/foodcraft_rp/sounds/sound_definitions.json`, `packs/foodcraft_rp/sounds/foodcraft/ding.ogg`
+- Modify: `packs/foodcraft_bp/scripts/oven.js` (`DING_SOUND`)
 - Create: `tools/export_mcaddon.ps1`
 - Modify: `docs/test-checklist.md`
 
@@ -1698,72 +1698,72 @@ Build order step 7. Kid session for names and sound; Stig handles the Realm uplo
 `nb_NO.lang` gets one line per key in `en_US.lang` (same keys, Norwegian values):
 
 ```
-item.morphood.tomato.name=Tomat
-item.morphood.garlic.name=Hvitløk
-item.morphood.oregano.name=Oregano
-item.morphood.pineapple.name=Ananas
-item.morphood.tomato_seeds.name=Tomatfrø
-item.morphood.oregano_seeds.name=Oreganofrø
-item.morphood.pineapple_crown.name=Ananaskrone
-item.morphood.flour.name=Mel
-item.morphood.pizza_dough.name=Pizzadeig
-item.morphood.tomato_sauce.name=Tomatsaus
-item.morphood.mozzarella.name=Mozzarella
-item.morphood.pepperoni.name=Pepperoni
-item.morphood.ham.name=Skinke
-item.morphood.raw_pizza_margherita.name=Rå pizza margherita
-item.morphood.raw_pizza_pepperoni.name=Rå pizza pepperoni
-item.morphood.raw_pizza_prosciutto.name=Rå pizza prosciutto
-item.morphood.raw_pizza_hawaii.name=Rå pizza Hawaii
-item.morphood.pizza_margherita.name=Pizza margherita
-item.morphood.pizza_pepperoni.name=Pizza pepperoni
-item.morphood.pizza_prosciutto.name=Pizza prosciutto
-item.morphood.pizza_hawaii.name=Pizza Hawaii
-tile.morphood:pizza_oven.name=Pizzaovn
-tile.morphood:tomato_crop.name=Tomatplante
-tile.morphood:garlic_crop.name=Hvitløkplante
-tile.morphood:oregano_crop.name=Oreganoplante
-tile.morphood:pineapple_crop.name=Ananasplante
-tile.morphood:wild_tomato.name=Vill tomat
-tile.morphood:wild_garlic.name=Vill hvitløk
-tile.morphood:wild_oregano.name=Vill oregano
-tile.morphood:wild_pineapple.name=Vill ananas
+item.foodcraft.tomato.name=Tomat
+item.foodcraft.garlic.name=Hvitløk
+item.foodcraft.oregano.name=Oregano
+item.foodcraft.pineapple.name=Ananas
+item.foodcraft.tomato_seeds.name=Tomatfrø
+item.foodcraft.oregano_seeds.name=Oreganofrø
+item.foodcraft.pineapple_crown.name=Ananaskrone
+item.foodcraft.flour.name=Mel
+item.foodcraft.pizza_dough.name=Pizzadeig
+item.foodcraft.tomato_sauce.name=Tomatsaus
+item.foodcraft.mozzarella.name=Mozzarella
+item.foodcraft.pepperoni.name=Pepperoni
+item.foodcraft.ham.name=Skinke
+item.foodcraft.raw_pizza_margherita.name=Rå pizza margherita
+item.foodcraft.raw_pizza_pepperoni.name=Rå pizza pepperoni
+item.foodcraft.raw_pizza_prosciutto.name=Rå pizza prosciutto
+item.foodcraft.raw_pizza_hawaii.name=Rå pizza Hawaii
+item.foodcraft.pizza_margherita.name=Pizza margherita
+item.foodcraft.pizza_pepperoni.name=Pizza pepperoni
+item.foodcraft.pizza_prosciutto.name=Pizza prosciutto
+item.foodcraft.pizza_hawaii.name=Pizza Hawaii
+tile.foodcraft:pizza_oven.name=Pizzaovn
+tile.foodcraft:tomato_crop.name=Tomatplante
+tile.foodcraft:garlic_crop.name=Hvitløkplante
+tile.foodcraft:oregano_crop.name=Oreganoplante
+tile.foodcraft:pineapple_crop.name=Ananasplante
+tile.foodcraft:wild_tomato.name=Vill tomat
+tile.foodcraft:wild_garlic.name=Vill hvitløk
+tile.foodcraft:wild_oregano.name=Vill oregano
+tile.foodcraft:wild_pineapple.name=Vill ananas
 ```
 
-Save the file as UTF-8. Verify `en_US.lang` has exactly the same 30 keys: `grep -c = packs/morphood_rp/texts/en_US.lang` and the same for `nb_NO.lang` both print 30.
+Save the file as UTF-8. Verify `en_US.lang` has exactly the same 30 keys: `grep -c = packs/foodcraft_rp/texts/en_US.lang` and the same for `nb_NO.lang` both print 30.
 
 - [ ] **Step 2: Oven ding sound**
 
-1. Record or pick a short "ding" (under 1 s), export as OGG Vorbis mono to `packs/morphood_rp/sounds/morphood/ding.ogg` (Audacity: File > Export > OGG).
-2. `packs/morphood_rp/sounds/sound_definitions.json`:
+1. Record or pick a short "ding" (under 1 s), export as OGG Vorbis mono to `packs/foodcraft_rp/sounds/foodcraft/ding.ogg` (Audacity: File > Export > OGG).
+2. `packs/foodcraft_rp/sounds/sound_definitions.json`:
 
 ```json
 {
   "format_version": "1.26.60",
   "sound_definitions": {
-    "morphood.oven.ding": {
+    "foodcraft.oven.ding": {
       "category": "block",
-      "sounds": [{ "name": "sounds/morphood/ding", "volume": 1.0 }]
+      "sounds": [{ "name": "sounds/foodcraft/ding", "volume": 1.0 }]
     }
   }
 }
 ```
 
-3. In `scripts/oven.js` change `const DING_SOUND = "random.orb";` to `const DING_SOUND = "morphood.oven.ding";`.
+3. In `scripts/oven.js` change `const DING_SOUND = "random.orb";` to `const DING_SOUND = "foodcraft.oven.ding";`.
 
 - [ ] **Step 3: Export script**
 
 `tools/export_mcaddon.ps1`:
 
 ```powershell
-# Bundles both packs into dist/morphood.mcaddon (a zip with the two pack folders at its root).
+# Bundles both packs into dist/foodcraft.mcaddon (a zip with the two pack folders at its root).
 $repo = Split-Path $PSScriptRoot -Parent
 $dist = Join-Path $repo "dist"
 New-Item -ItemType Directory -Force -Path $dist | Out-Null
-$zip = Join-Path $dist "morphood.zip"
-$out = Join-Path $dist "morphood.mcaddon"
+$zip = Join-Path $dist "foodcraft.zip"
+$out = Join-Path $dist "foodcraft.mcaddon"
 Remove-Item -Force -ErrorAction SilentlyContinue $zip, $out
-Compress-Archive -Path (Join-Path $repo "packs\morphood_bp"), (Join-Path $repo "packs\morphood_rp") -DestinationPath $zip
+Compress-Archive -Path (Join-Path $repo "packs\foodcraft_bp"), (Join-Path $repo "packs\foodcraft_rp") -DestinationPath $zip
 Rename-Item $zip $out
 Write-Host "Wrote $out"
 ```
@@ -1775,8 +1775,8 @@ Add `dist/` to `.gitignore`.
 1. Deploy, re-enter. Content Log clean.
 2. Settings > General > Language > Norsk bokmål: hover items and blocks, names are Norwegian. Switch back to English.
 3. Bake a pizza: the custom ding plays when it finishes.
-4. Run `tools\export_mcaddon.ps1`; double-click `dist\morphood.mcaddon`: Minecraft imports both packs ("Import complete"). On a second Windows account or PC, create a world with the imported packs and run the Hello pizza line.
-5. Realm: upload "Morphood Test" to the Realm (Play > Edit world > Realms > Upload). On a console (Xbox/PlayStation/Switch) join the Realm, `/give @s morphood:pizza_oven`, bake one pizza, eat it.
+4. Run `tools\export_mcaddon.ps1`; double-click `dist\foodcraft.mcaddon`: Minecraft imports both packs ("Import complete"). On a second Windows account or PC, create a world with the imported packs and run the Hello pizza line.
+5. Realm: upload "Foodcraft Test" to the Realm (Play > Edit world > Realms > Upload). On a console (Xbox/PlayStation/Switch) join the Realm, `/give @s foodcraft:pizza_oven`, bake one pizza, eat it.
 
 Checklist:
 
@@ -1784,7 +1784,7 @@ Checklist:
 ## Polish
 - [ ] Norwegian names show with language set to Norsk bokmål (30 keys)
 - [ ] Custom ding sound plays when a pizza finishes
-- [ ] dist/morphood.mcaddon imports cleanly on another Windows install
+- [ ] dist/foodcraft.mcaddon imports cleanly on another Windows install
 - [ ] Realm: console player can craft, bake and eat a pizza
 ```
 
@@ -1806,4 +1806,4 @@ git commit -m "Polish: Norwegian names, oven ding, mcaddon export"
 - Spec 3 architecture: one script module, block_placer with `use_on` farmland, feature rules, loot tables, `en_US`/`nb_NO`, sounds, Blockbench model.
 - Spec 5 build order: Tasks 2–9 map to steps 1–7 in order; each ends playable.
 - Spec 6 testing: Content Log check and `docs/test-checklist.md` lines in every task; wild plants tested in a new world.
-- Names used across tasks are consistent: `morphood:raw_pizza_<name>` / `morphood:pizza_<name>` (Tasks 4, 5), `morphood:stage` / `morphood:pizza` (Tasks 5, 6), `morphood:growth` (Task 7), seed item ids (Tasks 3, 7, 8), texture names (Task 1 vs atlas entries in Tasks 2–8).
+- Names used across tasks are consistent: `foodcraft:raw_pizza_<name>` / `foodcraft:pizza_<name>` (Tasks 4, 5), `foodcraft:stage` / `foodcraft:pizza` (Tasks 5, 6), `foodcraft:growth` (Task 7), seed item ids (Tasks 3, 7, 8), texture names (Task 1 vs atlas entries in Tasks 2–8).
