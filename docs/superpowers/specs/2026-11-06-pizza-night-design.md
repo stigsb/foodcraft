@@ -132,7 +132,7 @@ Each step is playable before the next starts.
 ## 7. Out of scope for v1 (later versions)
 
 - Villagers planting the new crops. Vanilla farmers only plant wheat, carrots, potatoes and beetroot. This needs a script, or a modified copy of the vanilla villager that can break when Minecraft updates and clash with other add-ons.
-- Chef villager selling refined ingredients at higher prices: a fully custom mob with its own trade table. Farmer villagers selling raw ingredients requires overriding the vanilla farmer trade file.
+- Villager trades: the butcher (smoker workstation, the closest vanilla profession to a chef) sells refined ingredients such as tomato sauce and pepperoni at higher prices. The farmer sells raw ingredients. Both require overriding the vanilla trade files for those professions.
 - More stations: wok, cooking pot, cutting board, juicer.
 - Oven extras: burnt pizza, fuel, multiple pizzas at once.
 - Remaining ingredients and recipes from the brainstorm: cheeses (cheddar, Jarlsberg, gräddost), pasta, taco, lasagna, kanelsnurrer, gresskarsuppe, fruits, berries, jam, jelly, chocolate, brownies, noodles, soy products, mustard, chili sauce, and the suggested recipes (bolognese, mac and cheese, taco fredag, wok noodles, vafler, pannekaker, and others).
