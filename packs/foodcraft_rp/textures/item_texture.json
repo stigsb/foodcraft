@@ -14,6 +14,14 @@
     "foodcraft_tomato_sauce": { "textures": "textures/items/foodcraft_tomato_sauce" },
     "foodcraft_mozzarella": { "textures": "textures/items/foodcraft_mozzarella" },
     "foodcraft_pepperoni": { "textures": "textures/items/foodcraft_pepperoni" },
-    "foodcraft_ham": { "textures": "textures/items/foodcraft_ham" }
+    "foodcraft_ham": { "textures": "textures/items/foodcraft_ham" },
+    "foodcraft_raw_pizza_margherita": { "textures": "textures/items/foodcraft_raw_pizza_margherita" },
+    "foodcraft_raw_pizza_pepperoni": { "textures": "textures/items/foodcraft_raw_pizza_pepperoni" },
+    "foodcraft_raw_pizza_prosciutto": { "textures": "textures/items/foodcraft_raw_pizza_prosciutto" },
+    "foodcraft_raw_pizza_hawaii": { "textures": "textures/items/foodcraft_raw_pizza_hawaii" },
+    "foodcraft_pizza_margherita": { "textures": "textures/items/foodcraft_pizza_margherita" },
+    "foodcraft_pizza_pepperoni": { "textures": "textures/items/foodcraft_pizza_pepperoni" },
+    "foodcraft_pizza_prosciutto": { "textures": "textures/items/foodcraft_pizza_prosciutto" },
+    "foodcraft_pizza_hawaii": { "textures": "textures/items/foodcraft_pizza_hawaii" }
   }
 }

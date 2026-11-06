@@ -1,0 +1,15 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:recipe_shapeless": {
+    "description": { "identifier": "foodcraft:raw_pizza_margherita" },
+    "tags": ["crafting_table"],
+    "ingredients": [
+      { "item": "foodcraft:pizza_dough" },
+      { "item": "foodcraft:tomato_sauce" },
+      { "item": "foodcraft:mozzarella" },
+      { "item": "foodcraft:oregano" }
+    ],
+    "unlock": [{ "item": "foodcraft:pizza_dough" }],
+    "result": { "item": "foodcraft:raw_pizza_margherita" }
+  }
+}
