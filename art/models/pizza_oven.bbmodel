@@ -1,0 +1,271 @@
+{
+ "meta": {
+  "format_version": "5.0",
+  "model_format": "bedrock_block",
+  "box_uv": false
+ },
+ "name": "pizza_oven",
+ "model_identifier": "geometry.morphood.pizza_oven",
+ "visible_box": [
+  1,
+  1.5,
+  0
+ ],
+ "variable_placeholders": "",
+ "variable_placeholder_buttons": [],
+ "timeline_setups": [],
+ "unhandled_root_fields": {},
+ "resolution": {
+  "width": 16,
+  "height": 16
+ },
+ "elements": [
+  {
+   "name": "body",
+   "box_uv": false,
+   "rescale": false,
+   "locked": false,
+   "render_order": "default",
+   "allow_mirror_modeling": true,
+   "from": [
+    0,
+    0,
+    0
+   ],
+   "to": [
+    16,
+    16,
+    16
+   ],
+   "autouv": 0,
+   "color": 0,
+   "origin": [
+    8,
+    0,
+    8
+   ],
+   "uuid": "fdcc9894-6605-4b6c-87e7-9e74600e2dd7",
+   "type": "cube",
+   "faces": {
+    "north": {
+     "uv": [
+      0,
+      0,
+      16,
+      16
+     ],
+     "texture": 0
+    },
+    "south": {
+     "uv": [
+      0,
+      0,
+      16,
+      16
+     ],
+     "texture": 1
+    },
+    "east": {
+     "uv": [
+      0,
+      0,
+      16,
+      16
+     ],
+     "texture": 1
+    },
+    "west": {
+     "uv": [
+      0,
+      0,
+      16,
+      16
+     ],
+     "texture": 1
+    },
+    "up": {
+     "uv": [
+      0,
+      0,
+      16,
+      16
+     ],
+     "texture": 2
+    },
+    "down": {
+     "uv": [
+      0,
+      0,
+      16,
+      16
+     ],
+     "texture": 2
+    }
+   }
+  },
+  {
+   "name": "chimney",
+   "box_uv": false,
+   "rescale": false,
+   "locked": false,
+   "render_order": "default",
+   "allow_mirror_modeling": true,
+   "from": [
+    10,
+    16,
+    10
+   ],
+   "to": [
+    14,
+    22,
+    14
+   ],
+   "autouv": 0,
+   "color": 0,
+   "origin": [
+    8,
+    0,
+    8
+   ],
+   "uuid": "449c7fc3-173b-4030-8ed6-de615d5ef616",
+   "type": "cube",
+   "faces": {
+    "north": {
+     "uv": [
+      0,
+      0,
+      4,
+      6
+     ],
+     "texture": 1
+    },
+    "south": {
+     "uv": [
+      0,
+      0,
+      4,
+      6
+     ],
+     "texture": 1
+    },
+    "east": {
+     "uv": [
+      0,
+      0,
+      4,
+      6
+     ],
+     "texture": 1
+    },
+    "west": {
+     "uv": [
+      0,
+      0,
+      4,
+      6
+     ],
+     "texture": 1
+    },
+    "up": {
+     "uv": [
+      0,
+      0,
+      4,
+      4
+     ],
+     "texture": 2
+    },
+    "down": {
+     "uv": [
+      0,
+      0,
+      4,
+      4
+     ],
+     "texture": 2
+    }
+   }
+  }
+ ],
+ "outliner": [
+  {
+   "name": "oven",
+   "origin": [
+    0,
+    0,
+    0
+   ],
+   "color": 0,
+   "uuid": "a89878ec-7e73-4da5-aafd-5a262918c1f8",
+   "export": true,
+   "mirror_uv": false,
+   "isOpen": true,
+   "locked": false,
+   "visibility": true,
+   "autouv": 0,
+   "children": [
+    "fdcc9894-6605-4b6c-87e7-9e74600e2dd7",
+    "449c7fc3-173b-4030-8ed6-de615d5ef616"
+   ]
+  }
+ ],
+ "textures": [
+  {
+   "path": "",
+   "name": "pizza_oven_front_empty.png",
+   "folder": "blocks",
+   "namespace": "",
+   "id": "0",
+   "width": 16,
+   "height": 16,
+   "uv_width": 16,
+   "uv_height": 16,
+   "particle": false,
+   "render_mode": "default",
+   "render_sides": "auto",
+   "visible": true,
+   "internal": true,
+   "saved": true,
+   "uuid": "d2d25ccc-60e6-4dcd-8b37-b0be33c46009",
+   "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAiUlEQVR4nGPM05L5z0ABYAERVtJCcIFjT9+RxGdioBAwUuwFK6hzSHU6jM/EQAsvrH31DaviYDEuTC8woMVC8fknOG0DGQwyBGcsFOPRjMt1LLAAIQUgq2cCOQfZScQAmHqqxAILqc4HAZgeEI0SC7iiDx0gexmcDngC4kh2BQjond5CWRiAvAAAii1BXul1TW8AAAAASUVORK5CYII="
+  },
+  {
+   "path": "",
+   "name": "pizza_oven_side.png",
+   "folder": "blocks",
+   "namespace": "",
+   "id": "1",
+   "width": 16,
+   "height": 16,
+   "uv_width": 16,
+   "uv_height": 16,
+   "particle": true,
+   "render_mode": "default",
+   "render_sides": "auto",
+   "visible": true,
+   "internal": true,
+   "saved": true,
+   "uuid": "5bc4b385-d317-42d2-b4d4-ac628611cd14",
+   "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAPElEQVR4nGPM05L5z0ABYAERVtJCcIFjT9+RxGdioBAwUuwFK6hzSHU6jM/EMOBeYBiNBabRWGCgOCEBAHfpP1rFO02qAAAAAElFTkSuQmCC"
+  },
+  {
+   "path": "",
+   "name": "pizza_oven_top.png",
+   "folder": "blocks",
+   "namespace": "",
+   "id": "2",
+   "width": 16,
+   "height": 16,
+   "uv_width": 16,
+   "uv_height": 16,
+   "particle": false,
+   "render_mode": "default",
+   "render_sides": "auto",
+   "visible": true,
+   "internal": true,
+   "saved": true,
+   "uuid": "1042be93-ad05-4898-94f8-ad025c21a9e7",
+   "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAWUlEQVR4nLWTwRGAIAwE8dpIx+nz6tCvw5i4DLrfwGZ5cGTmOTbQzuVXgW0u8MPhiOCCAIdbAWUu1VhkLhXdVCG6aVnQca9TNyR16oafPsFFGRZUZf9+JsIFXPkXvbkWgakAAAAASUVORK5CYII="
+  }
+ ]
+}
