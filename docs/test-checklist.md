@@ -57,3 +57,4 @@ Tick a line only after seeing it work in the test world with an empty Content Lo
 - [ ] Survival mode: raw pizza stack shrinks by one
 - [ ] Fill inventory (`/give @s dirt 64` until full), take out a baked pizza: it drops in front of the oven
 - [ ] Pizza left in a done oven for 5 minutes is still there
+- [ ] Oven model: flame shows while baking, correct pizza shows when done, empty when empty (all four pizzas)

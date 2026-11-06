@@ -8,6 +8,7 @@
     "foodcraft_oven_top": { "textures": "textures/blocks/foodcraft_oven_top" },
     "foodcraft_oven_front_empty": { "textures": "textures/blocks/foodcraft_oven_front_empty" },
     "foodcraft_oven_front_baking": { "textures": "textures/blocks/foodcraft_oven_front_baking" },
-    "foodcraft_oven_front_done": { "textures": "textures/blocks/foodcraft_oven_front_done" }
+    "foodcraft_oven_front_done": { "textures": "textures/blocks/foodcraft_oven_front_done" },
+    "foodcraft_pizza_oven": { "textures": "textures/blocks/foodcraft_pizza_oven" }
   }
 }

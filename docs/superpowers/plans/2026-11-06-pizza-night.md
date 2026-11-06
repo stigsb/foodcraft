@@ -1120,6 +1120,8 @@ Build order step 4, art half. Kid session in Blockbench. The block keeps every s
 3. Paint the texture in Blockbench's paint tab if you want. Save the texture as `foodcraft_pizza_oven.png` into `packs/foodcraft_rp/textures/blocks/` (and over `art/textures/blocks/pizza_oven.png`).
 4. File > Export > Export Bedrock Geometry to `packs/foodcraft_rp/models/blocks/pizza_oven.geo.json`.
 
+Without Blockbench, the same export can be made from the command line: `node tools/bbmodel_to_geo.mjs art/models/pizza_oven_open.bbmodel packs/foodcraft_rp/models/blocks/pizza_oven.geo.json`, then copy `art/textures/blocks/pizza_oven.png` to `packs/foodcraft_rp/textures/blocks/foodcraft_pizza_oven.png`. The first version in the repo was made this way from the draft model.
+
 - [ ] **Step 2: Point the block at the model**
 
 In `blocks/pizza_oven.json` replace the base `minecraft:geometry` and `minecraft:material_instances` with:

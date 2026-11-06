@@ -13,11 +13,18 @@
       }
     },
     "components": {
-      "minecraft:geometry": "minecraft:geometry.full_block",
+      "minecraft:geometry": {
+        "identifier": "geometry.foodcraft_pizza_oven",
+        "bone_visibility": {
+          "flame": "q.block_state('foodcraft:stage') == 'baking'",
+          "pizza_margherita": "q.block_state('foodcraft:stage') == 'done' && q.block_state('foodcraft:pizza') == 'margherita'",
+          "pizza_pepperoni": "q.block_state('foodcraft:stage') == 'done' && q.block_state('foodcraft:pizza') == 'pepperoni'",
+          "pizza_prosciutto": "q.block_state('foodcraft:stage') == 'done' && q.block_state('foodcraft:pizza') == 'prosciutto'",
+          "pizza_hawaii": "q.block_state('foodcraft:stage') == 'done' && q.block_state('foodcraft:pizza') == 'hawaii'"
+        }
+      },
       "minecraft:material_instances": {
-        "*": { "texture": "foodcraft_oven_side", "render_method": "opaque" },
-        "up": { "texture": "foodcraft_oven_top", "render_method": "opaque" },
-        "north": { "texture": "foodcraft_oven_front_empty", "render_method": "opaque" }
+        "*": { "texture": "foodcraft_pizza_oven", "render_method": "alpha_test" }
       },
       "minecraft:collision_box": true,
       "minecraft:selection_box": true,
@@ -46,24 +53,7 @@
       },
       {
         "condition": "q.block_state('foodcraft:stage') == 'baking'",
-        "components": {
-          "minecraft:light_emission": 10,
-          "minecraft:material_instances": {
-            "*": { "texture": "foodcraft_oven_side", "render_method": "opaque" },
-            "up": { "texture": "foodcraft_oven_top", "render_method": "opaque" },
-            "north": { "texture": "foodcraft_oven_front_baking", "render_method": "opaque" }
-          }
-        }
-      },
-      {
-        "condition": "q.block_state('foodcraft:stage') == 'done'",
-        "components": {
-          "minecraft:material_instances": {
-            "*": { "texture": "foodcraft_oven_side", "render_method": "opaque" },
-            "up": { "texture": "foodcraft_oven_top", "render_method": "opaque" },
-            "north": { "texture": "foodcraft_oven_front_done", "render_method": "opaque" }
-          }
-        }
+        "components": { "minecraft:light_emission": 10 }
       }
     ]
   }
