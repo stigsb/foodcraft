@@ -94,3 +94,9 @@ Tick a line only after seeing it work in the test world with an empty Content Lo
 - [ ] Wild oregano spawns in meadow and plains, drops 1–2 oregano seeds
 - [ ] Wild pineapple spawns in jungle, drops 1 pineapple crown
 - [ ] Wild plants only place on grass/dirt type blocks
+
+## Polish
+- [ ] Norwegian names show with language set to Norsk bokmål (31 keys)
+- [ ] Custom ding sound plays when a pizza finishes (needs sounds/foodcraft/ding.ogg, not recorded yet)
+- [ ] dist/foodcraft.mcaddon imports cleanly on another Windows install
+- [ ] Realm: console player can craft, bake and eat a pizza

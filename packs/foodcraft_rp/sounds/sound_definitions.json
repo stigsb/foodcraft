@@ -1,0 +1,9 @@
+{
+  "format_version": "1.26.60",
+  "sound_definitions": {
+    "foodcraft.oven.ding": {
+      "category": "block",
+      "sounds": [{ "name": "sounds/foodcraft/ding", "volume": 1.0 }]
+    }
+  }
+}

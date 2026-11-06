@@ -71,3 +71,8 @@ Every `fruit` bone also needs growth 2. The leaves are flat strips tilted 22.5°
 ## Pizza oven with bones
 
 `pizza_oven_open.bbmodel` is the model for plan Task 6. `pizza_oven.bbmodel` (the closed box with painted front faces) is left as it was. The mouth faces north (-Z), which the block's rotation turns towards the player. `flame` shows while baking, one `pizza_<name>` when done.
+
+## Sounds
+
+- `packs/foodcraft_rp/sounds/foodcraft/ding.ogg`: the oven ding when a pizza is done (`foodcraft.oven.ding` in `sounds/sound_definitions.json`).
+  **TODO (kid session):** this file does not exist yet. Record or pick a short "ding" (under 1 s) and export it as OGG Vorbis mono to that path (Audacity: File > Export > OGG). Until then the oven finishes silently.

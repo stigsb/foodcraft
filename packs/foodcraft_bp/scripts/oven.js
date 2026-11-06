@@ -5,7 +5,7 @@ const RAW_PREFIX = "foodcraft:raw_pizza_";
 const BAKED_PREFIX = "foodcraft:pizza_";
 const PIZZAS = ["margherita", "pepperoni", "prosciutto", "hawaii"];
 const BAKE_TICKS = 200; // 10 seconds
-const DING_SOUND = "random.orb"; // Task 10 swaps this for the custom ding
+const DING_SOUND = "foodcraft.oven.ding"; // sounds/foodcraft/ding.ogg in the resource pack
 
 // Bake timers by block position. Lost on world close; onTick restarts them (spec 4.2).
 const timers = new Map();
@@ -52,7 +52,11 @@ function startBakeTimer(block) {
     const oven = dimension.getBlock(location);
     if (!oven || oven.typeId !== OVEN_ID || stageOf(oven) !== "baking") return;
     setOven(oven, "done", pizzaOf(oven));
-    dimension.playSound(DING_SOUND, oven.center());
+    try {
+      dimension.playSound(DING_SOUND, oven.center()); // silent if ding.ogg is missing
+    } catch {
+      // the pizza is already done; a sound problem must not undo that
+    }
   }, BAKE_TICKS);
   timers.set(key, runId);
 }

@@ -2164,6 +2164,7 @@ Save the file as UTF-8. Verify `en_US.lang` has exactly the same 31 keys: `grep 
 - [ ] **Step 2: Oven ding sound**
 
 1. Record or pick a short "ding" (under 1 s), export as OGG Vorbis mono to `packs/foodcraft_rp/sounds/foodcraft/ding.ogg` (Audacity: File > Export > OGG).
+   **TODO (kid session):** `ding.ogg` is not in the repo yet (no audio tools on the build machine; also noted in `art/README.md`). Items 2 and 3 below are done, so the oven finishes silently until the file is added; nothing else needs to change. The `playSound` call is wrapped in `try` and runs after the oven state is set, so a sound problem cannot undo a finished pizza.
 2. `packs/foodcraft_rp/sounds/sound_definitions.json`:
 
 ```json
@@ -2196,6 +2197,8 @@ Compress-Archive -Path (Join-Path $repo "packs\foodcraft_bp"), (Join-Path $repo 
 Rename-Item $zip $out
 Write-Host "Wrote $out"
 ```
+
+As built, `tools/export_mcaddon.ps1` writes the zip with `System.IO.Compression.ZipArchive` instead of `Compress-Archive`: in Windows PowerShell 5.1, `Compress-Archive` stores entry names with `\` separators, which Minecraft can fail to import. The output is the same: `dist/foodcraft.mcaddon` with `foodcraft_bp/` and `foodcraft_rp/` at its root, entry names using `/`.
 
 Add `dist/` to `.gitignore`.
 
