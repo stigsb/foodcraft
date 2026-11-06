@@ -1,0 +1,10 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:recipe_shapeless": {
+    "description": { "identifier": "foodcraft:flour" },
+    "tags": ["crafting_table"],
+    "ingredients": [{ "item": "minecraft:wheat" }],
+    "unlock": [{ "item": "minecraft:wheat" }],
+    "result": { "item": "foodcraft:flour" }
+  }
+}

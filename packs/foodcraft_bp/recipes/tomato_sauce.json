@@ -1,0 +1,15 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:recipe_shapeless": {
+    "description": { "identifier": "foodcraft:tomato_sauce" },
+    "tags": ["crafting_table"],
+    "ingredients": [
+      { "item": "foodcraft:tomato", "count": 2 },
+      { "item": "foodcraft:garlic" },
+      { "item": "foodcraft:oregano" },
+      { "item": "minecraft:bowl" }
+    ],
+    "unlock": [{ "item": "foodcraft:tomato" }],
+    "result": { "item": "foodcraft:tomato_sauce" }
+  }
+}

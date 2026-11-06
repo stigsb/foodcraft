@@ -2,6 +2,18 @@
   "resource_pack_name": "foodcraft_rp",
   "texture_name": "atlas.items",
   "texture_data": {
-    "foodcraft_tomato": { "textures": "textures/items/foodcraft_tomato" }
+    "foodcraft_tomato": { "textures": "textures/items/foodcraft_tomato" },
+    "foodcraft_garlic": { "textures": "textures/items/foodcraft_garlic" },
+    "foodcraft_oregano": { "textures": "textures/items/foodcraft_oregano" },
+    "foodcraft_pineapple": { "textures": "textures/items/foodcraft_pineapple" },
+    "foodcraft_tomato_seeds": { "textures": "textures/items/foodcraft_tomato_seeds" },
+    "foodcraft_oregano_seeds": { "textures": "textures/items/foodcraft_oregano_seeds" },
+    "foodcraft_pineapple_crown": { "textures": "textures/items/foodcraft_pineapple_crown" },
+    "foodcraft_flour": { "textures": "textures/items/foodcraft_flour" },
+    "foodcraft_pizza_dough": { "textures": "textures/items/foodcraft_pizza_dough" },
+    "foodcraft_tomato_sauce": { "textures": "textures/items/foodcraft_tomato_sauce" },
+    "foodcraft_mozzarella": { "textures": "textures/items/foodcraft_mozzarella" },
+    "foodcraft_pepperoni": { "textures": "textures/items/foodcraft_pepperoni" },
+    "foodcraft_ham": { "textures": "textures/items/foodcraft_ham" }
   }
 }

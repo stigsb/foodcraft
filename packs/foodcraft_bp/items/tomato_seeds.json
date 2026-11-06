@@ -1,0 +1,13 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:item": {
+    "description": {
+      "identifier": "foodcraft:tomato_seeds",
+      "menu_category": { "category": "items" }
+    },
+    "components": {
+      "minecraft:icon": { "textures": { "default": "foodcraft_tomato_seeds" } },
+      "minecraft:display_name": { "value": "item.foodcraft.tomato_seeds.name" }
+    }
+  }
+}
