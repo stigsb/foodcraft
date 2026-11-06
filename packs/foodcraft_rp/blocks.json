@@ -1,0 +1,12 @@
+{
+  "format_version": "1.26.50",
+  "foodcraft:oregano_crop": { "sound": "grass" },
+  "foodcraft:garlic_crop": { "sound": "grass" },
+  "foodcraft:tomato_crop": { "sound": "grass" },
+  "foodcraft:tomato_crop_top": { "sound": "grass" },
+  "foodcraft:pineapple_crop": { "sound": "grass" },
+  "foodcraft:wild_tomato": { "sound": "grass" },
+  "foodcraft:wild_garlic": { "sound": "grass" },
+  "foodcraft:wild_oregano": { "sound": "grass" },
+  "foodcraft:wild_pineapple": { "sound": "grass" }
+}

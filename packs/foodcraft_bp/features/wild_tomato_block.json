@@ -1,0 +1,11 @@
+{
+  "format_version": "1.21.10",
+  "minecraft:single_block_feature": {
+    "description": { "identifier": "foodcraft:wild_tomato_block" },
+    "places_block": "foodcraft:wild_tomato",
+    "enforce_placement_rules": true,
+    "enforce_survivability_rules": true,
+    "may_replace": ["minecraft:air"],
+    "may_attach_to": { "bottom": ["minecraft:grass_block"] }
+  }
+}

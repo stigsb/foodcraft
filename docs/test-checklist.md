@@ -53,3 +53,10 @@ Tick a line only after seeing it work in the test world with an empty Content Lo
 - [ ] Using a golden plant gives 1 pineapple, leaves a cut stalk, and the plant ripens again
 - [ ] Breaking a golden plant drops 1 pineapple + 1 crown, otherwise 1 crown
 - [ ] Pineapple plant pops off when its farmland is broken
+
+## Wild plants (new world)
+- [ ] Wild tomato spawns in plains, drops 1–2 tomato seeds
+- [ ] Wild garlic spawns in forest, drops 1–2 garlic
+- [ ] Wild oregano spawns in meadow and plains, drops 1–2 oregano seeds
+- [ ] Wild pineapple spawns in jungle, drops 1 pineapple crown
+- [ ] Wild plants only place on grass/dirt type blocks
