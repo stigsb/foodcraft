@@ -6,7 +6,7 @@
 
 **Architecture:** Two packs in the repo (`packs/foodcraft_bp`, `packs/foodcraft_rp`) deployed by a copy script into the Windows development pack folders. Items, recipes, blocks, loot tables and features are JSON. One JavaScript script module (`@minecraft/server` 2.11.0) registers four block custom components (`foodcraft:crop`, `foodcraft:tomato`, `foodcraft:pineapple`, `foodcraft:pizza_oven`) and the raw-pizza nausea handler. Placeholder 16x16 textures are generated from the concept SVGs so every task is playable before the kids redraw art in Blockbench.
 
-**Tech Stack:** Minecraft Bedrock 1.26.60 (Windows GDK build), `@minecraft/server` 2.11.0, block/item/recipe `format_version` 1.26.50, plain JavaScript (no build step), Python 3 (placeholder texture tool), PowerShell (deploy and export scripts).
+**Tech Stack:** Minecraft Bedrock 1.26.60 (Windows GDK build), `@minecraft/server` 2.11.0, block/item/recipe `format_version` 1.26.50, plain JavaScript (no build step), Node (placeholder texture tool), PowerShell (deploy and export scripts).
 
 **Spec:** `docs/superpowers/specs/2026-11-06-pizza-night-design.md`
 
@@ -50,7 +50,7 @@ All checked 2026-11-06.
 - Game: Minecraft Bedrock 1.26.60 or newer on Windows; both manifests use `min_engine_version: [1, 26, 60]`.
 - `format_version` for items, blocks and recipes: `"1.26.50"`. Features and feature rules: `"1.21.10"` / `"1.13.0"` as in the official samples.
 - Script dependency: `@minecraft/server` version `"2.11.0"`. Plain JavaScript ES modules under `packs/foodcraft_bp/scripts/`. No TypeScript, no bundler.
-- Textures are 16x16 PNG (spec 2.5). Exception: the tomato and pineapple plant model textures are 32x32 (Task 8). Placeholders come from `tools/render_placeholders.py`; the kids replace files in place with the same names.
+- Textures are 16x16 PNG (spec 2.5). Exception: the tomato and pineapple plant model textures are 32x32 (Task 8). Placeholders come from `tools/render_placeholders.mjs`; the kids replace files in place with the same names.
 - Item lang keys: `item.foodcraft.<name>.name`. Block lang keys: `tile.foodcraft:<name>.name`. English in `en_US.lang`; Norwegian in `nb_NO.lang` (Task 10).
 - Every task ends with: deploy, `/reload` (or re-enter the world for JSON changes), zero errors in the Content Log (Settings > Creator > Content Log, enable "Content Log GUI" and "Content Log File"), and the task's checklist lines ticked in `docs/test-checklist.md`.
 - Test world: flat, creative, cheats on, both packs active, named `Foodcraft Test`. Wild plants (Task 9) need a new non-flat world.
@@ -88,7 +88,7 @@ packs/
     sounds/sound_definitions.json       (Task 10)
     sounds/foodcraft/ding.ogg            (Task 10)
 tools/
-  render_placeholders.py   concept SVG -> 16x16 PNGs
+  render_placeholders.mjs  concept SVG -> 16x16 PNGs
   deploy.ps1               repo packs -> Windows development pack folders
   export_mcaddon.ps1       packs -> dist/foodcraft.mcaddon
 docs/test-checklist.md     one line per item, recipe, oven edge case
@@ -101,7 +101,7 @@ docs/test-checklist.md     one line per item, recipe, oven edge case
 Claude does this task; it is tooling, not a kid session.
 
 **Files:**
-- Create: `tools/render_placeholders.py`
+- Create: `tools/render_placeholders.mjs`
 - Create: `packs/foodcraft_rp/textures/items/*.png`, `packs/foodcraft_rp/textures/blocks/*.png` (generated)
 
 **Interfaces:**
@@ -119,109 +119,22 @@ Claude does this task; it is tooling, not a kid session.
 
 - [ ] **Step 1: Write the tool**
 
-```python
-#!/usr/bin/env python3
-"""Render 16x16 placeholder PNGs from the concept SVGs in docs/superpowers/specs/images."""
-import re, struct, zlib, shutil
-from pathlib import Path
-
-ROOT = Path(__file__).resolve().parents[1]
-SVG_DIR = ROOT / "docs/superpowers/specs/images"
-RP = ROOT / "packs/foodcraft_rp/textures"
-TILE_SIZES = {96: 6, 128: 8, 160: 10}
-TILE_BG = "#3b3b46"
-
-RECT = re.compile(r'<rect x="([\d.]+)" y="([\d.]+)" width="([\d.]+)" height="([\d.]+)" fill="(#[0-9a-fA-F]{6})"/>')
-TEXT = re.compile(r'<text x="([\d.]+)" y="([\d.]+)"[^>]*>([^<]*)</text>')
-
-
-def write_png(path, pixels):
-    """pixels: 16 rows of 16 (r, g, b, a) tuples."""
-    raw = b"".join(b"\x00" + bytes(c for px in row for c in px) for row in pixels)
-    def chunk(tag, data):
-        return struct.pack(">I", len(data)) + tag + data + struct.pack(">I", zlib.crc32(tag + data) & 0xFFFFFFFF)
-    png = b"\x89PNG\r\n\x1a\n" + chunk(b"IHDR", struct.pack(">IIBBBBB", 16, 16, 8, 6, 0, 0, 0))
-    png += chunk(b"IDAT", zlib.compress(raw, 9)) + chunk(b"IEND", b"")
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_bytes(png)
-
-
-def hex_rgba(h):
-    return (int(h[1:3], 16), int(h[3:5], 16), int(h[5:7], 16), 255)
-
-
-def tiles_of(svg_text):
-    """Yield (label, pixels) for every labelled tile in one SVG."""
-    rects = [(float(x), float(y), float(w), float(h), f) for x, y, w, h, f in RECT.findall(svg_text)]
-    labels = [(float(x), float(y), t.strip()) for x, y, t in TEXT.findall(svg_text)]
-    tiles = [(x, y, int(w)) for x, y, w, h, f in rects if f == TILE_BG and int(w) in TILE_SIZES and w == h]
-    for tx, ty, size in tiles:
-        px = TILE_SIZES[size]
-        label = next((t for lx, ly, t in labels if tx <= lx <= tx + size and ty + size < ly < ty + size + 40), None)
-        if label is None:
-            continue
-        pixels = [[(0, 0, 0, 0)] * 16 for _ in range(16)]
-        for x, y, w, h, f in rects:
-            if w == px and h == px and tx <= x < tx + size and ty <= y < ty + size:
-                pixels[int((y - ty) / px)][int((x - tx) / px)] = hex_rgba(f)
-        yield label, pixels
-
-
-def out_path(svg_name, label):
-    name = label.replace(" ", "_")
-    if svg_name == "ingredients":
-        if name == "dough":
-            name = "pizza_dough"
-        return RP / "items" / f"foodcraft_{name}.png"
-    if svg_name == "pizzas":
-        return RP / "items" / (f"foodcraft_{name.replace('raw_', 'raw_pizza_')}.png" if name.startswith("raw_") else f"foodcraft_pizza_{name}.png")
-    if svg_name == "crops":
-        plant, stage = name.rsplit("_", 1)
-        return RP / "blocks" / f"foodcraft_{plant}_crop_{stage}.png"
-    if svg_name == "oven":
-        return RP / "blocks" / f"foodcraft_oven_front_{name}.png"
-    raise ValueError(svg_name)
-
-
-def main():
-    written = []
-    for svg in sorted(SVG_DIR.glob("*.svg")):
-        for label, pixels in tiles_of(svg.read_text()):
-            path = out_path(svg.stem, label)
-            write_png(path, pixels)
-            written.append(path)
-    copies = {
-        RP / "items/foodcraft_pineapple_crown.png": RP / "items/foodcraft_pineapple.png",
-        RP / "blocks/foodcraft_oven_side.png": RP / "blocks/foodcraft_oven_front_empty.png",
-        RP / "blocks/foodcraft_oven_top.png": RP / "blocks/foodcraft_oven_front_empty.png",
-    }
-    for plant in ("tomato", "garlic", "oregano", "pineapple"):
-        copies[RP / f"blocks/foodcraft_wild_{plant}.png"] = RP / f"blocks/foodcraft_{plant}_crop_3.png"
-    for dst, src in copies.items():
-        shutil.copyfile(src, dst)
-        written.append(dst)
-    print(f"wrote {len(written)} textures")
-    return written
-
-
-if __name__ == "__main__":
-    main()
-```
+Python is not installed on the dev machine, so the tool is a Node script, `tools/render_placeholders.mjs` (uses `node:zlib` for deflate and CRC, no npm packages). It reads every `<rect x y width height fill/>` and `<text>` in each SVG, finds the `#3b3b46` tile backgrounds (96/128/160 square), takes the label whose text sits within 40 px under the tile, maps each 6/8/10 px rect inside the tile to one pixel of a 16x16 RGBA image (everything else transparent), writes it to the path from the table above, and then makes the derived copies.
 
 - [ ] **Step 2: Run it and check the output**
 
-Run: `python3 tools/render_placeholders.py`
+Run: `node tools/render_placeholders.mjs`
 Expected: `wrote 46 textures` (12 ingredients + 8 pizzas + 16 crop stages + 3 oven fronts + 7 copies).
 
-Run: `python3 -c "import struct,glob; [print(f, struct.unpack('>II', open(f,'rb').read()[16:24])) for f in sorted(glob.glob('packs/foodcraft_rp/textures/*/*.png'))]"`
-Expected: 46 lines, every one ending in `(16, 16)`.
+Run: `node -e "const fs=require('fs');for(const d of ['items','blocks']){const p='packs/foodcraft_rp/textures/'+d;for(const f of fs.readdirSync(p).sort()){const b=fs.readFileSync(p+'/'+f);console.log(d+'/'+f,b.readUInt32BE(16),b.readUInt32BE(20))}}"`
+Expected: 46 lines, every one ending in `16 16`.
 
 Open `packs/foodcraft_rp/textures/items/foodcraft_tomato.png` with the Read tool: a red tomato with a dark outline on a transparent background.
 
 - [ ] **Step 3: Commit**
 
 ```bash
-git add tools/render_placeholders.py packs/foodcraft_rp/textures
+git add tools/render_placeholders.mjs packs/foodcraft_rp/textures
 git commit -m "Add placeholder texture tool and generated textures"
 ```
 
