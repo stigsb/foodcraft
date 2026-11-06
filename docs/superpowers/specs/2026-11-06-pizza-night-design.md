@@ -23,6 +23,8 @@ v1 delivers one complete loop: find wild plants, farm them, craft ingredients, b
 - Each crop has 4 growth stages (0–3), is planted on farmland only, and accepts bone meal.
 - Breaking an immature crop drops only its seed item.
 
+![Crop growth stages](images/crops.svg)
+
 ### 2.2 Ingredients (crafting table)
 
 | Item | Recipe | Notes |
@@ -33,6 +35,8 @@ v1 delivers one complete loop: find wild plants, farm them, craft ingredients, b
 | Mozzarella | Milk bucket | Bucket returned empty |
 | Pepperoni | Raw porkchop + oregano | Shapeless |
 | Ham | Cooked porkchop | Shapeless, gives 2 |
+
+![Item texture concepts](images/ingredients.svg)
 
 ### 2.3 Pizzas
 
@@ -48,10 +52,23 @@ Raw pizzas are crafted at a crafting table. Baked pizzas only come from the pizz
 - Baked pizza restores more hunger and saturation than any vanilla food item.
 - Eating raw pizza is allowed and gives Nausea for 10 seconds (intentional joke, keep it).
 
+![Raw and baked pizzas](images/pizzas.svg)
+
 ### 2.4 Pizza oven
 
 - Recipe (shaped): bricks around a furnace, stone along the bottom row.
 - States: `empty`, `baking`, `done`, plus the type of pizza inside (`none`, `margherita`, `pepperoni`, `prosciutto`, `hawaii`).
+
+![Pizza oven states](images/oven.svg)
+
+### 2.5 Visual concepts
+
+The images in this section are generated starting points, not final art. Ravn and Kasper redraw each texture in Blockbench. Rules for the final art:
+
+- 16×16 pixels, matching vanilla item size.
+- Dark outline around items, as in vanilla.
+- Raw and baked versions of a pizza must be easy to tell apart: pale crust and sauce when raw, brown crust and melted cheese when baked.
+- Each crop's mature stage shows its produce clearly.
 
 ## 3. Architecture
 
