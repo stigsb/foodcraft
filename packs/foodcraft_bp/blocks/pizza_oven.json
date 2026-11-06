@@ -1,0 +1,70 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:block": {
+    "description": {
+      "identifier": "foodcraft:pizza_oven",
+      "menu_category": { "category": "construction" },
+      "traits": {
+        "minecraft:placement_direction": { "enabled_states": ["minecraft:cardinal_direction"] }
+      },
+      "states": {
+        "foodcraft:stage": ["empty", "baking", "done"],
+        "foodcraft:pizza": ["none", "margherita", "pepperoni", "prosciutto", "hawaii"]
+      }
+    },
+    "components": {
+      "minecraft:geometry": "minecraft:geometry.full_block",
+      "minecraft:material_instances": {
+        "*": { "texture": "foodcraft_oven_side", "render_method": "opaque" },
+        "up": { "texture": "foodcraft_oven_top", "render_method": "opaque" },
+        "north": { "texture": "foodcraft_oven_front_empty", "render_method": "opaque" }
+      },
+      "minecraft:collision_box": true,
+      "minecraft:selection_box": true,
+      "minecraft:destructible_by_mining": { "seconds_to_destroy": 3.5 },
+      "minecraft:destructible_by_explosion": { "explosion_resistance": 6 },
+      "minecraft:map_color": "#8a4a2e",
+      "minecraft:tick": { "interval_range": [10, 10], "looping": true },
+      "foodcraft:pizza_oven": {}
+    },
+    "permutations": [
+      {
+        "condition": "q.block_state('minecraft:cardinal_direction') == 'north'",
+        "components": { "minecraft:transformation": { "rotation": [0, 180, 0] } }
+      },
+      {
+        "condition": "q.block_state('minecraft:cardinal_direction') == 'south'",
+        "components": { "minecraft:transformation": { "rotation": [0, 0, 0] } }
+      },
+      {
+        "condition": "q.block_state('minecraft:cardinal_direction') == 'east'",
+        "components": { "minecraft:transformation": { "rotation": [0, 90, 0] } }
+      },
+      {
+        "condition": "q.block_state('minecraft:cardinal_direction') == 'west'",
+        "components": { "minecraft:transformation": { "rotation": [0, 270, 0] } }
+      },
+      {
+        "condition": "q.block_state('foodcraft:stage') == 'baking'",
+        "components": {
+          "minecraft:light_emission": 10,
+          "minecraft:material_instances": {
+            "*": { "texture": "foodcraft_oven_side", "render_method": "opaque" },
+            "up": { "texture": "foodcraft_oven_top", "render_method": "opaque" },
+            "north": { "texture": "foodcraft_oven_front_baking", "render_method": "opaque" }
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('foodcraft:stage') == 'done'",
+        "components": {
+          "minecraft:material_instances": {
+            "*": { "texture": "foodcraft_oven_side", "render_method": "opaque" },
+            "up": { "texture": "foodcraft_oven_top", "render_method": "opaque" },
+            "north": { "texture": "foodcraft_oven_front_done", "render_method": "opaque" }
+          }
+        }
+      }
+    ]
+  }
+}

@@ -40,3 +40,20 @@ Tick a line only after seeing it work in the test world with an empty Content Lo
 ## Pizzas
 - [ ] Eating a raw pizza (any kind) gives Nausea for 10 s (screen wobbles, effect icon shows)
 - [ ] Eating a baked pizza fills the hunger bar from empty to full with saturation to spare
+
+## Oven
+- [ ] Oven recipe: BBB / BFB / SSS (brick block, furnace, stone) -> pizza oven
+- [ ] Placed oven faces the player
+- [ ] Right-click empty oven with raw pizza: pizza taken, oven glows (light 10) and smokes
+- [ ] After 10 s: ding sound, front texture shows a pizza
+- [ ] Right-click done oven: get the matching baked pizza, oven empty again
+- [ ] Right-click empty oven with anything else: action bar "Put a raw pizza in the oven", nothing consumed
+- [ ] Right-click while baking: action bar "Still baking…"
+- [ ] Break oven while baking: drops oven + raw pizza
+- [ ] Break oven while done: drops oven + baked pizza
+- [ ] Start baking, Save & Quit, re-enter: oven still baking, finishes within 10 s of entering
+- [ ] Two players click a done oven at once (second account or split screen): only one baked pizza comes out
+- [ ] Creative mode: raw pizza stack does not shrink
+- [ ] Survival mode: raw pizza stack shrinks by one
+- [ ] Fill inventory (`/give @s dirt 64` until full), take out a baked pizza: it drops in front of the oven
+- [ ] Pizza left in a done oven for 5 minutes is still there
