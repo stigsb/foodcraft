@@ -1,0 +1,24 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "Foodcraft Behavior Pack",
+    "description": "Pizza Night: crops, ingredients and a pizza oven",
+    "uuid": "7d9decc8-dc05-4900-9ee1-9ab1d2d07740",
+    "version": [0, 1, 0],
+    "min_engine_version": [1, 26, 60]
+  },
+  "modules": [
+    {
+      "description": "Foodcraft data",
+      "type": "data",
+      "uuid": "b1a3afbc-9ffe-4882-a249-c29badf31a8f",
+      "version": [0, 1, 0]
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "21c9e746-cd73-41fd-a163-83955769e6c2",
+      "version": [0, 1, 0]
+    }
+  ]
+}
