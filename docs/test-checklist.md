@@ -58,3 +58,39 @@ Tick a line only after seeing it work in the test world with an empty Content Lo
 - [ ] Fill inventory (`/give @s dirt 64` until full), take out a baked pizza: it drops in front of the oven
 - [ ] Pizza left in a done oven for 5 minutes is still there
 - [ ] Oven model: flame shows while baking, correct pizza shows when done, empty when empty (all four pizzas)
+
+## Crops
+- [ ] Oregano seeds plant only on farmland
+- [ ] Oregano crop grows through 4 stages on random ticks (randomtickspeed 300)
+- [ ] Bone meal advances oregano crop and is consumed in survival
+- [ ] Immature oregano crop drops 1 seed; mature drops 1–2 oregano + 1–2 seeds
+- [ ] Crop pops off when its farmland is broken
+- [ ] Garlic plants only on farmland (from the garlic item itself)
+- [ ] Garlic crop grows through 4 stages on random ticks (randomtickspeed 300)
+- [ ] Bone meal advances garlic crop and is consumed in survival
+- [ ] Immature garlic crop drops 1 garlic; mature drops 2–4 garlic
+- [ ] Garlic crop pops off when its farmland is broken
+
+## Tomato plant
+- [ ] Tomato seeds plant only on farmland
+- [ ] Tomato plant grows two blocks tall, then flowers and ripens small green, green, orange, red (randomtickspeed 300)
+- [ ] Tomato plant does not grow tall when the block above is taken
+- [ ] Bone meal moves the tomato plant one stage and is consumed in survival
+- [ ] Using a red plant gives 2–3 tomatoes, leaves empty calyxes, and the plant ripens again
+- [ ] Breaking either half removes the whole plant; red drops 2–3 tomatoes + 1–2 seeds, otherwise 1 seed
+- [ ] Tomato plant pops off when its farmland is broken
+
+## Pineapple plant
+- [ ] Pineapple crown plants only on farmland
+- [ ] Pineapple grows small, medium, full rosette, then flower spike, small green, green, golden (randomtickspeed 300)
+- [ ] Bone meal moves the pineapple one stage and is consumed in survival
+- [ ] Using a golden plant gives 1 pineapple, leaves a cut stalk, and the plant ripens again
+- [ ] Breaking a golden plant drops 1 pineapple + 1 crown, otherwise 1 crown
+- [ ] Pineapple plant pops off when its farmland is broken
+
+## Wild plants (new world)
+- [ ] Wild tomato spawns in plains, drops 1–2 tomato seeds
+- [ ] Wild garlic spawns in forest, drops 1–2 garlic
+- [ ] Wild oregano spawns in meadow and plains, drops 1–2 oregano seeds
+- [ ] Wild pineapple spawns in jungle, drops 1 pineapple crown
+- [ ] Wild plants only place on grass/dirt type blocks

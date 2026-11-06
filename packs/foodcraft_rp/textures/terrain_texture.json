@@ -9,6 +9,20 @@
     "foodcraft_oven_front_empty": { "textures": "textures/blocks/foodcraft_oven_front_empty" },
     "foodcraft_oven_front_baking": { "textures": "textures/blocks/foodcraft_oven_front_baking" },
     "foodcraft_oven_front_done": { "textures": "textures/blocks/foodcraft_oven_front_done" },
-    "foodcraft_pizza_oven": { "textures": "textures/blocks/foodcraft_pizza_oven" }
+    "foodcraft_pizza_oven": { "textures": "textures/blocks/foodcraft_pizza_oven" },
+    "foodcraft_oregano_crop_0": { "textures": "textures/blocks/foodcraft_oregano_crop_0" },
+    "foodcraft_oregano_crop_1": { "textures": "textures/blocks/foodcraft_oregano_crop_1" },
+    "foodcraft_oregano_crop_2": { "textures": "textures/blocks/foodcraft_oregano_crop_2" },
+    "foodcraft_oregano_crop_3": { "textures": "textures/blocks/foodcraft_oregano_crop_3" },
+    "foodcraft_garlic_crop_0": { "textures": "textures/blocks/foodcraft_garlic_crop_0" },
+    "foodcraft_garlic_crop_1": { "textures": "textures/blocks/foodcraft_garlic_crop_1" },
+    "foodcraft_garlic_crop_2": { "textures": "textures/blocks/foodcraft_garlic_crop_2" },
+    "foodcraft_garlic_crop_3": { "textures": "textures/blocks/foodcraft_garlic_crop_3" },
+    "foodcraft_tomato_plant": { "textures": "textures/blocks/foodcraft_tomato_plant" },
+    "foodcraft_pineapple_plant": { "textures": "textures/blocks/foodcraft_pineapple_plant" },
+    "foodcraft_wild_tomato": { "textures": "textures/blocks/foodcraft_wild_tomato" },
+    "foodcraft_wild_garlic": { "textures": "textures/blocks/foodcraft_wild_garlic" },
+    "foodcraft_wild_oregano": { "textures": "textures/blocks/foodcraft_wild_oregano" },
+    "foodcraft_wild_pineapple": { "textures": "textures/blocks/foodcraft_wild_pineapple" }
   }
 }

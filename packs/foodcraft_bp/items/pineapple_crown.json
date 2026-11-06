@@ -7,7 +7,11 @@
     },
     "components": {
       "minecraft:icon": { "textures": { "default": "foodcraft_pineapple_crown" } },
-      "minecraft:display_name": { "value": "item.foodcraft.pineapple_crown.name" }
+      "minecraft:display_name": { "value": "item.foodcraft.pineapple_crown.name" },
+      "minecraft:block_placer": {
+        "block": "foodcraft:pineapple_crop",
+        "use_on": ["minecraft:farmland"]
+      }
     }
   }
 }

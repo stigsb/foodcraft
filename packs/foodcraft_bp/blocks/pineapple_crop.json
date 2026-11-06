@@ -1,0 +1,55 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:block": {
+    "description": {
+      "identifier": "foodcraft:pineapple_crop",
+      "menu_category": { "category": "none" },
+      "states": {
+        "foodcraft:growth": [0, 1, 2],
+        "foodcraft:fruit": [0, 1, 2, 3, 4]
+      }
+    },
+    "components": {
+      "minecraft:geometry": {
+        "identifier": "geometry.foodcraft_pineapple_crop",
+        "bone_visibility": {
+          "rosette_small": "q.block_state('foodcraft:growth') == 0",
+          "rosette_medium": "q.block_state('foodcraft:growth') == 1",
+          "rosette": "q.block_state('foodcraft:growth') == 2",
+          "stalk": "q.block_state('foodcraft:growth') == 2",
+          "flower": "q.block_state('foodcraft:growth') == 2 && q.block_state('foodcraft:fruit') == 1",
+          "fruit_small": "q.block_state('foodcraft:growth') == 2 && q.block_state('foodcraft:fruit') == 2",
+          "fruit_green": "q.block_state('foodcraft:growth') == 2 && q.block_state('foodcraft:fruit') == 3",
+          "fruit_ripe": "q.block_state('foodcraft:growth') == 2 && q.block_state('foodcraft:fruit') == 4",
+          "fruit_picked": "q.block_state('foodcraft:growth') == 2 && q.block_state('foodcraft:fruit') == 0"
+        }
+      },
+      "minecraft:material_instances": {
+        "*": { "texture": "foodcraft_pineapple_plant", "render_method": "alpha_test", "ambient_occlusion": 0 }
+      },
+      "minecraft:collision_box": false,
+      "minecraft:selection_box": { "origin": [-7, 0, -7], "size": [14, 16, 14] },
+      "minecraft:destructible_by_mining": { "seconds_to_destroy": 0 },
+      "minecraft:light_dampening": 0,
+      "minecraft:placement_filter": {
+        "conditions": [{ "allowed_faces": ["up"], "block_filter": ["minecraft:farmland"] }]
+      },
+      "minecraft:loot": "loot_tables/blocks/pineapple_crop_seed.json",
+      "foodcraft:pineapple": {}
+    },
+    "permutations": [
+      {
+        "condition": "q.block_state('foodcraft:growth') == 0",
+        "components": {
+          "minecraft:selection_box": { "origin": [-4, 0, -4], "size": [8, 5, 8] }
+        }
+      },
+      {
+        "condition": "q.block_state('foodcraft:growth') == 2 && q.block_state('foodcraft:fruit') == 4",
+        "components": {
+          "minecraft:loot": "loot_tables/blocks/pineapple_crop_mature.json"
+        }
+      }
+    ]
+  }
+}
