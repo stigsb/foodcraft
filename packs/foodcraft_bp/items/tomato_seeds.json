@@ -7,7 +7,11 @@
     },
     "components": {
       "minecraft:icon": { "textures": { "default": "foodcraft_tomato_seeds" } },
-      "minecraft:display_name": { "value": "item.foodcraft.tomato_seeds.name" }
+      "minecraft:display_name": { "value": "item.foodcraft.tomato_seeds.name" },
+      "minecraft:block_placer": {
+        "block": "foodcraft:tomato_crop",
+        "use_on": ["minecraft:farmland"]
+      }
     }
   }
 }

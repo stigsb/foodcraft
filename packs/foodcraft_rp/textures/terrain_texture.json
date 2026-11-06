@@ -11,6 +11,8 @@
     "foodcraft_garlic_crop_0": { "textures": "textures/blocks/foodcraft_garlic_crop_0" },
     "foodcraft_garlic_crop_1": { "textures": "textures/blocks/foodcraft_garlic_crop_1" },
     "foodcraft_garlic_crop_2": { "textures": "textures/blocks/foodcraft_garlic_crop_2" },
-    "foodcraft_garlic_crop_3": { "textures": "textures/blocks/foodcraft_garlic_crop_3" }
+    "foodcraft_garlic_crop_3": { "textures": "textures/blocks/foodcraft_garlic_crop_3" },
+    "foodcraft_tomato_plant": { "textures": "textures/blocks/foodcraft_tomato_plant" },
+    "foodcraft_pineapple_plant": { "textures": "textures/blocks/foodcraft_pineapple_plant" }
   }
 }

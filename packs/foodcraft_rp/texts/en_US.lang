@@ -13,3 +13,6 @@ item.foodcraft.pepperoni.name=Pepperoni
 item.foodcraft.ham.name=Ham
 tile.foodcraft:oregano_crop.name=Oregano Crop
 tile.foodcraft:garlic_crop.name=Garlic Crop
+tile.foodcraft:tomato_crop.name=Tomato Plant
+tile.foodcraft:tomato_crop_top.name=Tomato Plant
+tile.foodcraft:pineapple_crop.name=Pineapple Plant
