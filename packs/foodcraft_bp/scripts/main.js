@@ -15,6 +15,8 @@ system.beforeEvents.startup.subscribe((event) => {
       produce: "foodcraft:tomato",
       count: [2, 3],
       ripe: 5,
+      full: 3, // sprout, small plant, tall plant, then fruit
+      topFrom: 2, // the top half appears with the tall plant
       growChance: 0.5, // the plant grows fast...
       ripenChance: 0.2, // ...and the tomatoes ripen slowly
       pickSound: "block.sweet_berry_bush.pick",
@@ -27,6 +29,7 @@ system.beforeEvents.startup.subscribe((event) => {
       produce: "foodcraft:pineapple",
       count: [1, 1],
       ripe: 4,
+      full: 2,
       growChance: 0.25, // pineapples are slow at everything
       ripenChance: 0.15,
       pickSound: "block.sweet_berry_bush.pick",

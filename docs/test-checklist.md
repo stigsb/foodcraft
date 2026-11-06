@@ -73,7 +73,7 @@ Tick a line only after seeing it work in the test world with an empty Content Lo
 
 ## Tomato plant
 - [ ] Tomato seeds plant only on farmland
-- [ ] Tomato plant grows two blocks tall, then flowers and ripens small green, green, orange, red (randomtickspeed 300)
+- [ ] Tomato plant grows sprout, small plant, two blocks tall, then flowers and ripens small green, green, orange, red (randomtickspeed 300)
 - [ ] Tomato plant does not grow tall when the block above is taken
 - [ ] Bone meal moves the tomato plant one stage and is consumed in survival
 - [ ] Using a red plant gives 2–3 tomatoes, leaves empty calyxes, and the plant ripens again

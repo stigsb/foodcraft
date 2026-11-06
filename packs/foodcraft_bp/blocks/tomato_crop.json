@@ -5,7 +5,7 @@
       "identifier": "foodcraft:tomato_crop",
       "menu_category": { "category": "none" },
       "states": {
-        "foodcraft:growth": [0, 1, 2],
+        "foodcraft:growth": [0, 1, 2, 3],
         "foodcraft:fruit": [0, 1, 2, 3, 4, 5]
       }
     },
@@ -14,14 +14,15 @@
         "identifier": "geometry.foodcraft_tomato_crop_lower",
         "bone_visibility": {
           "sprout": "q.block_state('foodcraft:growth') == 0",
-          "stake": "q.block_state('foodcraft:growth') >= 1",
-          "foliage": "q.block_state('foodcraft:growth') >= 1",
-          "flowers": "q.block_state('foodcraft:growth') == 2 && q.block_state('foodcraft:fruit') == 1",
-          "tomatoes_small": "q.block_state('foodcraft:growth') == 2 && q.block_state('foodcraft:fruit') == 2",
-          "tomatoes_green": "q.block_state('foodcraft:growth') == 2 && q.block_state('foodcraft:fruit') == 3",
-          "tomatoes_turning": "q.block_state('foodcraft:growth') == 2 && q.block_state('foodcraft:fruit') == 4",
-          "tomatoes_red": "q.block_state('foodcraft:growth') == 2 && q.block_state('foodcraft:fruit') == 5",
-          "tomatoes_picked": "q.block_state('foodcraft:growth') == 2 && q.block_state('foodcraft:fruit') == 0"
+          "small_plant": "q.block_state('foodcraft:growth') == 1",
+          "stake": "q.block_state('foodcraft:growth') >= 2",
+          "foliage": "q.block_state('foodcraft:growth') >= 2",
+          "flowers": "q.block_state('foodcraft:growth') == 3 && q.block_state('foodcraft:fruit') == 1",
+          "tomatoes_small": "q.block_state('foodcraft:growth') == 3 && q.block_state('foodcraft:fruit') == 2",
+          "tomatoes_green": "q.block_state('foodcraft:growth') == 3 && q.block_state('foodcraft:fruit') == 3",
+          "tomatoes_turning": "q.block_state('foodcraft:growth') == 3 && q.block_state('foodcraft:fruit') == 4",
+          "tomatoes_red": "q.block_state('foodcraft:growth') == 3 && q.block_state('foodcraft:fruit') == 5",
+          "tomatoes_picked": "q.block_state('foodcraft:growth') == 3 && q.block_state('foodcraft:fruit') == 0"
         }
       },
       "minecraft:material_instances": {
@@ -45,7 +46,13 @@
         }
       },
       {
-        "condition": "q.block_state('foodcraft:growth') == 2 && q.block_state('foodcraft:fruit') == 5",
+        "condition": "q.block_state('foodcraft:growth') == 1",
+        "components": {
+          "minecraft:selection_box": { "origin": [-6, 0, -6], "size": [12, 12, 12] }
+        }
+      },
+      {
+        "condition": "q.block_state('foodcraft:growth') == 3 && q.block_state('foodcraft:fruit') == 5",
         "components": {
           "minecraft:loot": "loot_tables/blocks/tomato_crop_mature.json"
         }

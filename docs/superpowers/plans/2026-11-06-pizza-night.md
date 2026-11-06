@@ -15,7 +15,7 @@
 None block the spec as written. Two points are narrower than the spec text:
 
 - **4.2 "Oven broken while baking/done drops the pizza":** the block custom component hook is `onPlayerBreak`, which fires only for player breaks (Task 5). An oven removed by explosion, piston or `/setblock` drops the oven (via its loot table) but not the pizza.
-- **2.1 "Each crop has 4 growth stages":** tomato and pineapple are different (decided 2026-11-06, Task 8). They grow in 3 stages and then ripen fruit in more stages: the tomato grows two blocks tall and ripens flowers, small green, green, orange, red; the pineapple grows a leaf rosette and ripens a flower spike, small green, green, golden. Using a ripe plant picks the fruit (2–3 tomatoes or 1 pineapple) and the plant ripens again. Breaking a ripe plant still gives the spec harvest. The spec text is not updated yet.
+- **2.1 "Each crop has 4 growth stages":** tomato and pineapple are different (decided 2026-11-06, Task 8). They grow in stages and then ripen fruit in more stages: the tomato grows from sprout to small plant to two blocks tall (4 growth stages) and ripens flowers, small green, green, orange, red; the pineapple grows a leaf rosette and ripens a flower spike, small green, green, golden. Using a ripe plant picks the fruit (2–3 tomatoes or 1 pineapple) and the plant ripens again. Breaking a ripe plant still gives the spec harvest. The spec text is not updated yet.
 - **2.3 "Eating raw pizza gives Nausea":** `minecraft:food` has no effect field in the current format (doc confirms `remove_effects` is deprecated and there is no add-effect field). The effect is applied from script in `world.afterEvents.itemCompleteUse` (Task 4). Same player-visible result.
 
 ## Doc sources used
@@ -1437,7 +1437,7 @@ Build order step 5, second half. Three kid sessions: (a) the models in Blockbenc
 
 Both plants grow first and then ripen fruit, more slowly. Using a ripe plant picks the fruit and leaves the plant standing; it flowers and ripens again. Breaking the plant gives its seed item (and the fruit if it was ripe).
 
-- **Tomato:** grows fast to two blocks tall, then flowers and ripens: small green, green, orange, red. Picking gives 2–3 tomatoes.
+- **Tomato:** grows fast from sprout to small plant to two blocks tall, then flowers and ripens: small green, green, orange, red. Picking gives 2–3 tomatoes.
 - **Pineapple:** one block. A spiky leaf rosette grows slowly (small, medium, full), then a red flower spike rises from the middle and turns into a pineapple: small green, green, golden. Picking gives 1 pineapple and leaves a cut stalk.
 
 **Files:**
@@ -1450,14 +1450,14 @@ Both plants grow first and then ripen fruit, more slowly. Using a ripe plant pic
 
 **Interfaces:**
 - Both plants have the same two states, and the script writes them:
-  - `foodcraft:growth` in `[0, 1, 2]`: young, half-grown, full plant.
-  - `foodcraft:fruit`, used only at growth 2. 0 is picked; 1 is flowers; the highest value is ripe. Reaching growth 2 sets fruit to 1, so fruit 0 at growth 2 only happens after picking.
+  - `foodcraft:growth`: the plant's size. Tomato `[0, 1, 2, 3]` = sprout, small plant, tall plant (two blocks), full plant. Pineapple `[0, 1, 2]` = small, medium, full rosette.
+  - `foodcraft:fruit`, used only at full growth (tomato 3, pineapple 2). 0 is picked; 1 is flowers; the highest value is ripe. Reaching full growth sets fruit to 1, so fruit 0 at full growth only happens after picking.
     - Tomato: `[0, 1, 2, 3, 4, 5]` = picked, flowers, small green, green, orange, red.
     - Pineapple: `[0, 1, 2, 3, 4]` = picked, flower spike, small green, green, golden.
-- Blocks: `foodcraft:tomato_crop` (lower, on farmland) and `foodcraft:tomato_crop_top` (upper, from growth 1; the script writes the states to both halves); `foodcraft:pineapple_crop` (one block).
+- Blocks: `foodcraft:tomato_crop` (lower, on farmland) and `foodcraft:tomato_crop_top` (upper, from growth 2; the script writes the states to both halves); `foodcraft:pineapple_crop` (one block).
 - `scripts/fruit_plant.js` exports `fruitPlant(options)`, which returns a custom component. `main.js` registers it twice: `foodcraft:tomato` (on both tomato blocks) and `foodcraft:pineapple`.
 - Geometry and bones (`art/README.md` has the table of which bone shows when):
-  - `geometry.foodcraft_tomato_crop_lower` and `geometry.foodcraft_tomato_crop_upper`: `sprout`, `stake`, `foliage`, `flowers`, `tomatoes_small`, `tomatoes_green`, `tomatoes_turning`, `tomatoes_red`, `tomatoes_picked`.
+  - `geometry.foodcraft_tomato_crop_lower` and `geometry.foodcraft_tomato_crop_upper`: `sprout`, `small_plant` (lower only), `stake`, `foliage`, `flowers`, `tomatoes_small`, `tomatoes_green`, `tomatoes_turning`, `tomatoes_red`, `tomatoes_picked`.
   - `geometry.foodcraft_pineapple_crop`: `rosette_small`, `rosette_medium`, `rosette`, `stalk`, `flower`, `fruit_small`, `fruit_green`, `fruit_ripe`, `fruit_picked`.
 - Task 9's wild tomato and wild pineapple drop `foodcraft:tomato_seeds` and `foodcraft:pineapple_crown`, which plant these crops.
 
@@ -1471,7 +1471,7 @@ The draft models are in `art/models/` and already have every bone and their text
 4. Same for `art/models/tomato_crop_upper.bbmodel` -> `tomato_crop_upper.geo.json` and `art/models/pineapple_crop.bbmodel` -> `pineapple_crop.geo.json` (texture `art/textures/blocks/pineapple_plant.png`).
 5. Copy `art/textures/blocks/tomato_plant.png` to `packs/foodcraft_rp/textures/blocks/foodcraft_tomato_plant.png` and `art/textures/blocks/pineapple_plant.png` to `packs/foodcraft_rp/textures/blocks/foodcraft_pineapple_plant.png`.
 
-Check: each exported `.geo.json` contains its `"identifier"` from the Interfaces list and the nine bone names.
+Check: each exported `.geo.json` contains its `"identifier"` from the Interfaces list and its bone names (ten in the lower tomato, nine in the others).
 
 - [ ] **Step 2: Tomato lower block (session b)**
 
@@ -1485,7 +1485,7 @@ Check: each exported `.geo.json` contains its `"identifier"` from the Interfaces
       "identifier": "foodcraft:tomato_crop",
       "menu_category": { "category": "none" },
       "states": {
-        "foodcraft:growth": [0, 1, 2],
+        "foodcraft:growth": [0, 1, 2, 3],
         "foodcraft:fruit": [0, 1, 2, 3, 4, 5]
       }
     },
@@ -1494,14 +1494,15 @@ Check: each exported `.geo.json` contains its `"identifier"` from the Interfaces
         "identifier": "geometry.foodcraft_tomato_crop_lower",
         "bone_visibility": {
           "sprout": "q.block_state('foodcraft:growth') == 0",
-          "stake": "q.block_state('foodcraft:growth') >= 1",
-          "foliage": "q.block_state('foodcraft:growth') >= 1",
-          "flowers": "q.block_state('foodcraft:growth') == 2 && q.block_state('foodcraft:fruit') == 1",
-          "tomatoes_small": "q.block_state('foodcraft:growth') == 2 && q.block_state('foodcraft:fruit') == 2",
-          "tomatoes_green": "q.block_state('foodcraft:growth') == 2 && q.block_state('foodcraft:fruit') == 3",
-          "tomatoes_turning": "q.block_state('foodcraft:growth') == 2 && q.block_state('foodcraft:fruit') == 4",
-          "tomatoes_red": "q.block_state('foodcraft:growth') == 2 && q.block_state('foodcraft:fruit') == 5",
-          "tomatoes_picked": "q.block_state('foodcraft:growth') == 2 && q.block_state('foodcraft:fruit') == 0"
+          "small_plant": "q.block_state('foodcraft:growth') == 1",
+          "stake": "q.block_state('foodcraft:growth') >= 2",
+          "foliage": "q.block_state('foodcraft:growth') >= 2",
+          "flowers": "q.block_state('foodcraft:growth') == 3 && q.block_state('foodcraft:fruit') == 1",
+          "tomatoes_small": "q.block_state('foodcraft:growth') == 3 && q.block_state('foodcraft:fruit') == 2",
+          "tomatoes_green": "q.block_state('foodcraft:growth') == 3 && q.block_state('foodcraft:fruit') == 3",
+          "tomatoes_turning": "q.block_state('foodcraft:growth') == 3 && q.block_state('foodcraft:fruit') == 4",
+          "tomatoes_red": "q.block_state('foodcraft:growth') == 3 && q.block_state('foodcraft:fruit') == 5",
+          "tomatoes_picked": "q.block_state('foodcraft:growth') == 3 && q.block_state('foodcraft:fruit') == 0"
         }
       },
       "minecraft:material_instances": {
@@ -1525,7 +1526,13 @@ Check: each exported `.geo.json` contains its `"identifier"` from the Interfaces
         }
       },
       {
-        "condition": "q.block_state('foodcraft:growth') == 2 && q.block_state('foodcraft:fruit') == 5",
+        "condition": "q.block_state('foodcraft:growth') == 1",
+        "components": {
+          "minecraft:selection_box": { "origin": [-6, 0, -6], "size": [12, 12, 12] }
+        }
+      },
+      {
+        "condition": "q.block_state('foodcraft:growth') == 3 && q.block_state('foodcraft:fruit') == 5",
         "components": {
           "minecraft:loot": "loot_tables/blocks/tomato_crop_mature.json"
         }
@@ -1549,7 +1556,7 @@ Check: each exported `.geo.json` contains its `"identifier"` from the Interfaces
       "identifier": "foodcraft:tomato_crop_top",
       "menu_category": { "category": "none" },
       "states": {
-        "foodcraft:growth": [0, 1, 2],
+        "foodcraft:growth": [0, 1, 2, 3],
         "foodcraft:fruit": [0, 1, 2, 3, 4, 5]
       }
     },
@@ -1557,15 +1564,15 @@ Check: each exported `.geo.json` contains its `"identifier"` from the Interfaces
       "minecraft:geometry": {
         "identifier": "geometry.foodcraft_tomato_crop_upper",
         "bone_visibility": {
-          "sprout": "q.block_state('foodcraft:growth') == 1",
-          "stake": "q.block_state('foodcraft:growth') >= 1",
-          "foliage": "q.block_state('foodcraft:growth') == 2",
-          "flowers": "q.block_state('foodcraft:growth') == 2 && q.block_state('foodcraft:fruit') == 1",
-          "tomatoes_small": "q.block_state('foodcraft:growth') == 2 && q.block_state('foodcraft:fruit') == 2",
-          "tomatoes_green": "q.block_state('foodcraft:growth') == 2 && q.block_state('foodcraft:fruit') == 3",
-          "tomatoes_turning": "q.block_state('foodcraft:growth') == 2 && q.block_state('foodcraft:fruit') == 4",
-          "tomatoes_red": "q.block_state('foodcraft:growth') == 2 && q.block_state('foodcraft:fruit') == 5",
-          "tomatoes_picked": "q.block_state('foodcraft:growth') == 2 && q.block_state('foodcraft:fruit') == 0"
+          "sprout": "q.block_state('foodcraft:growth') == 2",
+          "stake": "q.block_state('foodcraft:growth') >= 2",
+          "foliage": "q.block_state('foodcraft:growth') == 3",
+          "flowers": "q.block_state('foodcraft:growth') == 3 && q.block_state('foodcraft:fruit') == 1",
+          "tomatoes_small": "q.block_state('foodcraft:growth') == 3 && q.block_state('foodcraft:fruit') == 2",
+          "tomatoes_green": "q.block_state('foodcraft:growth') == 3 && q.block_state('foodcraft:fruit') == 3",
+          "tomatoes_turning": "q.block_state('foodcraft:growth') == 3 && q.block_state('foodcraft:fruit') == 4",
+          "tomatoes_red": "q.block_state('foodcraft:growth') == 3 && q.block_state('foodcraft:fruit') == 5",
+          "tomatoes_picked": "q.block_state('foodcraft:growth') == 3 && q.block_state('foodcraft:fruit') == 0"
         }
       },
       "minecraft:material_instances": {
@@ -1656,16 +1663,17 @@ import { useBoneMeal, boneMealEffects } from "./crop.js";
 
 const GROWTH = "foodcraft:growth";
 const FRUIT = "foodcraft:fruit";
-const FULL = 2; // growth of the full plant
 
 // Builds the custom component for one fruit plant.
 // lower:  block id of the plant (the one on farmland)
 // top:    block id of the upper half for a two-block plant, or undefined
 // produce, count: item and [min, max] given when the ripe fruit is picked
 // ripe:   fruit value of ripe fruit
+// full:   growth value of the full-grown plant, where the fruit ripens
+// topFrom: growth value where a two-block plant gets its top half
 // growChance, ripenChance: chance per random tick to grow / to ripen one stage
 // pickSound: sound played when picking
-export function fruitPlant({ lower, top, produce, count, ripe, growChance, ripenChance, pickSound }) {
+export function fruitPlant({ lower, top, produce, count, ripe, full, topFrom = full, growChance, ripenChance, pickSound }) {
   // The lower block carries the states that count.
   const lowerOf = (block) => (top && block.typeId === top ? block.below() : block);
 
@@ -1674,25 +1682,25 @@ export function fruitPlant({ lower, top, produce, count, ripe, growChance, ripen
     fruit: plant.permutation.getState(FRUIT),
   });
 
-  // A two-block plant needs air above (or its own top half) to grow.
-  const roomAbove = (plant) => {
-    if (!top) return true;
+  // A two-block plant needs air above (or its own top half) once it is tall.
+  const roomAbove = (plant, growth) => {
+    if (!top || growth < topFrom) return true;
     const above = plant.above();
     return !!above && (above.isAir || above.typeId === top);
   };
 
-  // Writes the states to the plant, and to the top half from growth 1.
+  // Writes the states to the plant, and to the top half from growth topFrom.
   const write = (plant, growth, fruit) => {
     const states = { [GROWTH]: growth, [FRUIT]: fruit };
     plant.setPermutation(BlockPermutation.resolve(lower, states));
-    if (top && growth >= 1 && roomAbove(plant)) {
+    if (top && growth >= topFrom && roomAbove(plant, growth)) {
       plant.above().setPermutation(BlockPermutation.resolve(top, states));
     }
   };
 
   // The next stage, or undefined when the fruit is ripe.
   const next = ({ growth, fruit }) => {
-    if (growth < FULL) return { growth: growth + 1, fruit: growth + 1 === FULL ? 1 : 0 };
+    if (growth < full) return { growth: growth + 1, fruit: growth + 1 === full ? 1 : 0 };
     if (fruit < ripe) return { growth, fruit: fruit + 1 };
     return undefined;
   };
@@ -1702,10 +1710,10 @@ export function fruitPlant({ lower, top, produce, count, ripe, growChance, ripen
       const plant = event.block;
       if (plant.typeId !== lower) return; // a top half never ticks the plant
       const now = read(plant);
-      if (top && now.growth >= 1 && plant.above()?.isAir) write(plant, now.growth, now.fruit); // top half was lost: put it back
+      if (top && now.growth >= topFrom && plant.above()?.isAir) write(plant, now.growth, now.fruit); // top half was lost: put it back
       const step = next(now);
-      if (!step || !roomAbove(plant)) return;
-      const chance = now.growth < FULL ? growChance : ripenChance;
+      if (!step || !roomAbove(plant, step.growth)) return;
+      const chance = now.growth < full ? growChance : ripenChance;
       if (Math.random() >= chance) return;
       write(plant, step.growth, step.fruit);
     },
@@ -1718,18 +1726,18 @@ export function fruitPlant({ lower, top, produce, count, ripe, growChance, ripen
       const now = read(plant);
 
       // Ripe: pick the fruit, the plant stays.
-      if (now.growth === FULL && now.fruit === ripe) {
+      if (now.growth === full && now.fruit === ripe) {
         const [min, max] = count;
         const amount = min + Math.floor(Math.random() * (max - min + 1));
         block.dimension.spawnItem(new ItemStack(produce, amount), block.center());
         block.dimension.playSound(pickSound, block.center());
-        write(plant, FULL, 0);
+        write(plant, full, 0);
         return;
       }
 
       // Otherwise bone meal moves it one stage on.
       const step = next(now);
-      if (!step || !roomAbove(plant) || !useBoneMeal(player)) return;
+      if (!step || !roomAbove(plant, step.growth) || !useBoneMeal(player)) return;
       write(plant, step.growth, step.fruit);
       boneMealEffects(block);
     },
@@ -1758,6 +1766,8 @@ In `scripts/main.js` add `import { fruitPlant } from "./fruit_plant.js";` and in
       produce: "foodcraft:tomato",
       count: [2, 3],
       ripe: 5,
+      full: 3, // sprout, small plant, tall plant, then fruit
+      topFrom: 2, // the top half appears with the tall plant
       growChance: 0.5, // the plant grows fast...
       ripenChance: 0.2, // ...and the tomatoes ripen slowly
       pickSound: "block.sweet_berry_bush.pick",
@@ -1783,8 +1793,8 @@ Task 1's `foodcraft_tomato_crop_0` … `_3` textures are not used by the crop; `
 
 1. Deploy, re-enter. Content Log clean. A bone name that does not match the model shows here as a `bone_visibility` warning.
 2. `/give @s foodcraft:tomato_seeds 8`, `/give @s minecraft:bone_meal 32`. Seeds plant on farmland only.
-3. `/gamerule randomtickspeed 300`. The sprout grows a stake and a top half within seconds, then flowers, then small green, green, orange and red tomatoes, with the ripening visibly slower than the growing. Set back to `/gamerule randomtickspeed 1`.
-4. Put a block of dirt right above a sprout: it stays a sprout. Remove the dirt: it grows again.
+3. `/gamerule randomtickspeed 300`. The sprout grows into a small plant with a short stake, then a tall plant with a top half within seconds, then flowers, then small green, green, orange and red tomatoes, with the ripening visibly slower than the growing. Set back to `/gamerule randomtickspeed 1`.
+4. Put a block of dirt right above a sprout: it grows to a small plant and stops there. Remove the dirt: it grows tall.
 5. Bone meal a sprout: one stage per bone meal, all the way to red; one bone meal used in survival, none in creative; nothing used on a red plant.
 6. Use (right-click) a red plant on either half: 2–3 tomatoes pop out, pick sound, the plant shows empty calyxes. With randomtickspeed 300 it flowers and ripens again.
 7. Break the lower half of a red plant: the whole plant goes, 2–3 tomatoes + 1–2 seeds. Break the top half of another plant: the whole plant goes, 1 seed. Break the farmland under a plant: the whole plant pops off as 1 seed. (In creative, breaking the top half still drops the lower half's loot; that is expected.)
@@ -1796,7 +1806,7 @@ Checklist:
 ```markdown
 ## Tomato plant
 - [ ] Tomato seeds plant only on farmland
-- [ ] Tomato plant grows two blocks tall, then flowers and ripens small green, green, orange, red (randomtickspeed 300)
+- [ ] Tomato plant grows sprout, small plant, two blocks tall, then flowers and ripens small green, green, orange, red (randomtickspeed 300)
 - [ ] Tomato plant does not grow tall when the block above is taken
 - [ ] Bone meal moves the tomato plant one stage and is consumed in survival
 - [ ] Using a red plant gives 2–3 tomatoes, leaves empty calyxes, and the plant ripens again
@@ -1894,6 +1904,7 @@ Register the component in `scripts/main.js`, next to the tomato. No `top`: the p
       produce: "foodcraft:pineapple",
       count: [1, 1],
       ripe: 4,
+      full: 2,
       growChance: 0.25, // pineapples are slow at everything
       ripenChance: 0.15,
       pickSound: "block.sweet_berry_bush.pick",

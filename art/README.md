@@ -21,16 +21,17 @@ The tomato crop is two blocks: `geometry.foodcraft_tomato_crop_lower` sits on th
 
 The plant grows fast and the fruit ripens slowly, so the block has two states:
 
-- `foodcraft:growth` 0–2: sprout, half-grown, full plant. The upper block appears at 1.
-- `foodcraft:fruit` 0–5, used only at growth 2: 0 picked, 1 flowers, 2 small green, 3 green, 4 turning (orange), 5 red. When the plant reaches growth 2, the script sets fruit to 1. Picking red tomatoes sets fruit to 0, and the next random tick starts again at 1.
+- `foodcraft:growth` 0–3: sprout, small plant, tall plant, full plant. The upper block appears at 2.
+- `foodcraft:fruit` 0–5, used only at growth 3: 0 picked, 1 flowers, 2 small green, 3 green, 4 turning (orange), 5 red. When the plant reaches growth 3, the script sets fruit to 1. Picking red tomatoes sets fruit to 0, and the next random tick starts again at 1.
 
 Let the script advance `fruit` on fewer random ticks than `growth` so ripening takes longer.
 
 | Bone | Lower block | Upper block |
 |---|---|---|
-| `sprout` | growth 0 | growth 1 |
-| `stake` (stake and twine) | growth 1–2 | growth 1–2 |
-| `foliage` | growth 1–2 | growth 2 |
+| `sprout` | growth 0 | growth 2 |
+| `small_plant` (young bush with a short stake; uses the bottom of the lower foliage texture) | growth 1 | none |
+| `stake` (stake and twine) | growth 2–3 | growth 2–3 |
+| `foliage` | growth 2–3 | growth 3 |
 | `flowers` | fruit 1 | fruit 1 |
 | `tomatoes_small` | fruit 2 | fruit 2 |
 | `tomatoes_green` | fruit 3 | fruit 3 |
@@ -38,12 +39,13 @@ Let the script advance `fruit` on fewer random ticks than `growth` so ripening t
 | `tomatoes_red` | fruit 5 | fruit 5 |
 | `tomatoes_picked` (calyx and stem where each tomato hung) | fruit 0 | fruit 0 |
 
-Every `fruit` bone also needs growth 2. Example `bone_visibility` for the lower block:
+Every `fruit` bone also needs growth 3. Example `bone_visibility` for the lower block:
 
 ```json
 "sprout": "q.block_state('foodcraft:growth') == 0",
-"foliage": "q.block_state('foodcraft:growth') >= 1",
-"tomatoes_red": "q.block_state('foodcraft:growth') == 2 && q.block_state('foodcraft:fruit') == 5"
+"small_plant": "q.block_state('foodcraft:growth') == 1",
+"foliage": "q.block_state('foodcraft:growth') >= 2",
+"tomatoes_red": "q.block_state('foodcraft:growth') == 3 && q.block_state('foodcraft:fruit') == 5"
 ```
 
 Use `"render_method": "alpha_test"` so the leaves get see-through gaps and show from both sides.

@@ -5,7 +5,7 @@
       "identifier": "foodcraft:tomato_crop_top",
       "menu_category": { "category": "none" },
       "states": {
-        "foodcraft:growth": [0, 1, 2],
+        "foodcraft:growth": [0, 1, 2, 3],
         "foodcraft:fruit": [0, 1, 2, 3, 4, 5]
       }
     },
@@ -13,15 +13,15 @@
       "minecraft:geometry": {
         "identifier": "geometry.foodcraft_tomato_crop_upper",
         "bone_visibility": {
-          "sprout": "q.block_state('foodcraft:growth') == 1",
-          "stake": "q.block_state('foodcraft:growth') >= 1",
-          "foliage": "q.block_state('foodcraft:growth') == 2",
-          "flowers": "q.block_state('foodcraft:growth') == 2 && q.block_state('foodcraft:fruit') == 1",
-          "tomatoes_small": "q.block_state('foodcraft:growth') == 2 && q.block_state('foodcraft:fruit') == 2",
-          "tomatoes_green": "q.block_state('foodcraft:growth') == 2 && q.block_state('foodcraft:fruit') == 3",
-          "tomatoes_turning": "q.block_state('foodcraft:growth') == 2 && q.block_state('foodcraft:fruit') == 4",
-          "tomatoes_red": "q.block_state('foodcraft:growth') == 2 && q.block_state('foodcraft:fruit') == 5",
-          "tomatoes_picked": "q.block_state('foodcraft:growth') == 2 && q.block_state('foodcraft:fruit') == 0"
+          "sprout": "q.block_state('foodcraft:growth') == 2",
+          "stake": "q.block_state('foodcraft:growth') >= 2",
+          "foliage": "q.block_state('foodcraft:growth') == 3",
+          "flowers": "q.block_state('foodcraft:growth') == 3 && q.block_state('foodcraft:fruit') == 1",
+          "tomatoes_small": "q.block_state('foodcraft:growth') == 3 && q.block_state('foodcraft:fruit') == 2",
+          "tomatoes_green": "q.block_state('foodcraft:growth') == 3 && q.block_state('foodcraft:fruit') == 3",
+          "tomatoes_turning": "q.block_state('foodcraft:growth') == 3 && q.block_state('foodcraft:fruit') == 4",
+          "tomatoes_red": "q.block_state('foodcraft:growth') == 3 && q.block_state('foodcraft:fruit') == 5",
+          "tomatoes_picked": "q.block_state('foodcraft:growth') == 3 && q.block_state('foodcraft:fruit') == 0"
         }
       },
       "minecraft:material_instances": {

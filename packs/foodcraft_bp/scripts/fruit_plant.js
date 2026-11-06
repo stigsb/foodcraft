@@ -3,16 +3,17 @@ import { useBoneMeal, boneMealEffects } from "./crop.js";
 
 const GROWTH = "foodcraft:growth";
 const FRUIT = "foodcraft:fruit";
-const FULL = 2; // growth of the full plant
 
 // Builds the custom component for one fruit plant.
 // lower:  block id of the plant (the one on farmland)
 // top:    block id of the upper half for a two-block plant, or undefined
 // produce, count: item and [min, max] given when the ripe fruit is picked
 // ripe:   fruit value of ripe fruit
+// full:   growth value of the full-grown plant, where the fruit ripens
+// topFrom: growth value where a two-block plant gets its top half
 // growChance, ripenChance: chance per random tick to grow / to ripen one stage
 // pickSound: sound played when picking
-export function fruitPlant({ lower, top, produce, count, ripe, growChance, ripenChance, pickSound }) {
+export function fruitPlant({ lower, top, produce, count, ripe, full, topFrom = full, growChance, ripenChance, pickSound }) {
   // The lower block carries the states that count.
   const lowerOf = (block) => (top && block.typeId === top ? block.below() : block);
 
@@ -21,25 +22,25 @@ export function fruitPlant({ lower, top, produce, count, ripe, growChance, ripen
     fruit: plant.permutation.getState(FRUIT),
   });
 
-  // A two-block plant needs air above (or its own top half) to grow.
-  const roomAbove = (plant) => {
-    if (!top) return true;
+  // A two-block plant needs air above (or its own top half) once it is tall.
+  const roomAbove = (plant, growth) => {
+    if (!top || growth < topFrom) return true;
     const above = plant.above();
     return !!above && (above.isAir || above.typeId === top);
   };
 
-  // Writes the states to the plant, and to the top half from growth 1.
+  // Writes the states to the plant, and to the top half from growth topFrom.
   const write = (plant, growth, fruit) => {
     const states = { [GROWTH]: growth, [FRUIT]: fruit };
     plant.setPermutation(BlockPermutation.resolve(lower, states));
-    if (top && growth >= 1 && roomAbove(plant)) {
+    if (top && growth >= topFrom && roomAbove(plant, growth)) {
       plant.above().setPermutation(BlockPermutation.resolve(top, states));
     }
   };
 
   // The next stage, or undefined when the fruit is ripe.
   const next = ({ growth, fruit }) => {
-    if (growth < FULL) return { growth: growth + 1, fruit: growth + 1 === FULL ? 1 : 0 };
+    if (growth < full) return { growth: growth + 1, fruit: growth + 1 === full ? 1 : 0 };
     if (fruit < ripe) return { growth, fruit: fruit + 1 };
     return undefined;
   };
@@ -49,10 +50,10 @@ export function fruitPlant({ lower, top, produce, count, ripe, growChance, ripen
       const plant = event.block;
       if (plant.typeId !== lower) return; // a top half never ticks the plant
       const now = read(plant);
-      if (top && now.growth >= 1 && plant.above()?.isAir) write(plant, now.growth, now.fruit); // top half was lost: put it back
+      if (top && now.growth >= topFrom && plant.above()?.isAir) write(plant, now.growth, now.fruit); // top half was lost: put it back
       const step = next(now);
-      if (!step || !roomAbove(plant)) return;
-      const chance = now.growth < FULL ? growChance : ripenChance;
+      if (!step || !roomAbove(plant, step.growth)) return;
+      const chance = now.growth < full ? growChance : ripenChance;
       if (Math.random() >= chance) return;
       write(plant, step.growth, step.fruit);
     },
@@ -65,18 +66,18 @@ export function fruitPlant({ lower, top, produce, count, ripe, growChance, ripen
       const now = read(plant);
 
       // Ripe: pick the fruit, the plant stays.
-      if (now.growth === FULL && now.fruit === ripe) {
+      if (now.growth === full && now.fruit === ripe) {
         const [min, max] = count;
         const amount = min + Math.floor(Math.random() * (max - min + 1));
         block.dimension.spawnItem(new ItemStack(produce, amount), block.center());
         block.dimension.playSound(pickSound, block.center());
-        write(plant, FULL, 0);
+        write(plant, full, 0);
         return;
       }
 
       // Otherwise bone meal moves it one stage on.
       const step = next(now);
-      if (!step || !roomAbove(plant) || !useBoneMeal(player)) return;
+      if (!step || !roomAbove(plant, step.growth) || !useBoneMeal(player)) return;
       write(plant, step.growth, step.fruit);
       boneMealEffects(block);
     },
