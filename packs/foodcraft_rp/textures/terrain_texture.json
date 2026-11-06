@@ -1,0 +1,16 @@
+{
+  "resource_pack_name": "foodcraft_rp",
+  "texture_name": "atlas.terrain",
+  "padding": 8,
+  "num_mip_levels": 4,
+  "texture_data": {
+    "foodcraft_oregano_crop_0": { "textures": "textures/blocks/foodcraft_oregano_crop_0" },
+    "foodcraft_oregano_crop_1": { "textures": "textures/blocks/foodcraft_oregano_crop_1" },
+    "foodcraft_oregano_crop_2": { "textures": "textures/blocks/foodcraft_oregano_crop_2" },
+    "foodcraft_oregano_crop_3": { "textures": "textures/blocks/foodcraft_oregano_crop_3" },
+    "foodcraft_garlic_crop_0": { "textures": "textures/blocks/foodcraft_garlic_crop_0" },
+    "foodcraft_garlic_crop_1": { "textures": "textures/blocks/foodcraft_garlic_crop_1" },
+    "foodcraft_garlic_crop_2": { "textures": "textures/blocks/foodcraft_garlic_crop_2" },
+    "foodcraft_garlic_crop_3": { "textures": "textures/blocks/foodcraft_garlic_crop_3" }
+  }
+}

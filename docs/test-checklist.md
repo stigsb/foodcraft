@@ -24,3 +24,15 @@ Tick a line only after seeing it work in the test world with an empty Content Lo
 - [ ] Mozzarella: milk bucket -> mozzarella, empty bucket returned
 - [ ] Pepperoni: raw porkchop + oregano -> pepperoni
 - [ ] Ham: cooked porkchop -> 2 ham
+
+## Crops
+- [ ] Oregano seeds plant only on farmland
+- [ ] Oregano crop grows through 4 stages on random ticks (randomtickspeed 300)
+- [ ] Bone meal advances oregano crop and is consumed in survival
+- [ ] Immature oregano crop drops 1 seed; mature drops 1–2 oregano + 1–2 seeds
+- [ ] Crop pops off when its farmland is broken
+- [ ] Garlic plants only on farmland (from the garlic item itself)
+- [ ] Garlic crop grows through 4 stages on random ticks (randomtickspeed 300)
+- [ ] Bone meal advances garlic crop and is consumed in survival
+- [ ] Immature garlic crop drops 1 garlic; mature drops 2–4 garlic
+- [ ] Garlic crop pops off when its farmland is broken

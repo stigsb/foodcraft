@@ -11,3 +11,5 @@ item.foodcraft.tomato_sauce.name=Tomato Sauce
 item.foodcraft.mozzarella.name=Mozzarella
 item.foodcraft.pepperoni.name=Pepperoni
 item.foodcraft.ham.name=Ham
+tile.foodcraft:oregano_crop.name=Oregano Crop
+tile.foodcraft:garlic_crop.name=Garlic Crop
