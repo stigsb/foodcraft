@@ -193,3 +193,14 @@ Tick a line only after seeing it work in the test world with an empty Content Lo
 - [ ] Batter -> furnace -> pancakes; batter -> pizza oven -> 3 waffles
 - [ ] 3 sweet berries + sugar + glass bottle -> jam; eating jam gives the bottle back
 - [ ] Breaking an oven while baking buns drops the raw buns; while done drops 3 buns
+
+## v2: Swimming fish (v0.2.5) — new world
+- [ ] All 13 spawn eggs are in the creative inventory with the fish's colours and names (Norsk too)
+- [ ] Each fish swims, wiggles its tail and flops on land; it faces the way it swims (head first)
+- [ ] Shapes: halibut flat with eyes on top, swordfish with bill and sail, catfish with whiskers, piranha short and deep
+- [ ] Fish appear on their own in their waters: trout/perch/pike in rivers, herring/mackerel/saithe in normal ocean, tuna/swordfish in warm oceans, arctic char/trout in taiga or snowy lakes, pike/perch in plains and forest lakes, catfish/piranha in jungle lakes
+- [ ] No Foodcraft fish in lush caves, deep dark or the Nether
+- [ ] Killing a fish drops its raw fish (cooked if it was burning), sometimes bone meal
+- [ ] Water bucket on a fish: it disappears and the bucket becomes "Bucket of <fish>" with a fish icon
+- [ ] Bucket of <fish> used on a block: water appears next to it with the fish in it, empty bucket back (survival)
+- [ ] Fish don't despawn while in a bucket-made aquarium as long as players are close; they swim away from players

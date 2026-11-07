@@ -2,6 +2,14 @@
 
 Alle versjoner av Foodcraft, nyeste først. Hver gang versjonsnummeret økes, får versjonen en ny del her.
 
+## v0.2.5 – 7. november 2026
+
+- Alle de 13 fiskeartene svømmer nå rundt i vannet der de hører hjemme, akkurat som torsk og laks.
+- Hver art har sin egen form og farge. Kveita er flat med øynene på toppen, sverdfisken har sverd og seil, og malla har skjeggtråder.
+- Dreper du en fisk, får du rå fisk av den arten.
+- Fang fisken med en vannbøtte, så får du en bøtte med fisken i. Bruk bøtta for å slippe den ut igjen, for eksempel i et akvarium.
+- Fremkallingsegg for alle fiskene i kreativ modus.
+
 ## v0.2.4 – 7. november 2026
 
 - Kokegryta er nå en vanlig gryte (cauldron) på et tent leirbål. Den egne kokegryta er borte, og du trenger ikke lage den.

@@ -5,10 +5,12 @@ import { cropComponent } from "./crop.js";
 import { fruitPlant } from "./fruit_plant.js";
 import { cuttingBoardComponent } from "./board.js";
 import "./fishing.js";
+import { fishBucketComponent } from "./fish_mobs.js";
 // import "./fishing_probe.js"; // Task 1 probe: uncomment to see what the script sees when fishing
 import "./pot.js"; // cooking pot: a vanilla cauldron on a campfire
 
 system.beforeEvents.startup.subscribe((event) => {
+  event.itemComponentRegistry.registerCustomComponent("foodcraft:fish_bucket", fishBucketComponent);
   event.blockComponentRegistry.registerCustomComponent("foodcraft:pizza_oven", pizzaOvenComponent);
   event.blockComponentRegistry.registerCustomComponent("foodcraft:crop", cropComponent);
   event.blockComponentRegistry.registerCustomComponent("foodcraft:cutting_board", cuttingBoardComponent);

@@ -1,0 +1,23 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:item": {
+    "description": {
+      "identifier": "foodcraft:halibut_bucket",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "foodcraft_halibut_bucket"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.foodcraft.halibut_bucket.name"
+      },
+      "minecraft:max_stack_size": 1,
+      "foodcraft:fish_bucket": {}
+    }
+  }
+}

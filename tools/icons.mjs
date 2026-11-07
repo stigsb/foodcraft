@@ -99,6 +99,14 @@ const SHAPES = {
     if (x === 13 && y === 1) return null; // pointed tip
     return x <= 5 ? "main" : "blade";
   },
+  // A bucket (rim grey) with the fish's colours showing in the water at the top.
+  fish_bucket(x, y) {
+    const half = 6 - Math.floor((y - 4) / 4); // the bucket narrows towards the bottom
+    if (y < 3 || y > 14 || Math.abs(x + 0.5 - 8) > half) return null;
+    if (y <= 4) return (x + y) % 3 === 0 ? "accent" : "main"; // the fish in the water
+    if (y === 5) return "glass";
+    return "rim";
+  },
   // crop stages (cross texture): 0 sprout, 1-2 growing, 3 ripe with produce dots in the accent colour
   crop0: (x, y) => (Math.abs(x - 8) <= 1 && y >= 11) || (y === 11 && Math.abs(x - 8) <= 3) ? "main" : null,
   crop1: (x, y) => (x % 4 === 1 && y >= 9) || (y === 10 && x % 2 === 0) ? "main" : null,

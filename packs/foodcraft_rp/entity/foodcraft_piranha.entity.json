@@ -1,0 +1,38 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "foodcraft:piranha",
+      "materials": {
+        "default": "entity_alphatest"
+      },
+      "textures": {
+        "default": "textures/entity/fish/foodcraft_piranha"
+      },
+      "geometry": {
+        "default": "geometry.foodcraft_piranha"
+      },
+      "animations": {
+        "swim": "animation.foodcraft_fish.swim",
+        "flop": "animation.foodcraft_fish.flop"
+      },
+      "scripts": {
+        "animate": [
+          {
+            "swim": "query.is_in_water"
+          },
+          {
+            "flop": "!query.is_in_water"
+          }
+        ]
+      },
+      "render_controllers": [
+        "controller.render.foodcraft_fish"
+      ],
+      "spawn_egg": {
+        "base_color": "#7b8a9a",
+        "overlay_color": "#d13b2b"
+      }
+    }
+  }
+}

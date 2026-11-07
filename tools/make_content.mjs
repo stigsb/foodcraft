@@ -42,6 +42,7 @@ function itemJson(it) {
     c["minecraft:use_modifiers"] = { start_using: "always", use_duration: 1.6, movement_modifier: 0.35 };
     c["minecraft:tags"] = { tags: ["minecraft:is_food"] };
   }
+  if (it.component) c[full(it.component)] = {}; // a script custom component
   if (it.places) c["minecraft:block_placer"] = { block: full(it.places), use_on: ["minecraft:farmland"] };
   if (it.durability) {
     c["minecraft:durability"] = { max_durability: it.durability };

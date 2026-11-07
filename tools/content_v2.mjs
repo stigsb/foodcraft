@@ -11,6 +11,11 @@ export const ITEMS = [
     { step: 2, id: `cooked_${id}`, en: `Cooked ${f.en}`, nb: `Stekt ${f.nb.toLowerCase()}`, food: COOKED_FOOD[f.size],
       icon: { shape: "fish", main: browned(f.main), accent: browned(f.accent), size: f.size } },
   ]),
+  // Step 12: swimming fish (tools/make_fish_mobs.mjs). A water bucket used on a fish catches it in a bucket.
+  ...Object.entries(FISH).map(([id, f]) => ({
+    step: 12, id: `${id}_bucket`, en: `Bucket of ${f.en}`, nb: `Bøtte med ${f.nb.toLowerCase()}`, stack: 1, component: "fish_bucket",
+    icon: { shape: "fish_bucket", main: f.main, accent: f.accent },
+  })),
   { step: 4, id: "scallop", en: "Scallop", nb: "Kamskjell", food: [1, 0.1], icon: { shape: "shell", main: "#e8b9a0", accent: "#c98a6e" } },
   { step: 4, id: "grilled_scallop", en: "Grilled Scallop", nb: "Grillet kamskjell", food: [4, 0.6], icon: { shape: "shell", main: "#e0a060", accent: "#a86a3a" } },
 

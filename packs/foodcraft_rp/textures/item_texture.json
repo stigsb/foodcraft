@@ -265,6 +265,45 @@
     },
     "foodcraft_jam": {
       "textures": "textures/items/foodcraft_jam"
+    },
+    "foodcraft_arctic_char_bucket": {
+      "textures": "textures/items/foodcraft_arctic_char_bucket"
+    },
+    "foodcraft_trout_bucket": {
+      "textures": "textures/items/foodcraft_trout_bucket"
+    },
+    "foodcraft_perch_bucket": {
+      "textures": "textures/items/foodcraft_perch_bucket"
+    },
+    "foodcraft_pike_bucket": {
+      "textures": "textures/items/foodcraft_pike_bucket"
+    },
+    "foodcraft_catfish_bucket": {
+      "textures": "textures/items/foodcraft_catfish_bucket"
+    },
+    "foodcraft_piranha_bucket": {
+      "textures": "textures/items/foodcraft_piranha_bucket"
+    },
+    "foodcraft_herring_bucket": {
+      "textures": "textures/items/foodcraft_herring_bucket"
+    },
+    "foodcraft_mackerel_bucket": {
+      "textures": "textures/items/foodcraft_mackerel_bucket"
+    },
+    "foodcraft_saithe_bucket": {
+      "textures": "textures/items/foodcraft_saithe_bucket"
+    },
+    "foodcraft_wolffish_bucket": {
+      "textures": "textures/items/foodcraft_wolffish_bucket"
+    },
+    "foodcraft_halibut_bucket": {
+      "textures": "textures/items/foodcraft_halibut_bucket"
+    },
+    "foodcraft_tuna_bucket": {
+      "textures": "textures/items/foodcraft_tuna_bucket"
+    },
+    "foodcraft_swordfish_bucket": {
+      "textures": "textures/items/foodcraft_swordfish_bucket"
     }
   }
 }

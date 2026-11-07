@@ -1,0 +1,109 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:spawn_rules": {
+    "description": {
+      "identifier": "foodcraft:perch",
+      "population_control": "water_animal"
+    },
+    "conditions": [
+      {
+        "minecraft:spawns_underwater": {},
+        "minecraft:distance_filter": {
+          "min": 12,
+          "max": 32
+        },
+        "minecraft:weight": {
+          "default": 20
+        },
+        "minecraft:density_limit": {
+          "surface": 6
+        },
+        "minecraft:herd": {
+          "min_size": 3,
+          "max_size": 6
+        },
+        "minecraft:biome_filter": {
+          "any_of": [
+            {
+              "all_of": [
+                {
+                  "test": "has_biome_tag",
+                  "operator": "==",
+                  "value": "spawns_more_frequent_drowned"
+                }
+              ]
+            },
+            {
+              "all_of": [
+                {
+                  "test": "has_biome_tag",
+                  "operator": "==",
+                  "value": "plains"
+                }
+              ]
+            },
+            {
+              "all_of": [
+                {
+                  "test": "has_biome_tag",
+                  "operator": "==",
+                  "value": "oak_forest"
+                }
+              ]
+            },
+            {
+              "all_of": [
+                {
+                  "test": "has_biome_tag",
+                  "operator": "==",
+                  "value": "bee_habitat"
+                },
+                {
+                  "test": "has_biome_tag",
+                  "operator": "!=",
+                  "value": "meadow"
+                }
+              ]
+            },
+            {
+              "all_of": [
+                {
+                  "test": "has_biome_tag",
+                  "operator": "==",
+                  "value": "birch"
+                }
+              ]
+            },
+            {
+              "all_of": [
+                {
+                  "test": "has_biome_tag",
+                  "operator": "==",
+                  "value": "roofed"
+                }
+              ]
+            },
+            {
+              "all_of": [
+                {
+                  "test": "has_biome_tag",
+                  "operator": "==",
+                  "value": "pale_garden"
+                }
+              ]
+            },
+            {
+              "all_of": [
+                {
+                  "test": "has_biome_tag",
+                  "operator": "==",
+                  "value": "dappled_forest"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -33,6 +33,7 @@ Leave the `@minecraft/server` dependency version alone; it is the script API ver
 
 **After every finished task where the code is usable** (static checks pass, nothing half-done), bump the patch version (minor if the task finished a spec), rebuild the `.mcaddon` and make sure the share server is running: start it in the background if it isn't, restart it if it has stopped. Then tell the user the address so the latest version is always easy to pull onto the tablet for testing. Skip this when the task left the packs in a broken state, and say so.
 - `node tools/make_recipe_book.mjs` builds a printable Norwegian recipe book, `dist/oppskrifter.pdf`, from the recipes and script tables. Rebuild it together with the `.mcaddon` when recipes change; the share server links to it.
+- Content generators (re-runnable, keep hand-drawn textures): `node tools/make_content.mjs 12` (items, recipes, lang, icons from `tools/content_v2.mjs`), `node tools/make_models.mjs <name>` (block models), `node tools/make_fish_mobs.mjs` (swimming fish: entities, spawn rules with biome filters checked against `tools/data/biome_tags.json`, models, skins).
 - `tools/deploy.ps1` copies the packs into the local Minecraft development pack folders.
 
 ## Commits

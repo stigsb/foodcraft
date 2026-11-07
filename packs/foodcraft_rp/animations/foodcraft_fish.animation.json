@@ -1,0 +1,48 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.foodcraft_fish.swim": {
+      "loop": true,
+      "bones": {
+        "body": {
+          "rotation": [
+            0,
+            "math.sin(query.life_time * 540) * 3",
+            0
+          ]
+        },
+        "tailfin": {
+          "rotation": [
+            0,
+            "math.sin(query.life_time * 540) * -25",
+            0
+          ]
+        }
+      }
+    },
+    "animation.foodcraft_fish.flop": {
+      "loop": true,
+      "bones": {
+        "body": {
+          "rotation": [
+            0,
+            0,
+            90
+          ],
+          "position": [
+            0,
+            "math.abs(math.sin(query.life_time * 400)) * 3",
+            0
+          ]
+        },
+        "tailfin": {
+          "rotation": [
+            0,
+            "math.sin(query.life_time * 900) * 30",
+            0
+          ]
+        }
+      }
+    }
+  }
+}
