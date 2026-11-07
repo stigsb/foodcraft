@@ -26,6 +26,7 @@ Leave the `@minecraft/server` dependency version alone; it is the script API ver
 - `node tools/serve_mcaddon.mjs` serves it on the LAN at `http://<PC LAN IP>:8000` so the tablet can download it. The page shows the version and build time.
 
 **After every finished task where the code is usable** (static checks pass, nothing half-done), bump the patch version (minor if the task finished a spec), rebuild the `.mcaddon` and make sure the share server is running: start it in the background if it isn't, restart it if it has stopped. Then tell the user the address so the latest version is always easy to pull onto the tablet for testing. Skip this when the task left the packs in a broken state, and say so.
+- `node tools/make_recipe_book.mjs` builds a printable Norwegian recipe book, `dist/oppskrifter.pdf`, from the recipes and script tables. Rebuild it together with the `.mcaddon` when recipes change; the share server links to it.
 - `tools/deploy.ps1` copies the packs into the local Minecraft development pack folders.
 
 ## Commits

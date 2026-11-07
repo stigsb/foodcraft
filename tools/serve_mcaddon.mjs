@@ -18,6 +18,12 @@ const version = () => {
 
 http.createServer((req, res) => {
   console.log(new Date().toISOString(), req.socket.remoteAddress, req.url);
+  const pdf = path.join(repo, "dist", "oppskrifter.pdf");
+  if (req.url.startsWith("/oppskrifter.pdf") && fs.existsSync(pdf)) {
+    res.writeHead(200, { "Content-Type": "application/pdf", "Content-Length": fs.statSync(pdf).size, "Cache-Control": "no-store" });
+    fs.createReadStream(pdf).pipe(res);
+    return;
+  }
   if (req.url.startsWith("/foodcraft.mcaddon")) {
     if (!fs.existsSync(file)) { res.writeHead(404); res.end("Not built yet"); return; }
     res.writeHead(200, {
@@ -33,7 +39,8 @@ http.createServer((req, res) => {
   res.writeHead(200, { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" });
   res.end(`<meta name="viewport" content="width=device-width"><body style="font-family:sans-serif;padding:16px">
 <h1><a href="/foodcraft.mcaddon?t=${Date.now()}">Last ned foodcraft.mcaddon</a></h1>
-<p>Versjon v${version()} &middot; bygget ${built}</p></body>`);
+<p>Versjon v${version()} &middot; bygget ${built}</p>
+<p><a href="/oppskrifter.pdf?t=${Date.now()}">Oppskriftsbok (PDF)</a></p></body>`);
 }).listen(port, "0.0.0.0", () => {
   const ips = Object.values(os.networkInterfaces()).flat().filter((i) => i.family === "IPv4" && !i.internal).map((i) => i.address);
   console.log(`Serving ${file}`);
