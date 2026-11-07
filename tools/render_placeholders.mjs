@@ -94,7 +94,6 @@ function main() {
     }
   }
   const copies = [
-    ["items/foodcraft_pineapple_crown.png", "items/foodcraft_pineapple.png"],
     ["blocks/foodcraft_oven_side.png", "blocks/foodcraft_oven_front_empty.png"],
     ["blocks/foodcraft_oven_top.png", "blocks/foodcraft_oven_front_empty.png"],
   ];
