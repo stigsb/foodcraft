@@ -14,7 +14,7 @@ export const ITEMS = [
   { step: 4, id: "scallop", en: "Scallop", nb: "Kamskjell", food: [1, 0.1], icon: { shape: "shell", main: "#e8b9a0", accent: "#c98a6e" } },
   { step: 4, id: "grilled_scallop", en: "Grilled Scallop", nb: "Grillet kamskjell", food: [4, 0.6], icon: { shape: "shell", main: "#e0a060", accent: "#a86a3a" } },
 
-  { step: 5, id: "knife", en: "Knife", nb: "Kniv", durability: 128, icon: { shape: "knife", main: "#6b4a2a" } },
+  { step: 5, id: "knife", en: "Knife", nb: "Kniv", durability: 128, damage: 5, icon: { shape: "knife", main: "#6b4a2a" } },
   { step: 5, id: "fish_fillet", en: "Fish Fillet", nb: "Fiskefilet", food: [1, 0.1], icon: { shape: "fillet", main: "#f0d8c8", accent: "#e0b8a0" } },
   { step: 5, id: "cooked_fish_fillet", en: "Cooked Fish Fillet", nb: "Stekt fiskefilet", food: [3, 0.6], icon: { shape: "fillet", main: "#d8a060", accent: "#b07838" } },
   { step: 5, id: "tuna_fillet", en: "Tuna Fillet", nb: "Tunfiskfilet", food: [2, 0.3], icon: { shape: "fillet", main: "#c03848", accent: "#e8a0a8" } },

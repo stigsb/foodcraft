@@ -20,7 +20,11 @@
         "max_durability": 128
       },
       "minecraft:max_stack_size": 1,
-      "minecraft:hand_equipped": true
+      "minecraft:hand_equipped": true,
+      "minecraft:damage": {
+        "value": 5
+      },
+      "minecraft:can_destroy_in_creative": false
     }
   }
 }

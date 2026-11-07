@@ -93,9 +93,11 @@ const SHAPES = {
     if (y < 7 || !E(x, y, 8, 8, 7, 6)) return null;
     return y <= 8 ? "accent" : "main";
   },
+  // Handle at the bottom left, blade to the top right, like vanilla swords: the hand holds the bottom-left corner.
   knife(x, y) {
     if (x + y < 14 || x + y > 15 || x < 2 || x > 13) return null;
-    return x <= 9 ? "blade" : "main";
+    if (x === 13 && y === 1) return null; // pointed tip
+    return x <= 5 ? "main" : "blade";
   },
   // crop stages (cross texture): 0 sprout, 1-2 growing, 3 ripe with produce dots in the accent colour
   crop0: (x, y) => (Math.abs(x - 8) <= 1 && y >= 11) || (y === 11 && Math.abs(x - 8) <= 3) ? "main" : null,
@@ -113,7 +115,7 @@ export function drawIcon({ shape, main, accent = main, size }) {
   const colours = { main: hex(main), accent: hex(accent) };
   for (const [k, v] of Object.entries(FIXED)) colours[k] = hex(v, k === "glass" ? 190 : 255);
   const roles = Array.from({ length: 16 }, (_, y) => Array.from({ length: 16 }, (_, x) => fn(x, y, { size })));
-  const isCrop = shape.startsWith("crop");
+  const isCrop = shape.startsWith("crop") || shape === "knife"; // thin shapes: an outline would darken every pixel
   return roles.map((row, y) =>
     row.map((role, x) => {
       if (!role) return [0, 0, 0, 0];

@@ -48,6 +48,10 @@ function itemJson(it) {
     c["minecraft:max_stack_size"] = 1;
     c["minecraft:hand_equipped"] = true;
   }
+  if (it.damage) {
+    c["minecraft:damage"] = { value: it.damage };
+    c["minecraft:can_destroy_in_creative"] = false; // boolean form, as in the docs // like swords: swinging in creative doesn't break blocks
+  }
   const category = it.durability ? "equipment" : "items";
   return { format_version: "1.26.50", "minecraft:item": { description: { identifier: full(it.id), menu_category: { category } }, components: c } };
 }
