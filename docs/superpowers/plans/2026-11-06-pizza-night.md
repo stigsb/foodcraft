@@ -117,11 +117,11 @@ Claude does this task; it is tooling, not a kid session.
 | oven: `empty`, `baking`, `done` | `textures/blocks/foodcraft_oven_front_<state>.png` |
 | derived copies | `textures/items/foodcraft_pineapple_crown.png` (= pineapple), `textures/blocks/foodcraft_wild_<plant>.png` (= `<plant>_crop_3`), `textures/blocks/foodcraft_oven_side.png` and `foodcraft_oven_top.png` (= oven front empty) |
 
-- [ ] **Step 1: Write the tool**
+- [x] **Step 1: Write the tool**
 
 Python is not installed on the dev machine, so the tool is a Node script, `tools/render_placeholders.mjs` (uses `node:zlib` for deflate and CRC, no npm packages). It reads every `<rect x y width height fill/>` and `<text>` in each SVG, finds the `#3b3b46` tile backgrounds (96/128/160 square), takes the label whose text sits within 40 px under the tile, maps each 6/8/10 px rect inside the tile to one pixel of a 16x16 RGBA image (everything else transparent), writes it to the path from the table above, and then makes the derived copies.
 
-- [ ] **Step 2: Run it and check the output**
+- [x] **Step 2: Run it and check the output**
 
 Run: `node tools/render_placeholders.mjs`
 Expected: `wrote 46 textures` (12 ingredients + 8 pizzas + 16 crop stages + 3 oven fronts + 7 copies).
@@ -131,7 +131,7 @@ Expected: 46 lines, every one ending in `16 16`.
 
 Open `packs/foodcraft_rp/textures/items/foodcraft_tomato.png` with the Read tool: a red tomato with a dark outline on a transparent background.
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add tools/render_placeholders.mjs packs/foodcraft_rp/textures
@@ -156,7 +156,7 @@ Build order step 1. Kid session: Ravn and Kasper type the JSON with Claude, depl
 **Interfaces:**
 - Produces: pack UUIDs (fixed below, reused by every later task), the item file pattern every later item copies, and `tools/deploy.ps1` which every later task runs.
 
-- [ ] **Step 1: Behavior pack manifest**
+- [x] **Step 1: Behavior pack manifest**
 
 `packs/foodcraft_bp/manifest.json`:
 
@@ -187,7 +187,7 @@ Build order step 1. Kid session: Ravn and Kasper type the JSON with Claude, depl
 }
 ```
 
-- [ ] **Step 2: Resource pack manifest**
+- [x] **Step 2: Resource pack manifest**
 
 `packs/foodcraft_rp/manifest.json`:
 
@@ -212,7 +212,7 @@ Build order step 1. Kid session: Ravn and Kasper type the JSON with Claude, depl
 }
 ```
 
-- [ ] **Step 3: The tomato item**
+- [x] **Step 3: The tomato item**
 
 `packs/foodcraft_bp/items/tomato.json`:
 
@@ -236,7 +236,7 @@ Build order step 1. Kid session: Ravn and Kasper type the JSON with Claude, depl
 }
 ```
 
-- [ ] **Step 4: Texture atlas entry and names**
+- [x] **Step 4: Texture atlas entry and names**
 
 `packs/foodcraft_rp/textures/item_texture.json`:
 
@@ -264,7 +264,7 @@ item.foodcraft.tomato.name=Tomato
 
 Also create `packs/foodcraft_rp/texts/nb_NO.lang` containing the single line `item.foodcraft.tomato.name=Tomat` so `languages.json` does not point at a missing file. Task 10 fills it in.
 
-- [ ] **Step 5: Deploy script**
+- [x] **Step 5: Deploy script**
 
 `tools/deploy.ps1`:
 
@@ -281,7 +281,7 @@ foreach ($pair in @(@("foodcraft_bp", "development_behavior_packs"), @("foodcraf
 }
 ```
 
-- [ ] **Step 6: Test checklist file**
+- [x] **Step 6: Test checklist file**
 
 `docs/test-checklist.md`:
 
@@ -306,7 +306,7 @@ Tick a line only after seeing it work in the test world with an empty Content Lo
 
 If `/give` says the item is unknown: the behavior pack did not load; check the Content Log file at `%appdata%\Minecraft Bedrock\logs\`.
 
-- [ ] **Step 8: Commit**
+- [x] **Step 8: Commit**
 
 ```bash
 git add packs tools/deploy.ps1 docs/test-checklist.md
@@ -327,7 +327,7 @@ Build order step 2. Kid session (can be split in two: items first, recipes secon
 **Interfaces:**
 - Produces item ids used by Task 4 recipes: `foodcraft:pizza_dough`, `foodcraft:tomato_sauce`, `foodcraft:mozzarella`, `foodcraft:pepperoni`, `foodcraft:ham`, `foodcraft:pineapple`, `foodcraft:oregano`. Seed ids used by Tasks 7 and 8: `foodcraft:tomato_seeds`, `foodcraft:garlic`, `foodcraft:oregano_seeds`, `foodcraft:pineapple_crown`.
 
-- [ ] **Step 1: Non-food items**
+- [x] **Step 1: Non-food items**
 
 Every item in this task uses the same shape. Full file for `tomato_seeds.json`:
 
@@ -360,7 +360,7 @@ Create these files with the same content, changing only the identifier, icon tex
 
 Tasks 7 and 8 add `minecraft:block_placer` to the seed items; do not add it now (the crop blocks do not exist yet and the Content Log would report the missing block).
 
-- [ ] **Step 2: Food items**
+- [x] **Step 2: Food items**
 
 Same file shape as `tomato.json` from Task 2 (with `minecraft:food`, `use_animation`, `use_modifiers`, `is_food` tag). Full file for `garlic.json`:
 
@@ -391,7 +391,7 @@ Same file shape as `tomato.json` from Task 2 (with `minecraft:food`, `use_animat
 | `pepperoni.json` | `foodcraft:pepperoni` | `foodcraft_pepperoni` | `item.foodcraft.pepperoni.name` | 3 | 0.6 |
 | `ham.json` | `foodcraft:ham` | `foodcraft_ham` | `item.foodcraft.ham.name` | 4 | 0.6 |
 
-- [ ] **Step 3: Recipes**
+- [x] **Step 3: Recipes**
 
 `recipes/flour.json` (shapeless, 1 wheat):
 
@@ -503,7 +503,7 @@ Same file shape as `tomato.json` from Task 2 (with `minecraft:food`, `use_animat
 
 If the Content Log reports an unknown item for `minecraft:milk_bucket`, replace that key with `{ "item": "minecraft:bucket", "data": 1 }` (the form vanilla `cake.json` uses). If it reports `minecraft:water_bucket`, stop and report; do not guess a data value.
 
-- [ ] **Step 4: Atlas entries and names**
+- [x] **Step 4: Atlas entries and names**
 
 Add to `item_texture.json` `texture_data` (one entry per new item, same pattern as `foodcraft_tomato`):
 `foodcraft_garlic`, `foodcraft_oregano`, `foodcraft_pineapple`, `foodcraft_tomato_seeds`, `foodcraft_oregano_seeds`, `foodcraft_pineapple_crown`, `foodcraft_flour`, `foodcraft_pizza_dough`, `foodcraft_tomato_sauce`, `foodcraft_mozzarella`, `foodcraft_pepperoni`, `foodcraft_ham`, each mapping to `textures/items/<same name>`.
@@ -525,7 +525,7 @@ item.foodcraft.pepperoni.name=Pepperoni
 item.foodcraft.ham.name=Ham
 ```
 
-- [ ] **Step 5: Checklist lines**
+- [x] **Step 5: Checklist lines**
 
 Add under `## Items` in `docs/test-checklist.md` one `/give` line per new item (12 lines, same form as the tomato line), and a new section:
 
@@ -547,7 +547,7 @@ Add under `## Items` in `docs/test-checklist.md` one `/give` line per new item (
 4. `/give @s minecraft:wheat 3`, `/give @s minecraft:water_bucket`, `/give @s minecraft:milk_bucket`, `/give @s minecraft:bowl`, `/give @s minecraft:porkchop`, `/give @s minecraft:cooked_porkchop`, `/give @s foodcraft:tomato 2`, place a crafting table and craft all six recipes. Both bucket recipes leave an empty bucket.
 5. Tick the lines.
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add packs docs/test-checklist.md
@@ -571,7 +571,7 @@ Build order step 3. Kid session. First script file; Claude writes `food.js` with
 - Produces: item ids `foodcraft:raw_pizza_<name>` and `foodcraft:pizza_<name>` for `margherita|pepperoni|prosciutto|hawaii`. Task 5's oven derives the pizza type from the raw id by stripping `foodcraft:raw_pizza_`.
 - Produces: `scripts/main.js` as the single entry; later tasks add one `import` line each.
 
-- [ ] **Step 1: Raw pizza items**
+- [x] **Step 1: Raw pizza items**
 
 `items/raw_pizza_margherita.json`:
 
@@ -598,7 +598,7 @@ Build order step 3. Kid session. First script file; Claude writes `food.js` with
 
 Repeat for `pepperoni`, `prosciutto`, `hawaii` (identifier, icon and lang key all use `raw_pizza_<name>`).
 
-- [ ] **Step 2: Baked pizza items**
+- [x] **Step 2: Baked pizza items**
 
 Same shape with the baked values. `items/pizza_margherita.json`:
 
@@ -625,7 +625,7 @@ Same shape with the baked values. `items/pizza_margherita.json`:
 
 Repeat for `pepperoni`, `prosciutto`, `hawaii`. Nutrition 12 with saturation modifier 0.8 gives 19.2 saturation, above the vanilla maximum (golden carrot 6 / 14.4).
 
-- [ ] **Step 3: Raw pizza recipes**
+- [x] **Step 3: Raw pizza recipes**
 
 `recipes/raw_pizza_margherita.json`:
 
@@ -655,7 +655,7 @@ The other three replace the fourth ingredient:
 | `raw_pizza_prosciutto.json` | `foodcraft:raw_pizza_prosciutto` | `foodcraft:ham` |
 | `raw_pizza_hawaii.json` | `foodcraft:raw_pizza_hawaii` | `foodcraft:ham`, `foodcraft:pineapple` |
 
-- [ ] **Step 4: Script module in the manifest**
+- [x] **Step 4: Script module in the manifest**
 
 Replace `packs/foodcraft_bp/manifest.json` `modules` and `dependencies` with:
 
@@ -688,7 +688,7 @@ Replace `packs/foodcraft_bp/manifest.json` `modules` and `dependencies` with:
   ]
 ```
 
-- [ ] **Step 5: Scripts**
+- [x] **Step 5: Scripts**
 
 `scripts/food.js`:
 
@@ -711,7 +711,7 @@ world.afterEvents.itemCompleteUse.subscribe((event) => {
 import "./food.js";
 ```
 
-- [ ] **Step 6: Atlas, names, checklist**
+- [x] **Step 6: Atlas, names, checklist**
 
 Add eight `item_texture.json` entries: `foodcraft_raw_pizza_<name>` and `foodcraft_pizza_<name>` -> `textures/items/<same>`.
 
@@ -746,7 +746,7 @@ Checklist: eight `/give` item lines, four recipe lines (`Raw pizza <name>: dough
 6. Edit `food.js` to a 2-second nausea, run `/reload`, eat again, confirm the shorter effect, then restore 200 ticks and `/reload` again. This teaches the kids the script loop.
 7. Tick the lines.
 
-- [ ] **Step 8: Commit**
+- [x] **Step 8: Commit**
 
 ```bash
 git add packs docs/test-checklist.md
@@ -771,7 +771,7 @@ Build order step 4. Two kid sessions: (a) block JSON + recipe, playable as a dec
 - Block `foodcraft:pizza_oven` with states `foodcraft:stage` in `["empty", "baking", "done"]` and `foodcraft:pizza` in `["none", "margherita", "pepperoni", "prosciutto", "hawaii"]`, plus `minecraft:cardinal_direction` from the placement trait.
 - Custom component id `foodcraft:pizza_oven` registered in `oven.js`. Task 6 swaps only the geometry and material instances; states and script stay.
 
-- [ ] **Step 1: Block JSON**
+- [x] **Step 1: Block JSON**
 
 `blocks/pizza_oven.json`. The front face is the model's `north` face; the placement trait plus `minecraft:transformation` turns it toward the player (same pattern as the official `fabricator.block.json` sample).
 
@@ -848,7 +848,7 @@ Build order step 4. Two kid sessions: (a) block JSON + recipe, playable as a dec
 }
 ```
 
-- [ ] **Step 2: Recipe, textures, names**
+- [x] **Step 2: Recipe, textures, names**
 
 `recipes/pizza_oven.json` (bricks around a furnace, stone along the bottom):
 
@@ -911,7 +911,7 @@ Deploy, re-enter. Content Log clean. `/give @s foodcraft:pizza_oven`, place it f
 
 Commit: `git commit -am "Add pizza oven block and recipe"` (after `git add packs`).
 
-- [ ] **Step 4: Oven script**
+- [x] **Step 4: Oven script**
 
 `scripts/oven.js`:
 
@@ -1065,7 +1065,7 @@ system.beforeEvents.startup.subscribe((event) => {
 });
 ```
 
-- [ ] **Step 5: Checklist lines for spec 4.2**
+- [x] **Step 5: Checklist lines for spec 4.2**
 
 Append under `## Oven`:
 
@@ -1092,7 +1092,7 @@ Append under `## Oven`:
 3. If right-clicking the oven with a raw pizza starts eating instead of baking, report it; the fix would change the raw pizza item (not the oven) and is a plan change.
 4. Tick the lines.
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add packs docs/test-checklist.md
@@ -1113,7 +1113,7 @@ Build order step 4, art half. Kid session in Blockbench. The block keeps every s
 **Interfaces:**
 - Geometry identifier `geometry.foodcraft_pizza_oven`, bones named exactly: `body`, `flame`, `pizza_margherita`, `pizza_pepperoni`, `pizza_prosciutto`, `pizza_hawaii`. Bone visibility is driven by the block states from Task 5.
 
-- [ ] **Step 1: Model in Blockbench**
+- [x] **Step 1: Model in Blockbench**
 
 1. A draft is ready: File > Open Model > `art/models/pizza_oven_open.bbmodel` (identifier `geometry.foodcraft_pizza_oven`, texture `art/textures/blocks/pizza_oven.png`, 64x64). It has a brick body with a stepped dome and chimney (`body`), an open mouth on the north face (-Z), logs and flames inside the mouth (`flame`), and four flat pizza discs (`pizza_<name>`), one bone each, at the same spot on the oven floor. The bricks and top come from `pizza_oven_side.png` and `pizza_oven_top.png`; the pizzas use the pizza item textures. Click the eye icons to see the pizzas.
 2. Change what you like. Keep the six bone names exactly as they are.
@@ -1122,7 +1122,7 @@ Build order step 4, art half. Kid session in Blockbench. The block keeps every s
 
 Without Blockbench, the same export can be made from the command line: `node tools/bbmodel_to_geo.mjs art/models/pizza_oven_open.bbmodel packs/foodcraft_rp/models/blocks/pizza_oven.geo.json`, then copy `art/textures/blocks/pizza_oven.png` to `packs/foodcraft_rp/textures/blocks/foodcraft_pizza_oven.png`. The first version in the repo was made this way from the draft model.
 
-- [ ] **Step 2: Point the block at the model**
+- [x] **Step 2: Point the block at the model**
 
 In `blocks/pizza_oven.json` replace the base `minecraft:geometry` and `minecraft:material_instances` with:
 
@@ -1154,7 +1154,7 @@ Deploy, re-enter. Content Log clean (a bone name typo shows as a bone_visibility
 - [ ] Oven model: flame shows while baking, correct pizza shows when done, empty when empty (all four pizzas)
 ```
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add packs docs/test-checklist.md
@@ -1178,7 +1178,7 @@ Build order step 5, first half. Two kid sessions: (a) oregano crop end to end, (
 - Custom component id `foodcraft:crop` registered in `crop.js`; no parameters.
 - Task 9 wild plants drop the seed items set up here.
 
-- [ ] **Step 1: Oregano crop block**
+- [x] **Step 1: Oregano crop block**
 
 `blocks/oregano_crop.json`:
 
@@ -1237,7 +1237,7 @@ Build order step 5, first half. Two kid sessions: (a) oregano crop end to end, (
 }
 ```
 
-- [ ] **Step 2: Oregano loot tables**
+- [x] **Step 2: Oregano loot tables**
 
 `loot_tables/blocks/oregano_crop_seed.json` (immature: one seed):
 
@@ -1283,7 +1283,7 @@ Build order step 5, first half. Two kid sessions: (a) oregano crop end to end, (
 }
 ```
 
-- [ ] **Step 3: Oregano seeds place the crop**
+- [x] **Step 3: Oregano seeds place the crop**
 
 Add to `items/oregano_seeds.json` `components`:
 
@@ -1294,7 +1294,7 @@ Add to `items/oregano_seeds.json` `components`:
       }
 ```
 
-- [ ] **Step 4: Crop script**
+- [x] **Step 4: Crop script**
 
 `scripts/crop.js`:
 
@@ -1363,7 +1363,7 @@ In `scripts/main.js` add `import { cropComponent } from "./crop.js";` and inside
   event.blockComponentRegistry.registerCustomComponent("foodcraft:crop", cropComponent);
 ```
 
-- [ ] **Step 5: Textures and names for oregano**
+- [x] **Step 5: Textures and names for oregano**
 
 Add to `terrain_texture.json`: `foodcraft_oregano_crop_0` … `foodcraft_oregano_crop_3` -> `textures/blocks/<same>`.
 Append to `en_US.lang`: `tile.foodcraft:oregano_crop.name=Oregano Crop`.
@@ -1390,7 +1390,7 @@ Checklist section:
 
 Commit: `git add packs docs/test-checklist.md && git commit -m "Add oregano crop with growth, bone meal and harvest"`.
 
-- [ ] **Step 7: Garlic crop (session b)**
+- [x] **Step 7: Garlic crop (session b)**
 
 Copy the three oregano files and change only the values below. The block JSON changes identifier, the four texture names and the two loot paths. Lang line `tile.foodcraft:garlic_crop.name=Garlic Crop`. Add the four `terrain_texture.json` entries `foodcraft_garlic_crop_<n>`.
 
@@ -1422,7 +1422,7 @@ Copy the three oregano files and change only the values below. The block JSON ch
 
 Deploy, re-enter, Content Log clean. Repeat the five checklist lines for garlic (add 5 lines). Garlic plants from the garlic item itself. Tick them.
 
-- [ ] **Step 9: Commit**
+- [x] **Step 9: Commit**
 
 ```bash
 git add packs docs/test-checklist.md
@@ -1461,7 +1461,7 @@ Both plants grow first and then ripen fruit, more slowly. Using a ripe plant pic
   - `geometry.foodcraft_pineapple_crop`: `rosette_small`, `rosette_medium`, `rosette`, `stalk`, `flower`, `fruit_small`, `fruit_green`, `fruit_ripe`, `fruit_picked`.
 - Task 9's wild tomato and wild pineapple drop `foodcraft:tomato_seeds` and `foodcraft:pineapple_crown`, which plant these crops.
 
-- [ ] **Step 1: Models in Blockbench (session a)**
+- [x] **Step 1: Models in Blockbench (session a)**
 
 The draft models are in `art/models/` and already have every bone and their textures.
 
@@ -1473,7 +1473,7 @@ The draft models are in `art/models/` and already have every bone and their text
 
 Check: each exported `.geo.json` contains its `"identifier"` from the Interfaces list and its bone names (ten in the lower tomato, nine in the others).
 
-- [ ] **Step 2: Tomato lower block (session b)**
+- [x] **Step 2: Tomato lower block (session b)**
 
 `blocks/tomato_crop.json`:
 
@@ -1544,7 +1544,7 @@ Check: each exported `.geo.json` contains its `"identifier"` from the Interfaces
 
 `render_method` is `alpha_test` (not `_single_sided`) so the leaf planes show from both sides.
 
-- [ ] **Step 3: Tomato top block**
+- [x] **Step 3: Tomato top block**
 
 `blocks/tomato_crop_top.json`. Only the script places it. Its placement filter makes it pop off when the lower half is gone, and it drops nothing itself (the lower half carries the loot).
 
@@ -1592,7 +1592,7 @@ Check: each exported `.geo.json` contains its `"identifier"` from the Interfaces
 }
 ```
 
-- [ ] **Step 4: Tomato loot tables and seeds**
+- [x] **Step 4: Tomato loot tables and seeds**
 
 `loot_tables/blocks/tomato_crop_seed.json` (anything but red: one seed):
 
@@ -1653,7 +1653,7 @@ Add to `items/tomato_seeds.json` `components`:
       }
 ```
 
-- [ ] **Step 5: Fruit plant script**
+- [x] **Step 5: Fruit plant script**
 
 `scripts/fruit_plant.js`:
 
@@ -1777,7 +1777,7 @@ In `scripts/main.js` add `import { fruitPlant } from "./fruit_plant.js";` and in
 
 Change `growChance` and `ripenChance` to tune the pace. At `randomtickspeed 1` a block gets a random tick about once a minute, so the tomato is full grown after about 4 minutes and red about 20 minutes later.
 
-- [ ] **Step 6: Tomato texture and names**
+- [x] **Step 6: Tomato texture and names**
 
 Add to `terrain_texture.json`: `"foodcraft_tomato_plant": { "textures": "textures/blocks/foodcraft_tomato_plant" }`.
 Append to `en_US.lang`:
@@ -1814,14 +1814,14 @@ Checklist:
 - [ ] Tomato plant pops off when its farmland is broken
 ```
 
-- [ ] **Step 8: Commit the tomato**
+- [x] **Step 8: Commit the tomato**
 
 ```bash
 git add packs docs/test-checklist.md
 git commit -m "Add two-block tomato plant that ripens and can be picked"
 ```
 
-- [ ] **Step 9: Pineapple block (session c)**
+- [x] **Step 9: Pineapple block (session c)**
 
 `blocks/pineapple_crop.json`:
 
@@ -1935,7 +1935,7 @@ Checklist:
 - [ ] Pineapple plant pops off when its farmland is broken
 ```
 
-- [ ] **Step 11: Commit the pineapple**
+- [x] **Step 11: Commit the pineapple**
 
 ```bash
 git add packs docs/test-checklist.md
@@ -1958,7 +1958,7 @@ Build order step 6. Kid session. Tested in a new, non-flat world.
 **Interfaces:**
 - Blocks `foodcraft:wild_<plant>`; feature ids `foodcraft:wild_<plant>_block`, `foodcraft:wild_<plant>_patch`; rule ids `foodcraft:wild_<plant>_rule`. File names must equal the part after the colon.
 
-- [ ] **Step 1: Wild tomato block**
+- [x] **Step 1: Wild tomato block**
 
 `blocks/wild_tomato.json`:
 
@@ -2013,7 +2013,7 @@ Build order step 6. Kid session. Tested in a new, non-flat world.
 }
 ```
 
-- [ ] **Step 2: Wild tomato features and rule**
+- [x] **Step 2: Wild tomato features and rule**
 
 `features/wild_tomato_block.json`:
 
@@ -2079,7 +2079,7 @@ Build order step 6. Kid session. Tested in a new, non-flat world.
 }
 ```
 
-- [ ] **Step 3: The other three wild plants**
+- [x] **Step 3: The other three wild plants**
 
 Copy the five tomato files per plant; change identifiers, texture, loot item, and the biome filter:
 
@@ -2112,7 +2112,7 @@ Checklist:
 
 If a plant is too rare or too common, change `scatter_chance` in its rule (percent per chunk) and `iterations` in its patch; re-test in another new world.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add packs docs/test-checklist.md
@@ -2132,7 +2132,7 @@ Build order step 7. Kid session for names and sound; Stig handles the Realm uplo
 - Create: `tools/export_mcaddon.ps1`
 - Modify: `docs/test-checklist.md`
 
-- [ ] **Step 1: Norwegian names**
+- [x] **Step 1: Norwegian names**
 
 `nb_NO.lang` gets one line per key in `en_US.lang` (same keys, Norwegian values):
 
@@ -2172,7 +2172,7 @@ tile.foodcraft:wild_pineapple.name=Vill ananas
 
 Save the file as UTF-8. Verify `en_US.lang` has exactly the same 31 keys: `grep -c = packs/foodcraft_rp/texts/en_US.lang` and the same for `nb_NO.lang` both print 31.
 
-- [ ] **Step 2: Oven ding sound**
+- [x] **Step 2: Oven ding sound**
 
 1. Record or pick a short "ding" (under 1 s), export as OGG Vorbis mono to `packs/foodcraft_rp/sounds/foodcraft/ding.ogg` (Audacity: File > Export > OGG).
    **Done 2026-11-07:** `packs/foodcraft_rp/sounds/foodcraft/ding.wav` is cut from the CC0 sound ["Chime (1) Sample"](https://commons.wikimedia.org/wiki/File:Chime_(1)_Sample.wav) (Wikimedia Commons) with `tools/make_ding.cjs`; source and credit are in `art/README.md`. Bedrock accepts WAV, and the definition path has no extension, so a later `ding.ogg` from the kids can replace it (delete the `.wav`). The `playSound` call is wrapped in `try` and runs after the oven state is set, so a sound problem cannot undo a finished pizza.
@@ -2192,7 +2192,7 @@ Save the file as UTF-8. Verify `en_US.lang` has exactly the same 31 keys: `grep 
 
 3. In `scripts/oven.js` change `const DING_SOUND = "random.orb";` to `const DING_SOUND = "foodcraft.oven.ding";`.
 
-- [ ] **Step 3: Export script**
+- [x] **Step 3: Export script**
 
 `tools/export_mcaddon.ps1`:
 
@@ -2231,7 +2231,7 @@ Checklist:
 - [ ] Realm: console player can craft, bake and eat a pizza
 ```
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add packs tools/export_mcaddon.ps1 .gitignore docs/test-checklist.md
