@@ -6,9 +6,11 @@ Minecraft Bedrock add-on: `packs/foodcraft_bp` (behavior pack) and `packs/foodcr
 
 The version number is part of each pack's name, so different installed versions can be told apart in Minecraft.
 
+**Always bump the version when anything in `packs/` changes.** Minecraft clients and Realms cache packs by UUID and version: content shipped under an unchanged version is ignored by anyone who already has that version, so players on the Realm keep the old textures, recipes and scripts.
+
 Versioning rules:
 
-- **Patch** (`0.2.0` → `0.2.1`): bump for every new package built for testing, i.e. each time the `.mcaddon` is rebuilt with changed pack content and shared.
+- **Patch** (`0.2.0` → `0.2.1`): bump in every commit that changes pack content (textures, models, recipes, scripts, blocks, items, texts, sounds), unless the version has already been bumped since the last pushed or shared build. Never push or share changed pack content under a version that has already been pushed or shared.
 - **Minor** (`0.2.x` → `0.3.0`): bump when a spec under `docs/superpowers/specs/` is finished. Patch resets to 0.
 - Don't bump when nothing in `packs/` changed since the last build.
 
