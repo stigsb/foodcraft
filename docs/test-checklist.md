@@ -97,6 +97,6 @@ Tick a line only after seeing it work in the test world with an empty Content Lo
 
 ## Polish
 - [ ] Norwegian names show with language set to Norsk bokmål (31 keys)
-- [ ] Custom ding sound plays when a pizza finishes (needs sounds/foodcraft/ding.ogg, not recorded yet)
+- [ ] Custom ding sound plays when a pizza finishes
 - [ ] dist/foodcraft.mcaddon imports cleanly on another Windows install
 - [ ] Realm: console player can craft, bake and eat a pizza

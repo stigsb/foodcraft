@@ -86,7 +86,7 @@ packs/
     models/blocks/pizza_oven.geo.json   (Task 6, Blockbench)
     models/blocks/tomato_crop_{lower,upper}.geo.json, pineapple_crop.geo.json   (Task 8, Blockbench)
     sounds/sound_definitions.json       (Task 10)
-    sounds/foodcraft/ding.ogg            (Task 10)
+    sounds/foodcraft/ding.wav            (Task 10)
 tools/
   render_placeholders.mjs  concept SVG -> 16x16 PNGs
   deploy.ps1               repo packs -> Windows development pack folders
@@ -2127,7 +2127,7 @@ Build order step 7. Kid session for names and sound; Stig handles the Realm uplo
 
 **Files:**
 - Modify: `packs/foodcraft_rp/texts/nb_NO.lang`
-- Create: `packs/foodcraft_rp/sounds/sound_definitions.json`, `packs/foodcraft_rp/sounds/foodcraft/ding.ogg`
+- Create: `packs/foodcraft_rp/sounds/sound_definitions.json`, `packs/foodcraft_rp/sounds/foodcraft/ding.wav`
 - Modify: `packs/foodcraft_bp/scripts/oven.js` (`DING_SOUND`)
 - Create: `tools/export_mcaddon.ps1`
 - Modify: `docs/test-checklist.md`
@@ -2175,7 +2175,7 @@ Save the file as UTF-8. Verify `en_US.lang` has exactly the same 31 keys: `grep 
 - [ ] **Step 2: Oven ding sound**
 
 1. Record or pick a short "ding" (under 1 s), export as OGG Vorbis mono to `packs/foodcraft_rp/sounds/foodcraft/ding.ogg` (Audacity: File > Export > OGG).
-   **TODO (kid session):** `ding.ogg` is not in the repo yet (no audio tools on the build machine; also noted in `art/README.md`). Items 2 and 3 below are done, so the oven finishes silently until the file is added; nothing else needs to change. The `playSound` call is wrapped in `try` and runs after the oven state is set, so a sound problem cannot undo a finished pizza.
+   **Done 2026-11-07:** `packs/foodcraft_rp/sounds/foodcraft/ding.wav` is cut from the CC0 sound ["Chime (1) Sample"](https://commons.wikimedia.org/wiki/File:Chime_(1)_Sample.wav) (Wikimedia Commons) with `tools/make_ding.cjs`; source and credit are in `art/README.md`. Bedrock accepts WAV, and the definition path has no extension, so a later `ding.ogg` from the kids can replace it (delete the `.wav`). The `playSound` call is wrapped in `try` and runs after the oven state is set, so a sound problem cannot undo a finished pizza.
 2. `packs/foodcraft_rp/sounds/sound_definitions.json`:
 
 ```json

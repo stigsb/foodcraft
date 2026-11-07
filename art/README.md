@@ -76,5 +76,7 @@ Every `fruit` bone also needs growth 2. The leaves are flat strips tilted 22.5°
 
 ## Sounds
 
-- `packs/foodcraft_rp/sounds/foodcraft/ding.ogg`: the oven ding when a pizza is done (`foodcraft.oven.ding` in `sounds/sound_definitions.json`).
-  **TODO (kid session):** this file does not exist yet. Record or pick a short "ding" (under 1 s) and export it as OGG Vorbis mono to that path (Audacity: File > Export > OGG). Until then the oven finishes silently.
+- `packs/foodcraft_rp/sounds/foodcraft/ding.wav`: the oven ding when a pizza is done (`foodcraft.oven.ding` in `sounds/sound_definitions.json`). Mono, 16-bit, 44.1 kHz, 1 s. Bedrock plays WAV as well as OGG, and the path in `sound_definitions.json` has no file extension, so either works.
+  - Source: ["Chime (1) Sample"](https://commons.wikimedia.org/wiki/File:Chime_(1)_Sample.wav) by UnKnownrNone on Wikimedia Commons, CC0 (public domain dedication, no attribution required; credited here anyway). The original is kept in `art/sounds/chime_1_sample.wav`.
+  - Made with `node tools/make_ding.cjs art/sounds/chime_1_sample.wav packs/foodcraft_rp/sounds/foodcraft/ding.wav`: cuts from the loudest strike, 1 s long, 0.25 s fade-out, normalized.
+  - To use your own sound instead: record it in Audacity, export as OGG Vorbis or WAV, mono, under about 1 s, to `sounds/foodcraft/ding.ogg` or `.wav`, and delete the other file so only one is in the folder.
