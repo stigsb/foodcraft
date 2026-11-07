@@ -1,0 +1,18 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "foodcraft:fish_cakes"
+    },
+    "tags": [
+      "furnace",
+      "smoker",
+      "campfire",
+      "soul_campfire"
+    ],
+    "input": {
+      "item": "foodcraft:raw_fish_cakes"
+    },
+    "output": "foodcraft:fish_cakes"
+  }
+}

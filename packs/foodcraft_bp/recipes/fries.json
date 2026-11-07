@@ -1,0 +1,18 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "foodcraft:fries"
+    },
+    "tags": [
+      "furnace",
+      "smoker",
+      "campfire",
+      "soul_campfire"
+    ],
+    "input": {
+      "item": "foodcraft:raw_fries"
+    },
+    "output": "foodcraft:fries"
+  }
+}

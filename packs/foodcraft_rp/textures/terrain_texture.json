@@ -4,25 +4,134 @@
   "padding": 8,
   "num_mip_levels": 4,
   "texture_data": {
-    "foodcraft_oven_side": { "textures": "textures/blocks/foodcraft_oven_side" },
-    "foodcraft_oven_top": { "textures": "textures/blocks/foodcraft_oven_top" },
-    "foodcraft_oven_front_empty": { "textures": "textures/blocks/foodcraft_oven_front_empty" },
-    "foodcraft_oven_front_baking": { "textures": "textures/blocks/foodcraft_oven_front_baking" },
-    "foodcraft_oven_front_done": { "textures": "textures/blocks/foodcraft_oven_front_done" },
-    "foodcraft_pizza_oven": { "textures": "textures/blocks/foodcraft_pizza_oven" },
-    "foodcraft_oregano_crop_0": { "textures": "textures/blocks/foodcraft_oregano_crop_0" },
-    "foodcraft_oregano_crop_1": { "textures": "textures/blocks/foodcraft_oregano_crop_1" },
-    "foodcraft_oregano_crop_2": { "textures": "textures/blocks/foodcraft_oregano_crop_2" },
-    "foodcraft_oregano_crop_3": { "textures": "textures/blocks/foodcraft_oregano_crop_3" },
-    "foodcraft_garlic_crop_0": { "textures": "textures/blocks/foodcraft_garlic_crop_0" },
-    "foodcraft_garlic_crop_1": { "textures": "textures/blocks/foodcraft_garlic_crop_1" },
-    "foodcraft_garlic_crop_2": { "textures": "textures/blocks/foodcraft_garlic_crop_2" },
-    "foodcraft_garlic_crop_3": { "textures": "textures/blocks/foodcraft_garlic_crop_3" },
-    "foodcraft_tomato_plant": { "textures": "textures/blocks/foodcraft_tomato_plant" },
-    "foodcraft_pineapple_plant": { "textures": "textures/blocks/foodcraft_pineapple_plant" },
-    "foodcraft_wild_tomato": { "textures": "textures/blocks/foodcraft_wild_tomato" },
-    "foodcraft_wild_garlic": { "textures": "textures/blocks/foodcraft_wild_garlic" },
-    "foodcraft_wild_oregano": { "textures": "textures/blocks/foodcraft_wild_oregano" },
-    "foodcraft_wild_pineapple": { "textures": "textures/blocks/foodcraft_wild_pineapple" }
+    "foodcraft_oven_side": {
+      "textures": "textures/blocks/foodcraft_oven_side"
+    },
+    "foodcraft_oven_top": {
+      "textures": "textures/blocks/foodcraft_oven_top"
+    },
+    "foodcraft_oven_front_empty": {
+      "textures": "textures/blocks/foodcraft_oven_front_empty"
+    },
+    "foodcraft_oven_front_baking": {
+      "textures": "textures/blocks/foodcraft_oven_front_baking"
+    },
+    "foodcraft_oven_front_done": {
+      "textures": "textures/blocks/foodcraft_oven_front_done"
+    },
+    "foodcraft_pizza_oven": {
+      "textures": "textures/blocks/foodcraft_pizza_oven"
+    },
+    "foodcraft_oregano_crop_0": {
+      "textures": "textures/blocks/foodcraft_oregano_crop_0"
+    },
+    "foodcraft_oregano_crop_1": {
+      "textures": "textures/blocks/foodcraft_oregano_crop_1"
+    },
+    "foodcraft_oregano_crop_2": {
+      "textures": "textures/blocks/foodcraft_oregano_crop_2"
+    },
+    "foodcraft_oregano_crop_3": {
+      "textures": "textures/blocks/foodcraft_oregano_crop_3"
+    },
+    "foodcraft_garlic_crop_0": {
+      "textures": "textures/blocks/foodcraft_garlic_crop_0"
+    },
+    "foodcraft_garlic_crop_1": {
+      "textures": "textures/blocks/foodcraft_garlic_crop_1"
+    },
+    "foodcraft_garlic_crop_2": {
+      "textures": "textures/blocks/foodcraft_garlic_crop_2"
+    },
+    "foodcraft_garlic_crop_3": {
+      "textures": "textures/blocks/foodcraft_garlic_crop_3"
+    },
+    "foodcraft_tomato_plant": {
+      "textures": "textures/blocks/foodcraft_tomato_plant"
+    },
+    "foodcraft_pineapple_plant": {
+      "textures": "textures/blocks/foodcraft_pineapple_plant"
+    },
+    "foodcraft_wild_tomato": {
+      "textures": "textures/blocks/foodcraft_wild_tomato"
+    },
+    "foodcraft_wild_garlic": {
+      "textures": "textures/blocks/foodcraft_wild_garlic"
+    },
+    "foodcraft_wild_oregano": {
+      "textures": "textures/blocks/foodcraft_wild_oregano"
+    },
+    "foodcraft_wild_pineapple": {
+      "textures": "textures/blocks/foodcraft_wild_pineapple"
+    },
+    "foodcraft_corn_crop_0": {
+      "textures": "textures/blocks/foodcraft_corn_crop_0"
+    },
+    "foodcraft_corn_crop_1": {
+      "textures": "textures/blocks/foodcraft_corn_crop_1"
+    },
+    "foodcraft_corn_crop_2": {
+      "textures": "textures/blocks/foodcraft_corn_crop_2"
+    },
+    "foodcraft_corn_crop_3": {
+      "textures": "textures/blocks/foodcraft_corn_crop_3"
+    },
+    "foodcraft_wild_corn": {
+      "textures": "textures/blocks/foodcraft_wild_corn"
+    },
+    "foodcraft_lettuce_crop_0": {
+      "textures": "textures/blocks/foodcraft_lettuce_crop_0"
+    },
+    "foodcraft_lettuce_crop_1": {
+      "textures": "textures/blocks/foodcraft_lettuce_crop_1"
+    },
+    "foodcraft_lettuce_crop_2": {
+      "textures": "textures/blocks/foodcraft_lettuce_crop_2"
+    },
+    "foodcraft_lettuce_crop_3": {
+      "textures": "textures/blocks/foodcraft_lettuce_crop_3"
+    },
+    "foodcraft_wild_lettuce": {
+      "textures": "textures/blocks/foodcraft_wild_lettuce"
+    },
+    "foodcraft_rice_crop_0": {
+      "textures": "textures/blocks/foodcraft_rice_crop_0"
+    },
+    "foodcraft_rice_crop_1": {
+      "textures": "textures/blocks/foodcraft_rice_crop_1"
+    },
+    "foodcraft_rice_crop_2": {
+      "textures": "textures/blocks/foodcraft_rice_crop_2"
+    },
+    "foodcraft_rice_crop_3": {
+      "textures": "textures/blocks/foodcraft_rice_crop_3"
+    },
+    "foodcraft_wild_rice": {
+      "textures": "textures/blocks/foodcraft_wild_rice"
+    },
+    "foodcraft_cinnamon_crop_0": {
+      "textures": "textures/blocks/foodcraft_cinnamon_crop_0"
+    },
+    "foodcraft_cinnamon_crop_1": {
+      "textures": "textures/blocks/foodcraft_cinnamon_crop_1"
+    },
+    "foodcraft_cinnamon_crop_2": {
+      "textures": "textures/blocks/foodcraft_cinnamon_crop_2"
+    },
+    "foodcraft_cinnamon_crop_3": {
+      "textures": "textures/blocks/foodcraft_cinnamon_crop_3"
+    },
+    "foodcraft_wild_cinnamon": {
+      "textures": "textures/blocks/foodcraft_wild_cinnamon"
+    },
+    "foodcraft_scallop_bed": {
+      "textures": "textures/blocks/foodcraft_scallop_bed"
+    },
+    "foodcraft_cutting_board": {
+      "textures": "textures/blocks/foodcraft_cutting_board"
+    },
+    "foodcraft_cooking_pot": {
+      "textures": "textures/blocks/foodcraft_cooking_pot"
+    }
   }
 }

@@ -1,0 +1,27 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "foodcraft:cutting_board"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "SSS"
+    ],
+    "key": {
+      "S": {
+        "tag": "minecraft:wooden_slabs"
+      }
+    },
+    "unlock": [
+      {
+        "tag": "minecraft:wooden_slabs"
+      }
+    ],
+    "result": {
+      "item": "foodcraft:cutting_board"
+    }
+  }
+}

@@ -26,7 +26,7 @@
 
 ## Spec conflicts and decisions
 
-- **2.6 "the `foodcraft:pizza` state becomes `foodcraft:dish`":** we keep the name `foodcraft:pizza` and only add values. Spec 3.1 allows this. Renaming would risk ovens already placed in v1 worlds, and the name is invisible to players.
+- **2.6 oven state:** renamed from `foodcraft:pizza` to `foodcraft:dish` as the spec says. Decided 2026-11-07: v2 does not need to work with v1 worlds, so ovens placed in v1 may break. Test v2 in new worlds.
 - **2.5 "4 ingredients and no match":** cannot happen. The pot only accepts an ingredient if a recipe is still possible with it, so a fourth wrong ingredient is refused with "That doesn't go in the pot". Taking the last ingredient back out with an empty hand stays.
 - **2.5 "Pot broken: drops ingredients":** a milk bucket already in the pot is not dropped. Its empty bucket was handed back when it went in, so dropping it would duplicate a bucket.
 - **2.4 / 2.5 / v1 4.2 breaking:** drops on break only work for player breaks (`onPlayerBreak`), as in v1.
@@ -48,6 +48,7 @@ All checked 2026-11-07.
 
 - Everything from the v1 plan's Global Constraints still holds: namespace `foodcraft:`, versions, lang key patterns, deploy + content log + checklist at the end of every task, commit after each task, no co-author lines.
 - **Never overwrite a texture that exists.** The generators write a placeholder PNG only when the file is missing, so the kids' drawings are safe. To get a fresh placeholder, delete the PNG and rerun.
+- Shared hand helpers (`takeOne`, `giveOrDrop`, `heldItem`, `isCreative`) live in `scripts/hand.js`. `board.js` and `pot.js` import them from there instead of defining or exporting their own.
 - Generated files (`items/*.json`, `recipes/*.json` listed in `content_v2.mjs`) are owned by the generator. Change the table and rerun; do not hand-edit them.
 - New lang lines go into both `en_US.lang` and `nb_NO.lang` from the start, because the table has both names. Task 11 is only the kids' review of the Norwegian names.
 - Both lang files use CRLF line endings; the generator keeps them.
@@ -1544,7 +1545,7 @@ Build order step 5 (part 1). The oven gets a dish table. All v2 oven dishes go i
 Replace the constants `RAW_PREFIX`, `BAKED_PREFIX` and `PIZZAS` with:
 
 ```js
-// value of foodcraft:pizza -> raw item in, baked item out (spec 2.6). The state keeps its v1 name.
+// value of foodcraft:dish -> raw item in, baked item out (spec 2.6).
 const DISHES = {
   margherita: { raw: "foodcraft:raw_pizza_margherita", baked: "foodcraft:pizza_margherita", count: 1 },
   pepperoni: { raw: "foodcraft:raw_pizza_pepperoni", baked: "foodcraft:pizza_pepperoni", count: 1 },
@@ -1570,10 +1571,10 @@ Then make these changes:
 
 - [ ] **Step 2: `pizza_oven.json`**
 
-Change the state values to `["none", "margherita", "pepperoni", "prosciutto", "hawaii", "tuna", "lasagna", "cinnamon_buns", "brownies", "waffles"]`. Add these lines to `bone_visibility`, in the same pattern as the v1 lines:
+Rename the state `foodcraft:pizza` to `foodcraft:dish` everywhere (block JSON states and every `bone_visibility` and permutation condition, and `"foodcraft:pizza"` in `oven.js`). Set its values to `["none", "margherita", "pepperoni", "prosciutto", "hawaii", "tuna", "lasagna", "cinnamon_buns", "brownies", "waffles"]`. Add these lines to `bone_visibility`, in the same pattern as the v1 lines:
 
 ```
-"pizza_tuna": "q.block_state('foodcraft:stage') == 'done' && q.block_state('foodcraft:pizza') == 'tuna'",
+"pizza_tuna": "q.block_state('foodcraft:stage') == 'done' && q.block_state('foodcraft:dish') == 'tuna'",
 "lasagna": "... == 'lasagna'",
 "cinnamon_buns": "... == 'cinnamon_buns'",
 "brownies": "... == 'brownies'",
@@ -1602,7 +1603,7 @@ Check that the geo has the five new bone names and keeps all v1 bones. This step
 
 ```
 ## v2: Oven extended (Task 8)
-- [ ] Ovens placed in v1 still work (bake a margherita in an old oven)
+- [ ] All four v1 pizzas still bake in a newly placed oven
 - [ ] Raw tuna pizza: dough + sauce + mozzarella + tuna fillet; eating it gives nausea
 - [ ] Tuna pizza bakes in 10 s, done oven shows it, take-out gives tuna pizza
 - [ ] Right-click empty oven with dirt: "Put something raw in the oven"

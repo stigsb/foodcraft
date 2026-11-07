@@ -1,0 +1,21 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:item": {
+    "description": {
+      "identifier": "foodcraft:raw_cinnamon_buns",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "foodcraft_raw_cinnamon_buns"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.foodcraft.raw_cinnamon_buns.name"
+      }
+    }
+  }
+}

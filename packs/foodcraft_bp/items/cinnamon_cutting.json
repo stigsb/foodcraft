@@ -1,0 +1,27 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:item": {
+    "description": {
+      "identifier": "foodcraft:cinnamon_cutting",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "foodcraft_cinnamon_cutting"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.foodcraft.cinnamon_cutting.name"
+      },
+      "minecraft:block_placer": {
+        "block": "foodcraft:cinnamon_crop",
+        "use_on": [
+          "minecraft:farmland"
+        ]
+      }
+    }
+  }
+}

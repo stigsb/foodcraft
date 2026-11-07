@@ -1,0 +1,30 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "foodcraft:raw_cinnamon_buns"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "foodcraft:pizza_dough"
+      },
+      {
+        "item": "minecraft:sugar"
+      },
+      {
+        "item": "foodcraft:cinnamon_stick"
+      }
+    ],
+    "unlock": [
+      {
+        "item": "foodcraft:pizza_dough"
+      }
+    ],
+    "result": {
+      "item": "foodcraft:raw_cinnamon_buns"
+    }
+  }
+}

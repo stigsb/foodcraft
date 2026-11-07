@@ -1,0 +1,24 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "foodcraft:corn_flour"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "foodcraft:corn"
+      }
+    ],
+    "unlock": [
+      {
+        "item": "foodcraft:corn"
+      }
+    ],
+    "result": {
+      "item": "foodcraft:corn_flour"
+    }
+  }
+}

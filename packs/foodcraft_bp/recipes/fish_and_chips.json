@@ -1,0 +1,30 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "foodcraft:fish_and_chips"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "foodcraft:cooked_fish_fillet"
+      },
+      {
+        "item": "foodcraft:fries"
+      },
+      {
+        "item": "minecraft:paper"
+      }
+    ],
+    "unlock": [
+      {
+        "item": "foodcraft:cooked_fish_fillet"
+      }
+    ],
+    "result": {
+      "item": "foodcraft:fish_and_chips"
+    }
+  }
+}

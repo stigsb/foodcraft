@@ -1,0 +1,33 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "foodcraft:raw_lasagna"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "foodcraft:raw_pasta"
+      },
+      {
+        "item": "foodcraft:minced_meat"
+      },
+      {
+        "item": "foodcraft:tomato_sauce"
+      },
+      {
+        "item": "foodcraft:mozzarella"
+      }
+    ],
+    "unlock": [
+      {
+        "item": "foodcraft:raw_pasta"
+      }
+    ],
+    "result": {
+      "item": "foodcraft:raw_lasagna"
+    }
+  }
+}

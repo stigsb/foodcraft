@@ -1,0 +1,31 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "foodcraft:raw_fish_cakes"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "foodcraft:fish_fillet"
+      },
+      {
+        "item": "minecraft:egg"
+      },
+      {
+        "item": "foodcraft:flour"
+      }
+    ],
+    "unlock": [
+      {
+        "item": "foodcraft:fish_fillet"
+      }
+    ],
+    "result": {
+      "item": "foodcraft:raw_fish_cakes",
+      "count": 2
+    }
+  }
+}

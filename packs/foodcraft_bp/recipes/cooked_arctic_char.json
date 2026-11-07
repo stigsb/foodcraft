@@ -1,0 +1,18 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "foodcraft:cooked_arctic_char"
+    },
+    "tags": [
+      "furnace",
+      "smoker",
+      "campfire",
+      "soul_campfire"
+    ],
+    "input": {
+      "item": "foodcraft:arctic_char"
+    },
+    "output": "foodcraft:cooked_arctic_char"
+  }
+}

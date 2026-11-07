@@ -47,7 +47,7 @@ Tick a line only after seeing it work in the test world with an empty Content Lo
 - [ ] Right-click empty oven with raw pizza: pizza taken, oven glows (light 10) and smokes
 - [ ] After 10 s: ding sound, front texture shows a pizza
 - [ ] Right-click done oven: get the matching baked pizza, oven empty again
-- [ ] Right-click empty oven with anything else: action bar "Put a raw pizza in the oven", nothing consumed
+- [ ] Right-click empty oven with anything else: action bar "Put something raw in the oven", nothing consumed
 - [ ] Right-click while baking: action bar "Still baking…"
 - [ ] Break oven while baking: drops oven + raw pizza
 - [ ] Break oven while done: drops oven + baked pizza
@@ -100,3 +100,92 @@ Tick a line only after seeing it work in the test world with an empty Content Lo
 - [ ] Custom ding sound plays when a pizza finishes
 - [ ] dist/foodcraft.mcaddon imports cleanly on another Windows install
 - [ ] Realm: console player can craft, bake and eat a pizza
+
+## v2: Fish (Task 2)
+- [ ] `/give @s foodcraft:trout` (and the other 12): name, icon, eats
+- [ ] Every raw fish cooks in furnace, smoker and campfire into its cooked fish
+- [ ] Norwegian names show with the game language set to Norsk
+
+## v2: Fishing (Task 3) — new world "Foodcraft Ocean Test"
+- [ ] River: trout, perch and pike come up among vanilla fish (about half the fish catches)
+- [ ] Frozen river: arctic char, trout
+- [ ] Ocean / deep ocean: herring, mackerel, saithe
+- [ ] Cold ocean: saithe, halibut, herring, wolffish
+- [ ] Frozen ocean: halibut, wolffish
+- [ ] Lukewarm ocean: mackerel, tuna, swordfish; warm ocean: tuna, swordfish
+- [ ] Lake in a taiga or snowy biome: arctic char, trout
+- [ ] Lake in plains or forest: pike, perch
+- [ ] Swamp: pike, catfish; lake in savanna or desert: catfish; lake in jungle: piranha, catfish
+- [ ] Treasure and junk catches are never swapped
+- [ ] A swapped fish flies to the player like a normal catch
+- [ ] Killing a cod with a sword drops a normal cod
+- [ ] Lush caves water: vanilla fish only
+
+## v2: Scallops (Task 4) — new world
+- [ ] Scallop beds lie on the sea floor in normal, cold and lukewarm oceans, never in frozen or warm ones
+- [ ] The bed sits in water (no air pocket)
+- [ ] Breaking a bed drops 1–2 scallops
+- [ ] Scallop cooks into grilled scallop in furnace, smoker and campfire
+
+## v2: Cutting board (Task 5)
+- [ ] Knife: iron ingot over stick; board: 3 wooden slabs (any wood)
+- [ ] Right-click board with a trout: trout lies on the board (medium fish shape), one trout taken
+- [ ] Three right-clicks with the knife: chop sound each time, then 2 fish fillets pop out, board empty
+- [ ] Tuna gives 3 tuna fillets; herring gives 1 fish fillet; halibut gives 3 fish fillets
+- [ ] Beef -> 2 minced meat; potato -> raw fries; pizza dough -> 2 raw pasta
+- [ ] Empty board, holding dirt: action bar "Put something to chop on the board", nothing taken
+- [ ] Full board, holding dirt: action bar "Chop it with a knife"
+- [ ] Full board, empty hand: the exact item comes back (the same fish species)
+- [ ] Break a full board: drops the board and the item
+- [ ] Knife loses 1 durability per chop and breaks with a sound at 128 chops (survival)
+- [ ] Creative: ingredient not taken, knife not worn
+- [ ] Fillet, minced meat and raw fries cook in the furnace
+
+## v2: New crops (Task 6)
+- [ ] Corn kernels, lettuce seeds, rice and cinnamon cutting plant on farmland only
+- [ ] Each crop shows 4 stages, grows on its own and with bone meal
+- [ ] Mature harvests as in spec 2.2; immature drops only the seed item
+- [ ] New world: wild corn in savanna and plains, wild lettuce in forests, wild rice in swamps, wild cinnamon in jungles
+
+## v2: Cooking pot (Task 7)
+- [ ] Pot recipe: iron U with a bucket in the middle
+- [ ] Empty pot + water bucket: water shows, bucket comes back empty
+- [ ] Empty pot + anything else: "Fill the pot with water first"
+- [ ] Ingredients go in one at a time and show as bits on the water
+- [ ] Wrong ingredient: "That doesn't go in the pot", nothing taken
+- [ ] Empty hand takes the last ingredient back out
+- [ ] Fish soup, bolognese, mac and cheese, rice porridge: each starts cooking on its last ingredient (smoke), done after 10 s
+- [ ] Milk bucket goes in and the empty bucket comes back
+- [ ] No campfire: "The pot needs a lit campfire under it"; light one later and it starts by itself
+- [ ] Put out the campfire mid-cook: cooking pauses; relight: it finishes
+- [ ] While cooking: "Still cooking…"
+- [ ] Done: three bowls take three portions, then the pot is empty (no water)
+- [ ] Done + no bowl: "Take the food out with a bowl"
+- [ ] Break the pot with ingredients in: they drop (no milk bucket); break while done: no food drops
+- [ ] Save & Quit mid-cook, re-enter: finishes within 10 s
+- [ ] Creative: ingredients and buckets not used up
+
+## v2: Oven extended (Task 8)
+- [ ] All four v1 pizzas still bake in a newly placed oven
+- [ ] Raw tuna pizza: dough + sauce + mozzarella + tuna fillet; eating it gives nausea
+- [ ] Tuna pizza bakes in 10 s, done oven shows it, take-out gives tuna pizza
+- [ ] Right-click empty oven with dirt: "Put something raw in the oven"
+
+## v2: Fish dishes (Task 9)
+- [ ] Fish fillet + egg + flour -> 2 raw fish cakes -> furnace -> fish cakes
+- [ ] Cooked fish fillet + fries + paper -> fish and chips
+- [ ] Tuna fillet + rice + dried kelp -> 3 sushi
+- [ ] Each dish eats and fills less than a baked pizza
+
+## v2: Pasta and taco (Task 10)
+- [ ] Raw pasta + minced meat + tomato sauce + mozzarella -> raw lasagna -> pizza oven -> lasagna (oven shows it)
+- [ ] Corn -> corn flour -> furnace -> tortilla
+- [ ] Tortilla + cooked minced meat + lettuce + tomato + mozzarella -> taco
+
+## v2: Baking (Task 11)
+- [ ] Pizza dough + sugar + cinnamon stick -> raw cinnamon buns -> oven -> 3 cinnamon buns
+- [ ] Flour + cocoa beans + egg + sugar -> raw brownies -> oven -> 4 brownies
+- [ ] Flour, egg, sugar over a milk bucket -> batter, empty bucket returned
+- [ ] Batter -> furnace -> pancakes; batter -> pizza oven -> 3 waffles
+- [ ] 3 sweet berries + sugar + glass bottle -> jam; eating jam gives the bottle back
+- [ ] Breaking an oven while baking buns drops the raw buns; while done drops 3 buns

@@ -2,26 +2,269 @@
   "resource_pack_name": "foodcraft_rp",
   "texture_name": "atlas.items",
   "texture_data": {
-    "foodcraft_tomato": { "textures": "textures/items/foodcraft_tomato" },
-    "foodcraft_garlic": { "textures": "textures/items/foodcraft_garlic" },
-    "foodcraft_oregano": { "textures": "textures/items/foodcraft_oregano" },
-    "foodcraft_pineapple": { "textures": "textures/items/foodcraft_pineapple" },
-    "foodcraft_tomato_seeds": { "textures": "textures/items/foodcraft_tomato_seeds" },
-    "foodcraft_oregano_seeds": { "textures": "textures/items/foodcraft_oregano_seeds" },
-    "foodcraft_pineapple_crown": { "textures": "textures/items/foodcraft_pineapple_crown" },
-    "foodcraft_flour": { "textures": "textures/items/foodcraft_flour" },
-    "foodcraft_pizza_dough": { "textures": "textures/items/foodcraft_pizza_dough" },
-    "foodcraft_tomato_sauce": { "textures": "textures/items/foodcraft_tomato_sauce" },
-    "foodcraft_mozzarella": { "textures": "textures/items/foodcraft_mozzarella" },
-    "foodcraft_pepperoni": { "textures": "textures/items/foodcraft_pepperoni" },
-    "foodcraft_ham": { "textures": "textures/items/foodcraft_ham" },
-    "foodcraft_raw_pizza_margherita": { "textures": "textures/items/foodcraft_raw_pizza_margherita" },
-    "foodcraft_raw_pizza_pepperoni": { "textures": "textures/items/foodcraft_raw_pizza_pepperoni" },
-    "foodcraft_raw_pizza_prosciutto": { "textures": "textures/items/foodcraft_raw_pizza_prosciutto" },
-    "foodcraft_raw_pizza_hawaii": { "textures": "textures/items/foodcraft_raw_pizza_hawaii" },
-    "foodcraft_pizza_margherita": { "textures": "textures/items/foodcraft_pizza_margherita" },
-    "foodcraft_pizza_pepperoni": { "textures": "textures/items/foodcraft_pizza_pepperoni" },
-    "foodcraft_pizza_prosciutto": { "textures": "textures/items/foodcraft_pizza_prosciutto" },
-    "foodcraft_pizza_hawaii": { "textures": "textures/items/foodcraft_pizza_hawaii" }
+    "foodcraft_tomato": {
+      "textures": "textures/items/foodcraft_tomato"
+    },
+    "foodcraft_garlic": {
+      "textures": "textures/items/foodcraft_garlic"
+    },
+    "foodcraft_oregano": {
+      "textures": "textures/items/foodcraft_oregano"
+    },
+    "foodcraft_pineapple": {
+      "textures": "textures/items/foodcraft_pineapple"
+    },
+    "foodcraft_tomato_seeds": {
+      "textures": "textures/items/foodcraft_tomato_seeds"
+    },
+    "foodcraft_oregano_seeds": {
+      "textures": "textures/items/foodcraft_oregano_seeds"
+    },
+    "foodcraft_pineapple_crown": {
+      "textures": "textures/items/foodcraft_pineapple_crown"
+    },
+    "foodcraft_flour": {
+      "textures": "textures/items/foodcraft_flour"
+    },
+    "foodcraft_pizza_dough": {
+      "textures": "textures/items/foodcraft_pizza_dough"
+    },
+    "foodcraft_tomato_sauce": {
+      "textures": "textures/items/foodcraft_tomato_sauce"
+    },
+    "foodcraft_mozzarella": {
+      "textures": "textures/items/foodcraft_mozzarella"
+    },
+    "foodcraft_pepperoni": {
+      "textures": "textures/items/foodcraft_pepperoni"
+    },
+    "foodcraft_ham": {
+      "textures": "textures/items/foodcraft_ham"
+    },
+    "foodcraft_raw_pizza_margherita": {
+      "textures": "textures/items/foodcraft_raw_pizza_margherita"
+    },
+    "foodcraft_raw_pizza_pepperoni": {
+      "textures": "textures/items/foodcraft_raw_pizza_pepperoni"
+    },
+    "foodcraft_raw_pizza_prosciutto": {
+      "textures": "textures/items/foodcraft_raw_pizza_prosciutto"
+    },
+    "foodcraft_raw_pizza_hawaii": {
+      "textures": "textures/items/foodcraft_raw_pizza_hawaii"
+    },
+    "foodcraft_pizza_margherita": {
+      "textures": "textures/items/foodcraft_pizza_margherita"
+    },
+    "foodcraft_pizza_pepperoni": {
+      "textures": "textures/items/foodcraft_pizza_pepperoni"
+    },
+    "foodcraft_pizza_prosciutto": {
+      "textures": "textures/items/foodcraft_pizza_prosciutto"
+    },
+    "foodcraft_pizza_hawaii": {
+      "textures": "textures/items/foodcraft_pizza_hawaii"
+    },
+    "foodcraft_arctic_char": {
+      "textures": "textures/items/foodcraft_arctic_char"
+    },
+    "foodcraft_cooked_arctic_char": {
+      "textures": "textures/items/foodcraft_cooked_arctic_char"
+    },
+    "foodcraft_trout": {
+      "textures": "textures/items/foodcraft_trout"
+    },
+    "foodcraft_cooked_trout": {
+      "textures": "textures/items/foodcraft_cooked_trout"
+    },
+    "foodcraft_perch": {
+      "textures": "textures/items/foodcraft_perch"
+    },
+    "foodcraft_cooked_perch": {
+      "textures": "textures/items/foodcraft_cooked_perch"
+    },
+    "foodcraft_pike": {
+      "textures": "textures/items/foodcraft_pike"
+    },
+    "foodcraft_cooked_pike": {
+      "textures": "textures/items/foodcraft_cooked_pike"
+    },
+    "foodcraft_catfish": {
+      "textures": "textures/items/foodcraft_catfish"
+    },
+    "foodcraft_cooked_catfish": {
+      "textures": "textures/items/foodcraft_cooked_catfish"
+    },
+    "foodcraft_piranha": {
+      "textures": "textures/items/foodcraft_piranha"
+    },
+    "foodcraft_cooked_piranha": {
+      "textures": "textures/items/foodcraft_cooked_piranha"
+    },
+    "foodcraft_herring": {
+      "textures": "textures/items/foodcraft_herring"
+    },
+    "foodcraft_cooked_herring": {
+      "textures": "textures/items/foodcraft_cooked_herring"
+    },
+    "foodcraft_mackerel": {
+      "textures": "textures/items/foodcraft_mackerel"
+    },
+    "foodcraft_cooked_mackerel": {
+      "textures": "textures/items/foodcraft_cooked_mackerel"
+    },
+    "foodcraft_saithe": {
+      "textures": "textures/items/foodcraft_saithe"
+    },
+    "foodcraft_cooked_saithe": {
+      "textures": "textures/items/foodcraft_cooked_saithe"
+    },
+    "foodcraft_wolffish": {
+      "textures": "textures/items/foodcraft_wolffish"
+    },
+    "foodcraft_cooked_wolffish": {
+      "textures": "textures/items/foodcraft_cooked_wolffish"
+    },
+    "foodcraft_halibut": {
+      "textures": "textures/items/foodcraft_halibut"
+    },
+    "foodcraft_cooked_halibut": {
+      "textures": "textures/items/foodcraft_cooked_halibut"
+    },
+    "foodcraft_tuna": {
+      "textures": "textures/items/foodcraft_tuna"
+    },
+    "foodcraft_cooked_tuna": {
+      "textures": "textures/items/foodcraft_cooked_tuna"
+    },
+    "foodcraft_swordfish": {
+      "textures": "textures/items/foodcraft_swordfish"
+    },
+    "foodcraft_cooked_swordfish": {
+      "textures": "textures/items/foodcraft_cooked_swordfish"
+    },
+    "foodcraft_scallop": {
+      "textures": "textures/items/foodcraft_scallop"
+    },
+    "foodcraft_grilled_scallop": {
+      "textures": "textures/items/foodcraft_grilled_scallop"
+    },
+    "foodcraft_knife": {
+      "textures": "textures/items/foodcraft_knife"
+    },
+    "foodcraft_fish_fillet": {
+      "textures": "textures/items/foodcraft_fish_fillet"
+    },
+    "foodcraft_cooked_fish_fillet": {
+      "textures": "textures/items/foodcraft_cooked_fish_fillet"
+    },
+    "foodcraft_tuna_fillet": {
+      "textures": "textures/items/foodcraft_tuna_fillet"
+    },
+    "foodcraft_minced_meat": {
+      "textures": "textures/items/foodcraft_minced_meat"
+    },
+    "foodcraft_cooked_minced_meat": {
+      "textures": "textures/items/foodcraft_cooked_minced_meat"
+    },
+    "foodcraft_raw_fries": {
+      "textures": "textures/items/foodcraft_raw_fries"
+    },
+    "foodcraft_fries": {
+      "textures": "textures/items/foodcraft_fries"
+    },
+    "foodcraft_raw_pasta": {
+      "textures": "textures/items/foodcraft_raw_pasta"
+    },
+    "foodcraft_corn": {
+      "textures": "textures/items/foodcraft_corn"
+    },
+    "foodcraft_corn_kernels": {
+      "textures": "textures/items/foodcraft_corn_kernels"
+    },
+    "foodcraft_lettuce": {
+      "textures": "textures/items/foodcraft_lettuce"
+    },
+    "foodcraft_lettuce_seeds": {
+      "textures": "textures/items/foodcraft_lettuce_seeds"
+    },
+    "foodcraft_rice": {
+      "textures": "textures/items/foodcraft_rice"
+    },
+    "foodcraft_cinnamon_stick": {
+      "textures": "textures/items/foodcraft_cinnamon_stick"
+    },
+    "foodcraft_cinnamon_cutting": {
+      "textures": "textures/items/foodcraft_cinnamon_cutting"
+    },
+    "foodcraft_fish_soup": {
+      "textures": "textures/items/foodcraft_fish_soup"
+    },
+    "foodcraft_spaghetti_bolognese": {
+      "textures": "textures/items/foodcraft_spaghetti_bolognese"
+    },
+    "foodcraft_mac_and_cheese": {
+      "textures": "textures/items/foodcraft_mac_and_cheese"
+    },
+    "foodcraft_rice_porridge": {
+      "textures": "textures/items/foodcraft_rice_porridge"
+    },
+    "foodcraft_raw_pizza_tuna": {
+      "textures": "textures/items/foodcraft_raw_pizza_tuna"
+    },
+    "foodcraft_pizza_tuna": {
+      "textures": "textures/items/foodcraft_pizza_tuna"
+    },
+    "foodcraft_raw_fish_cakes": {
+      "textures": "textures/items/foodcraft_raw_fish_cakes"
+    },
+    "foodcraft_fish_cakes": {
+      "textures": "textures/items/foodcraft_fish_cakes"
+    },
+    "foodcraft_fish_and_chips": {
+      "textures": "textures/items/foodcraft_fish_and_chips"
+    },
+    "foodcraft_sushi": {
+      "textures": "textures/items/foodcraft_sushi"
+    },
+    "foodcraft_raw_lasagna": {
+      "textures": "textures/items/foodcraft_raw_lasagna"
+    },
+    "foodcraft_lasagna": {
+      "textures": "textures/items/foodcraft_lasagna"
+    },
+    "foodcraft_corn_flour": {
+      "textures": "textures/items/foodcraft_corn_flour"
+    },
+    "foodcraft_tortilla": {
+      "textures": "textures/items/foodcraft_tortilla"
+    },
+    "foodcraft_taco": {
+      "textures": "textures/items/foodcraft_taco"
+    },
+    "foodcraft_raw_cinnamon_buns": {
+      "textures": "textures/items/foodcraft_raw_cinnamon_buns"
+    },
+    "foodcraft_cinnamon_bun": {
+      "textures": "textures/items/foodcraft_cinnamon_bun"
+    },
+    "foodcraft_raw_brownies": {
+      "textures": "textures/items/foodcraft_raw_brownies"
+    },
+    "foodcraft_brownie": {
+      "textures": "textures/items/foodcraft_brownie"
+    },
+    "foodcraft_batter": {
+      "textures": "textures/items/foodcraft_batter"
+    },
+    "foodcraft_pancakes": {
+      "textures": "textures/items/foodcraft_pancakes"
+    },
+    "foodcraft_waffle": {
+      "textures": "textures/items/foodcraft_waffle"
+    },
+    "foodcraft_jam": {
+      "textures": "textures/items/foodcraft_jam"
+    }
   }
 }

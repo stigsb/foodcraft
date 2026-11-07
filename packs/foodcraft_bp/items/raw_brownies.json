@@ -1,0 +1,21 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:item": {
+    "description": {
+      "identifier": "foodcraft:raw_brownies",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "foodcraft_raw_brownies"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.foodcraft.raw_brownies.name"
+      }
+    }
+  }
+}

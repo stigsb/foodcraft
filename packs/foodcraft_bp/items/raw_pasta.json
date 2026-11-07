@@ -1,0 +1,21 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:item": {
+    "description": {
+      "identifier": "foodcraft:raw_pasta",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "foodcraft_raw_pasta"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.foodcraft.raw_pasta.name"
+      }
+    }
+  }
+}

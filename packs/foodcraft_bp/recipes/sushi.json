@@ -1,0 +1,31 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "foodcraft:sushi"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "foodcraft:tuna_fillet"
+      },
+      {
+        "item": "foodcraft:rice"
+      },
+      {
+        "item": "minecraft:dried_kelp"
+      }
+    ],
+    "unlock": [
+      {
+        "item": "foodcraft:tuna_fillet"
+      }
+    ],
+    "result": {
+      "item": "foodcraft:sushi",
+      "count": 3
+    }
+  }
+}

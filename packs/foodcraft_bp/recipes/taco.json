@@ -1,0 +1,36 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "foodcraft:taco"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "foodcraft:tortilla"
+      },
+      {
+        "item": "foodcraft:cooked_minced_meat"
+      },
+      {
+        "item": "foodcraft:lettuce"
+      },
+      {
+        "item": "foodcraft:tomato"
+      },
+      {
+        "item": "foodcraft:mozzarella"
+      }
+    ],
+    "unlock": [
+      {
+        "item": "foodcraft:tortilla"
+      }
+    ],
+    "result": {
+      "item": "foodcraft:taco"
+    }
+  }
+}

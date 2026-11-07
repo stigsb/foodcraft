@@ -1,0 +1,16 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "foodcraft:pancakes"
+    },
+    "tags": [
+      "furnace",
+      "smoker"
+    ],
+    "input": {
+      "item": "foodcraft:batter"
+    },
+    "output": "foodcraft:pancakes"
+  }
+}

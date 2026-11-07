@@ -1,13 +1,66 @@
 {
   "format_version": "1.26.50",
-  "foodcraft:pizza_oven": { "sound": "stone" },
-  "foodcraft:oregano_crop": { "sound": "grass" },
-  "foodcraft:garlic_crop": { "sound": "grass" },
-  "foodcraft:tomato_crop": { "sound": "grass" },
-  "foodcraft:tomato_crop_top": { "sound": "grass" },
-  "foodcraft:pineapple_crop": { "sound": "grass" },
-  "foodcraft:wild_tomato": { "sound": "grass" },
-  "foodcraft:wild_garlic": { "sound": "grass" },
-  "foodcraft:wild_oregano": { "sound": "grass" },
-  "foodcraft:wild_pineapple": { "sound": "grass" }
+  "foodcraft:pizza_oven": {
+    "sound": "stone"
+  },
+  "foodcraft:oregano_crop": {
+    "sound": "grass"
+  },
+  "foodcraft:garlic_crop": {
+    "sound": "grass"
+  },
+  "foodcraft:tomato_crop": {
+    "sound": "grass"
+  },
+  "foodcraft:tomato_crop_top": {
+    "sound": "grass"
+  },
+  "foodcraft:pineapple_crop": {
+    "sound": "grass"
+  },
+  "foodcraft:wild_tomato": {
+    "sound": "grass"
+  },
+  "foodcraft:wild_garlic": {
+    "sound": "grass"
+  },
+  "foodcraft:wild_oregano": {
+    "sound": "grass"
+  },
+  "foodcraft:wild_pineapple": {
+    "sound": "grass"
+  },
+  "foodcraft:scallop_bed": {
+    "sound": "gravel"
+  },
+  "foodcraft:cutting_board": {
+    "sound": "wood"
+  },
+  "foodcraft:cooking_pot": {
+    "sound": "metal"
+  },
+  "foodcraft:corn_crop": {
+    "sound": "grass"
+  },
+  "foodcraft:wild_corn": {
+    "sound": "grass"
+  },
+  "foodcraft:lettuce_crop": {
+    "sound": "grass"
+  },
+  "foodcraft:wild_lettuce": {
+    "sound": "grass"
+  },
+  "foodcraft:rice_crop": {
+    "sound": "grass"
+  },
+  "foodcraft:wild_rice": {
+    "sound": "grass"
+  },
+  "foodcraft:cinnamon_crop": {
+    "sound": "grass"
+  },
+  "foodcraft:wild_cinnamon": {
+    "sound": "grass"
+  }
 }
