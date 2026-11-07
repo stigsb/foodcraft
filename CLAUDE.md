@@ -17,7 +17,9 @@ Leave the `@minecraft/server` dependency version alone; it is the script API ver
 ## Building and sharing
 
 - `powershell -ExecutionPolicy Bypass -File tools/export_mcaddon.ps1` builds `dist/foodcraft.mcaddon` (`dist/` is git-ignored).
-- To get it onto the tablet, serve `dist/` over HTTP on the LAN (port 8000) and open `http://<PC LAN IP>:8000` on the tablet.
+- `node tools/serve_mcaddon.mjs` serves it on the LAN at `http://<PC LAN IP>:8000` so the tablet can download it. The page shows the version and build time.
+
+**After every finished task where the code is usable** (static checks pass, nothing half-done), rebuild the `.mcaddon` and make sure the share server is running: start it in the background if it isn't, restart it if it has stopped. Then tell the user the address so the latest version is always easy to pull onto the tablet for testing. Skip this when the task left the packs in a broken state, and say so.
 - `tools/deploy.ps1` copies the packs into the local Minecraft development pack folders.
 
 ## Commits
