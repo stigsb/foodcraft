@@ -1,0 +1,14 @@
+{
+  "format_version": "1.21.10",
+  "minecraft:scatter_feature": {
+    "description": { "identifier": "foodcraft:wild_corn_patch" },
+    "places_feature": "foodcraft:wild_corn_block",
+    "project_input_to_floor": true,
+    "distribution": {
+      "iterations": 4,
+      "x": { "distribution": "uniform", "extent": [0, 15] },
+      "y": 0,
+      "z": { "distribution": "uniform", "extent": [0, 15] }
+    }
+  }
+}
