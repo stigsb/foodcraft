@@ -2,6 +2,11 @@
 
 Alle versjoner av Foodcraft, nyeste først. Hver gang versjonsnummeret økes, får versjonen en ny del her.
 
+## v0.2.2 – 7. november 2026
+
+- Kokegryta er rund, med bredere mage, smalere fot og en kant øverst.
+- Røre heter nå Pannekakerøre. Den kan fortsatt bli både pannekaker og vafler.
+
 ## v0.2.1 – 7. november 2026
 
 - Kniven kan brukes som våpen. Den gjør 5 i skade og slites når du slår med den, som et sverd.

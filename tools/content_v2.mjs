@@ -55,7 +55,7 @@ export const ITEMS = [
   { step: 11, id: "cinnamon_bun", en: "Cinnamon Bun", nb: "Kanelsnurr", food: [4, 0.5], icon: { shape: "bun", main: "#d8a050", accent: "#8a4a20" } },
   { step: 11, id: "raw_brownies", en: "Raw Brownies", nb: "Rå brownies", icon: { shape: "tray", main: "#6a3a20", accent: "#8a5a38" } },
   { step: 11, id: "brownie", en: "Brownie", nb: "Brownie", food: [4, 0.5], icon: { shape: "bar", main: "#4a2810", accent: "#6a4020" } },
-  { step: 11, id: "batter", en: "Batter", nb: "Røre", icon: { shape: "bowl", main: "#f4e4b0", accent: "#e8d090" } },
+  { step: 11, id: "batter", en: "Pancake Batter", nb: "Pannekakerøre", icon: { shape: "bowl", main: "#f4e4b0", accent: "#e8d090" } },
   { step: 11, id: "pancakes", en: "Pancakes", nb: "Pannekaker", food: [5, 0.6], icon: { shape: "stack", main: "#e0b060", accent: "#c03048" } },
   { step: 11, id: "waffle", en: "Waffle", nb: "Vaffel", food: [5, 0.6], icon: { shape: "waffle", main: "#e0a850", accent: "#b88030" } },
   { step: 11, id: "jam", en: "Jam", nb: "Syltetøy", food: [4, 0.3], returns: "minecraft:glass_bottle", icon: { shape: "bottle", main: "#c02840" } },

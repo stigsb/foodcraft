@@ -11,6 +11,31 @@ const RP = path.join(ROOT, "packs/foodcraft_rp");
 
 // [origin, size, colour]. Block space: x and z in -8..8, y in 0..16. Integer sizes only (box UV).
 const C = (o, s, color) => ({ o, s, color });
+
+// Voxel circles on the block's 1/16 grid, centred on the block (cells -8..7, cell x spans x..x+1).
+// Each row of cells becomes one cube, so a circle costs about two cubes per row.
+const inCircle = (r) => (x, z) => (x + 0.5) ** 2 + (z + 0.5) ** 2 <= r * r;
+function rows(cells, y, h, color) {
+  const cubes = [];
+  for (let z = -8; z < 8; z++) {
+    for (let x = -8; x < 8; x++) {
+      if (!cells(x, z)) continue;
+      let end = x;
+      while (end + 1 < 8 && cells(end + 1, z)) end++;
+      cubes.push(C([x, y, z], [end - x + 1, h, 1], color));
+      x = end;
+    }
+  }
+  return cubes;
+}
+const disc = (r, y, h, color) => rows(inCircle(r), y, h, color);
+const isEdge = (r) => { const c = inCircle(r); return (x, z) => c(x, z) && (!c(x + 1, z) || !c(x - 1, z) || !c(x, z + 1) || !c(x, z - 1)); };
+const ring = (r, y, h, color) => rows(isEdge(r), y, h, color);
+const interior = (r) => { const c = inCircle(r), e = isEdge(r); return (x, z) => c(x, z) && !e(x, z); };
+const inside = (r, y, h, color) => rows(interior(r), y, h, color);
+// Everything within outer radius r that is not inside the pot's cavity (radius cavity): a wall with no gaps.
+const shell = (r, cavity, y, h, color) => { const c = inCircle(r), i = interior(cavity); return rows((x, z) => c(x, z) && !i(x, z), y, h, color); };
+
 const MODELS = {
   scallop_bed: {
     shells: [C([-5, 0, -4], [3, 1, 3], "#e8b9a0"), C([1, 0, -5], [3, 1, 3], "#e0a890"), C([-1, 0, 2], [3, 1, 3], "#f0c8b0"), C([3, 0, 1], [2, 1, 2], "#d89880")],
@@ -25,18 +50,21 @@ const MODELS = {
     potato: [C([-2, 1, -2], [4, 2, 3], "#c8a25a")],
     dough: [C([-3, 1, -3], [6, 1, 6], "#eadbb8")],
   },
+  // Round pot: voxel circles stacked with a bulging belly, a narrower foot and a rim.
   cooking_pot: {
     pot: [
-      C([-6, 0, -6], [12, 1, 12], "#3c3c40"),
-      C([-6, 1, -6], [12, 8, 1], "#46464c"), C([-6, 1, 5], [12, 8, 1], "#46464c"),
-      C([-6, 1, -5], [1, 8, 10], "#404046"), C([5, 1, -5], [1, 8, 10], "#404046"),
-      C([-8, 7, -1], [2, 1, 2], "#2c2c30"), C([6, 7, -1], [2, 1, 2], "#2c2c30"),
+      ...disc(5, 0, 1, "#3c3c40"), // foot
+      ...ring(6.2, 1, 2, "#404046"), // lower wall
+      ...shell(7.1, 6.2, 3, 3, "#46464c"), // belly
+      ...ring(6.2, 6, 2, "#404046"), // shoulder
+      ...shell(6.7, 6.2, 8, 1, "#2c2c30"), // rim
+      C([-8, 6, -1], [2, 1, 2], "#2c2c30"), C([6, 6, -1], [2, 1, 2], "#2c2c30"), // handles
     ],
-    water: [C([-5, 1, -5], [10, 6, 10], "#3f76e4")],
-    soup_fish_soup: [C([-5, 1, -5], [10, 6, 10], "#e0cc98")],
-    soup_bolognese: [C([-5, 1, -5], [10, 6, 10], "#a8432a")],
-    soup_mac_and_cheese: [C([-5, 1, -5], [10, 6, 10], "#f0c040")],
-    soup_rice_porridge: [C([-5, 1, -5], [10, 6, 10], "#f2ebd8")],
+    water: inside(6.2, 1, 6, "#3f76e4"),
+    soup_fish_soup: inside(6.2, 1, 6, "#e0cc98"),
+    soup_bolognese: inside(6.2, 1, 6, "#a8432a"),
+    soup_mac_and_cheese: inside(6.2, 1, 6, "#f0c040"),
+    soup_rice_porridge: inside(6.2, 1, 6, "#f2ebd8"),
     ingredient_1: [C([-3, 7, -3], [2, 1, 2], "#e8a060")],
     ingredient_2: [C([1, 7, -2], [2, 1, 2], "#78c048")],
     ingredient_3: [C([-2, 7, 1], [2, 1, 2], "#c23b3b")],
