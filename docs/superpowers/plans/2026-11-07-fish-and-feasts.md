@@ -110,7 +110,7 @@ Spec 3.1. Find out what a script can see when a fish is caught. No content yet.
 - Create: `packs/foodcraft_bp/scripts/fishing_probe.js`
 - Modify: `packs/foodcraft_bp/scripts/main.js` (one import line)
 
-- [ ] **Step 1: The probe**
+- [x] **Step 1: The probe**
 
 ```js
 // Task 1 probe: prints what the script sees when something is fished up. Deleted in Task 3.
@@ -162,7 +162,7 @@ In a new survival world, fish about 20 times in a river and 20 times in an ocean
 
 Write down here which row matched and the `HOOK_RADIUS` that separated real catches from false alarms.
 
-- [ ] **Step 4: Commit** "Fishing probe: what a script sees when a fish is caught". The probe stays in until Task 3.
+- [x] **Step 4: Commit** "Fishing probe: what a script sees when a fish is caught". The probe stays in until Task 3.
 
 ---
 
@@ -174,7 +174,7 @@ Build order step 1 (part 1). After this task every fish exists as raw and cooked
 - Create: `tools/png.mjs`, `tools/icons.mjs`, `tools/content_v2.mjs`, `tools/make_content.mjs`, `tools/check_zones.mjs`, `packs/foodcraft_bp/scripts/fish_data.js`
 - Generated: items, recipes, lang lines, atlas entries, icons
 
-- [ ] **Step 1: `packs/foodcraft_bp/scripts/fish_data.js`**
+- [x] **Step 1: `packs/foodcraft_bp/scripts/fish_data.js`**
 
 ```js
 // Fish species and water zones. Used by fishing.js, board.js and tools/make_content.mjs.
@@ -244,7 +244,7 @@ export function filletsOf(fishId) {
 
 Check: no biome id appears in two zones, and every id is in `MinecraftBiomeTypes` from `@minecraft/vanilla-data` 1.26.60. Step 6 runs this check.
 
-- [ ] **Step 2: `tools/png.mjs`**
+- [x] **Step 2: `tools/png.mjs`**
 
 Use the same PNG code as `render_placeholders.mjs`, but for any size.
 
@@ -284,7 +284,7 @@ export const shade = ([r, g, b, a], k) => [Math.min(255, Math.round(r * k)), Mat
 export const mix = (p, q, t) => p.map((v, i) => (i === 3 ? v : Math.round(v + (q[i] - v) * t)));
 ```
 
-- [ ] **Step 3: `tools/icons.mjs`**
+- [x] **Step 3: `tools/icons.mjs`**
 
 ```js
 // 16x16 placeholder icons: a shape filled with main/accent colours and a dark vanilla-style outline.
@@ -419,7 +419,7 @@ export const browned = (h) => {
 };
 ```
 
-- [ ] **Step 4: `tools/content_v2.mjs`**
+- [x] **Step 4: `tools/content_v2.mjs`**
 
 The whole v2 table. `step` is the task that turns an entry on. Ids without `:` mean `foodcraft:`.
 
@@ -540,7 +540,7 @@ export const RECIPES = [
 ];
 ```
 
-- [ ] **Step 5: `tools/make_content.mjs`**
+- [x] **Step 5: `tools/make_content.mjs`**
 
 ```js
 #!/usr/bin/env node
@@ -662,7 +662,7 @@ for (const t of blockTex) fresh += placeholder(path.join(RP, "textures/blocks", 
 console.log(`task ${task}: ${items.length} items, ${recipes.length} recipes, ${blocks.length} block names, ${fresh} new placeholder textures`);
 ```
 
-- [ ] **Step 6: Check the fish data and run the generator**
+- [x] **Step 6: Check the fish data and run the generator**
 
 Create `tools/check_zones.mjs`:
 
@@ -700,7 +700,7 @@ Rerun the check after every Minecraft update. A new water biome shows up under "
 
 Run the generator a second time. It must print `0 new placeholder textures`, and `git status` must show no change in the second run.
 
-- [ ] **Step 7: Checklist lines**
+- [x] **Step 7: Checklist lines**
 
 Append to `docs/test-checklist.md`:
 
@@ -712,7 +712,7 @@ Append to `docs/test-checklist.md`:
 ```
 
 - [ ] **Step 8: Deploy and verify in game:** content log clean, checklist lines above.
-- [ ] **Step 9: Commit** "v2: content generator, fish data and 13 fish".
+- [x] **Step 9: Commit** "v2: content generator, fish data and 13 fish".
 
 ---
 
@@ -725,7 +725,7 @@ Build order step 1 (part 2). Uses the Task 1 decision. Rows A and B are describe
 - Delete: `packs/foodcraft_bp/scripts/fishing_probe.js`
 - Modify: `packs/foodcraft_bp/scripts/main.js` (replace the probe import with `import "./fishing.js";`)
 
-- [ ] **Step 1: `fishing.js`**
+- [x] **Step 1: `fishing.js`**
 
 ```js
 // Spec 2.1: a vanilla fish caught in a water zone becomes one of that zone's Foodcraft fish half of the time.
@@ -765,7 +765,7 @@ world.afterEvents.entitySpawn.subscribe(({ entity }) => {
 });
 ```
 
-- [ ] **Step 2: Checklist lines**
+- [x] **Step 2: Checklist lines**
 
 ```
 ## v2: Fishing (Task 3) — new world "Foodcraft Ocean Test"
@@ -787,7 +787,7 @@ world.afterEvents.entitySpawn.subscribe(({ entity }) => {
 Use `/locate biome <id>` and `/tp` to reach each biome.
 
 - [ ] **Step 3: Deploy and verify in game**
-- [ ] **Step 4: Commit** "v2: fish are caught by water zone".
+- [x] **Step 4: Commit** "v2: fish are caught by water zone".
 
 ---
 
@@ -809,7 +809,7 @@ Build order step 1 (part 3).
   - item and recipe files from `node tools/make_content.mjs 4`
 - Modify: `packs/foodcraft_rp/blocks.json`, `packs/foodcraft_rp/textures/terrain_texture.json`
 
-- [ ] **Step 1: `tools/make_models.mjs`**
+- [x] **Step 1: `tools/make_models.mjs`**
 
 Writes a geo.json with box UV and paints the matching texture: each cube's net gets one colour, with a lighter top and a darker outline. The kids can open the geo.json in Blockbench later, repaint, and save it as `art/models/<name>.bbmodel`.
 
@@ -917,7 +917,7 @@ for (const name of process.argv.slice(2)) build(name);
 
 Run `node tools/make_models.mjs scallop_bed`, then `node tools/make_content.mjs 4`.
 
-- [ ] **Step 2: `blocks/scallop_bed.json`**
+- [x] **Step 2: `blocks/scallop_bed.json`**
 
 ```json
 {
@@ -945,7 +945,7 @@ Run `node tools/make_models.mjs scallop_bed`, then `node tools/make_content.mjs 
 
 Add `"foodcraft:scallop_bed": { "sound": "gravel" }` to `blocks.json` and `"foodcraft_scallop_bed": { "textures": "textures/blocks/foodcraft_scallop_bed" }` to `terrain_texture.json`.
 
-- [ ] **Step 3: Loot, features, rule**
+- [x] **Step 3: Loot, features, rule**
 
 `loot_tables/blocks/scallop_bed.json`:
 
@@ -1004,7 +1004,7 @@ The filter keeps normal, cold and lukewarm oceans (spec 2.1). Before deploying, 
   - **Water around the shells:** done.
   - **An air pocket:** add a custom component `foodcraft:scallop_bed` with `onRandomTick({ block }) { if (!block.isWaterlogged) block.setWaterlogged(true); }`, register it in `main.js`, and add `"foodcraft:scallop_bed": {}` to the block.
   - **The feature does not place at all in water:** try `"may_replace": ["minecraft:water", "minecraft:flowing_water"]`.
-- [ ] **Step 5: Checklist lines**
+- [x] **Step 5: Checklist lines**
 
 ```
 ## v2: Scallops (Task 4) — new world
@@ -1015,7 +1015,7 @@ The filter keeps normal, cold and lukewarm oceans (spec 2.1). Before deploying, 
 ```
 
 - [ ] **Step 6: Deploy and verify in game**
-- [ ] **Step 7: Commit** "v2: scallop beds on the sea floor".
+- [x] **Step 7: Commit** "v2: scallop beds on the sea floor".
 
 ---
 
@@ -1031,7 +1031,7 @@ Build order step 2.
   - `packs/foodcraft_rp/blocks.json` (`"foodcraft:cutting_board": { "sound": "wood" }`)
   - `terrain_texture.json` (`foodcraft_cutting_board`)
 
-- [ ] **Step 1: `blocks/cutting_board.json`**
+- [x] **Step 1: `blocks/cutting_board.json`**
 
 ```json
 {
@@ -1069,7 +1069,7 @@ Build order step 2.
 }
 ```
 
-- [ ] **Step 2: `scripts/board.js`**
+- [x] **Step 2: `scripts/board.js`**
 
 The board's state shows what lies on it. The exact item id (which fish) is kept in a world dynamic property keyed by position, so the right fish comes back or drops.
 
@@ -1196,7 +1196,7 @@ In `main.js`, add `import { cuttingBoardComponent } from "./board.js";` and regi
 event.blockComponentRegistry.registerCustomComponent("foodcraft:cutting_board", cuttingBoardComponent);
 ```
 
-- [ ] **Step 3: Checklist lines**
+- [x] **Step 3: Checklist lines**
 
 ```
 ## v2: Cutting board (Task 5)
@@ -1215,7 +1215,7 @@ event.blockComponentRegistry.registerCustomComponent("foodcraft:cutting_board", 
 ```
 
 - [ ] **Step 4: Deploy and verify in game**
-- [ ] **Step 5: Commit** "v2: cutting board and knife".
+- [x] **Step 5: Commit** "v2: cutting board and knife".
 
 ---
 
@@ -1250,8 +1250,8 @@ Before deploying, check that the tags `savanna`, `swamp` and `mangrove_swamp` ex
 
 For wild rice, `may_attach_to.bottom` is `["minecraft:grass_block", "minecraft:mud", "minecraft:dirt"]`. Add the same three blocks to its `placement_filter`.
 
-- [ ] **Step 1:** Write the files above, then run `node tools/make_content.mjs 6`.
-- [ ] **Step 2: Checklist lines**
+- [x] **Step 1:** Write the files above, then run `node tools/make_content.mjs 6`.
+- [x] **Step 2: Checklist lines**
 
 ```
 ## v2: New crops (Task 6)
@@ -1262,7 +1262,7 @@ For wild rice, `may_attach_to.bottom` is `["minecraft:grass_block", "minecraft:m
 ```
 
 - [ ] **Step 3: Deploy and verify in game** (crops in the test world, wild plants in a new world).
-- [ ] **Step 4: Commit** "v2: corn, lettuce, rice and cinnamon".
+- [x] **Step 4: Commit** "v2: corn, lettuce, rice and cinnamon".
 
 ---
 
@@ -1278,7 +1278,7 @@ Build order step 4.
   - `blocks.json` (`"foodcraft:cooking_pot": { "sound": "metal" }`)
   - `terrain_texture.json` (`foodcraft_cooking_pot`)
 
-- [ ] **Step 1: `blocks/cooking_pot.json`**
+- [x] **Step 1: `blocks/cooking_pot.json`**
 
 ```json
 {
@@ -1321,7 +1321,7 @@ Build order step 4.
 }
 ```
 
-- [ ] **Step 2: `scripts/pot.js`**
+- [x] **Step 2: `scripts/pot.js`**
 
 ```js
 // Spec 2.5: water, up to 4 ingredients, a lit campfire below, 10 s of cooking, 3 portions taken with bowls.
@@ -1505,7 +1505,7 @@ event.blockComponentRegistry.registerCustomComponent("foodcraft:cooking_pot", co
 - [ ] **Step 3: Bucket check.** In game, right-click the pot with a water bucket and with a milk bucket.
   - **The pot takes them:** done.
   - **The bucket empties into the world instead (water placed next to the pot), or the player drinks the milk:** the item's own use wins over the block. Stop and report to the parent, with what happened for each bucket. The fix (for example a water bottle instead of a bucket, or sneak-click) changes spec 2.5 and is decided with the kids.
-- [ ] **Step 4: Checklist lines**
+- [x] **Step 4: Checklist lines**
 
 ```
 ## v2: Cooking pot (Task 7)
@@ -1528,7 +1528,7 @@ event.blockComponentRegistry.registerCustomComponent("foodcraft:cooking_pot", co
 ```
 
 - [ ] **Step 5: Deploy and verify in game**
-- [ ] **Step 6: Commit** "v2: cooking pot".
+- [x] **Step 6: Commit** "v2: cooking pot".
 
 ---
 
@@ -1540,7 +1540,7 @@ Build order step 5 (part 1). The oven gets a dish table. All v2 oven dishes go i
 - Modify: `packs/foodcraft_bp/scripts/oven.js`, `packs/foodcraft_bp/blocks/pizza_oven.json`, `art/models/pizza_oven_open.bbmodel`, `packs/foodcraft_rp/models/blocks/pizza_oven.geo.json`, `packs/foodcraft_rp/textures/blocks/foodcraft_pizza_oven.png`
 - Generated: `node tools/make_content.mjs 8`
 
-- [ ] **Step 1: `oven.js`, dish table**
+- [x] **Step 1: `oven.js`, dish table**
 
 Replace the constants `RAW_PREFIX`, `BAKED_PREFIX` and `PIZZAS` with:
 
@@ -1569,7 +1569,7 @@ Then make these changes:
 
 `food.js` is unchanged. Its `raw_pizza_` prefix already covers raw tuna pizza.
 
-- [ ] **Step 2: `pizza_oven.json`**
+- [x] **Step 2: `pizza_oven.json`**
 
 Rename the state `foodcraft:pizza` to `foodcraft:dish` everywhere (block JSON states and every `bone_visibility` and permutation condition, and `"foodcraft:pizza"` in `oven.js`). Set its values to `["none", "margherita", "pepperoni", "prosciutto", "hawaii", "tuna", "lasagna", "cinnamon_buns", "brownies", "waffles"]`. Add these lines to `bone_visibility`, in the same pattern as the v1 lines:
 
@@ -1581,7 +1581,7 @@ Rename the state `foodcraft:pizza` to `foodcraft:dish` everywhere (block JSON st
 "waffles": "... == 'waffles'"
 ```
 
-- [ ] **Step 3: Model**
+- [x] **Step 3: Model**
 
 Open `art/models/pizza_oven_open.bbmodel` in Blockbench and add five bones:
 - **`pizza_tuna`:** duplicate `pizza_margherita`, and paint the toppings pink and grey on a free texture area.
@@ -1598,8 +1598,8 @@ node tools/bbmodel_to_geo.mjs art/models/pizza_oven_open.bbmodel packs/foodcraft
 
 Check that the geo has the five new bone names and keeps all v1 bones. This step can be a kid session; until it is done, the new dishes bake fine but the done oven shows no food.
 
-- [ ] **Step 4:** Run `node tools/make_content.mjs 8`.
-- [ ] **Step 5: Checklist lines**
+- [x] **Step 4:** Run `node tools/make_content.mjs 8`.
+- [x] **Step 5: Checklist lines**
 
 ```
 ## v2: Oven extended (Task 8)
@@ -1610,7 +1610,7 @@ Check that the geo has the five new bone names and keeps all v1 bones. This step
 ```
 
 - [ ] **Step 6: Deploy and verify in game**
-- [ ] **Step 7: Commit** "v2: oven dish table and tuna pizza".
+- [x] **Step 7: Commit** "v2: oven dish table and tuna pizza".
 
 ---
 
@@ -1618,8 +1618,8 @@ Check that the geo has the five new bone names and keeps all v1 bones. This step
 
 Build order step 5 (part 2). Only table entries; everything is generated.
 
-- [ ] **Step 1:** Run `node tools/make_content.mjs 9`.
-- [ ] **Step 2: Checklist lines**
+- [x] **Step 1:** Run `node tools/make_content.mjs 9`.
+- [x] **Step 2: Checklist lines**
 
 ```
 ## v2: Fish dishes (Task 9)
@@ -1630,7 +1630,7 @@ Build order step 5 (part 2). Only table entries; everything is generated.
 ```
 
 - [ ] **Step 3: Deploy and verify in game**
-- [ ] **Step 4: Commit** "v2: fish cakes, fish and chips, sushi".
+- [x] **Step 4: Commit** "v2: fish cakes, fish and chips, sushi".
 
 ---
 
@@ -1638,8 +1638,8 @@ Build order step 5 (part 2). Only table entries; everything is generated.
 
 Build order step 6.
 
-- [ ] **Step 1:** Run `node tools/make_content.mjs 10`.
-- [ ] **Step 2: Checklist lines**
+- [x] **Step 1:** Run `node tools/make_content.mjs 10`.
+- [x] **Step 2: Checklist lines**
 
 ```
 ## v2: Pasta and taco (Task 10)
@@ -1649,7 +1649,7 @@ Build order step 6.
 ```
 
 - [ ] **Step 3: Deploy and verify in game**
-- [ ] **Step 4: Commit** "v2: lasagna and taco".
+- [x] **Step 4: Commit** "v2: lasagna and taco".
 
 ---
 
@@ -1657,8 +1657,8 @@ Build order step 6.
 
 Build order step 7.
 
-- [ ] **Step 1:** Run `node tools/make_content.mjs 11`.
-- [ ] **Step 2: Checklist lines**
+- [x] **Step 1:** Run `node tools/make_content.mjs 11`.
+- [x] **Step 2: Checklist lines**
 
 ```
 ## v2: Baking (Task 11)
@@ -1671,7 +1671,7 @@ Build order step 7.
 ```
 
 - [ ] **Step 3: Deploy and verify in game**
-- [ ] **Step 4: Commit** "v2: cinnamon buns, brownies, pancakes, waffles, jam".
+- [x] **Step 4: Commit** "v2: cinnamon buns, brownies, pancakes, waffles, jam".
 
 ---
 
