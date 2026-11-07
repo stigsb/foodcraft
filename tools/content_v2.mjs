@@ -69,7 +69,6 @@ export const BLOCK_NAMES = [
     { step: 6, id: `${id}_crop`, en, nb },
     { step: 6, id: `wild_${id}`, en: `Wild ${en}`, nb: `Vill ${nb.toLowerCase()}` },
   ]),
-  { step: 7, id: "cooking_pot", en: "Cooking Pot", nb: "Kokegryte" },
 ];
 
 // Crop and wild plant textures (cross geometry). accent = the produce colour shown at stage 3.
@@ -91,7 +90,6 @@ export const RECIPES = [
   { step: 5, type: "furnace", id: "cooked_minced_meat", input: "minced_meat", output: "cooked_minced_meat", tags: FOOD_COOKING },
   { step: 5, type: "furnace", id: "fries", input: "raw_fries", output: "fries", tags: FOOD_COOKING },
 
-  { step: 7, type: "shaped", id: "cooking_pot", pattern: ["I I", "IBI", "III"], key: { I: "minecraft:iron_ingot", B: "minecraft:bucket" }, result: "cooking_pot" },
 
   { step: 8, type: "shapeless", id: "raw_pizza_tuna", ingredients: ["pizza_dough", "tomato_sauce", "mozzarella", "tuna_fillet"], result: "raw_pizza_tuna" },
 

@@ -36,9 +36,6 @@
   "foodcraft:cutting_board": {
     "sound": "wood"
   },
-  "foodcraft:cooking_pot": {
-    "sound": "metal"
-  },
   "foodcraft:corn_crop": {
     "sound": "grass"
   },

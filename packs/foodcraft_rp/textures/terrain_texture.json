@@ -129,9 +129,6 @@
     },
     "foodcraft_cutting_board": {
       "textures": "textures/blocks/foodcraft_cutting_board"
-    },
-    "foodcraft_cooking_pot": {
-      "textures": "textures/blocks/foodcraft_cooking_pot"
     }
   }
 }

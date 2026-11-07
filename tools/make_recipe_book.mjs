@@ -106,7 +106,7 @@ const craftCard = (r) => {
 };
 
 // --- sort crafting recipes into sections ---------------------------------------------------------
-const STATIONS = new Set(["foodcraft:cutting_board", "foodcraft:knife", "foodcraft:cooking_pot", "foodcraft:pizza_oven"]);
+const STATIONS = new Set(["foodcraft:cutting_board", "foodcraft:knife", "foodcraft:pizza_oven"]);
 const ovenRaw = new Set(Object.values(oven).map((d) => d.raw));
 const all = [...shaped, ...shapeless];
 const byName = (a, b) => nameOf(results(a)[0].id).localeCompare(nameOf(results(b)[0].id), "nb");
@@ -185,11 +185,11 @@ ${Object.entries(board).sort(([a], [b]) => nameOf(a).localeCompare(nameOf(b), "n
 
 <h2>Kokegryte</h2>
 <ol class="how">
-<li>Sett kokegryta rett oppå et tent leirbål.</li>
-<li>Fyll gryta med en vannbøtte.</li>
+<li>Kokegryta er en vanlig gryte (cauldron) rett oppå et tent leirbål.</li>
+<li>Fyll gryta helt med en vannbøtte.</li>
 <li>Legg i ingrediensene én og én. Med tom hånd tar du ut den siste igjen.</li>
 <li>Gryta koker i 10 sekunder.</li>
-<li>Du får 3 porsjoner. Ta ut hver porsjon med en tom bolle.</li>
+<li>Maten får farge når den er ferdig. Du får 3 porsjoner: ta ut hver med en tom bolle.</li>
 </ol>
 <div class="cards">${Object.values(pot).map((r) => card(esc(nameOf(r.item)) + " <small>× 3</small>", `<p class="row">${list(r.needs)}</p>`)).join("")}</div>
 

@@ -2,6 +2,12 @@
 
 Alle versjoner av Foodcraft, nyeste først. Hver gang versjonsnummeret økes, får versjonen en ny del her.
 
+## v0.2.4 – 7. november 2026
+
+- Kokegryta er nå en vanlig gryte (cauldron) på et tent leirbål. Den egne kokegryta er borte, og du trenger ikke lage den.
+- Fyll gryta med en vannbøtte og legg i ingrediensene. Gryta forteller hva som ligger i den.
+- Ferdig mat farger vannet, og vannet synker for hver porsjon du tar med bolle.
+
 ## v0.2.3 – 7. november 2026
 
 - Pannekakerøre heter Røre igjen.

@@ -149,24 +149,24 @@ Tick a line only after seeing it work in the test world with an empty Content Lo
 - [ ] Mature harvests as in spec 2.2; immature drops only the seed item
 - [ ] New world: wild corn in savanna and plains, wild lettuce in forests, wild rice in swamps, wild cinnamon in jungles
 
-## v2: Cooking pot (Task 7)
-- [ ] Pot recipe: iron U with a bucket in the middle
-- [ ] Round pot looks right from all sides, no holes or z-fighting; water and soups fill it without poking through the wall (v0.2.2)
-- [ ] Pot hitbox matches the wider belly; you can stand on it
-- [ ] Empty pot + water bucket: water shows, bucket comes back empty
-- [ ] Empty pot + anything else: "Fill the pot with water first"
-- [ ] Ingredients go in one at a time and show as bits on the water
+## v2: Cooking pot — vanilla cauldron on a campfire (v0.2.4)
+- [ ] Cauldron on a lit campfire, filled with a water bucket (Minecraft fills it as usual)
+- [ ] Ingredient into an empty cauldron: "Fill the cauldron with a water bucket first", nothing taken
+- [ ] Ingredients go in one at a time; the action bar lists what is in the pot (names in the game language)
 - [ ] Wrong ingredient: "That doesn't go in the pot", nothing taken
 - [ ] Empty hand takes the last ingredient back out
+- [ ] With ingredients in: buckets, bottles and blocks do nothing ("Take the ingredients out first")
 - [ ] Fish soup, bolognese, mac and cheese, rice porridge: each starts cooking on its last ingredient (smoke), done after 10 s
+- [ ] Done: the water takes the dish's colour
 - [ ] Milk bucket goes in and the empty bucket comes back
 - [ ] No campfire: "The pot needs a lit campfire under it"; light one later and it starts by itself
 - [ ] Put out the campfire mid-cook: cooking pauses; relight: it finishes
-- [ ] While cooking: "Still cooking…"
-- [ ] Done: three bowls take three portions, then the pot is empty (no water)
+- [ ] While cooking: "Still cooking…"; buckets and bottles do nothing
+- [ ] Done: three bowls take three portions, the water drops each time, then the cauldron is empty
 - [ ] Done + no bowl: "Take the food out with a bowl"
-- [ ] Break the pot with ingredients in: they drop (no milk bucket); break while done: no food drops
+- [ ] Break the cauldron with ingredients in: they drop (no milk bucket); break while done: no food drops
 - [ ] Save & Quit mid-cook, re-enter: finishes within 10 s
+- [ ] A cauldron without ingredients still works as normal (buckets, bottles, dyes)
 - [ ] Creative: ingredients and buckets not used up
 
 ## v2: Oven extended (Task 8)
