@@ -2,6 +2,10 @@
 
 Alle versjoner av Foodcraft, nyeste først. Hver gang versjonsnummeret økes, får versjonen en ny del her.
 
+## v0.2.3 – 7. november 2026
+
+- Pannekakerøre heter Røre igjen.
+
 ## v0.2.2 – 7. november 2026
 
 - Kokegryta er rund, med bredere mage, smalere fot og en kant øverst.
