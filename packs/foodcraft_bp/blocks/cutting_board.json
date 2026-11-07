@@ -1,0 +1,33 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:block": {
+    "description": {
+      "identifier": "foodcraft:cutting_board",
+      "menu_category": { "category": "items" },
+      "states": {
+        "foodcraft:item": ["none", "small_fish", "medium_fish", "large_fish", "tuna", "beef", "potato", "dough"],
+        "foodcraft:chops": [0, 1, 2]
+      }
+    },
+    "components": {
+      "minecraft:geometry": {
+        "identifier": "geometry.foodcraft_cutting_board",
+        "bone_visibility": {
+          "small_fish": "q.block_state('foodcraft:item') == 'small_fish'",
+          "medium_fish": "q.block_state('foodcraft:item') == 'medium_fish'",
+          "large_fish": "q.block_state('foodcraft:item') == 'large_fish'",
+          "tuna": "q.block_state('foodcraft:item') == 'tuna'",
+          "beef": "q.block_state('foodcraft:item') == 'beef'",
+          "potato": "q.block_state('foodcraft:item') == 'potato'",
+          "dough": "q.block_state('foodcraft:item') == 'dough'"
+        }
+      },
+      "minecraft:material_instances": { "*": { "texture": "foodcraft_cutting_board", "render_method": "alpha_test" } },
+      "minecraft:collision_box": { "origin": [-6, 0, -4], "size": [12, 2, 8] },
+      "minecraft:selection_box": { "origin": [-6, 0, -4], "size": [12, 3, 8] },
+      "minecraft:destructible_by_mining": { "seconds_to_destroy": 0.6 },
+      "minecraft:light_dampening": 0,
+      "foodcraft:cutting_board": {}
+    }
+  }
+}
