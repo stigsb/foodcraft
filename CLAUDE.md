@@ -26,8 +26,8 @@ Leave the `@minecraft/server` dependency version alone; it is the script API ver
 
 ## Building and sharing
 
-- `powershell -ExecutionPolicy Bypass -File tools/export_mcaddon.ps1` builds `dist/foodcraft.mcaddon` (`dist/` is git-ignored).
-- `node tools/serve_mcaddon.mjs` serves it on the LAN at `http://<PC LAN IP>:8000` so the tablet can download it. The page shows the version and build time.
+- `powershell -ExecutionPolicy Bypass -File tools/export_mcaddon.ps1` builds `dist/foodcraft-vX.Y.Z.mcaddon`, named after the pack version (`dist/` is git-ignored). Old builds are kept.
+- `node tools/serve_mcaddon.mjs` serves the builds on the LAN at `http://<PC LAN IP>:8000` so the tablet can download them: the newest version first, older ones listed below. On macOS, `tools/push.sh` bumps, builds and serves in one go.
 
 **After every finished task where the code is usable** (static checks pass, nothing half-done), bump the patch version (minor if the task finished a spec), rebuild the `.mcaddon` and make sure the share server is running: start it in the background if it isn't, restart it if it has stopped. Then tell the user the address so the latest version is always easy to pull onto the tablet for testing. Skip this when the task left the packs in a broken state, and say so.
 - `node tools/make_recipe_book.mjs` builds a printable Norwegian recipe book, `dist/oppskrifter.pdf`, from the recipes and script tables. Rebuild it together with the `.mcaddon` when recipes change; the share server links to it.
