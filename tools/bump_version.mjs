@@ -31,4 +31,17 @@ manifests.forEach((m, i) => {
   const json = JSON.stringify(m, null, 2).replace(/\[\s*(-?\d+(?:,\s*-?\d+)*)\s*\]/g, (_, xs) => `[${xs.split(/,\s*/).join(", ")}]`);
   fs.writeFileSync(files[i], json + "\n");
 });
-console.log(tag);
+// Start a section for the new version in CHANGELOG.md, above the newest one. The bullets are written by hand;
+// the pre-commit hook rejects a version without at least one filled-in bullet.
+const changelog = path.join(repo, "CHANGELOG.md");
+const MONTHS = ["januar", "februar", "mars", "april", "mai", "juni", "juli", "august", "september", "oktober", "november", "desember"];
+const now = new Date();
+const heading = `## ${tag} – ${now.getDate()}. ${MONTHS[now.getMonth()]} ${now.getFullYear()}`;
+let log = fs.existsSync(changelog) ? fs.readFileSync(changelog, "utf8").replace(/\r\n/g, "\n") : "# Endringslogg\n";
+if (!log.includes(`## ${tag} `)) {
+  const at = log.search(/^## v/m);
+  const section = `${heading}\n\n- \n\n`;
+  log = at < 0 ? `${log.trimEnd()}\n\n${section}` : log.slice(0, at) + section + log.slice(at);
+  fs.writeFileSync(changelog, log);
+}
+console.log(`${tag} (fill in CHANGELOG.md)`);

@@ -16,6 +16,8 @@ Versioning rules:
 - **Minor** (`0.2.x` → `0.3.0`): bump when a spec under `docs/superpowers/specs/` is finished. Patch resets to 0.
 - Don't bump when nothing in `packs/` changed since the last build.
 
+**Every version bump gets an entry in `CHANGELOG.md`**, written in Norwegian for the players (the kids): what is new or different in the game, not how the code changed. `bump_version.mjs` adds an empty section for the new version; fill in the bullets in the same commit. The pre-commit hook rejects a bumped version without a filled-in entry, and the share server shows the changelog.
+
 Use `node tools/bump_version.mjs patch|minor|major`; it does all of the below. If editing by hand, update both manifests (`packs/foodcraft_bp/manifest.json`, `packs/foodcraft_rp/manifest.json`) and keep everything in step:
 
 - `header.name`: `Foodcraft Behavior Pack vX.Y.Z` / `Foodcraft Resource Pack vX.Y.Z`

@@ -24,6 +24,28 @@ function builds() {
     .map((b) => ({ ...b, version: b.v.join("."), built: fs.statSync(path.join(dist, b.name)).mtime.toLocaleString("nb-NO") }));
 }
 
+// CHANGELOG.md as HTML. Handles the subset it uses: "## " headings, "- " bullets, paragraphs, **bold**.
+const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+function changelogHtml() {
+  const file = path.join(repo, "CHANGELOG.md");
+  if (!fs.existsSync(file)) return "";
+  const inline = (s) => esc(s).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>").replace(/`(.+?)`/g, "<code>$1</code>");
+  const out = [];
+  let list = false;
+  for (const line of fs.readFileSync(file, "utf8").split(/\r?\n/)) {
+    const bullet = line.match(/^- (.*)$/);
+    if (list && !bullet) { out.push("</ul>"); list = false; }
+    if (line.startsWith("# ")) continue; // the page has its own heading
+    if (line.startsWith("## ")) out.push(`<h3>${inline(line.slice(3))}</h3>`);
+    else if (bullet) {
+      if (!list) { out.push("<ul>"); list = true; }
+      if (bullet[1].trim()) out.push(`<li>${inline(bullet[1])}</li>`);
+    } else if (line.trim()) out.push(`<p>${inline(line)}</p>`);
+  }
+  if (list) out.push("</ul>");
+  return `<h2>Endringslogg</h2>${out.join("\n")}`;
+}
+
 function send(res, file, type, download) {
   const headers = { "Content-Type": type, "Content-Length": fs.statSync(file).size, "Cache-Control": "no-store" };
   if (download) headers["Content-Disposition"] = `attachment; filename=${path.basename(file)}`;
@@ -42,9 +64,10 @@ http.createServer((req, res) => {
   const link = (b) => `<a href="/${b.name}?t=${t}">${b.name}</a> <small>bygget ${b.built}</small>`;
   res.writeHead(200, { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" });
   res.end(`<meta name="viewport" content="width=device-width"><title>Foodcraft</title>
-<body style="font-family:sans-serif;padding:16px;line-height:1.5">
+<body style="font-family:sans-serif;padding:16px;line-height:1.5;max-width:42em;margin:0 auto">
 ${latest ? `<h1>Siste versjon: v${latest.version}</h1><p style="font-size:1.3em">${link(latest)}</p>` : "<h1>Ingen pakker bygget ennå</h1>"}
 ${fs.existsSync(pdf) ? `<p><a href="/oppskrifter.pdf?t=${t}">Oppskriftsbok (PDF)</a></p>` : ""}
+${changelogHtml()}
 ${older.length ? `<h2>Eldre versjoner</h2><ul>${older.map((b) => `<li>${link(b)}</li>`).join("")}</ul>` : ""}
 </body>`);
 }).listen(port, "0.0.0.0", () => {
