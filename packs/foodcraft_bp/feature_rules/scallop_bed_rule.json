@@ -1,0 +1,22 @@
+{
+  "format_version": "1.13.0",
+  "minecraft:feature_rules": {
+    "description": { "identifier": "foodcraft:scallop_bed_rule", "places_feature": "foodcraft:scallop_bed_patch" },
+    "conditions": {
+      "placement_pass": "surface_pass",
+      "minecraft:biome_filter": [
+        { "test": "has_biome_tag", "operator": "==", "value": "ocean" },
+        { "test": "has_biome_tag", "operator": "!=", "value": "frozen" },
+        { "test": "has_biome_tag", "operator": "!=", "value": "warm" }
+      ]
+    },
+    "distribution": {
+      "iterations": 1,
+      "scatter_chance": 30,
+      "coordinate_eval_order": "zxy",
+      "x": 0,
+      "y": "query.above_top_solid(variable.worldx, variable.worldz)",
+      "z": 0
+    }
+  }
+}
