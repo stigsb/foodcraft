@@ -9,7 +9,7 @@
       },
       "states": {
         "foodcraft:stage": ["empty", "baking", "done"],
-        "foodcraft:pizza": ["none", "margherita", "pepperoni", "prosciutto", "hawaii"]
+        "foodcraft:dish": ["none", "margherita", "pepperoni", "prosciutto", "hawaii", "tuna", "lasagna", "cinnamon_buns", "brownies", "waffles"]
       }
     },
     "components": {
@@ -17,10 +17,15 @@
         "identifier": "geometry.foodcraft_pizza_oven",
         "bone_visibility": {
           "flame": "q.block_state('foodcraft:stage') == 'baking'",
-          "pizza_margherita": "q.block_state('foodcraft:stage') == 'done' && q.block_state('foodcraft:pizza') == 'margherita'",
-          "pizza_pepperoni": "q.block_state('foodcraft:stage') == 'done' && q.block_state('foodcraft:pizza') == 'pepperoni'",
-          "pizza_prosciutto": "q.block_state('foodcraft:stage') == 'done' && q.block_state('foodcraft:pizza') == 'prosciutto'",
-          "pizza_hawaii": "q.block_state('foodcraft:stage') == 'done' && q.block_state('foodcraft:pizza') == 'hawaii'"
+          "pizza_margherita": "q.block_state('foodcraft:stage') == 'done' && q.block_state('foodcraft:dish') == 'margherita'",
+          "pizza_pepperoni": "q.block_state('foodcraft:stage') == 'done' && q.block_state('foodcraft:dish') == 'pepperoni'",
+          "pizza_prosciutto": "q.block_state('foodcraft:stage') == 'done' && q.block_state('foodcraft:dish') == 'prosciutto'",
+          "pizza_hawaii": "q.block_state('foodcraft:stage') == 'done' && q.block_state('foodcraft:dish') == 'hawaii'",
+          "pizza_tuna": "q.block_state('foodcraft:stage') == 'done' && q.block_state('foodcraft:dish') == 'tuna'",
+          "lasagna": "q.block_state('foodcraft:stage') == 'done' && q.block_state('foodcraft:dish') == 'lasagna'",
+          "cinnamon_buns": "q.block_state('foodcraft:stage') == 'done' && q.block_state('foodcraft:dish') == 'cinnamon_buns'",
+          "brownies": "q.block_state('foodcraft:stage') == 'done' && q.block_state('foodcraft:dish') == 'brownies'",
+          "waffles": "q.block_state('foodcraft:stage') == 'done' && q.block_state('foodcraft:dish') == 'waffles'"
         }
       },
       "minecraft:material_instances": {
