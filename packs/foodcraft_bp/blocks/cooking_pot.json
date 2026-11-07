@@ -1,0 +1,38 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:block": {
+    "description": {
+      "identifier": "foodcraft:cooking_pot",
+      "menu_category": { "category": "items" },
+      "states": {
+        "foodcraft:pot": ["empty", "water", "cooking", "done"],
+        "foodcraft:dish": ["none", "fish_soup", "bolognese", "mac_and_cheese", "rice_porridge"],
+        "foodcraft:filled": [0, 1, 2, 3, 4],
+        "foodcraft:portions": [0, 1, 2, 3]
+      }
+    },
+    "components": {
+      "minecraft:geometry": {
+        "identifier": "geometry.foodcraft_cooking_pot",
+        "bone_visibility": {
+          "water": "q.block_state('foodcraft:pot') == 'water' || q.block_state('foodcraft:pot') == 'cooking'",
+          "soup_fish_soup": "q.block_state('foodcraft:pot') == 'done' && q.block_state('foodcraft:dish') == 'fish_soup'",
+          "soup_bolognese": "q.block_state('foodcraft:pot') == 'done' && q.block_state('foodcraft:dish') == 'bolognese'",
+          "soup_mac_and_cheese": "q.block_state('foodcraft:pot') == 'done' && q.block_state('foodcraft:dish') == 'mac_and_cheese'",
+          "soup_rice_porridge": "q.block_state('foodcraft:pot') == 'done' && q.block_state('foodcraft:dish') == 'rice_porridge'",
+          "ingredient_1": "q.block_state('foodcraft:pot') != 'done' && q.block_state('foodcraft:filled') >= 1",
+          "ingredient_2": "q.block_state('foodcraft:pot') != 'done' && q.block_state('foodcraft:filled') >= 2",
+          "ingredient_3": "q.block_state('foodcraft:pot') != 'done' && q.block_state('foodcraft:filled') >= 3",
+          "ingredient_4": "q.block_state('foodcraft:pot') != 'done' && q.block_state('foodcraft:filled') >= 4"
+        }
+      },
+      "minecraft:material_instances": { "*": { "texture": "foodcraft_cooking_pot", "render_method": "alpha_test" } },
+      "minecraft:collision_box": { "origin": [-6, 0, -6], "size": [12, 9, 12] },
+      "minecraft:selection_box": { "origin": [-8, 0, -6], "size": [16, 9, 12] },
+      "minecraft:destructible_by_mining": { "seconds_to_destroy": 1.5 },
+      "minecraft:light_dampening": 0,
+      "minecraft:tick": { "interval_range": [10, 10], "looping": true },
+      "foodcraft:cooking_pot": {}
+    }
+  }
+}
