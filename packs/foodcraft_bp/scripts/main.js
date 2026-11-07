@@ -3,6 +3,8 @@ import "./food.js";
 import { pizzaOvenComponent } from "./oven.js";
 import { cropComponent } from "./crop.js";
 import { fruitPlant } from "./fruit_plant.js";
+import "./fishing.js";
+// import "./fishing_probe.js"; // Task 1 probe: uncomment to see what the script sees when fishing
 
 system.beforeEvents.startup.subscribe((event) => {
   event.blockComponentRegistry.registerCustomComponent("foodcraft:pizza_oven", pizzaOvenComponent);
