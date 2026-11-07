@@ -7,7 +7,7 @@ Generated placeholder art for Pizza Night v1. Redraw everything in Blockbench an
 | `textures/items/` | 22 item textures, 16×16 | File > Open, pick the PNG, paint, File > Save |
 | `textures/blocks/` | Crop stages 0–3, wild plants, oven faces | Same as items |
 | `models/pizza_oven.bbmodel` | Oven block model (bricks, front opening, chimney) | File > Open Model |
-| `models/pizza_oven_open.bbmodel` | Oven with an open mouth and the bones from plan Task 6: `body`, `flame`, `pizza_margherita`, `pizza_pepperoni`, `pizza_prosciutto`, `pizza_hawaii`. Uses `textures/blocks/pizza_oven.png` (64×64) | File > Open Model |
+| `models/pizza_oven_open.bbmodel` | Oven with an open mouth and the bones from plan Task 6 (`body`, `flame`, `pizza_margherita`, `pizza_pepperoni`, `pizza_prosciutto`, `pizza_hawaii`) and v2 Task 8 (`pizza_tuna`, `lasagna`, `cinnamon_buns`, `brownies`, `waffles`). Uses `textures/blocks/pizza_oven.png` (64×64) | File > Open Model |
 | `models/pineapple_crop.bbmodel` | Pineapple plant, one block. Uses `textures/blocks/pineapple_plant.png` (32×32) | File > Open Model |
 | `models/tomato_crop_lower.bbmodel`, `models/tomato_crop_upper.bbmodel` | Two-block tomato plant on a stake, one model per block. Both use `textures/blocks/tomato_plant.png` (32×32) | File > Open Model |
 
@@ -72,7 +72,7 @@ Every `fruit` bone also needs growth 2. The leaves are flat strips tilted 22.5°
 
 ## Pizza oven with bones
 
-`pizza_oven_open.bbmodel` is the model for plan Task 6. `pizza_oven.bbmodel` (the closed box with painted front faces) is left as it was. The mouth faces north (-Z), which the block's rotation turns towards the player. `flame` shows while baking, one `pizza_<name>` when done.
+`pizza_oven_open.bbmodel` is the model for plan Task 6. `pizza_oven.bbmodel` (the closed box with painted front faces) is left as it was. The mouth faces north (-Z), which the block's rotation turns towards the player. `flame` shows while baking. When done, the bone for the value of the `foodcraft:dish` state shows: `pizza_<name>` for the five pizzas (`margherita`, `pepperoni`, `prosciutto`, `hawaii`, `tuna`), and `lasagna`, `cinnamon_buns`, `brownies` or `waffles`. The v2 dish bones were added by script, not in Blockbench: tuna pizza is the margherita cube with its own top (pink and grey tuna), the others are plain cubes on the oven floor (lasagna 6×2×5, three 2×1×2 buns, a 5×1×4 brownie slab, a 5×1×5 waffle). Their texture areas are in the bottom row of `pizza_oven.png` (y 48–64).
 
 ## Sounds
 

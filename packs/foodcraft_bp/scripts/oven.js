@@ -1,9 +1,20 @@
 import { system, ItemStack, GameMode, EquipmentSlot, EntityComponentTypes, Direction } from "@minecraft/server";
 
 const OVEN_ID = "foodcraft:pizza_oven";
-const RAW_PREFIX = "foodcraft:raw_pizza_";
-const BAKED_PREFIX = "foodcraft:pizza_";
-const PIZZAS = ["margherita", "pepperoni", "prosciutto", "hawaii"];
+// value of foodcraft:dish -> raw item in, baked item out (spec 2.6).
+const DISHES = {
+  margherita: { raw: "foodcraft:raw_pizza_margherita", baked: "foodcraft:pizza_margherita", count: 1 },
+  pepperoni: { raw: "foodcraft:raw_pizza_pepperoni", baked: "foodcraft:pizza_pepperoni", count: 1 },
+  prosciutto: { raw: "foodcraft:raw_pizza_prosciutto", baked: "foodcraft:pizza_prosciutto", count: 1 },
+  hawaii: { raw: "foodcraft:raw_pizza_hawaii", baked: "foodcraft:pizza_hawaii", count: 1 },
+  tuna: { raw: "foodcraft:raw_pizza_tuna", baked: "foodcraft:pizza_tuna", count: 1 },
+  lasagna: { raw: "foodcraft:raw_lasagna", baked: "foodcraft:lasagna", count: 1 },
+  cinnamon_buns: { raw: "foodcraft:raw_cinnamon_buns", baked: "foodcraft:cinnamon_bun", count: 3 },
+  brownies: { raw: "foodcraft:raw_brownies", baked: "foodcraft:brownie", count: 4 },
+  waffles: { raw: "foodcraft:batter", baked: "foodcraft:waffle", count: 3 },
+};
+const DISH_BY_RAW = new Map(Object.entries(DISHES).map(([dish, d]) => [d.raw, dish]));
+const baked = (dish) => new ItemStack(DISHES[dish].baked, DISHES[dish].count);
 const BAKE_TICKS = 200; // 10 seconds
 const DING_SOUND = "foodcraft.oven.ding"; // sounds/foodcraft/ding.ogg in the resource pack
 
@@ -19,11 +30,11 @@ function stageOf(block) {
 }
 
 function pizzaOf(block) {
-  return block.permutation.getState("foodcraft:pizza");
+  return block.permutation.getState("foodcraft:dish");
 }
 
 function setOven(block, stage, pizza) {
-  block.setPermutation(block.permutation.withState("foodcraft:stage", stage).withState("foodcraft:pizza", pizza));
+  block.setPermutation(block.permutation.withState("foodcraft:stage", stage).withState("foodcraft:dish", pizza));
 }
 
 function faceOffset(face) {
@@ -70,12 +81,11 @@ function cancelBakeTimer(block) {
   }
 }
 
-function heldRawPizza(player) {
+function heldRaw(player) {
   const equippable = player.getComponent(EntityComponentTypes.Equippable);
   const held = equippable?.getEquipment(EquipmentSlot.Mainhand);
-  if (!held || !held.typeId.startsWith(RAW_PREFIX)) return undefined;
-  const pizza = held.typeId.slice(RAW_PREFIX.length);
-  return PIZZAS.includes(pizza) ? { equippable, held, pizza } : undefined;
+  const dish = held && DISH_BY_RAW.get(held.typeId);
+  return dish ? { equippable, held, pizza: dish } : undefined;
 }
 
 function takeOneFromHand(player, equippable, held) {
@@ -107,12 +117,12 @@ export const pizzaOvenComponent = {
     if (stage === "done") {
       const pizza = pizzaOf(block);
       setOven(block, "empty", "none"); // state change first: a second click sees "empty"
-      giveOrDrop(player, block, face, new ItemStack(BAKED_PREFIX + pizza, 1));
+      giveOrDrop(player, block, face, baked(pizza));
       return;
     }
-    const hand = heldRawPizza(player);
+    const hand = heldRaw(player);
     if (!hand) {
-      player.onScreenDisplay.setActionBar("Put a raw pizza in the oven");
+      player.onScreenDisplay.setActionBar("Put something raw in the oven");
       return;
     }
     takeOneFromHand(player, hand.equippable, hand.held);
@@ -132,8 +142,8 @@ export const pizzaOvenComponent = {
     const { block, brokenBlockPermutation } = event;
     cancelBakeTimer(block);
     const stage = brokenBlockPermutation.getState("foodcraft:stage");
-    const pizza = brokenBlockPermutation.getState("foodcraft:pizza");
-    if (stage === "baking") dropAt(block, new ItemStack(RAW_PREFIX + pizza, 1));
-    if (stage === "done") dropAt(block, new ItemStack(BAKED_PREFIX + pizza, 1));
+    const pizza = brokenBlockPermutation.getState("foodcraft:dish");
+    if (stage === "baking") dropAt(block, new ItemStack(DISHES[pizza].raw, 1));
+    if (stage === "done") dropAt(block, baked(pizza));
   },
 };
