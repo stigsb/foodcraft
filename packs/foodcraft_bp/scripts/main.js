@@ -3,10 +3,12 @@ import "./food.js";
 import { pizzaOvenComponent } from "./oven.js";
 import { cropComponent } from "./crop.js";
 import { fruitPlant } from "./fruit_plant.js";
+import { cookingPotComponent } from "./pot.js";
 
 system.beforeEvents.startup.subscribe((event) => {
   event.blockComponentRegistry.registerCustomComponent("foodcraft:pizza_oven", pizzaOvenComponent);
   event.blockComponentRegistry.registerCustomComponent("foodcraft:crop", cropComponent);
+  event.blockComponentRegistry.registerCustomComponent("foodcraft:cooking_pot", cookingPotComponent);
   event.blockComponentRegistry.registerCustomComponent(
     "foodcraft:tomato",
     fruitPlant({
