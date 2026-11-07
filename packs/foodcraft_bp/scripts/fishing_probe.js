@@ -1,4 +1,4 @@
-// Task 1 probe: prints what the script sees when something is fished up. Deleted in Task 3.
+// Task 1 probe: prints what the script sees when something is fished up. Not loaded; uncomment its import in main.js to use it.
 import { world, system, EntityComponentTypes } from "@minecraft/server";
 
 const fmt = (v) => `${v.x.toFixed(2)},${v.y.toFixed(2)},${v.z.toFixed(2)}`;
