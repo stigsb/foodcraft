@@ -8,6 +8,8 @@ The version number is part of each pack's name, so different installed versions 
 
 **Always bump the version when anything in `packs/` changes.** Minecraft clients and Realms cache packs by UUID and version: content shipped under an unchanged version is ignored by anyone who already has that version, so players on the Realm keep the old textures, recipes and scripts.
 
+A pre-commit hook (`.githooks/pre-commit` → `tools/check_version_bump.mjs`) rejects commits that change `packs/` without a higher version, or with different BP/RP versions. Enable it once per clone: `git config core.hooksPath .githooks`.
+
 Versioning rules:
 
 - **Patch** (`0.2.0` → `0.2.1`): bump in every commit that changes pack content (textures, models, recipes, scripts, blocks, items, texts, sounds), unless the version has already been bumped since the last pushed or shared build. Never push or share changed pack content under a version that has already been pushed or shared.
