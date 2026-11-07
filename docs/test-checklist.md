@@ -140,6 +140,8 @@ Tick a line only after seeing it work in the test world with an empty Content Lo
 - [ ] Knife loses 1 durability per chop and breaks with a sound at 128 chops (survival)
 - [ ] Creative: ingredient not taken, knife not worn
 - [ ] Fillet, minced meat and raw fries cook in the furnace
+- [ ] Knife held in hand: handle in the fist, blade pointing forward (v0.2.1)
+- [ ] Knife as a weapon: hits harder than a fist, loses durability per hit; creative swing does not break blocks (v0.2.1)
 
 ## v2: New crops (Task 6)
 - [ ] Corn kernels, lettuce seeds, rice and cinnamon cutting plant on farmland only
@@ -149,6 +151,8 @@ Tick a line only after seeing it work in the test world with an empty Content Lo
 
 ## v2: Cooking pot (Task 7)
 - [ ] Pot recipe: iron U with a bucket in the middle
+- [ ] Round pot looks right from all sides, no holes or z-fighting; water and soups fill it without poking through the wall (v0.2.2)
+- [ ] Pot hitbox matches the wider belly; you can stand on it
 - [ ] Empty pot + water bucket: water shows, bucket comes back empty
 - [ ] Empty pot + anything else: "Fill the pot with water first"
 - [ ] Ingredients go in one at a time and show as bits on the water
