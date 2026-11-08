@@ -2,6 +2,8 @@
 
 Minecraft Bedrock add-on: `packs/foodcraft_bp` (behavior pack) and `packs/foodcraft_rp` (resource pack).
 
+Skills in `.claude/skills/`: `bedrock-addon-dev` (Bedrock JSON and Script API rules and gotchas) and `foodcraft-workflow` (finishing and shipping a task, generators, subagents, Windows pitfalls). Static check: `node tools/check_packs.cjs`.
+
 ## Pack versions
 
 The version number is part of each pack's name, so different installed versions can be told apart in Minecraft.
