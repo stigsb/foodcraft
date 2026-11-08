@@ -2,6 +2,10 @@
 
 Alle versjoner av Foodcraft, nyeste først. Hver gang versjonsnummeret økes, får versjonen en ny del her.
 
+## v0.2.12 – 8. november 2026
+
+- Foodcraft har fått sitt eget ikon: pannekakestabelen. Du ser det på begge pakkene i Minecraft når du velger pakker.
+
 ## v0.2.11 – 8. november 2026
 
 - En pepperonipølse gir nå 23 pepperoniskiver på skjærebrettet. Det holder til 3 pepperonipizzaer, og du har 5 skiver til overs.

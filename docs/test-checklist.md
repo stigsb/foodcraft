@@ -234,3 +234,6 @@ Tick a line only after seeing it work in the test world with an empty Content Lo
 - [ ] Raw pepperoni pizza: dough + sauce + mozzarella + 6 slices (fills the whole 3x3 grid); fewer than 6 slices gives nothing
 - [ ] Sausage and slices can be eaten
 - [ ] Old foodcraft:pepperoni items in existing worlds are gone (expected)
+
+## Pack icons (v0.2.12)
+- [ ] Both packs (behavior and resource) show the pancakes icon in the pack list, sharp pixels, no grey default icon
