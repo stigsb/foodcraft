@@ -74,7 +74,7 @@ export const ITEMS = [
   ...Object.entries(BERRIES).map(([id, b]) => ({ step: 13, id, en: b.en, nb: b.nb, food: [2, id === "heart_berry" ? 0.6 : 0.2], alwaysEat: id === "heart_berry",
     places: b.plantable ? `${id}_bush` : undefined, placesOn: ["minecraft:grass_block", "minecraft:dirt", "minecraft:podzol", "minecraft:farmland"],
     icon: { shape: "seeds", main: "#c02840" } })),
-  // Step 14: pepperoni sausage (2 raw porkchops + oregano), sliced on the cutting board into 6 slices = one pepperoni pizza.
+  // Step 14: pepperoni sausage (2 raw porkchops + oregano), sliced on the cutting board into 23 slices; a pepperoni pizza takes 6.
   { step: 14, id: "pepperoni_sausage", en: "Pepperoni Sausage", nb: "Pepperonipølse", food: [4, 0.6], icon: { shape: "stick", main: "#9a3324", accent: "#c04a38" } },
   { step: 14, id: "pepperoni_slices", en: "Pepperoni Slices", nb: "Pepperoniskiver", food: [1, 0.3], icon: { shape: "seeds", main: "#b83a2a" } },
 ];

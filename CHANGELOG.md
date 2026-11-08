@@ -2,6 +2,10 @@
 
 Alle versjoner av Foodcraft, nyeste først. Hver gang versjonsnummeret økes, får versjonen en ny del her.
 
+## v0.2.11 – 8. november 2026
+
+- En pepperonipølse gir nå 23 pepperoniskiver på skjærebrettet. Det holder til 3 pepperonipizzaer, og du har 5 skiver til overs.
+
 ## v0.2.10 – 8. november 2026
 
 - Pepperonipølse trenger nå oregano også: 2 rått svinekjøtt + 1 oregano.
