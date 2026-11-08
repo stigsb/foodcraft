@@ -146,6 +146,11 @@ Tick a line only after seeing it work in the test world with an empty Content Lo
 ## v2: New crops (Task 6)
 - [ ] Corn kernels, lettuce seeds, rice and cinnamon cutting plant on farmland only
 - [ ] Each crop shows 4 stages, grows on its own and with bone meal
+- [ ] Corn (v0.2.6): stages 0–1 are one block; from stage 2 it is two blocks tall, tassel on top at stage 3, cobs on the stalk
+- [ ] Corn with a block right above it stops at stage 1 and grows on once the space is free
+- [ ] Bone meal on either half of the corn grows it
+- [ ] Breaking the top half breaks the whole plant and drops the harvest; breaking the lower half also removes the top
+- [ ] Ripe corn harvest drops as before; the top half drops nothing by itself
 - [ ] Mature harvests as in spec 2.2; immature drops only the seed item
 - [ ] New world: wild corn in savanna and plains, wild lettuce in forests, wild rice in swamps, wild cinnamon in jungles
 

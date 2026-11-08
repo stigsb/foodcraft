@@ -2,6 +2,12 @@
 
 Alle versjoner av Foodcraft, nyeste først. Hver gang versjonsnummeret økes, får versjonen en ny del her.
 
+## v0.2.6 – 8. november 2026
+
+- Maisplanten blir to blokker høy når den vokser. Moden mais har dusk på toppen og maiskolber på stilken.
+- Nye, finere tegninger av maisplanten og av vill mais.
+- Er det ikke plass over maisen, venter den med å vokse til det blir plass.
+
 ## v0.2.5 – 7. november 2026
 
 - Alle de 13 fiskeartene svømmer nå rundt i vannet der de hører hjemme, akkurat som torsk og laks.

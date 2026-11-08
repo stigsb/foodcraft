@@ -70,6 +70,7 @@ export const ITEMS = [
 export const BLOCK_NAMES = [
   { step: 4, id: "scallop_bed", en: "Scallop Bed", nb: "Kamskjellbanke" },
   { step: 5, id: "cutting_board", en: "Cutting Board", nb: "Skjærebrett" },
+  { step: 6, id: "corn_crop_top", en: "Corn", nb: "Mais" }, // upper half of the two-block corn plant
   ...[["corn", "Corn", "Mais"], ["lettuce", "Lettuce", "Salat"], ["rice", "Rice", "Ris"], ["cinnamon", "Cinnamon", "Kanel"]].flatMap(([id, en, nb]) => [
     { step: 6, id: `${id}_crop`, en, nb },
     { step: 6, id: `wild_${id}`, en: `Wild ${en}`, nb: `Vill ${nb.toLowerCase()}` },
@@ -82,6 +83,8 @@ export const BLOCK_TEXTURES = Object.entries(CROPS).flatMap(([id, [main, accent]
   ...[0, 1, 2, 3].map((n) => ({ step: 6, name: `foodcraft_${id}_crop_${n}`, icon: { shape: `crop${n}`, main, accent } })),
   { step: 6, name: `foodcraft_wild_${id}`, icon: { shape: "crop3", main, accent } },
 ]);
+// Corn is two blocks tall from stage 2. Its textures are drawn by tools/art_corn.mjs; these icons are only fallbacks.
+BLOCK_TEXTURES.push(...[2, 3].map((n) => ({ step: 6, name: `foodcraft_corn_crop_top_${n}`, icon: { shape: `crop${n}`, main: CROPS.corn[0], accent: CROPS.corn[1] } })));
 
 const FOOD_COOKING = ["furnace", "smoker", "campfire", "soul_campfire"];
 

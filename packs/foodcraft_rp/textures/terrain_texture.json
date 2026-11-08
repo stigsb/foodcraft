@@ -129,6 +129,12 @@
     },
     "foodcraft_cutting_board": {
       "textures": "textures/blocks/foodcraft_cutting_board"
+    },
+    "foodcraft_corn_crop_top_2": {
+      "textures": "textures/blocks/foodcraft_corn_crop_top_2"
+    },
+    "foodcraft_corn_crop_top_3": {
+      "textures": "textures/blocks/foodcraft_corn_crop_top_3"
     }
   }
 }

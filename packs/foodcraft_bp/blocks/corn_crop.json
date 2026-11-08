@@ -3,30 +3,84 @@
   "minecraft:block": {
     "description": {
       "identifier": "foodcraft:corn_crop",
-      "menu_category": { "category": "none" },
-      "states": { "foodcraft:growth": [0, 1, 2, 3] }
+      "menu_category": {
+        "category": "none"
+      },
+      "states": {
+        "foodcraft:growth": [
+          0,
+          1,
+          2,
+          3
+        ]
+      }
     },
     "components": {
       "minecraft:geometry": "minecraft:geometry.cross",
       "minecraft:material_instances": {
-        "*": { "texture": "foodcraft_corn_crop_0", "render_method": "alpha_test_single_sided", "ambient_occlusion": 0 }
+        "*": {
+          "texture": "foodcraft_corn_crop_0",
+          "render_method": "alpha_test_single_sided",
+          "ambient_occlusion": 0
+        }
       },
       "minecraft:collision_box": false,
-      "minecraft:selection_box": { "origin": [-7, 0, -7], "size": [14, 10, 14] },
-      "minecraft:destructible_by_mining": { "seconds_to_destroy": 0 },
+      "minecraft:selection_box": {
+        "origin": [
+          -6,
+          0,
+          -6
+        ],
+        "size": [
+          12,
+          7,
+          12
+        ]
+      },
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 0
+      },
       "minecraft:light_dampening": 0,
       "minecraft:placement_filter": {
-        "conditions": [{ "allowed_faces": ["up"], "block_filter": ["minecraft:farmland"] }]
+        "conditions": [
+          {
+            "allowed_faces": [
+              "up"
+            ],
+            "block_filter": [
+              "minecraft:farmland"
+            ]
+          }
+        ]
       },
       "minecraft:loot": "loot_tables/blocks/corn_crop_seed.json",
-      "foodcraft:crop": {}
+      "foodcraft:crop": {
+        "top": "foodcraft:corn_crop_top",
+        "top_from": 2
+      }
     },
     "permutations": [
       {
         "condition": "q.block_state('foodcraft:growth') == 1",
         "components": {
           "minecraft:material_instances": {
-            "*": { "texture": "foodcraft_corn_crop_1", "render_method": "alpha_test_single_sided", "ambient_occlusion": 0 }
+            "*": {
+              "texture": "foodcraft_corn_crop_1",
+              "render_method": "alpha_test_single_sided",
+              "ambient_occlusion": 0
+            }
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -6,
+              0,
+              -6
+            ],
+            "size": [
+              12,
+              12,
+              12
+            ]
           }
         }
       },
@@ -34,7 +88,23 @@
         "condition": "q.block_state('foodcraft:growth') == 2",
         "components": {
           "minecraft:material_instances": {
-            "*": { "texture": "foodcraft_corn_crop_2", "render_method": "alpha_test_single_sided", "ambient_occlusion": 0 }
+            "*": {
+              "texture": "foodcraft_corn_crop_2",
+              "render_method": "alpha_test_single_sided",
+              "ambient_occlusion": 0
+            }
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -6,
+              0,
+              -6
+            ],
+            "size": [
+              12,
+              16,
+              12
+            ]
           }
         }
       },
@@ -42,9 +112,25 @@
         "condition": "q.block_state('foodcraft:growth') == 3",
         "components": {
           "minecraft:material_instances": {
-            "*": { "texture": "foodcraft_corn_crop_3", "render_method": "alpha_test_single_sided", "ambient_occlusion": 0 }
+            "*": {
+              "texture": "foodcraft_corn_crop_3",
+              "render_method": "alpha_test_single_sided",
+              "ambient_occlusion": 0
+            }
           },
-          "minecraft:loot": "loot_tables/blocks/corn_crop_mature.json"
+          "minecraft:loot": "loot_tables/blocks/corn_crop_mature.json",
+          "minecraft:selection_box": {
+            "origin": [
+              -6,
+              0,
+              -6
+            ],
+            "size": [
+              12,
+              16,
+              12
+            ]
+          }
         }
       }
     ]

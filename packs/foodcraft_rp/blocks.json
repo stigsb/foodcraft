@@ -59,5 +59,8 @@
   },
   "foodcraft:wild_cinnamon": {
     "sound": "grass"
+  },
+  "foodcraft:corn_crop_top": {
+    "sound": "grass"
   }
 }
