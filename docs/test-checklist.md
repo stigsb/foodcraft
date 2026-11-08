@@ -14,7 +14,6 @@ Tick a line only after seeing it work in the test world with an empty Content Lo
 - [ ] Pizza Dough: `/give @s foodcraft:pizza_dough`, name "Pizza Dough", right texture
 - [ ] Tomato Sauce: `/give @s foodcraft:tomato_sauce`, name "Tomato Sauce", right texture
 - [ ] Mozzarella: `/give @s foodcraft:mozzarella`, name "Mozzarella", right texture
-- [ ] Pepperoni: `/give @s foodcraft:pepperoni`, name "Pepperoni", eats, hunger goes up
 - [ ] Ham: `/give @s foodcraft:ham`, name "Ham", eats, hunger goes up
 - [ ] Raw Pizza Margherita: `/give @s foodcraft:raw_pizza_margherita`, name "Raw Pizza Margherita", right texture, eats
 - [ ] Raw Pizza Pepperoni: `/give @s foodcraft:raw_pizza_pepperoni`, name "Raw Pizza Pepperoni", right texture, eats
@@ -30,10 +29,9 @@ Tick a line only after seeing it work in the test world with an empty Content Lo
 - [ ] Pizza dough: 3 flour over a water bucket -> dough, empty bucket stays in the grid output
 - [ ] Tomato sauce: 2 tomato + garlic + oregano + bowl -> sauce
 - [ ] Mozzarella: milk bucket -> mozzarella, empty bucket returned
-- [ ] Pepperoni: raw porkchop + oregano -> pepperoni
 - [ ] Ham: cooked porkchop -> 2 ham
 - [ ] Raw pizza margherita: dough + sauce + mozzarella + oregano
-- [ ] Raw pizza pepperoni: dough + sauce + mozzarella + pepperoni
+- [ ] Raw pizza pepperoni: dough + sauce + mozzarella + 6 pepperoni slices
 - [ ] Raw pizza prosciutto: dough + sauce + mozzarella + ham
 - [ ] Raw pizza hawaii: dough + sauce + mozzarella + ham + pineapple
 
@@ -228,3 +226,11 @@ Tick a line only after seeing it work in the test world with an empty Content Lo
 - [ ] Jam of Restoration: Regeneration II for 15 s, edible when full
 - [ ] Glow berry jam: action bar "Illumination: 60 s", light around the player for 60 s that follows them, gone afterwards; no leftover light after leaving the world mid-effect and coming back; caves and tunnels walk normally
 - [ ] Jam above pancakes on the crafting table -> pancakes with that jam + glass bottle; the restoration and glow variants give the same effects
+
+## Pepperoni sausage and slices (v0.2.9)
+- [ ] 2 raw porkchops on the crafting table -> Pepperonipølse (icon: a sausage with a cut end, held at the tied end)
+- [ ] Sausage on the cutting board shows a sausage on the board; 3 knife chops -> 6 Pepperoniskiver
+- [ ] Empty hand on the board with a sausage gives the sausage back
+- [ ] Raw pepperoni pizza: dough + sauce + mozzarella + 6 slices (fills the whole 3x3 grid); fewer than 6 slices gives nothing
+- [ ] Sausage and slices can be eaten
+- [ ] Old foodcraft:pepperoni items in existing worlds are gone (expected)

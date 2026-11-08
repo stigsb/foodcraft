@@ -1,0 +1,25 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "foodcraft:pepperoni_sausage"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "minecraft:porkchop",
+        "count": 2
+      }
+    ],
+    "unlock": [
+      {
+        "item": "minecraft:porkchop"
+      }
+    ],
+    "result": {
+      "item": "foodcraft:pepperoni_sausage"
+    }
+  }
+}

@@ -7,7 +7,7 @@
       { "item": "foodcraft:pizza_dough" },
       { "item": "foodcraft:tomato_sauce" },
       { "item": "foodcraft:mozzarella" },
-      { "item": "foodcraft:pepperoni" }
+      { "item": "foodcraft:pepperoni_slices", "count": 6 }
     ],
     "unlock": [{ "item": "foodcraft:pizza_dough" }],
     "result": { "item": "foodcraft:raw_pizza_pepperoni" }

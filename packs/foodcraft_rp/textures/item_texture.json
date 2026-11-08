@@ -35,9 +35,6 @@
     "foodcraft_mozzarella": {
       "textures": "textures/items/foodcraft_mozzarella"
     },
-    "foodcraft_pepperoni": {
-      "textures": "textures/items/foodcraft_pepperoni"
-    },
     "foodcraft_ham": {
       "textures": "textures/items/foodcraft_ham"
     },
@@ -358,6 +355,12 @@
     },
     "foodcraft_heart_berry": {
       "textures": "textures/items/foodcraft_heart_berry"
+    },
+    "foodcraft_pepperoni_sausage": {
+      "textures": "textures/items/foodcraft_pepperoni_sausage"
+    },
+    "foodcraft_pepperoni_slices": {
+      "textures": "textures/items/foodcraft_pepperoni_slices"
     }
   }
 }

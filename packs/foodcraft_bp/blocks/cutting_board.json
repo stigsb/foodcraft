@@ -5,7 +5,7 @@
       "identifier": "foodcraft:cutting_board",
       "menu_category": { "category": "items" },
       "states": {
-        "foodcraft:item": ["none", "small_fish", "medium_fish", "large_fish", "tuna", "beef", "potato", "dough"],
+        "foodcraft:item": ["none", "small_fish", "medium_fish", "large_fish", "tuna", "beef", "potato", "dough", "sausage"],
         "foodcraft:chops": [0, 1, 2]
       }
     },
@@ -19,7 +19,8 @@
           "tuna": "q.block_state('foodcraft:item') == 'tuna'",
           "beef": "q.block_state('foodcraft:item') == 'beef'",
           "potato": "q.block_state('foodcraft:item') == 'potato'",
-          "dough": "q.block_state('foodcraft:item') == 'dough'"
+          "dough": "q.block_state('foodcraft:item') == 'dough'",
+          "sausage": "q.block_state('foodcraft:item') == 'sausage'"
         }
       },
       "minecraft:material_instances": { "*": { "texture": "foodcraft_cutting_board", "render_method": "alpha_test" } },

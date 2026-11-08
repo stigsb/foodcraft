@@ -2,6 +2,12 @@
 
 Alle versjoner av Foodcraft, nyeste først. Hver gang versjonsnummeret økes, får versjonen en ny del her.
 
+## v0.2.9 – 8. november 2026
+
+- Pepperoni er delt i to: først lager du en **pepperonipølse** av 2 rått svinekjøtt på arbeidsbenken.
+- Legg pølsa på skjærebrettet og skjær den med kniven (3 kutt), så får du **6 pepperoniskiver**.
+- Pepperonipizza trenger nå deig + tomatsaus + mozzarella + 6 pepperoniskiver. Den gamle pepperonien finnes ikke lenger.
+
 ## v0.2.8 – 8. november 2026
 
 - Pannekakene ser ut som ekte pannekaker: en stabel med tynne pannekaker på en tallerken.

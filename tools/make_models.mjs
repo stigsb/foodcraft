@@ -26,6 +26,7 @@ const MODELS = {
     beef: [C([-3, 1, -2], [6, 1, 4], "#c23b3b")],
     potato: [C([-2, 1, -2], [4, 2, 3], "#c8a25a")],
     dough: [C([-3, 1, -3], [6, 1, 6], "#eadbb8")],
+    sausage: [C([-5, 1, -1], [8, 2, 2], "#9a3324"), C([3, 1, -1], [1, 2, 2], "#d0604a")], // pepperoni sausage, cut end on the right
   },
 };
 

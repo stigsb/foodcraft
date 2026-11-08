@@ -11,6 +11,7 @@ const CHOPPABLE = {
   "minecraft:beef": { look: "beef", out: [["foodcraft:minced_meat", 2]] },
   "minecraft:potato": { look: "potato", out: [["foodcraft:raw_fries", 1]] },
   "foodcraft:pizza_dough": { look: "dough", out: [["foodcraft:raw_pasta", 2]] },
+  "foodcraft:pepperoni_sausage": { look: "sausage", out: [["foodcraft:pepperoni_slices", 6]] }, // one sausage = one pizza
 };
 for (const id of Object.keys(FISH)) {
   const { item, count } = filletsOf(id);
