@@ -2,6 +2,16 @@
 
 Alle versjoner av Foodcraft, nyeste først. Hver gang versjonsnummeret økes, får versjonen en ny del her.
 
+## v0.2.8 – 8. november 2026
+
+- Pannekakene ser ut som ekte pannekaker: en stabel med tynne pannekaker på en tallerken.
+- Nye bær som vokser ute i naturen: jordbær i eikeskog, blåbær i taiga, molter på fjellet og bringebær på sletter og i skog. Plukk dem fra buskene; de blir modne igjen etter en stund. Du kan plante dem på gress, jord eller dyrket jord.
+- Hjertebær: et rosa, hjerteformet bær som bare vokser høyt oppe i kirsebærlunder, og som er veldig sjeldent. Spiser du det, blir du helbredet i 3–5 sekunder.
+- Syltetøy av hvert bær: 3 bær + sukker + glassflaske. Syltetøyet av hjertebær heter Jam of Restoration og helbreder deg i 15 sekunder.
+- Glødebærsyltetøy av glow berries: spiser du det, lyser du svakt i 60 sekunder (Illumination).
+- Syltetøy på pannekaker: legg syltetøyet over pannekakene på arbeidsbenken, så får du pannekaker med syltetøy og flaska tilbake.
+- Det gamle syltetøyet heter nå Søtbærsyltetøy.
+
 ## v0.2.7 – 8. november 2026
 
 - Oregano har fått lilla blomster, både i åkeren og ute i naturen, så den er lettere å se.

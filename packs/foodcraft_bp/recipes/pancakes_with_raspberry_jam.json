@@ -1,0 +1,38 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "foodcraft:pancakes_with_raspberry_jam"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "J",
+      "P"
+    ],
+    "key": {
+      "J": {
+        "item": "foodcraft:raspberry_jam"
+      },
+      "P": {
+        "item": "foodcraft:pancakes"
+      }
+    },
+    "unlock": [
+      {
+        "item": "foodcraft:raspberry_jam"
+      }
+    ],
+    "result": [
+      {
+        "item": "foodcraft:pancakes_with_raspberry_jam"
+      },
+      {
+        "item": "minecraft:glass_bottle",
+        "count": 1,
+        "data": 0
+      }
+    ]
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "foodcraft:cloudberry_jam"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "foodcraft:cloudberry",
+        "count": 3
+      },
+      {
+        "item": "minecraft:sugar"
+      },
+      {
+        "item": "minecraft:glass_bottle"
+      }
+    ],
+    "unlock": [
+      {
+        "item": "foodcraft:cloudberry"
+      }
+    ],
+    "result": {
+      "item": "foodcraft:cloudberry_jam"
+    }
+  }
+}

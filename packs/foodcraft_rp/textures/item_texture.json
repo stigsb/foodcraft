@@ -304,6 +304,60 @@
     },
     "foodcraft_swordfish_bucket": {
       "textures": "textures/items/foodcraft_swordfish_bucket"
+    },
+    "foodcraft_glow_berry_jam": {
+      "textures": "textures/items/foodcraft_glow_berry_jam"
+    },
+    "foodcraft_strawberry_jam": {
+      "textures": "textures/items/foodcraft_strawberry_jam"
+    },
+    "foodcraft_blueberry_jam": {
+      "textures": "textures/items/foodcraft_blueberry_jam"
+    },
+    "foodcraft_cloudberry_jam": {
+      "textures": "textures/items/foodcraft_cloudberry_jam"
+    },
+    "foodcraft_raspberry_jam": {
+      "textures": "textures/items/foodcraft_raspberry_jam"
+    },
+    "foodcraft_jam_of_restoration": {
+      "textures": "textures/items/foodcraft_jam_of_restoration"
+    },
+    "foodcraft_pancakes_with_jam": {
+      "textures": "textures/items/foodcraft_pancakes_with_jam"
+    },
+    "foodcraft_pancakes_with_glow_berry_jam": {
+      "textures": "textures/items/foodcraft_pancakes_with_glow_berry_jam"
+    },
+    "foodcraft_pancakes_with_strawberry_jam": {
+      "textures": "textures/items/foodcraft_pancakes_with_strawberry_jam"
+    },
+    "foodcraft_pancakes_with_blueberry_jam": {
+      "textures": "textures/items/foodcraft_pancakes_with_blueberry_jam"
+    },
+    "foodcraft_pancakes_with_cloudberry_jam": {
+      "textures": "textures/items/foodcraft_pancakes_with_cloudberry_jam"
+    },
+    "foodcraft_pancakes_with_raspberry_jam": {
+      "textures": "textures/items/foodcraft_pancakes_with_raspberry_jam"
+    },
+    "foodcraft_pancakes_with_jam_of_restoration": {
+      "textures": "textures/items/foodcraft_pancakes_with_jam_of_restoration"
+    },
+    "foodcraft_strawberry": {
+      "textures": "textures/items/foodcraft_strawberry"
+    },
+    "foodcraft_blueberry": {
+      "textures": "textures/items/foodcraft_blueberry"
+    },
+    "foodcraft_cloudberry": {
+      "textures": "textures/items/foodcraft_cloudberry"
+    },
+    "foodcraft_raspberry": {
+      "textures": "textures/items/foodcraft_raspberry"
+    },
+    "foodcraft_heart_berry": {
+      "textures": "textures/items/foodcraft_heart_berry"
     }
   }
 }

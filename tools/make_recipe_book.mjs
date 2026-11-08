@@ -26,7 +26,7 @@ const VANILLA = {
   "minecraft:furnace": "Smelteovn", "minecraft:glass_bottle": "Glassflaske", "minecraft:iron_ingot": "Jernbarre",
   "minecraft:milk_bucket": "Melkebøtte", "minecraft:paper": "Papir", "minecraft:porkchop": "Rå svinekotelett",
   "minecraft:potato": "Potet", "minecraft:stick": "Pinne", "minecraft:stone": "Stein", "minecraft:sugar": "Sukker",
-  "minecraft:sweet_berries": "Søtbær", "minecraft:water_bucket": "Vannbøtte", "minecraft:wheat": "Hvete",
+  "minecraft:sweet_berries": "Søtbær", "minecraft:glow_berries": "Glødebær", "minecraft:water_bucket": "Vannbøtte", "minecraft:wheat": "Hvete",
   "minecraft:wooden_slabs": "Trehelle (alle slags)",
 };
 const nameOf = (id) => names[id] ?? VANILLA[id] ?? id.replace(/^.*:/, "").replace(/_/g, " ");
@@ -113,7 +113,7 @@ const byName = (a, b) => nameOf(results(a)[0].id).localeCompare(nameOf(results(b
 const stationRecipes = all.filter((r) => STATIONS.has(results(r)[0].id)).sort(byName);
 const ovenRecipes = all.filter((r) => ovenRaw.has(results(r)[0].id));
 const rest = all.filter((r) => !STATIONS.has(results(r)[0].id) && !ovenRaw.has(results(r)[0].id));
-const isDish = (r) => { const id = results(r)[0].id; return !!names[id] && !/flour|dough|sauce|mozzarella|tortilla|ham|pepperoni|jam|raw_|batter/.test(id); };
+const isDish = (r) => { const id = results(r)[0].id; return !!names[id] && (id.includes("pancakes_with_") || !/flour|dough|sauce|mozzarella|tortilla|ham|pepperoni|jam|raw_|batter/.test(id)); };
 const basics = rest.filter((r) => !isDish(r)).sort(byName);
 const dishes = rest.filter(isDish).sort(byName);
 

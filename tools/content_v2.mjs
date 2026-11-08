@@ -1,6 +1,7 @@
 // Foodcraft v2 content table. node tools/make_content.mjs <task> writes every entry with step <= task.
 import { FISH } from "../packs/foodcraft_bp/scripts/fish_data.js";
 import { browned } from "./icons.mjs";
+import { BERRIES, JAMS } from "../packs/foodcraft_bp/scripts/berry_data.js";
 
 const COOKED_FOOD = { 1: [5, 0.6], 2: [6, 0.8], 3: [7, 0.8] };
 
@@ -63,7 +64,16 @@ export const ITEMS = [
   { step: 11, id: "batter", en: "Batter", nb: "Røre", icon: { shape: "bowl", main: "#f4e4b0", accent: "#e8d090" } },
   { step: 11, id: "pancakes", en: "Pancakes", nb: "Pannekaker", food: [5, 0.6], icon: { shape: "stack", main: "#e0b060", accent: "#c03048" } },
   { step: 11, id: "waffle", en: "Waffle", nb: "Vaffel", food: [5, 0.6], icon: { shape: "waffle", main: "#e0a850", accent: "#b88030" } },
-  { step: 11, id: "jam", en: "Jam", nb: "Syltetøy", food: [4, 0.3], returns: "minecraft:glass_bottle", icon: { shape: "bottle", main: "#c02840" } },
+  // Step 13: berries, jams and pancakes with jam (scripts/berry_data.js; pixel art in tools/art_berries.mjs).
+  // "jam" is the sweet berry jam from step 11. Restoration and glow berry jam work even when you are full.
+  ...JAMS.map((j) => ({ step: j.id === "jam" ? 11 : 13, id: j.id, en: j.en, nb: j.nb, food: [4, 0.3], returns: "minecraft:glass_bottle",
+    alwaysEat: j.id === "jam_of_restoration" || j.id === "glow_berry_jam", icon: { shape: "bottle", main: "#c02840" } })),
+  ...JAMS.map((j) => ({ step: 13, id: `pancakes_with_${j.id}`, en: `Pancakes with ${j.en}`,
+    nb: `Pannekaker med ${j.id === "jam_of_restoration" ? j.nb : j.nb.toLowerCase()}`,
+    food: [8, 0.7], alwaysEat: j.id === "jam_of_restoration" || j.id === "glow_berry_jam", icon: { shape: "stack", main: "#e0b060", accent: "#c03048" } })),
+  ...Object.entries(BERRIES).map(([id, b]) => ({ step: 13, id, en: b.en, nb: b.nb, food: [2, id === "heart_berry" ? 0.6 : 0.2], alwaysEat: id === "heart_berry",
+    places: b.plantable ? `${id}_bush` : undefined, placesOn: ["minecraft:grass_block", "minecraft:dirt", "minecraft:podzol", "minecraft:farmland"],
+    icon: { shape: "seeds", main: "#c02840" } })),
 ];
 
 // Names for hand-written blocks (lang only).
@@ -71,6 +81,7 @@ export const BLOCK_NAMES = [
   { step: 4, id: "scallop_bed", en: "Scallop Bed", nb: "Kamskjellbanke" },
   { step: 5, id: "cutting_board", en: "Cutting Board", nb: "Skjærebrett" },
   { step: 6, id: "corn_crop_top", en: "Corn", nb: "Mais" }, // upper half of the two-block corn plant
+  ...Object.entries(BERRIES).map(([id, b]) => ({ step: 13, id: `${id}_bush`, en: b.bushEn, nb: b.bushNb })),
   ...[["corn", "Corn", "Mais"], ["lettuce", "Lettuce", "Salat"], ["rice", "Rice", "Ris"], ["cinnamon", "Cinnamon", "Kanel"]].flatMap(([id, en, nb]) => [
     { step: 6, id: `${id}_crop`, en, nb },
     { step: 6, id: `wild_${id}`, en: `Wild ${en}`, nb: `Vill ${nb.toLowerCase()}` },
@@ -116,5 +127,8 @@ export const RECIPES = [
   { step: 11, type: "shaped", id: "batter", pattern: ["FES", " M "], key: { F: "flour", E: "minecraft:egg", S: "minecraft:sugar", M: "minecraft:milk_bucket" },
     result: "batter", extra: [{ item: "minecraft:bucket", count: 1, data: 0 }] },
   { step: 11, type: "furnace", id: "pancakes", input: "batter", output: "pancakes", tags: ["furnace", "smoker"] },
-  { step: 11, type: "shapeless", id: "jam", ingredients: ["minecraft:sweet_berries", "minecraft:sweet_berries", "minecraft:sweet_berries", "minecraft:sugar", "minecraft:glass_bottle"], result: "jam" },
+  // Jam: 3 berries + sugar + glass bottle. Pancakes with jam: jam on top of pancakes, the bottle comes back.
+  ...JAMS.map((j) => ({ step: j.id === "jam" ? 11 : 13, type: "shapeless", id: j.id, ingredients: [j.berry, j.berry, j.berry, "minecraft:sugar", "minecraft:glass_bottle"], result: j.id })),
+  ...JAMS.map((j) => ({ step: 13, type: "shaped", id: `pancakes_with_${j.id}`, pattern: ["J", "P"], key: { J: j.id, P: "pancakes" },
+    result: `pancakes_with_${j.id}`, extra: [{ item: "minecraft:glass_bottle", count: 1, data: 0 }] })),
 ];

@@ -1,0 +1,47 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:item": {
+    "description": {
+      "identifier": "foodcraft:raspberry",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "foodcraft_raspberry"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.foodcraft.raspberry.name"
+      },
+      "minecraft:food": {
+        "nutrition": 2,
+        "saturation_modifier": 0.2
+      },
+      "minecraft:use_animation": {
+        "value": "eat"
+      },
+      "minecraft:use_modifiers": {
+        "start_using": "always",
+        "use_duration": 1.6,
+        "movement_modifier": 0.35
+      },
+      "minecraft:tags": {
+        "tags": [
+          "minecraft:is_food"
+        ]
+      },
+      "minecraft:block_placer": {
+        "block": "foodcraft:raspberry_bush",
+        "use_on": [
+          "minecraft:grass_block",
+          "minecraft:dirt",
+          "minecraft:podzol",
+          "minecraft:farmland"
+        ]
+      }
+    }
+  }
+}

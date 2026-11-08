@@ -32,9 +32,9 @@ for(const [f,o] of Object.entries(J)){
   for(const k of Object.keys(b.components))if(k.startsWith("foodcraft:")&&!fs.readFileSync(BP+"/scripts/main.js","utf8").includes('"'+k+'"'))E(f+": component not registered "+k);}
  const r=o["minecraft:recipe_shaped"]||o["minecraft:recipe_shapeless"]||o["minecraft:recipe_furnace"];if(r){const ids=JSON.stringify(r).match(/"item":"([^"]+)"/g)||[];for(const x of ids){const id=x.slice(8,-1);if(!known(id))E(f+": item "+id)}if(o["minecraft:recipe_furnace"]){const out=r.output;if(!known(out))E(f+": out "+out)}}
  if(f.includes("loot_tables"))for(const m of JSON.stringify(o).matchAll(/"name":"([^"]+)"/g))if(!known(m[1]))E(f+": loot item "+m[1]);
- for(const k of Object.keys(o))if(/feature$/.test(k)){const x=o[k];if(x.places_feature&&!features.has(x.places_feature))E(f+": feature "+x.places_feature);if(x.places_block&&!blocks.has(x.places_block))E(f+": block "+x.places_block);}
+ for(const k of Object.keys(o))if(/feature$/.test(k)){const x=o[k];if(x.places_feature&&!features.has(x.places_feature))E(f+": feature "+x.places_feature);if(x.places_block){const pb=x.places_block.name??x.places_block;if(!blocks.has(pb))E(f+": block "+pb);}}
  const fr=o["minecraft:feature_rules"];if(fr&&!features.has(fr.description.places_feature))E(f+": rule feature");
 }
 // script item ids
-for(const f of walk(BP+"/scripts"))for(const m of fs.readFileSync(f,"utf8").matchAll(/"(foodcraft:[a-z_]+)"/g)){const id=m[1];if(!known(id)&&!/foodcraft:(growth|fruit|stage|dish|item|chops|pot|filled|portions|board|scallop_bed|tomato|pineapple|crop|pizza_oven|cutting_board|fish_bucket|cauldron@|board@|raw_pizza_)$/.test(id))E(f+": id "+id);}
+for(const f of walk(BP+"/scripts"))for(const m of fs.readFileSync(f,"utf8").matchAll(/"(foodcraft:[a-z_]+)"/g)){const id=m[1];if(!known(id)&&!/foodcraft:(growth|fruit|stage|dish|item|chops|pot|filled|portions|board|scallop_bed|tomato|pineapple|crop|pizza_oven|cutting_board|fish_bucket|berry_bush|illumination_left|illumination_lamp|cauldron@|board@|raw_pizza_)$/.test(id))E(f+": id "+id);}
 console.log("items",items.size,"blocks",blocks.size,"features",features.size,"geos",geos.size);console.log(errs.length?errs.join("\n"):"ALL OK");

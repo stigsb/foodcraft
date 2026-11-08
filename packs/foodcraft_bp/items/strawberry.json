@@ -1,0 +1,47 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:item": {
+    "description": {
+      "identifier": "foodcraft:strawberry",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "foodcraft_strawberry"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.foodcraft.strawberry.name"
+      },
+      "minecraft:food": {
+        "nutrition": 2,
+        "saturation_modifier": 0.2
+      },
+      "minecraft:use_animation": {
+        "value": "eat"
+      },
+      "minecraft:use_modifiers": {
+        "start_using": "always",
+        "use_duration": 1.6,
+        "movement_modifier": 0.35
+      },
+      "minecraft:tags": {
+        "tags": [
+          "minecraft:is_food"
+        ]
+      },
+      "minecraft:block_placer": {
+        "block": "foodcraft:strawberry_bush",
+        "use_on": [
+          "minecraft:grass_block",
+          "minecraft:dirt",
+          "minecraft:podzol",
+          "minecraft:farmland"
+        ]
+      }
+    }
+  }
+}

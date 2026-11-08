@@ -62,5 +62,20 @@
   },
   "foodcraft:corn_crop_top": {
     "sound": "grass"
+  },
+  "foodcraft:strawberry_bush": {
+    "sound": "sweet_berry_bush"
+  },
+  "foodcraft:blueberry_bush": {
+    "sound": "sweet_berry_bush"
+  },
+  "foodcraft:cloudberry_bush": {
+    "sound": "sweet_berry_bush"
+  },
+  "foodcraft:raspberry_bush": {
+    "sound": "sweet_berry_bush"
+  },
+  "foodcraft:heart_berry_bush": {
+    "sound": "sweet_berry_bush"
   }
 }

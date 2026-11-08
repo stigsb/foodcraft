@@ -135,6 +135,66 @@
     },
     "foodcraft_corn_crop_top_3": {
       "textures": "textures/blocks/foodcraft_corn_crop_top_3"
+    },
+    "foodcraft_strawberry_bush_sprout": {
+      "textures": "textures/blocks/foodcraft_strawberry_bush_sprout"
+    },
+    "foodcraft_strawberry_bush_leaves": {
+      "textures": "textures/blocks/foodcraft_strawberry_bush_leaves"
+    },
+    "foodcraft_strawberry_bush_flowers": {
+      "textures": "textures/blocks/foodcraft_strawberry_bush_flowers"
+    },
+    "foodcraft_strawberry_bush_ripe": {
+      "textures": "textures/blocks/foodcraft_strawberry_bush_ripe"
+    },
+    "foodcraft_blueberry_bush_sprout": {
+      "textures": "textures/blocks/foodcraft_blueberry_bush_sprout"
+    },
+    "foodcraft_blueberry_bush_leaves": {
+      "textures": "textures/blocks/foodcraft_blueberry_bush_leaves"
+    },
+    "foodcraft_blueberry_bush_flowers": {
+      "textures": "textures/blocks/foodcraft_blueberry_bush_flowers"
+    },
+    "foodcraft_blueberry_bush_ripe": {
+      "textures": "textures/blocks/foodcraft_blueberry_bush_ripe"
+    },
+    "foodcraft_cloudberry_bush_sprout": {
+      "textures": "textures/blocks/foodcraft_cloudberry_bush_sprout"
+    },
+    "foodcraft_cloudberry_bush_leaves": {
+      "textures": "textures/blocks/foodcraft_cloudberry_bush_leaves"
+    },
+    "foodcraft_cloudberry_bush_flowers": {
+      "textures": "textures/blocks/foodcraft_cloudberry_bush_flowers"
+    },
+    "foodcraft_cloudberry_bush_ripe": {
+      "textures": "textures/blocks/foodcraft_cloudberry_bush_ripe"
+    },
+    "foodcraft_raspberry_bush_sprout": {
+      "textures": "textures/blocks/foodcraft_raspberry_bush_sprout"
+    },
+    "foodcraft_raspberry_bush_leaves": {
+      "textures": "textures/blocks/foodcraft_raspberry_bush_leaves"
+    },
+    "foodcraft_raspberry_bush_flowers": {
+      "textures": "textures/blocks/foodcraft_raspberry_bush_flowers"
+    },
+    "foodcraft_raspberry_bush_ripe": {
+      "textures": "textures/blocks/foodcraft_raspberry_bush_ripe"
+    },
+    "foodcraft_heart_berry_bush_sprout": {
+      "textures": "textures/blocks/foodcraft_heart_berry_bush_sprout"
+    },
+    "foodcraft_heart_berry_bush_leaves": {
+      "textures": "textures/blocks/foodcraft_heart_berry_bush_leaves"
+    },
+    "foodcraft_heart_berry_bush_flowers": {
+      "textures": "textures/blocks/foodcraft_heart_berry_bush_flowers"
+    },
+    "foodcraft_heart_berry_bush_ripe": {
+      "textures": "textures/blocks/foodcraft_heart_berry_bush_ripe"
     }
   }
 }

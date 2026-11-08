@@ -1,0 +1,28 @@
+{
+  "format_version": "1.21.10",
+  "minecraft:scatter_feature": {
+    "description": {
+      "identifier": "foodcraft:strawberry_bush_patch"
+    },
+    "places_feature": "foodcraft:strawberry_bush_block",
+    "project_input_to_floor": true,
+    "distribution": {
+      "iterations": 5,
+      "x": {
+        "distribution": "gaussian",
+        "extent": [
+          -3,
+          3
+        ]
+      },
+      "y": 0,
+      "z": {
+        "distribution": "gaussian",
+        "extent": [
+          -3,
+          3
+        ]
+      }
+    }
+  }
+}

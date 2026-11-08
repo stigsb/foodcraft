@@ -1,0 +1,31 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "foodcraft:strawberry_jam"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "foodcraft:strawberry",
+        "count": 3
+      },
+      {
+        "item": "minecraft:sugar"
+      },
+      {
+        "item": "minecraft:glass_bottle"
+      }
+    ],
+    "unlock": [
+      {
+        "item": "foodcraft:strawberry"
+      }
+    ],
+    "result": {
+      "item": "foodcraft:strawberry_jam"
+    }
+  }
+}

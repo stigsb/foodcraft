@@ -215,3 +215,16 @@ Tick a line only after seeing it work in the test world with an empty Content Lo
 - [ ] Wild oregano: small clusters on plains, sunflower plains and meadows, also where short grass grew; easy to spot
 - [ ] Lettuce crop looks like a growing head of lettuce at every stage, not grass
 - [ ] Wild lettuce: a lettuce head with a stalk of small yellow flowers
+
+## Berries, jam and pancakes (v0.2.8) — new world for the wild bushes
+- [ ] Pancakes icon: a stack of thin pancakes on a plate
+- [ ] Wild ripe bushes: strawberries in forest/flower forest, blueberries in taiga, cloudberries in mountains (meadow, grove, slopes, peaks, extreme hills), raspberries on plains and in forests; no errors in the content log about features or `places_block` states
+- [ ] Heart berry bushes only in cherry groves, and rare
+- [ ] Use a ripe bush: berries pop out, the bush goes back to leaves, then flowers, then ripe again; bone meal speeds it up
+- [ ] Breaking a ripe bush drops berries; breaking an unripe planted bush gives one berry back (heart berry: nothing)
+- [ ] Strawberry/blueberry/cloudberry/raspberry: using it on grass, dirt, podzol or farmland plants a sprout; using it in the air eats it
+- [ ] Heart berry: can't be planted; eating it (also when full) gives Regeneration II for 3-5 s
+- [ ] Each jam: 3 berries + sugar + glass bottle (also glow berries, sweet berries); eating gives the bottle back
+- [ ] Jam of Restoration: Regeneration II for 15 s, edible when full
+- [ ] Glow berry jam: action bar "Illumination: 60 s", light around the player for 60 s that follows them, gone afterwards; no leftover light after leaving the world mid-effect and coming back; caves and tunnels walk normally
+- [ ] Jam above pancakes on the crafting table -> pancakes with that jam + glass bottle; the restoration and glow variants give the same effects

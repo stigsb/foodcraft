@@ -43,7 +43,7 @@ function itemJson(it) {
     c["minecraft:tags"] = { tags: ["minecraft:is_food"] };
   }
   if (it.component) c[full(it.component)] = {}; // a script custom component
-  if (it.places) c["minecraft:block_placer"] = { block: full(it.places), use_on: ["minecraft:farmland"] };
+  if (it.places) c["minecraft:block_placer"] = { block: full(it.places), use_on: it.placesOn ?? ["minecraft:farmland"] };
   if (it.durability) {
     c["minecraft:durability"] = { max_durability: it.durability };
     c["minecraft:max_stack_size"] = 1;

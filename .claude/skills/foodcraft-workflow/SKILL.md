@@ -27,7 +27,8 @@ Rules behind this:
 - `tools/content_v2.mjs` + `node tools/make_content.mjs 12`: items, recipes, lang lines (en_US and nb_NO), atlas entries, placeholder icons.
 - `node tools/make_models.mjs <name>`: block models (box UV) + placeholder texture.
 - `node tools/make_fish_mobs.mjs`: fish entities, spawn rules with verified biome filters, loot, client entities, geometry, skins, animations.
-- `node tools/art_corn.mjs`: corn pixel art (overwrites the corn textures on purpose).
+- `node tools/art_corn.mjs`, `tools/art_plants.mjs`, `tools/art_berries.mjs`: pixel art that overwrites its textures on purpose (`art_berries` has `--preview <png>`).
+- `node tools/make_berries.mjs`: berry bushes, loot, world generation. Berries, jams and eat effects live in `packs/foodcraft_bp/scripts/berry_data.js`. Biome tag filters for any generator: `tools/biome_filter.mjs`.
 - Fish species and water zones live in `packs/foodcraft_bp/scripts/fish_data.js` (no `@minecraft` imports, so Node can load it).
 - Shared hand helpers are in `scripts/hand.js`; import them, don't copy them.
 

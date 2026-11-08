@@ -8,6 +8,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { writePng, hex, shade } from "./png.mjs";
+import { biomeFilter } from "./biome_filter.mjs";
 import { FISH, ZONES } from "../packs/foodcraft_bp/scripts/fish_data.js";
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -17,51 +18,6 @@ const writeJson = (file, obj) => {
   fs.mkdirSync(path.dirname(file), { recursive: true });
   fs.writeFileSync(file, JSON.stringify(obj, null, 2) + "\n");
 };
-
-// --- biome filters ------------------------------------------------------------------------------
-// Spawn rules can only test biome tags, not biome ids. For each species, find tag tests that match
-// exactly the biomes of its zones (checked against every vanilla biome), greedily, one all_of per group.
-const TAGS = JSON.parse(fs.readFileSync(path.join(ROOT, "tools/data/biome_tags.json"), "utf8"));
-delete TAGS["//"];
-const ALL = Object.keys(TAGS);
-const has = (b, lit) => TAGS[b].includes(lit.tag) === lit.is;
-
-function biomeFilter(wanted) {
-  const want = new Set(wanted);
-  const others = ALL.filter((b) => !want.has(b));
-  const groups = [];
-  let uncovered = [...want];
-  while (uncovered.length) {
-    const seed = uncovered[0];
-    const lits = [];
-    let bad = others, good = uncovered;
-    while (bad.length) {
-      // Candidate tests that the seed biome passes; pick the one that drops the most unwanted biomes,
-      // breaking ties by keeping the most still-uncovered wanted biomes.
-      const cands = [...new Set(ALL.flatMap((b) => TAGS[b]))].flatMap((tag) => [{ tag, is: true }, { tag, is: false }]).filter((l) => has(seed, l));
-      let best, bestScore = -1;
-      for (const l of cands) {
-        const dropped = bad.filter((b) => !has(b, l)).length;
-        if (!dropped) continue;
-        const score = dropped * 1000 + good.filter((b) => has(b, l)).length;
-        if (score > bestScore) [best, bestScore] = [l, score];
-      }
-      if (!best) throw new Error(`cannot separate ${seed} from ${bad.join(" ")}`);
-      lits.push(best);
-      bad = bad.filter((b) => has(b, best));
-      good = good.filter((b) => has(b, best));
-    }
-    groups.push(lits);
-    uncovered = uncovered.filter((b) => !lits.every((l) => has(b, l)));
-  }
-  // verify
-  for (const b of ALL) {
-    const hit = groups.some((g) => g.every((l) => has(b, l)));
-    if (hit !== want.has(b)) throw new Error(`biome filter wrong for ${b}`);
-  }
-  const test = (l) => ({ test: "has_biome_tag", operator: l.is ? "==" : "!=", value: l.tag });
-  return { any_of: groups.map((g) => ({ all_of: g.map(test) })) };
-}
 
 // --- body shapes --------------------------------------------------------------------------------
 // Pixel units; the fish faces -Z (as vanilla cod). Roles: main, accent (belly), fin, head (gets eyes), dark.
