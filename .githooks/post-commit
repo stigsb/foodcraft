@@ -1,0 +1,4 @@
+#!/bin/sh
+# Tags the commit with the pack version (vX.Y.Z). See tools/tag_version.mjs.
+node tools/tag_version.mjs || echo "post-commit: tagging failed (commit is fine)" >&2
+exit 0

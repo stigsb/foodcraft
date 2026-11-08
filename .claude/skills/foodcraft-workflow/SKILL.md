@@ -14,7 +14,7 @@ The user is a parent building this add-on with their kids. Answer in Norwegian (
 3. Changelog: fill in that section in Norwegian, for the kids: what changed in the game, not in the code.
 4. Test list: add lines for the change to `docs/test-checklist.md`.
 5. Build: `powershell -ExecutionPolicy Bypass -File tools/export_mcaddon.ps1` → `dist/foodcraft-vX.Y.Z.mcaddon`. If recipes, items or names changed: `node tools/make_recipe_book.mjs` → `dist/oppskrifter.pdf`.
-6. Commit and push. No co-author lines or other trailers. The pre-commit hook rejects pack changes without a higher version or without a filled-in changelog entry; fix the cause, never skip the hook.
+6. Commit and push with `git push --follow-tags`, so the version tag `vX.Y.Z` (set by the post-commit hook) goes along; check with `git ls-remote --tags origin`. No co-author lines or other trailers. The pre-commit hook rejects pack changes without a higher version or without a filled-in changelog entry; fix the cause, never skip the hook.
 7. Share: make sure `node tools/serve_mcaddon.mjs` runs in the background (port 8000) and give the address `http://<LAN IP>:8000`. Check with `curl`. If the harness killed it for low memory, don't restart it on your own; say so and wait to be asked.
 
 Rules behind this:
@@ -45,4 +45,4 @@ Rules behind this:
 - Python 3.13 is installed (winget, `%LOCALAPPDATA%\Programs\Python\Python313`; `py` launcher too). Shells started before the install may still hit the Microsoft Store stub; use `py -3.13` there. The repo tools are Node; `tools/png.mjs` writes PNGs.
 - `.ps1` files need `powershell -ExecutionPolicy Bypass -File ...`.
 - Bash heredocs can mangle regex escapes; avoid `$&` in Perl replacements. Use absolute paths or `cd /c/Users/Ravn/foodcraft && ...`: the Bash cwd resets.
-- Git hooks live in `.githooks` (`git config core.hooksPath .githooks`, once per clone).
+- Git hooks live in `.githooks` (`git config core.hooksPath .githooks` and `git config push.followTags true`, once per clone): pre-commit checks the version bump, post-commit sets the version tag.

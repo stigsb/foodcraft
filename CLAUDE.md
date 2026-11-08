@@ -12,6 +12,8 @@ The version number is part of each pack's name, so different installed versions 
 
 A pre-commit hook (`.githooks/pre-commit` → `tools/check_version_bump.mjs`) rejects commits that change `packs/` without a higher version, or with different BP/RP versions. Enable it once per clone: `git config core.hooksPath .githooks`.
 
+Every version has an annotated git tag `vX.Y.Z`. A post-commit hook (`.githooks/post-commit` → `tools/tag_version.mjs`) tags each commit with the pack version; the tag follows the newest commit of a version until it has been pushed, and is never moved after that. Push with `git push --follow-tags` (or once per clone: `git config push.followTags true`).
+
 Versioning rules:
 
 - **Patch** (`0.2.0` → `0.2.1`): bump in every commit that changes pack content (textures, models, recipes, scripts, blocks, items, texts, sounds), unless the version has already been bumped since the last pushed or shared build. Never push or share changed pack content under a version that has already been pushed or shared.
