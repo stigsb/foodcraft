@@ -41,7 +41,7 @@ Rules behind this:
 ## Windows shell pitfalls
 
 - `core.autocrlf=true`: working files are CRLF. Multi-line string replacements in node/sed miss; use the Edit tool or normalise `\r\n` first.
-- No Python (the `python` on PATH is a Store stub). Use Node; `tools/png.mjs` writes PNGs.
+- Python 3.13 is installed (winget, `%LOCALAPPDATA%\Programs\Python\Python313`; `py` launcher too). Shells started before the install may still hit the Microsoft Store stub; use `py -3.13` there. The repo tools are Node; `tools/png.mjs` writes PNGs.
 - `.ps1` files need `powershell -ExecutionPolicy Bypass -File ...`.
 - Bash heredocs can mangle regex escapes; avoid `$&` in Perl replacements. Use absolute paths or `cd /c/Users/Ravn/foodcraft && ...`: the Bash cwd resets.
 - Git hooks live in `.githooks` (`git config core.hooksPath .githooks`, once per clone).
