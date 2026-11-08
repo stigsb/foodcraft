@@ -237,3 +237,20 @@ Tick a line only after seeing it work in the test world with an empty Content Lo
 
 ## Pack icons (v0.2.12)
 - [ ] Both packs (behavior and resource) show the pancakes icon in the pack list, sharp pixels, no grey default icon
+
+## Heart tree (v0.2.13) — new world for wild trees
+- [ ] Wild heart trees appear in cherry groves (rare), never two close together (within ~128 blocks); no content log errors about the feature
+- [ ] A wild tree appears a few seconds after the chunk loads (a full sapling turns into the tree); if you see a lone full-grown sapling for long, report it
+- [ ] Tree: about 11 blocks tall (taller than cherry trees), brown twisted bark, pink blossom leaves with hanging edges, one trunk block with a red seed (third block from the ground)
+- [ ] Breaking the seed block drops a Heart Seed (Hjertefrø); the whole tree turns into pale oak at once, then disappears a few blocks every 2 seconds; no saplings or sticks drop
+- [ ] Blowing up the seed block (TNT) also makes the tree wither
+- [ ] Ordinary heart tree logs and blossoms can be broken; logs drop themselves, blossoms drop nothing
+- [ ] Heart seed planted on grass/dirt in a cherry grove with no living heart tree within ~128 blocks: action bar "Et hjertetre spirer!", a tree sprout (brown stem, pink leaves)
+- [ ] Heart seed planted elsewhere, or near a living heart tree: "En hjerteblomst spirer.", a green sprout
+- [ ] Both grow through 5 stages: 1, 2, 4, 8 and 16 pixels tall; bone meal moves one stage on
+- [ ] A full-grown tree sapling becomes a heart tree (needs 7 free blocks above); without room it waits
+- [ ] Two saplings planted in the same grove: the first to grow becomes a tree, the second becomes a flowering heart flower
+- [ ] Breaking a sapling or an unflowered heart flower gives the seed back; a flowering heart flower drops a Heart Flower (Hjerteblomst)
+- [ ] Heart flower on the crafting table -> 2 pink dye
+- [ ] After a tree has withered completely, a new seed can grow a new tree in the same grove
+

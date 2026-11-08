@@ -9,9 +9,14 @@ import "./fishing.js";
 import { fishBucketComponent } from "./fish_mobs.js";
 // import "./fishing_probe.js"; // Task 1 probe: uncomment to see what the script sees when fishing
 import "./pot.js"; // cooking pot: a vanilla cauldron on a campfire
+import { heartSaplingComponent, heartFlowerComponent, heartSeedComponent, heartTreeComponent } from "./heart_tree.js";
 
 system.beforeEvents.startup.subscribe((event) => {
   event.itemComponentRegistry.registerCustomComponent("foodcraft:fish_bucket", fishBucketComponent);
+  event.itemComponentRegistry.registerCustomComponent("foodcraft:heart_seed", heartSeedComponent);
+  event.blockComponentRegistry.registerCustomComponent("foodcraft:heart_sapling", heartSaplingComponent);
+  event.blockComponentRegistry.registerCustomComponent("foodcraft:heart_flower", heartFlowerComponent);
+  event.blockComponentRegistry.registerCustomComponent("foodcraft:heart_tree", heartTreeComponent);
   event.blockComponentRegistry.registerCustomComponent("foodcraft:pizza_oven", pizzaOvenComponent);
   event.blockComponentRegistry.registerCustomComponent("foodcraft:crop", cropComponent);
   event.blockComponentRegistry.registerCustomComponent("foodcraft:cutting_board", cuttingBoardComponent);

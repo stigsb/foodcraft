@@ -361,6 +361,12 @@
     },
     "foodcraft_pepperoni_slices": {
       "textures": "textures/items/foodcraft_pepperoni_slices"
+    },
+    "foodcraft_heart_seed": {
+      "textures": "textures/items/foodcraft_heart_seed"
+    },
+    "foodcraft_heart_flower": {
+      "textures": "textures/items/foodcraft_heart_flower"
     }
   }
 }

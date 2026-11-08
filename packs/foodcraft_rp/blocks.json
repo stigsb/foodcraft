@@ -77,5 +77,20 @@
   },
   "foodcraft:heart_berry_bush": {
     "sound": "sweet_berry_bush"
+  },
+  "foodcraft:heart_tree_log": {
+    "sound": "cherry_wood"
+  },
+  "foodcraft:heart_tree_seed_log": {
+    "sound": "cherry_wood"
+  },
+  "foodcraft:heart_tree_leaves": {
+    "sound": "cherry_leaves"
+  },
+  "foodcraft:heart_tree_sapling": {
+    "sound": "grass"
+  },
+  "foodcraft:heart_flower_plant": {
+    "sound": "grass"
   }
 }

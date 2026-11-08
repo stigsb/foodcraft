@@ -1,0 +1,31 @@
+{
+  "format_version": "1.21.10",
+  "minecraft:single_block_feature": {
+    "description": {
+      "identifier": "foodcraft:heart_tree_block"
+    },
+    "places_block": {
+      "name": "foodcraft:heart_tree_sapling",
+      "states": {
+        "foodcraft:growth": 4,
+        "foodcraft:wild": true
+      }
+    },
+    "enforce_placement_rules": true,
+    "enforce_survivability_rules": true,
+    "may_replace": [
+      "minecraft:air",
+      "minecraft:short_grass",
+      "minecraft:pink_petals"
+    ],
+    "may_attach_to": {
+      "bottom": [
+        "minecraft:grass_block",
+        "minecraft:dirt",
+        "minecraft:coarse_dirt",
+        "minecraft:podzol",
+        "minecraft:moss_block"
+      ]
+    }
+  }
+}

@@ -195,6 +195,48 @@
     },
     "foodcraft_heart_berry_bush_ripe": {
       "textures": "textures/blocks/foodcraft_heart_berry_bush_ripe"
+    },
+    "foodcraft_heart_tree_log": {
+      "textures": "textures/blocks/foodcraft_heart_tree_log"
+    },
+    "foodcraft_heart_tree_log_top": {
+      "textures": "textures/blocks/foodcraft_heart_tree_log_top"
+    },
+    "foodcraft_heart_tree_seed_log": {
+      "textures": "textures/blocks/foodcraft_heart_tree_seed_log"
+    },
+    "foodcraft_heart_tree_leaves": {
+      "textures": "textures/blocks/foodcraft_heart_tree_leaves"
+    },
+    "foodcraft_heart_tree_sapling_0": {
+      "textures": "textures/blocks/foodcraft_heart_tree_sapling_0"
+    },
+    "foodcraft_heart_flower_plant_0": {
+      "textures": "textures/blocks/foodcraft_heart_flower_plant_0"
+    },
+    "foodcraft_heart_tree_sapling_1": {
+      "textures": "textures/blocks/foodcraft_heart_tree_sapling_1"
+    },
+    "foodcraft_heart_flower_plant_1": {
+      "textures": "textures/blocks/foodcraft_heart_flower_plant_1"
+    },
+    "foodcraft_heart_tree_sapling_2": {
+      "textures": "textures/blocks/foodcraft_heart_tree_sapling_2"
+    },
+    "foodcraft_heart_flower_plant_2": {
+      "textures": "textures/blocks/foodcraft_heart_flower_plant_2"
+    },
+    "foodcraft_heart_tree_sapling_3": {
+      "textures": "textures/blocks/foodcraft_heart_tree_sapling_3"
+    },
+    "foodcraft_heart_flower_plant_3": {
+      "textures": "textures/blocks/foodcraft_heart_flower_plant_3"
+    },
+    "foodcraft_heart_tree_sapling_4": {
+      "textures": "textures/blocks/foodcraft_heart_tree_sapling_4"
+    },
+    "foodcraft_heart_flower_plant_4": {
+      "textures": "textures/blocks/foodcraft_heart_flower_plant_4"
     }
   }
 }

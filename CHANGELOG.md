@@ -2,6 +2,14 @@
 
 Alle versjoner av Foodcraft, nyeste først. Hver gang versjonsnummeret økes, får versjonen en ny del her.
 
+## v0.2.13 – 8. november 2026
+
+- Nytt: **hjertetreet**! Et stort tre med rosa blomster som henger ned, litt høyere enn kirsebærtrærne. Det vokser bare i kirsebærlunder (cherry grove) høyt oppe i fjellet, og det er aldri mer enn ett hjertetre i samme område.
+- Inne i stammen sitter **hjertefrøet**, et rødt frø. Hvert tre har bare ett. Hakker du det ut, visner treet: det blir til blek eik og forsvinner litt etter litt.
+- Planter du hjertefrøet i en kirsebærlund der det ikke står noe annet hjertetre i nærheten, spirer det et nytt hjertetre. Det vokser fra 1 til 2, 4, 8 og 16 piksler høyt, og så blir det et helt tre.
+- Planter du frøet et annet sted, eller det allerede står et hjertetre i nærheten, blir det en **hjerteblomst** i stedet. Den vokser på samme måte og får en rosa hjerteformet blomst. Bryter du den når den blomstrer, får du en hjerteblomst, som kan bli til 2 rosa fargestoff på arbeidsbenken.
+- Beinmel får spirene til å vokse fortere.
+
 ## v0.2.12 – 8. november 2026
 
 - Foodcraft har fått sitt eget ikon: pannekakestabelen. Du ser det på begge pakkene i Minecraft når du velger pakker.

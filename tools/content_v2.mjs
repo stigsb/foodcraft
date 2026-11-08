@@ -77,6 +77,11 @@ export const ITEMS = [
   // Step 14: pepperoni sausage (2 raw porkchops + oregano), sliced on the cutting board into 23 slices; a pepperoni pizza takes 6.
   { step: 14, id: "pepperoni_sausage", en: "Pepperoni Sausage", nb: "Pepperonipølse", food: [4, 0.6], icon: { shape: "stick", main: "#9a3324", accent: "#c04a38" } },
   { step: 14, id: "pepperoni_slices", en: "Pepperoni Slices", nb: "Pepperoniskiver", food: [1, 0.3], icon: { shape: "seeds", main: "#b83a2a" } },
+  // Step 15: the heart tree (tools/make_heart_tree.mjs, scripts/heart_tree.js, art in tools/art_heart_tree.mjs).
+  // The seed is only found in the trunk of a heart tree. Planted it grows into a heart tree sapling (in a cherry grove
+  // with no other heart tree nearby) or into a heart flower plant (anywhere else).
+  { step: 15, id: "heart_seed", en: "Heart Seed", nb: "Hjertefrø", component: "heart_seed", icon: { shape: "seeds", main: "#c02858" } },
+  { step: 15, id: "heart_flower", en: "Heart Flower", nb: "Hjerteblomst", icon: { shape: "seeds", main: "#f2a2b4" } },
 ];
 
 // Names for hand-written blocks (lang only).
@@ -85,6 +90,11 @@ export const BLOCK_NAMES = [
   { step: 5, id: "cutting_board", en: "Cutting Board", nb: "Skjærebrett" },
   { step: 6, id: "corn_crop_top", en: "Corn", nb: "Mais" }, // upper half of the two-block corn plant
   ...Object.entries(BERRIES).map(([id, b]) => ({ step: 13, id: `${id}_bush`, en: b.bushEn, nb: b.bushNb })),
+  { step: 15, id: "heart_tree_log", en: "Heart Tree Log", nb: "Hjertetrestamme" },
+  { step: 15, id: "heart_tree_seed_log", en: "Heart Tree Log with Seed", nb: "Hjertetrestamme med frø" },
+  { step: 15, id: "heart_tree_leaves", en: "Heart Tree Blossoms", nb: "Hjertetreblomster" },
+  { step: 15, id: "heart_tree_sapling", en: "Heart Tree Sapling", nb: "Hjertetrespire" },
+  { step: 15, id: "heart_flower_plant", en: "Heart Flower", nb: "Hjerteblomst" },
   ...[["corn", "Corn", "Mais"], ["lettuce", "Lettuce", "Salat"], ["rice", "Rice", "Ris"], ["cinnamon", "Cinnamon", "Kanel"]].flatMap(([id, en, nb]) => [
     { step: 6, id: `${id}_crop`, en, nb },
     { step: 6, id: `wild_${id}`, en: `Wild ${en}`, nb: `Vill ${nb.toLowerCase()}` },
@@ -134,5 +144,6 @@ export const RECIPES = [
   ...JAMS.map((j) => ({ step: j.id === "jam" ? 11 : 13, type: "shapeless", id: j.id, ingredients: [j.berry, j.berry, j.berry, "minecraft:sugar", "minecraft:glass_bottle"], result: j.id })),
   ...JAMS.map((j) => ({ step: 13, type: "shaped", id: `pancakes_with_${j.id}`, pattern: ["J", "P"], key: { J: j.id, P: "pancakes" },
     result: `pancakes_with_${j.id}`, extra: [{ item: "minecraft:glass_bottle", count: 1, data: 0 }] })),
+  { step: 15, type: "shapeless", id: "pink_dye_from_heart_flower", ingredients: ["heart_flower"], result: ["minecraft:pink_dye", 2] },
   { step: 14, type: "shapeless", id: "pepperoni_sausage", ingredients: ["minecraft:porkchop", "minecraft:porkchop", "oregano"], result: "pepperoni_sausage" },
 ];

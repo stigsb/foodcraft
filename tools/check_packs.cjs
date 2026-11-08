@@ -36,5 +36,5 @@ for(const [f,o] of Object.entries(J)){
  const fr=o["minecraft:feature_rules"];if(fr&&!features.has(fr.description.places_feature))E(f+": rule feature");
 }
 // script item ids
-for(const f of walk(BP+"/scripts"))for(const m of fs.readFileSync(f,"utf8").matchAll(/"(foodcraft:[a-z_]+)"/g)){const id=m[1];if(!known(id)&&!/foodcraft:(growth|fruit|stage|dish|item|chops|pot|filled|portions|board|scallop_bed|tomato|pineapple|crop|pizza_oven|cutting_board|fish_bucket|berry_bush|illumination_left|illumination_lamp|cauldron@|board@|raw_pizza_)$/.test(id))E(f+": id "+id);}
+for(const f of walk(BP+"/scripts"))for(const m of fs.readFileSync(f,"utf8").matchAll(/"(foodcraft:[a-z_]+)"/g)){const id=m[1];if(!known(id)&&!/foodcraft:(growth|fruit|stage|dish|item|chops|pot|filled|portions|board|scallop_bed|tomato|pineapple|crop|pizza_oven|cutting_board|fish_bucket|berry_bush|illumination_left|illumination_lamp|wild|heart_sapling|heart_tree|cauldron@|board@|raw_pizza_)$/.test(id))E(f+": id "+id);}
 console.log("items",items.size,"blocks",blocks.size,"features",features.size,"geos",geos.size);console.log(errs.length?errs.join("\n"):"ALL OK");

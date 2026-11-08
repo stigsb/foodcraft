@@ -1,0 +1,22 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:item": {
+    "description": {
+      "identifier": "foodcraft:heart_seed",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "foodcraft_heart_seed"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.foodcraft.heart_seed.name"
+      },
+      "foodcraft:heart_seed": {}
+    }
+  }
+}
