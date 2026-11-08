@@ -221,7 +221,7 @@ Tick a line only after seeing it work in the test world with an empty Content Lo
 - [ ] Use a ripe bush: berries pop out, the bush goes back to leaves, then flowers, then ripe again; bone meal speeds it up
 - [ ] Breaking a ripe bush drops berries; breaking an unripe planted bush gives one berry back (heart berry: nothing)
 - [ ] Strawberry/blueberry/cloudberry/raspberry: using it on grass, dirt, podzol or farmland plants a sprout; using it in the air eats it
-- [ ] Heart berry: can't be planted; eating it (also when full) gives Regeneration II for 3-5 s
+- [ ] Heart berry: can't be planted; eating it (also when full) gives Regeneration III for 3-5 s (v0.2.14)
 - [ ] Each jam: 3 berries + sugar + glass bottle (also glow berries, sweet berries); eating gives the bottle back
 - [ ] Jam of Restoration: Regeneration II for 15 s, edible when full
 - [ ] Glow berry jam: action bar "Illumination: 60 s", light around the player for 60 s that follows them, gone afterwards; no leftover light after leaving the world mid-effect and coming back; caves and tunnels walk normally
@@ -253,4 +253,4 @@ Tick a line only after seeing it work in the test world with an empty Content Lo
 - [ ] Breaking a sapling or an unflowered heart flower gives the seed back; a flowering heart flower drops a Heart Flower (Hjerteblomst)
 - [ ] Heart flower on the crafting table -> 2 pink dye
 - [ ] After a tree has withered completely, a new seed can grow a new tree in the same grove
-
+- [ ] Heart flower (item) cannot be eaten (v0.2.14)

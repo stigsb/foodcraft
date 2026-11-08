@@ -59,7 +59,7 @@ export const JAMS = [
 
 // Effects from eating (scripts/food.js). ticks: [min, max]; 20 ticks = 1 second.
 export const EAT_EFFECTS = {
-  "foodcraft:heart_berry": { effect: "regeneration", ticks: [60, 100], amplifier: 1 },
+  "foodcraft:heart_berry": { effect: "regeneration", ticks: [60, 100], amplifier: 2 }, // Regeneration III: the only way to get it
   "foodcraft:jam_of_restoration": { effect: "regeneration", ticks: [300, 300], amplifier: 1 },
   "foodcraft:pancakes_with_jam_of_restoration": { effect: "regeneration", ticks: [300, 300], amplifier: 1 },
   "foodcraft:glow_berry_jam": { effect: "illumination", ticks: [1200, 1200] },

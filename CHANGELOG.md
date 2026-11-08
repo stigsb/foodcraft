@@ -2,6 +2,11 @@
 
 Alle versjoner av Foodcraft, nyeste først. Hver gang versjonsnummeret økes, får versjonen en ny del her.
 
+## v0.2.14 – 8. november 2026
+
+- Hjertebær er sterkere: spiser du ett, får du Regeneration III i 3–5 sekunder. Det er den eneste måten å få Regeneration III på.
+- Hjerteblomsten kan ikke spises.
+
 ## v0.2.13 – 8. november 2026
 
 - Nytt: **hjertetreet**! Et stort tre med rosa blomster som henger ned, litt høyere enn kirsebærtrærne. Det vokser bare i kirsebærlunder (cherry grove) høyt oppe i fjellet, og det er aldri mer enn ett hjertetre i samme område.
