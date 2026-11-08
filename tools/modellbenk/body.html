@@ -1,0 +1,98 @@
+
+<div class="wrap">
+  <header>
+    <h1>Foodcraft <span>modellbenk</span></h1>
+    <p class="lede">Blokker, avlinger, fisk og gjenstander fra ressurspakken, tegnet med de samme beina og den samme <code>bone_visibility</code>-logikken som spillet bruker. Velg en modell, og mal på teksturen til høyre. Endringene vises på modellen med en gang.</p>
+  </header>
+
+  <div class="bench">
+    <nav class="shelf" aria-label="Modeller">
+      <p class="label">Modeller</p>
+      <div class="cats" id="cats" role="group" aria-label="Kategori"></div>
+      <div class="models" id="models"></div>
+      <p class="picked-name" id="picked-name"></p>
+    </nav>
+
+    <div class="stage-col">
+      <div class="viewport" id="viewport">
+        <canvas id="canvas" aria-label="3D-visning av modellen"></canvas>
+        <div class="tags" id="tags"></div>
+        <div class="hint">Dra for å snu · rull eller klyp for å zoome</div>
+      </div>
+      <div class="toolbar">
+        <div class="seg" role="group" aria-label="Visning">
+          <button type="button" id="mode-all">Alle stadier</button>
+          <button type="button" id="mode-one">Ett stadium</button>
+        </div>
+        <div class="seg" role="group" aria-label="Rotasjon">
+          <button type="button" id="spin">Snurr</button>
+        </div>
+      </div>
+      <div>
+        <p class="label" id="strip-label">Stadier</p>
+        <div class="strip" id="strip"></div>
+      </div>
+      <section class="readout" aria-live="polite">
+        <h2 id="r-title"></h2>
+        <p class="desc" id="r-desc"></p>
+        <div>
+          <p class="label">Blokktilstand</p>
+          <dl class="state" id="r-state"></dl>
+        </div>
+        <div>
+          <p class="label">Bein</p>
+          <ul class="bones" id="r-bones"></ul>
+        </div>
+        <p class="src" id="r-src"></p>
+      </section>
+    </div>
+
+    <section class="shop" aria-label="Teksturverksted">
+      <div class="shop-head">
+        <h2>Teksturverksted</h2>
+        <span class="note" id="tex-size"></span>
+      </div>
+      <div class="texlist" id="texlist" role="group" aria-label="Teksturer i modellen"></div>
+      <p class="texpath" id="texpath"></p>
+
+      <div class="tools" role="toolbar" aria-label="Verktøy">
+        <button type="button" class="tool" data-tool="pen" title="Blyant (B)" aria-label="Blyant"><svg viewBox="0 0 16 16" fill="currentColor" shape-rendering="crispEdges"><path d="M11 1h2v1h1v1h1v2h-1v1h-1v1h-1v1h-1v1H9v1H8v1H7v1H6v1H5v1H1v-4h1v-1h1V9h1V8h1V7h1V6h1V5h1V4h1V3h1V2h1zM3 11v2h2v-1H4v-1z"/></svg></button>
+        <button type="button" class="tool" data-tool="eraser" title="Viskelær (E)" aria-label="Viskelær"><svg viewBox="0 0 16 16" fill="currentColor" shape-rendering="crispEdges"><path d="M9 2h2v1h1v1h1v1h1v2h-1v1h-1v1h-1v1h-1v1H9v1H8v1H7v1H3v-1H2v-1H1v-2h1V9h1V8h1V7h1V6h1V5h1V4h1V3h1zM4 9v1H3v1h1v1h1v1h2v-1h1v-1H7v-1H6V9z"/><path d="M8 14h7v1H8z"/></svg></button>
+        <button type="button" class="tool" data-tool="fill" title="Fyll (F)" aria-label="Fyll"><svg viewBox="0 0 16 16" fill="currentColor" shape-rendering="crispEdges"><path d="M6 1h1v2h1v1h1v1h1v1h1v1h1v1h-1v1h-1v1H9v1H8v1H7v1H6v-1H5v-1H4v-1H3V9H2V8h1V7h1V6h1V5h1zm0 4v1H5v1H4v1h8V7h-1V6h-1V5H9V4H7v1z"/><path d="M13 9h1v1h1v3h-1v1h-1v-1h-1v-3h1z"/></svg></button>
+        <button type="button" class="tool" data-tool="pick" title="Pipette (I)" aria-label="Pipette"><svg viewBox="0 0 16 16" fill="currentColor" shape-rendering="crispEdges"><path d="M12 1h2v1h1v2h-1v1h-1v1h1v1h-1v1h-1V7h-1v1h-1v1H9v1H8v1H7v1H6v1H5v1H3v1H1v-2h1v-2h1v-1h1v-1h1V9h1V8h1V7h1V6H8V5h1V4h1v1h1V4h1V3h1V2h-1zM6 10v1H5v1H4v1h1v-1h1v-1h1v-1z"/></svg></button>
+        <button type="button" class="tool" data-tool="pan" title="Flytt arket (mellomrom)" aria-label="Flytt arket"><svg viewBox="0 0 16 16" fill="currentColor" shape-rendering="crispEdges"><path d="M7 0h2v1h1v1H9v5h5V6h1v1h1v2h-1v1h-1V9H9v5h1v1H9v1H7v-1H6v-1h1V9H2v1H1V9H0V7h1V6h1v1h5V2H6V1h1z"/></svg></button>
+        <span class="sep" aria-hidden="true"></span>
+        <button type="button" class="tool" id="undo" title="Angre (Ctrl+Z)" aria-label="Angre"><svg viewBox="0 0 16 16" fill="currentColor" shape-rendering="crispEdges"><path d="M5 2h1v2h6v1h1v1h1v1h1v4h-1v1h-1v1h-1v1H9v-2h2v-1h1V8h-1V7h-1V6H6v2H5V7H4V6H3V5H2V4h1V3h1V2z"/></svg></button>
+        <button type="button" class="tool" id="redo" title="Gjør om (Ctrl+Y)" aria-label="Gjør om"><svg viewBox="0 0 16 16" fill="currentColor" shape-rendering="crispEdges"><path d="M10 2h1v1h1v1h1v1h1v1h-1v1h-1v1h-1V6H6v1H5v1H4v3h1v1h2v2H5v-1H4v-1H3v-1H2V7h1V6h1V5h1V4h5z"/></svg></button>
+      </div>
+
+      <div class="view-row">
+        <label><input type="checkbox" id="opt-grid" checked> Rutenett</label>
+        <label><input type="checkbox" id="opt-uv" checked> Vis flatene</label>
+        <span class="zoom"><button type="button" id="zoom-out" aria-label="Zoom ut">−</button><output id="zoom-val">8×</output><button type="button" id="zoom-in" aria-label="Zoom inn">+</button></span>
+      </div>
+
+      <div class="paper" id="paper">
+        <canvas id="paint" aria-label="Pikselark for teksturen"></canvas>
+        <span class="coord" id="coord" hidden></span>
+      </div>
+
+      <div class="colors">
+        <div class="current">
+          <div class="sw" title="Velg farge"><i id="swatch"></i><input type="color" id="picker" value="#c2412f" aria-label="Velg farge"></div>
+          <code id="hex">#c2412f</code>
+        </div>
+        <div class="palette" id="palette" role="group" aria-label="Farger i teksturen">
+          <p class="label palette-label">Farger i teksturen</p>
+        </div>
+      </div>
+
+      <div class="savebar">
+        <div class="status" id="status" aria-live="polite"></div>
+        <button type="button" class="btn" id="revert">Tilbake til original</button>
+        <button type="button" class="btn primary" id="save">Lagre</button>
+      </div>
+      <p class="note" id="db-note">Kobler til lagringen …</p>
+    </section>
+  </div>
+</div>
