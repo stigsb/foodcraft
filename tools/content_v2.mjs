@@ -74,7 +74,7 @@ export const ITEMS = [
   ...Object.entries(BERRIES).map(([id, b]) => ({ step: 13, id, en: b.en, nb: b.nb, food: [2, id === "heart_berry" ? 0.6 : 0.2], alwaysEat: id === "heart_berry",
     places: b.plantable ? `${id}_bush` : undefined, placesOn: ["minecraft:grass_block", "minecraft:dirt", "minecraft:podzol", "minecraft:farmland"],
     icon: { shape: "seeds", main: "#c02840" } })),
-  // Step 14: pepperoni sausage (2 raw porkchops), sliced on the cutting board into 6 slices = one pepperoni pizza.
+  // Step 14: pepperoni sausage (2 raw porkchops + oregano), sliced on the cutting board into 6 slices = one pepperoni pizza.
   { step: 14, id: "pepperoni_sausage", en: "Pepperoni Sausage", nb: "Pepperonipølse", food: [4, 0.6], icon: { shape: "stick", main: "#9a3324", accent: "#c04a38" } },
   { step: 14, id: "pepperoni_slices", en: "Pepperoni Slices", nb: "Pepperoniskiver", food: [1, 0.3], icon: { shape: "seeds", main: "#b83a2a" } },
 ];
@@ -134,5 +134,5 @@ export const RECIPES = [
   ...JAMS.map((j) => ({ step: j.id === "jam" ? 11 : 13, type: "shapeless", id: j.id, ingredients: [j.berry, j.berry, j.berry, "minecraft:sugar", "minecraft:glass_bottle"], result: j.id })),
   ...JAMS.map((j) => ({ step: 13, type: "shaped", id: `pancakes_with_${j.id}`, pattern: ["J", "P"], key: { J: j.id, P: "pancakes" },
     result: `pancakes_with_${j.id}`, extra: [{ item: "minecraft:glass_bottle", count: 1, data: 0 }] })),
-  { step: 14, type: "shapeless", id: "pepperoni_sausage", ingredients: ["minecraft:porkchop", "minecraft:porkchop"], result: "pepperoni_sausage" },
+  { step: 14, type: "shapeless", id: "pepperoni_sausage", ingredients: ["minecraft:porkchop", "minecraft:porkchop", "oregano"], result: "pepperoni_sausage" },
 ];

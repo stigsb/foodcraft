@@ -2,6 +2,10 @@
 
 Alle versjoner av Foodcraft, nyeste først. Hver gang versjonsnummeret økes, får versjonen en ny del her.
 
+## v0.2.10 – 8. november 2026
+
+- Pepperonipølse trenger nå oregano også: 2 rått svinekjøtt + 1 oregano.
+
 ## v0.2.9 – 8. november 2026
 
 - Pepperoni er delt i to: først lager du en **pepperonipølse** av 2 rått svinekjøtt på arbeidsbenken.

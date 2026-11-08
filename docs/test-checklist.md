@@ -228,7 +228,7 @@ Tick a line only after seeing it work in the test world with an empty Content Lo
 - [ ] Jam above pancakes on the crafting table -> pancakes with that jam + glass bottle; the restoration and glow variants give the same effects
 
 ## Pepperoni sausage and slices (v0.2.9)
-- [ ] 2 raw porkchops on the crafting table -> Pepperonipølse (icon: a sausage with a cut end, held at the tied end)
+- [ ] 2 raw porkchops + 1 oregano on the crafting table -> Pepperonipølse (v0.2.10); without oregano nothing (icon: a sausage with a cut end, held at the tied end)
 - [ ] Sausage on the cutting board shows a sausage on the board; 3 knife chops -> 6 Pepperoniskiver
 - [ ] Empty hand on the board with a sausage gives the sausage back
 - [ ] Raw pepperoni pizza: dough + sauce + mozzarella + 6 slices (fills the whole 3x3 grid); fewer than 6 slices gives nothing
