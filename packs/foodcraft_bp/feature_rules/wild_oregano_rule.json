@@ -8,22 +8,46 @@
     "conditions": {
       "placement_pass": "surface_pass",
       "minecraft:biome_filter": [
-        { "test": "has_biome_tag", "operator": "==", "value": "overworld" },
+        {
+          "test": "has_biome_tag",
+          "operator": "==",
+          "value": "overworld"
+        },
         {
           "any_of": [
-            { "test": "has_biome_tag", "operator": "==", "value": "meadow" },
-            { "test": "has_biome_tag", "operator": "==", "value": "plains" }
+            {
+              "test": "has_biome_tag",
+              "operator": "==",
+              "value": "meadow"
+            },
+            {
+              "test": "has_biome_tag",
+              "operator": "==",
+              "value": "plains"
+            }
           ]
         }
       ]
     },
     "distribution": {
       "iterations": 1,
-      "scatter_chance": 35,
+      "scatter_chance": 55,
       "coordinate_eval_order": "zxy",
-      "x": 0,
+      "x": {
+        "distribution": "uniform",
+        "extent": [
+          0,
+          15
+        ]
+      },
       "y": "query.heightmap(variable.worldx, variable.worldz)",
-      "z": 0
+      "z": {
+        "distribution": "uniform",
+        "extent": [
+          0,
+          15
+        ]
+      }
     }
   }
 }

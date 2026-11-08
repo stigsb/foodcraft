@@ -209,3 +209,9 @@ Tick a line only after seeing it work in the test world with an empty Content Lo
 - [ ] Water bucket on a fish: it disappears and the bucket becomes "Bucket of <fish>" with a fish icon
 - [ ] Bucket of <fish> used on a block: water appears next to it with the fish in it, empty bucket back (survival)
 - [ ] Fish don't despawn while in a bucket-made aquarium as long as players are close; they swim away from players
+
+## Oregano and lettuce look (v0.2.7) — new world for the wild plants
+- [ ] Oregano crop: small sprout, bush, then purple flower clusters at stage 3; wild oregano has purple flowers too
+- [ ] Wild oregano: small clusters on plains, sunflower plains and meadows, also where short grass grew; easy to spot
+- [ ] Lettuce crop looks like a growing head of lettuce at every stage, not grass
+- [ ] Wild lettuce: a lettuce head with a stalk of small yellow flowers

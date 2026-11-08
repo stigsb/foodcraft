@@ -2,6 +2,12 @@
 
 Alle versjoner av Foodcraft, nyeste først. Hver gang versjonsnummeret økes, får versjonen en ny del her.
 
+## v0.2.7 – 8. november 2026
+
+- Oregano har fått lilla blomster, både i åkeren og ute i naturen, så den er lettere å se.
+- Vill oregano er litt vanligere og vokser i små klynger på sletter og enger. Den kan også vokse der det står gress.
+- Salat ser ut som salathoder og ikke som gress. Vill salat har en stilk med små gule blomster.
+
 ## v0.2.6 – 8. november 2026
 
 - Maisplanten blir to blokker høy når den vokser. Moden mais har dusk på toppen og maiskolber på stilken.
