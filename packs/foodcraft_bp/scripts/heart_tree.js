@@ -181,7 +181,7 @@ export const heartSaplingComponent = {
 };
 
 // The heart flower plant: once it flowers, using it picks a heart berry. The plant goes back to a bud and
-// flowers again after a while.
+// flowers again after a while. Bone meal does nothing here: you have to wait.
 export const heartFlowerComponent = {
   onRandomTick({ block }) {
     if (block.typeId !== FLOWER) return;
@@ -190,16 +190,10 @@ export const heartFlowerComponent = {
     growStage(block, FLOWER);
   },
   onPlayerInteract({ block, player }) {
-    if (!player) return;
-    if (block.permutation.getState(GROWTH) >= FULL) {
-      block.setPermutation(block.permutation.withState(GROWTH, FULL - 1));
-      block.dimension.spawnItem(new ItemStack(HEART_BERRY, 1), block.center());
-      effects(block, "block.sweet_berry_bush.pick");
-      return;
-    }
-    if (!useBoneMeal(player)) return;
-    boneMealEffects(block);
-    growStage(block, FLOWER);
+    if (!player || block.permutation.getState(GROWTH) < FULL) return;
+    block.setPermutation(block.permutation.withState(GROWTH, FULL - 1));
+    block.dimension.spawnItem(new ItemStack(HEART_BERRY, 1), block.center());
+    effects(block, "block.sweet_berry_bush.pick");
   },
 };
 

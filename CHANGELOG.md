@@ -2,6 +2,10 @@
 
 Alle versjoner av Foodcraft, nyeste først. Hver gang versjonsnummeret økes, får versjonen en ny del her.
 
+## v0.2.16 – 9. november 2026
+
+- Beinmel virker ikke på hjerteblomsten. Du må vente til den vokser og blomstrer av seg selv. (Beinmel virker fortsatt på hjertetrespiren.)
+
 ## v0.2.15 – 9. november 2026
 
 - Hjerteblomsten gir hjertebær! Når den blomstrer, kan du plukke et hjertebær fra den. Da blir den til en knopp igjen og blomstrer på nytt etter en god stund.

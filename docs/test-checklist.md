@@ -254,4 +254,5 @@ Tick a line only after seeing it work in the test world with an empty Content Lo
 - [ ] Heart flower on the crafting table -> 2 pink dye
 - [ ] After a tree has withered completely, a new seed can grow a new tree in the same grove
 - [ ] Heart flower (item) cannot be eaten (v0.2.14)
-- [ ] Flowering heart flower: using it drops 1 heart berry, the plant goes back to the bud (8 px stage) and flowers again after a long while; bone meal on the bud makes it flower (v0.2.15)
+- [ ] Flowering heart flower: using it drops 1 heart berry, the plant goes back to the bud (8 px stage) and flowers again after a long while (v0.2.15)
+- [ ] Bone meal does nothing on the heart flower plant at any stage, and is not used up; it still works on the heart tree sapling (v0.2.16)
