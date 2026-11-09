@@ -222,7 +222,7 @@ Tick a line only after seeing it work in the test world with an empty Content Lo
 - [ ] Strawberry/blueberry/cloudberry/raspberry: using it on grass, dirt, podzol or farmland plants a sprout; using it in the air eats it
 - [ ] Heart berry: can't be planted; eating it (also when full) gives Regeneration III for 3-5 s (v0.2.14)
 - [ ] Each jam: 3 berries + sugar + glass bottle (also glow berries, sweet berries); eating gives the bottle back
-- [ ] Jam of Restoration: Regeneration II for 15 s, edible when full
+- [ ] Jam of Restoration: Regeneration III for 15 s, edible when full (v0.2.22)
 - [ ] Glow berry jam: action bar "Illumination: 60 s", light around the player for 60 s that follows them, gone afterwards; no leftover light after leaving the world mid-effect and coming back; caves and tunnels walk normally
 - [ ] Jam above pancakes on the crafting table -> pancakes with that jam + glass bottle; the restoration and glow variants give the same effects
 
@@ -258,3 +258,4 @@ Tick a line only after seeing it work in the test world with an empty Content Lo
 - [ ] Heart flower: first flower about 1 hour after planting; after picking a heart berry, flowers again after about 1 hour (both vary) (v0.2.19)
 - [ ] No heart berry bushes anywhere (new world, cherry grove); heart berries only come from a flowering heart flower; `/give @s foodcraft:heart_berry_bush` fails (v0.2.21)
 - [ ] Jam of Restoration and pancakes with it still work with heart berries from the heart flower (v0.2.21)
+- [ ] Pancakes with Jam of Restoration: Regeneration III for 15 s (v0.2.22)

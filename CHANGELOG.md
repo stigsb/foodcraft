@@ -2,6 +2,10 @@
 
 Alle versjoner av Foodcraft, nyeste først. Hver gang versjonsnummeret økes, får versjonen en ny del her.
 
+## v0.2.22 – 9. november 2026
+
+- Jam of Restoration gir nå Regeneration III i 15 sekunder, akkurat som pannekaker med Jam of Restoration. Hjertebær og syltetøyet av dem er det eneste som gir Regeneration III.
+
 ## v0.2.21 – 9. november 2026
 
 - Hjertebærbusken er borte. Hjertebær får du nå bare fra hjerteblomsten: ett bær hver gang den blomstrer.
