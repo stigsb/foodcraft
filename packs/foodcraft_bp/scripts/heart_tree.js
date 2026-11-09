@@ -22,6 +22,8 @@ const GROWTH = "foodcraft:growth";
 const WILD = "foodcraft:wild";
 const FULL = 4; // growth of a 16 pixel plant
 const GROW_CHANCE = 0.35; // per random tick, per stage
+const BLOOM_CHANCE = 0.05; // heart flower bud -> flower: slow, the heart berry is rare
+const HEART_BERRY = "foodcraft:heart_berry";
 const RADIUS = 128; // one heart tree per area: no other living tree this close (horizontally)
 const SEED_HEIGHT = 2; // the seed log is the third trunk block
 const PREFIX = "foodcraft:hearttree@";
@@ -178,13 +180,23 @@ export const heartSaplingComponent = {
   },
 };
 
+// The heart flower plant: once it flowers, using it picks a heart berry. The plant goes back to a bud and
+// flowers again after a while.
 export const heartFlowerComponent = {
   onRandomTick({ block }) {
-    if (block.typeId !== FLOWER || Math.random() >= GROW_CHANCE) return;
+    if (block.typeId !== FLOWER) return;
+    const chance = block.permutation.getState(GROWTH) === FULL - 1 ? BLOOM_CHANCE : GROW_CHANCE;
+    if (Math.random() >= chance) return;
     growStage(block, FLOWER);
   },
   onPlayerInteract({ block, player }) {
-    if (!player || block.permutation.getState(GROWTH) >= FULL) return;
+    if (!player) return;
+    if (block.permutation.getState(GROWTH) >= FULL) {
+      block.setPermutation(block.permutation.withState(GROWTH, FULL - 1));
+      block.dimension.spawnItem(new ItemStack(HEART_BERRY, 1), block.center());
+      effects(block, "block.sweet_berry_bush.pick");
+      return;
+    }
     if (!useBoneMeal(player)) return;
     boneMealEffects(block);
     growStage(block, FLOWER);

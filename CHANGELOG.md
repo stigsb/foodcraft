@@ -2,6 +2,11 @@
 
 Alle versjoner av Foodcraft, nyeste først. Hver gang versjonsnummeret økes, får versjonen en ny del her.
 
+## v0.2.15 – 9. november 2026
+
+- Hjerteblomsten gir hjertebær! Når den blomstrer, kan du plukke et hjertebær fra den. Da blir den til en knopp igjen og blomstrer på nytt etter en god stund.
+- Bryter du en blomstrende hjerteblomst, får du fortsatt selve blomsten (til rosa fargestoff).
+
 ## v0.2.14 – 8. november 2026
 
 - Hjertebær er sterkere: spiser du ett, får du Regeneration III i 3–5 sekunder. Det er den eneste måten å få Regeneration III på.
