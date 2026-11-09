@@ -9,7 +9,6 @@
 // Living and withering trees are kept as world dynamic properties: "foodcraft:hearttree@<dim>|x,y,z" (the seed log)
 // -> { phase: "alive" | "withering", blocks: [[x, y, z, kind], ...] } with kind l (log), s (seed log), f (leaves).
 import { world, system, BlockPermutation, EntityComponentTypes, EquipmentSlot, ItemStack } from "@minecraft/server";
-import { useBoneMeal, boneMealEffects } from "./crop.js";
 import { isCreative } from "./hand.js";
 
 const LOG = "foodcraft:heart_tree_log";
@@ -164,18 +163,13 @@ function growStage(block, type) {
   return false; // a flowering heart flower is done
 }
 
+// No bone meal for the sapling (or the heart flower): they only grow by waiting.
 export const heartSaplingComponent = {
   onTick({ block }) {
     if (block.typeId === SAPLING && block.permutation.getState(WILD) === true) tryBecomeTree(block);
   },
   onRandomTick({ block }) {
     if (block.typeId !== SAPLING || Math.random() >= GROW_CHANCE) return;
-    growStage(block, SAPLING);
-  },
-  onPlayerInteract({ block, player }) {
-    if (!player || block.permutation.getState(WILD) === true) return;
-    if (!useBoneMeal(player)) return;
-    boneMealEffects(block);
     growStage(block, SAPLING);
   },
 };

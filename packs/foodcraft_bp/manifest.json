@@ -1,10 +1,10 @@
 {
   "format_version": 2,
   "header": {
-    "name": "Foodcraft Behavior Pack v0.2.16",
+    "name": "Foodcraft Behavior Pack v0.2.17",
     "description": "Pizza Night and Fish and Feasts: crops, fish, kitchen stations and dishes",
     "uuid": "7d9decc8-dc05-4900-9ee1-9ab1d2d07740",
-    "version": [0, 2, 16],
+    "version": [0, 2, 17],
     "min_engine_version": [1, 26, 60]
   },
   "modules": [
@@ -12,21 +12,21 @@
       "description": "Foodcraft data",
       "type": "data",
       "uuid": "b1a3afbc-9ffe-4882-a249-c29badf31a8f",
-      "version": [0, 2, 16]
+      "version": [0, 2, 17]
     },
     {
       "description": "Foodcraft scripts",
       "type": "script",
       "language": "javascript",
       "uuid": "c9db88ff-e049-4f1c-b4d4-fdab77690e4a",
-      "version": [0, 2, 16],
+      "version": [0, 2, 17],
       "entry": "scripts/main.js"
     }
   ],
   "dependencies": [
     {
       "uuid": "21c9e746-cd73-41fd-a163-83955769e6c2",
-      "version": [0, 2, 16]
+      "version": [0, 2, 17]
     },
     {
       "module_name": "@minecraft/server",

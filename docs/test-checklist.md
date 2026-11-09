@@ -247,7 +247,7 @@ Tick a line only after seeing it work in the test world with an empty Content Lo
 - [ ] Ordinary heart tree logs and blossoms can be broken; logs drop themselves, blossoms drop nothing
 - [ ] Heart seed planted on grass/dirt in a cherry grove with no living heart tree within ~128 blocks: action bar "Et hjertetre spirer!", a tree sprout (brown stem, pink leaves)
 - [ ] Heart seed planted elsewhere, or near a living heart tree: "En hjerteblomst spirer.", a green sprout
-- [ ] Both grow through 5 stages: 1, 2, 4, 8 and 16 pixels tall; bone meal moves one stage on
+- [ ] Both grow through 5 stages: 1, 2, 4, 8 and 16 pixels tall, slowly, by themselves
 - [ ] A full-grown tree sapling becomes a heart tree (needs 7 free blocks above); without room it waits
 - [ ] Two saplings planted in the same grove: the first to grow becomes a tree, the second becomes a flowering heart flower
 - [ ] Breaking a sapling or an unflowered heart flower gives the seed back; a flowering heart flower drops a Heart Flower (Hjerteblomst)
@@ -255,4 +255,5 @@ Tick a line only after seeing it work in the test world with an empty Content Lo
 - [ ] After a tree has withered completely, a new seed can grow a new tree in the same grove
 - [ ] Heart flower (item) cannot be eaten (v0.2.14)
 - [ ] Flowering heart flower: using it drops 1 heart berry, the plant goes back to the bud (8 px stage) and flowers again after a long while (v0.2.15)
-- [ ] Bone meal does nothing on the heart flower plant at any stage, and is not used up; it still works on the heart tree sapling (v0.2.16)
+- [ ] Bone meal does nothing on the heart flower plant at any stage, and is not used up (v0.2.16)
+- [ ] Bone meal does nothing on the heart tree sapling either, and is not used up (v0.2.17)

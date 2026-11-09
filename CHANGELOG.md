@@ -2,6 +2,10 @@
 
 Alle versjoner av Foodcraft, nyeste først. Hver gang versjonsnummeret økes, får versjonen en ny del her.
 
+## v0.2.17 – 9. november 2026
+
+- Beinmel virker heller ikke på hjertetrespiren. Et hjertetre må vokse helt av seg selv.
+
 ## v0.2.16 – 9. november 2026
 
 - Beinmel virker ikke på hjerteblomsten. Du må vente til den vokser og blomstrer av seg selv. (Beinmel virker fortsatt på hjertetrespiren.)
