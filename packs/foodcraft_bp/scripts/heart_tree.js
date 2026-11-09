@@ -20,7 +20,10 @@ const SEED = "foodcraft:heart_seed";
 const GROWTH = "foodcraft:growth";
 const WILD = "foodcraft:wild";
 const FULL = 4; // growth of a 16 pixel plant
-const GROW_CHANCE = 0.35; // per random tick, per stage
+const GROW_CHANCE = 0.35; // heart flower: per random tick, per stage
+// Heart tree sapling: a block gets a random tick about every 205 s (default randomTickSpeed 1), so 5 steps
+// (four stages, then the tree) at 0.28 take about 5 x 205 / 0.28 s = 1 hour on average.
+const TREE_GROW_CHANCE = 0.28;
 const BLOOM_CHANCE = 0.05; // heart flower bud -> flower: slow, the heart berry is rare
 const HEART_BERRY = "foodcraft:heart_berry";
 const RADIUS = 128; // one heart tree per area: no other living tree this close (horizontally)
@@ -169,7 +172,7 @@ export const heartSaplingComponent = {
     if (block.typeId === SAPLING && block.permutation.getState(WILD) === true) tryBecomeTree(block);
   },
   onRandomTick({ block }) {
-    if (block.typeId !== SAPLING || Math.random() >= GROW_CHANCE) return;
+    if (block.typeId !== SAPLING || Math.random() >= TREE_GROW_CHANCE) return;
     growStage(block, SAPLING);
   },
 };

@@ -257,3 +257,4 @@ Tick a line only after seeing it work in the test world with an empty Content Lo
 - [ ] Flowering heart flower: using it drops 1 heart berry, the plant goes back to the bud (8 px stage) and flowers again after a long while (v0.2.15)
 - [ ] Bone meal does nothing on the heart flower plant at any stage, and is not used up (v0.2.16)
 - [ ] Bone meal does nothing on the heart tree sapling either, and is not used up (v0.2.17)
+- [ ] A planted heart tree sapling becomes a tree after about 1 hour of play nearby (varies), with randomtickspeed at its default (v0.2.18)

@@ -2,6 +2,10 @@
 
 Alle versjoner av Foodcraft, nyeste først. Hver gang versjonsnummeret økes, får versjonen en ny del her.
 
+## v0.2.18 – 9. november 2026
+
+- Et hjertetre bruker omtrent 1 time på å vokse fra frø til ferdig tre (tre Minecraft-døgn). Noen ganger går det litt fortere, andre ganger litt tregere.
+
 ## v0.2.17 – 9. november 2026
 
 - Beinmel virker heller ikke på hjertetrespiren. Et hjertetre må vokse helt av seg selv.
