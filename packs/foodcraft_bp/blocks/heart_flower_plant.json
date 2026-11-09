@@ -13,6 +13,10 @@
           2,
           3,
           4
+        ],
+        "foodcraft:picked": [
+          false,
+          true
         ]
       }
     },

@@ -20,11 +20,14 @@ const SEED = "foodcraft:heart_seed";
 const GROWTH = "foodcraft:growth";
 const WILD = "foodcraft:wild";
 const FULL = 4; // growth of a 16 pixel plant
-const GROW_CHANCE = 0.35; // heart flower: per random tick, per stage
 // Heart tree sapling: a block gets a random tick about every 205 s (default randomTickSpeed 1), so 5 steps
 // (four stages, then the tree) at 0.28 take about 5 x 205 / 0.28 s = 1 hour on average.
 const TREE_GROW_CHANCE = 0.28;
-const BLOOM_CHANCE = 0.05; // heart flower bud -> flower: slow, the heart berry is rare
+// Heart flower: 4 steps to the first flower at 0.228 take about 4 x 205 / 0.228 s = 1 hour. After picking, the bud
+// takes about 1 hour to flower again (205 / 0.057 s).
+const FLOWER_GROW_CHANCE = 0.228;
+const REBLOOM_CHANCE = 0.057;
+const PICKED = "foodcraft:picked";
 const HEART_BERRY = "foodcraft:heart_berry";
 const RADIUS = 128; // one heart tree per area: no other living tree this close (horizontally)
 const SEED_HEIGHT = 2; // the seed log is the third trunk block
@@ -182,13 +185,14 @@ export const heartSaplingComponent = {
 export const heartFlowerComponent = {
   onRandomTick({ block }) {
     if (block.typeId !== FLOWER) return;
-    const chance = block.permutation.getState(GROWTH) === FULL - 1 ? BLOOM_CHANCE : GROW_CHANCE;
-    if (Math.random() >= chance) return;
+    const picked = block.permutation.getState(PICKED) === true;
+    if (Math.random() >= (picked ? REBLOOM_CHANCE : FLOWER_GROW_CHANCE)) return;
+    if (picked) block.setPermutation(block.permutation.withState(PICKED, false));
     growStage(block, FLOWER);
   },
   onPlayerInteract({ block, player }) {
     if (!player || block.permutation.getState(GROWTH) < FULL) return;
-    block.setPermutation(block.permutation.withState(GROWTH, FULL - 1));
+    block.setPermutation(block.permutation.withState(GROWTH, FULL - 1).withState(PICKED, true));
     block.dimension.spawnItem(new ItemStack(HEART_BERRY, 1), block.center());
     effects(block, "block.sweet_berry_bush.pick");
   },

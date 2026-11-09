@@ -91,7 +91,8 @@ function plant(id, texture, extra, extraPermutations = []) {
     "minecraft:loot": "loot_tables/blocks/heart_seed.json",
     "foodcraft:heart_flower": {},
   }, [{ condition: "q.block_state('foodcraft:growth') == 4", components: { "minecraft:loot": "loot_tables/blocks/heart_flower.json" } }]);
-  write("blocks/heart_flower_plant.json", block("heart_flower_plant", "none", { "foodcraft:growth": [0, 1, 2, 3, 4] }, p.components, p.permutations));
+  // picked: the bud after a heart berry was picked; it takes longer to flower again (scripts/heart_tree.js).
+  write("blocks/heart_flower_plant.json", block("heart_flower_plant", "none", { "foodcraft:growth": [0, 1, 2, 3, 4], "foodcraft:picked": [false, true] }, p.components, p.permutations));
 }
 write("loot_tables/blocks/heart_seed.json", loot("foodcraft:heart_seed"));
 write("loot_tables/blocks/heart_flower.json", loot("foodcraft:heart_flower"));
