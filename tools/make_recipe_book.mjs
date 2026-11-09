@@ -24,7 +24,7 @@ const VANILLA = {
   "minecraft:bucket": "Bøtte", "minecraft:carrot": "Gulrot", "minecraft:cocoa_beans": "Kakaobønner",
   "minecraft:cooked_porkchop": "Stekt svinekotelett", "minecraft:dried_kelp": "Tørket tare", "minecraft:egg": "Egg",
   "minecraft:furnace": "Smelteovn", "minecraft:glass_bottle": "Glassflaske", "minecraft:iron_ingot": "Jernbarre",
-  "minecraft:milk_bucket": "Melkebøtte", "minecraft:paper": "Papir", "minecraft:pink_dye": "Rosa fargestoff", "minecraft:porkchop": "Rå svinekotelett",
+  "minecraft:milk_bucket": "Melkebøtte", "minecraft:paper": "Papir", "minecraft:porkchop": "Rå svinekotelett",
   "minecraft:potato": "Potet", "minecraft:stick": "Pinne", "minecraft:stone": "Stein", "minecraft:sugar": "Sukker",
   "minecraft:sweet_berries": "Søtbær", "minecraft:glow_berries": "Glødebær", "minecraft:water_bucket": "Vannbøtte", "minecraft:wheat": "Hvete",
   "minecraft:wooden_slabs": "Trehelle (alle slags)",

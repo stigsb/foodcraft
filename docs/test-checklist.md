@@ -250,10 +250,8 @@ Tick a line only after seeing it work in the test world with an empty Content Lo
 - [ ] Both grow through 5 stages: 1, 2, 4, 8 and 16 pixels tall, slowly, by themselves
 - [ ] A full-grown tree sapling becomes a heart tree (needs 7 free blocks above); without room it waits
 - [ ] Two saplings planted in the same grove: the first to grow becomes a tree, the second becomes a flowering heart flower
-- [ ] Breaking a sapling or an unflowered heart flower gives the seed back; a flowering heart flower drops a Heart Flower (Hjerteblomst)
-- [ ] Heart flower on the crafting table -> 2 pink dye
+- [ ] Breaking a sapling or a heart flower (any stage, also flowering) gives the seed back (v0.2.20)
 - [ ] After a tree has withered completely, a new seed can grow a new tree in the same grove
-- [ ] Heart flower (item) cannot be eaten (v0.2.14)
 - [ ] Flowering heart flower: using it drops 1 heart berry, the plant goes back to the bud (8 px stage) and flowers again after a long while (v0.2.15)
 - [ ] Bone meal does nothing on the heart flower plant at any stage, and is not used up (v0.2.16)
 - [ ] Bone meal does nothing on the heart tree sapling either, and is not used up (v0.2.17)

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Pixel art for the heart tree (16x16): bark, bark with the heart seed, log top, blossom leaves, the sapling
-// and the heart flower plant (growth stages 1, 2, 4, 8 and 16 pixels tall), and the seed and flower item icons.
+// and the heart flower plant (growth stages 1, 2, 4, 8 and 16 pixels tall), and the seed item icon.
 // Overwrites those textures; edit the drawings here and rerun.
 // Usage: node tools/art_heart_tree.mjs [--preview <png>]
 import path from "node:path";
@@ -169,7 +169,7 @@ const ART = {
     "........s.......",
   ],
 
-  // Item icons: the seed (a gem-like heart seed) and a picked heart flower held at the stem, bottom left.
+  // Item icon: the seed (a gem-like heart seed).
   "items/foodcraft_heart_seed": [
     "................",
     "................",
@@ -187,24 +187,6 @@ const ART = {
     ".......RR.......",
     "................",
     "................",
-  ],
-  "items/foodcraft_heart_flower": [
-    "................",
-    "........pp..pp..",
-    ".......pqqppqpp.",
-    ".......pqpppppP.",
-    ".......pppppppP.",
-    "........ppppPP..",
-    ".........ppPP...",
-    "......gg..PP....",
-    ".....gGg.s......",
-    "........s.......",
-    ".......s..gg....",
-    "......s..gGg....",
-    ".....s..........",
-    "....s...........",
-    "...s............",
-    "..S.............",
   ],
 };
 

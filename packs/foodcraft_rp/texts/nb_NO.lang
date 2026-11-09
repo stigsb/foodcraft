@@ -173,7 +173,6 @@ item.foodcraft.pepperoni_slices.name=Pepperoniskiver
 foodcraft.heart_seed.tree=Et hjertetre spirer!
 foodcraft.heart_seed.flower=En hjerteblomst spirer.
 item.foodcraft.heart_seed.name=Hjertefrø
-item.foodcraft.heart_flower.name=Hjerteblomst
 tile.foodcraft:heart_tree_log.name=Hjertetrestamme
 tile.foodcraft:heart_tree_seed_log.name=Hjertetrestamme med frø
 tile.foodcraft:heart_tree_leaves.name=Hjertetreblomster

@@ -79,9 +79,8 @@ export const ITEMS = [
   { step: 14, id: "pepperoni_slices", en: "Pepperoni Slices", nb: "Pepperoniskiver", food: [1, 0.3], icon: { shape: "seeds", main: "#b83a2a" } },
   // Step 15: the heart tree (tools/make_heart_tree.mjs, scripts/heart_tree.js, art in tools/art_heart_tree.mjs).
   // The seed is only found in the trunk of a heart tree. Planted it grows into a heart tree sapling (in a cherry grove
-  // with no other heart tree nearby) or into a heart flower plant (anywhere else).
+  // with no other heart tree nearby) or into a heart flower plant (anywhere else), which gives heart berries.
   { step: 15, id: "heart_seed", en: "Heart Seed", nb: "Hjertefrø", component: "heart_seed", icon: { shape: "seeds", main: "#c02858" } },
-  { step: 15, id: "heart_flower", en: "Heart Flower", nb: "Hjerteblomst", icon: { shape: "seeds", main: "#f2a2b4" } },
 ];
 
 // Names for hand-written blocks (lang only).
@@ -144,6 +143,5 @@ export const RECIPES = [
   ...JAMS.map((j) => ({ step: j.id === "jam" ? 11 : 13, type: "shapeless", id: j.id, ingredients: [j.berry, j.berry, j.berry, "minecraft:sugar", "minecraft:glass_bottle"], result: j.id })),
   ...JAMS.map((j) => ({ step: 13, type: "shaped", id: `pancakes_with_${j.id}`, pattern: ["J", "P"], key: { J: j.id, P: "pancakes" },
     result: `pancakes_with_${j.id}`, extra: [{ item: "minecraft:glass_bottle", count: 1, data: 0 }] })),
-  { step: 15, type: "shapeless", id: "pink_dye_from_heart_flower", ingredients: ["heart_flower"], result: ["minecraft:pink_dye", 2] },
   { step: 14, type: "shapeless", id: "pepperoni_sausage", ingredients: ["minecraft:porkchop", "minecraft:porkchop", "oregano"], result: "pepperoni_sausage" },
 ];

@@ -162,12 +162,6 @@
             ]
           }
         }
-      },
-      {
-        "condition": "q.block_state('foodcraft:growth') == 4",
-        "components": {
-          "minecraft:loot": "loot_tables/blocks/heart_flower.json"
-        }
       }
     ]
   }

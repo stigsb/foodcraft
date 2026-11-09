@@ -173,7 +173,6 @@ item.foodcraft.pepperoni_slices.name=Pepperoni Slices
 foodcraft.heart_seed.tree=A heart tree is sprouting!
 foodcraft.heart_seed.flower=A heart flower is sprouting.
 item.foodcraft.heart_seed.name=Heart Seed
-item.foodcraft.heart_flower.name=Heart Flower
 tile.foodcraft:heart_tree_log.name=Heart Tree Log
 tile.foodcraft:heart_tree_seed_log.name=Heart Tree Log with Seed
 tile.foodcraft:heart_tree_leaves.name=Heart Tree Blossoms

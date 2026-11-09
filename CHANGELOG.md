@@ -2,6 +2,11 @@
 
 Alle versjoner av Foodcraft, nyeste først. Hver gang versjonsnummeret økes, får versjonen en ny del her.
 
+## v0.2.20 – 9. november 2026
+
+- Bryter du en hjerteblomst, får du alltid hjertefrøet tilbake, også når den blomstrer. Hjertebær plukker du fra den blomstrende blomsten.
+- Hjerteblomst som gjenstand finnes ikke lenger, og heller ikke oppskriften på rosa fargestoff av den.
+
 ## v0.2.19 – 9. november 2026
 
 - Hjerteblomsten bruker omtrent 1 time fra frø til den blomstrer første gang. Etter at du har plukket et hjertebær, tar det også omtrent 1 time før den blomstrer igjen.

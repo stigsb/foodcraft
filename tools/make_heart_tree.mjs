@@ -86,16 +86,15 @@ function plant(id, texture, extra, extraPermutations = []) {
     { "foodcraft:growth": [0, 1, 2, 3, 4], "foodcraft:wild": [false, true] }, p.components, p.permutations));
 }
 {
-  // Broken before it flowers: the seed back. Flowering: a heart flower.
+  // Breaking it always gives the seed back; the heart berries are picked from the flower (scripts/heart_tree.js).
   const p = plant("heart_flower_plant", "foodcraft_heart_flower_plant", {
     "minecraft:loot": "loot_tables/blocks/heart_seed.json",
     "foodcraft:heart_flower": {},
-  }, [{ condition: "q.block_state('foodcraft:growth') == 4", components: { "minecraft:loot": "loot_tables/blocks/heart_flower.json" } }]);
+  });
   // picked: the bud after a heart berry was picked; it takes longer to flower again (scripts/heart_tree.js).
   write("blocks/heart_flower_plant.json", block("heart_flower_plant", "none", { "foodcraft:growth": [0, 1, 2, 3, 4], "foodcraft:picked": [false, true] }, p.components, p.permutations));
 }
 write("loot_tables/blocks/heart_seed.json", loot("foodcraft:heart_seed"));
-write("loot_tables/blocks/heart_flower.json", loot("foodcraft:heart_flower"));
 
 // --- wild trees: a rare sapling in cherry groves that the script turns into a tree ------------------
 // The script also enforces one tree per area, so two wild saplings close together give one tree.
@@ -157,4 +156,4 @@ Object.assign(blocksJson, {
   "foodcraft:heart_flower_plant": { sound: "grass" },
 });
 fs.writeFileSync(blocksFile, JSON.stringify(blocksJson, null, 2) + "\n");
-console.log(`heart tree: 5 blocks, 2 loot tables, wild generation, ${names.length} atlas entries`);
+console.log(`heart tree: 5 blocks, 1 loot table, wild generation, ${names.length} atlas entries`);
