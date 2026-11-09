@@ -167,7 +167,6 @@ tile.foodcraft:strawberry_bush.name=Jordbærplante
 tile.foodcraft:blueberry_bush.name=Blåbærlyng
 tile.foodcraft:cloudberry_bush.name=Molteplante
 tile.foodcraft:raspberry_bush.name=Bringebærbusk
-tile.foodcraft:heart_berry_bush.name=Hjertebærbusk
 item.foodcraft.pepperoni_sausage.name=Pepperonipølse
 item.foodcraft.pepperoni_slices.name=Pepperoniskiver
 foodcraft.heart_seed.tree=Et hjertetre spirer!

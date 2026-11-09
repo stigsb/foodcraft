@@ -217,9 +217,8 @@ Tick a line only after seeing it work in the test world with an empty Content Lo
 ## Berries, jam and pancakes (v0.2.8) — new world for the wild bushes
 - [ ] Pancakes icon: a stack of thin pancakes on a plate
 - [ ] Wild ripe bushes: strawberries in forest/flower forest, blueberries in taiga, cloudberries in mountains (meadow, grove, slopes, peaks, extreme hills), raspberries on plains and in forests; no errors in the content log about features or `places_block` states
-- [ ] Heart berry bushes only in cherry groves, and rare
 - [ ] Use a ripe bush: berries pop out, the bush goes back to leaves, then flowers, then ripe again; bone meal speeds it up
-- [ ] Breaking a ripe bush drops berries; breaking an unripe planted bush gives one berry back (heart berry: nothing)
+- [ ] Breaking a ripe bush drops berries; breaking an unripe planted bush gives one berry back
 - [ ] Strawberry/blueberry/cloudberry/raspberry: using it on grass, dirt, podzol or farmland plants a sprout; using it in the air eats it
 - [ ] Heart berry: can't be planted; eating it (also when full) gives Regeneration III for 3-5 s (v0.2.14)
 - [ ] Each jam: 3 berries + sugar + glass bottle (also glow berries, sweet berries); eating gives the bottle back
@@ -257,3 +256,5 @@ Tick a line only after seeing it work in the test world with an empty Content Lo
 - [ ] Bone meal does nothing on the heart tree sapling either, and is not used up (v0.2.17)
 - [ ] A planted heart tree sapling becomes a tree after about 1 hour of play nearby (varies), with randomtickspeed at its default (v0.2.18)
 - [ ] Heart flower: first flower about 1 hour after planting; after picking a heart berry, flowers again after about 1 hour (both vary) (v0.2.19)
+- [ ] No heart berry bushes anywhere (new world, cherry grove); heart berries only come from a flowering heart flower; `/give @s foodcraft:heart_berry_bush` fails (v0.2.21)
+- [ ] Jam of Restoration and pancakes with it still work with heart berries from the heart flower (v0.2.21)

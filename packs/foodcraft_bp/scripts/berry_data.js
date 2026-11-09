@@ -5,6 +5,7 @@
 // Picking a ripe bush gives `count` berries and it ripens again. Wild bushes are placed ripe by world generation
 // in `biomes` (vanilla biome ids, turned into a tag filter by tools/biome_filter.mjs).
 // plantable: the berry item plants a new bush on grass, dirt or farmland.
+// bush: false means no bush at all (the heart berry only comes from the heart flower, scripts/heart_tree.js).
 
 export const BERRIES = {
   strawberry: {
@@ -34,12 +35,10 @@ export const BERRIES = {
       "birch_forest_mutated", "birch_forest_hills_mutated", "roofed_forest", "roofed_forest_mutated", "dappled_forest"],
     scatter: 18, patch: 4, count: [1, 3], plantable: true, ripenChance: 0.2,
   },
-  // Very rare and strong: only wild, only in cherry groves high in the mountains, and slow to ripen again.
+  // Very rare and strong: no bush, one berry per flower of the heart flower (scripts/heart_tree.js).
   heart_berry: {
-    en: "Heart Berry", nb: "Hjertebær", bushEn: "Heart Berry Bush", bushNb: "Hjertebærbusk",
+    en: "Heart Berry", nb: "Hjertebær", bush: false, plantable: false,
     jam: { id: "jam_of_restoration", en: "Jam of Restoration", nb: "Jam of Restoration" },
-    biomes: ["cherry_grove"],
-    scatter: 4, patch: 1, count: [1, 1], plantable: false, ripenChance: 0.03,
   },
 };
 
@@ -48,6 +47,9 @@ export const OTHER_JAMS = {
   jam: { berry: "minecraft:sweet_berries", en: "Sweet Berry Jam", nb: "Søtbærsyltetøy" },
   glow_berry_jam: { berry: "minecraft:glow_berries", en: "Glow Berry Jam", nb: "Glødebærsyltetøy" },
 };
+
+// The berries that grow on bushes.
+export const BUSHES = Object.fromEntries(Object.entries(BERRIES).filter(([, b]) => b.bush !== false));
 
 export const jamId = (berry) => BERRIES[berry].jam.id ?? `${berry}_jam`;
 

@@ -7,7 +7,7 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { writePng, hex, shade, mix } from "./png.mjs";
-import { BERRIES, JAMS } from "../packs/foodcraft_bp/scripts/berry_data.js";
+import { BUSHES, JAMS } from "../packs/foodcraft_bp/scripts/berry_data.js";
 
 const RP = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "packs/foodcraft_rp/textures");
 const CLEAR = [0, 0, 0, 0];
@@ -236,7 +236,7 @@ for (const j of JAMS) {
   out.push([`items/foodcraft_pancakes_with_${j.id}`, pancakes(j.id)]);
 }
 for (const [berry, [rows, pal]] of Object.entries(BERRY_ART)) out.push([`items/foodcraft_${berry}`, fromAscii(rows, pal)]);
-for (const berry of Object.keys(BERRIES)) for (const look of ["sprout", "leaves", "flowers", "ripe"]) out.push([`blocks/foodcraft_${berry}_bush_${look}`, bush(berry, look)]);
+for (const berry of Object.keys(BUSHES)) for (const look of ["sprout", "leaves", "flowers", "ripe"]) out.push([`blocks/foodcraft_${berry}_bush_${look}`, bush(berry, look)]);
 
 const previewAt = process.argv.indexOf("--preview");
 if (previewAt > 0) {

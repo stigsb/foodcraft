@@ -1,7 +1,7 @@
 // Foodcraft v2 content table. node tools/make_content.mjs <task> writes every entry with step <= task.
 import { FISH } from "../packs/foodcraft_bp/scripts/fish_data.js";
 import { browned } from "./icons.mjs";
-import { BERRIES, JAMS } from "../packs/foodcraft_bp/scripts/berry_data.js";
+import { BERRIES, BUSHES, JAMS } from "../packs/foodcraft_bp/scripts/berry_data.js";
 
 const COOKED_FOOD = { 1: [5, 0.6], 2: [6, 0.8], 3: [7, 0.8] };
 
@@ -88,7 +88,7 @@ export const BLOCK_NAMES = [
   { step: 4, id: "scallop_bed", en: "Scallop Bed", nb: "Kamskjellbanke" },
   { step: 5, id: "cutting_board", en: "Cutting Board", nb: "Skjærebrett" },
   { step: 6, id: "corn_crop_top", en: "Corn", nb: "Mais" }, // upper half of the two-block corn plant
-  ...Object.entries(BERRIES).map(([id, b]) => ({ step: 13, id: `${id}_bush`, en: b.bushEn, nb: b.bushNb })),
+  ...Object.entries(BUSHES).map(([id, b]) => ({ step: 13, id: `${id}_bush`, en: b.bushEn, nb: b.bushNb })),
   { step: 15, id: "heart_tree_log", en: "Heart Tree Log", nb: "Hjertetrestamme" },
   { step: 15, id: "heart_tree_seed_log", en: "Heart Tree Log with Seed", nb: "Hjertetrestamme med frø" },
   { step: 15, id: "heart_tree_leaves", en: "Heart Tree Blossoms", nb: "Hjertetreblomster" },

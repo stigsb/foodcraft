@@ -8,7 +8,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { biomeFilter } from "./biome_filter.mjs";
-import { BERRIES } from "../packs/foodcraft_bp/scripts/berry_data.js";
+import { BUSHES as BERRIES } from "../packs/foodcraft_bp/scripts/berry_data.js";
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const BP = path.join(ROOT, "packs/foodcraft_bp");

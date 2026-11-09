@@ -167,7 +167,6 @@ tile.foodcraft:strawberry_bush.name=Strawberry Bush
 tile.foodcraft:blueberry_bush.name=Blueberry Bush
 tile.foodcraft:cloudberry_bush.name=Cloudberry Plant
 tile.foodcraft:raspberry_bush.name=Raspberry Bush
-tile.foodcraft:heart_berry_bush.name=Heart Berry Bush
 item.foodcraft.pepperoni_sausage.name=Pepperoni Sausage
 item.foodcraft.pepperoni_slices.name=Pepperoni Slices
 foodcraft.heart_seed.tree=A heart tree is sprouting!

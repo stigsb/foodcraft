@@ -184,18 +184,6 @@
     "foodcraft_raspberry_bush_ripe": {
       "textures": "textures/blocks/foodcraft_raspberry_bush_ripe"
     },
-    "foodcraft_heart_berry_bush_sprout": {
-      "textures": "textures/blocks/foodcraft_heart_berry_bush_sprout"
-    },
-    "foodcraft_heart_berry_bush_leaves": {
-      "textures": "textures/blocks/foodcraft_heart_berry_bush_leaves"
-    },
-    "foodcraft_heart_berry_bush_flowers": {
-      "textures": "textures/blocks/foodcraft_heart_berry_bush_flowers"
-    },
-    "foodcraft_heart_berry_bush_ripe": {
-      "textures": "textures/blocks/foodcraft_heart_berry_bush_ripe"
-    },
     "foodcraft_heart_tree_log": {
       "textures": "textures/blocks/foodcraft_heart_tree_log"
     },
