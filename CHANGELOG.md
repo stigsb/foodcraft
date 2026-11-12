@@ -2,6 +2,10 @@
 
 Alle versjoner av Foodcraft, nyeste først. Hver gang versjonsnummeret økes, får versjonen en ny del her.
 
+## v0.2.25 – 12. november 2026
+
+- Sverdfisken har fått et tydelig sverd: en lang, blank sølvstripe fra snuten og helt ut i hjørnet. Det gjelder også stekt sverdfisk og sverdfisk i bøtte, der sverdet stikker ut over bøttekanten.
+
 ## v0.2.24 – 12. november 2026
 
 - Mallen har fått synlige skjeggtråder: to mørke tråder som henger ned fra munnen, både på fisken, den stekte fisken og mallen i bøtte.

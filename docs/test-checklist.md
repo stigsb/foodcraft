@@ -266,3 +266,4 @@ Tick a line only after seeing it work in the test world with an empty Content Lo
 - [ ] Fish bucket icons: the vanilla water bucket with the fish lying on top of the water, like the vanilla bucket of cod
 - [ ] Held in the hand, the fish looks right (not upside down or sideways)
 - [ ] Catfish icons (raw, cooked, bucket): two dark whiskers hanging from the mouth, visible in the inventory (v0.2.24)
+- [ ] Swordfish icons (raw, cooked, bucket): a clear silver sword from the snout, easy to see in the inventory (v0.2.25)

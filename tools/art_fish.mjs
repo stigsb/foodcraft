@@ -43,8 +43,9 @@ const SPECIES = {
     pattern: (a, b) => (Math.round(a * 3 + b * 7) % 9 === 0 ? "#4a3e2e" : undefined) },
   tuna: { len: 27, h: 4.2, tail: 4.2, back: "#26364c", belly: "#c0c8d4", mid: "#5a6e88",
     finlets: "#f0c830" },
-  swordfish: { len: 23, h: 3.4, tail: 4, back: "#3e5274", belly: "#b8c4d6", dorsal: "#2a3a56",
-    sword: 7 },
+  // Swordfish: moved up from the corner so the sword (a bright line with a dark edge) reaches into it.
+  swordfish: { len: 19, h: 3.2, tail: 3.8, back: "#3e5274", belly: "#b8c4d6", dorsal: "#2a3a56", shift: 2.6,
+    sword: { light: "#e4e9f0", dark: "#5e6878" } },
 };
 
 // --- drawing in fish space ---------------------------------------------------------------------------
@@ -113,7 +114,17 @@ function render(spec, place, colours) {
   const fins = spec.fins ? hex(C(spec.fins)) : shade(belly, 0.75);
   fin(len * 0.45, 1, 1, fins);
   // Sword: a long bill in front of the snout.
-  if (spec.sword) for (let i = 1; i <= spec.sword; i++) put(-i * 0.7, -0.3, hex(C("#9aa4b0")));
+  if (spec.sword) {
+    const [mx, my] = at(-0.4, 0); // just in front of the snout
+    const { dir, edge, length } = place.sword;
+    for (let k = 0; k < length; k++) {
+      const x = mx + dir[0] * k, y = my + dir[1] * k;
+      if (x < 0 || x > 15 || y < 0 || y > 15) break;
+      if (!px[y][x][3]) px[y][x] = hex(C(spec.sword.light));
+      const ex = x + edge[0], ey = y + edge[1];
+      if (ex >= 0 && ex < 16 && ey >= 0 && ey < 16 && !px[ey][ex][3]) px[ey][ex] = hex(C(spec.sword.dark));
+    }
+  }
   for (const e of spec.extra ?? []) put(e.a, e.b, hex(C(e.c)));
   // Eye: dark, near the snout on the back side (a halibut has both eyes on top).
   put(2.4 * head, spec.eyeUp ? -1.4 : -0.7, [20, 20, 20, 255]);
@@ -141,6 +152,7 @@ function diagonal(len, shift = 0) {
     return [Math.floor(dx + start), Math.floor(16 - dy - start)];
   };
   place.whiskers = [[[0, 0], [-1, 0], [-2, 1], [-3, 1], [-4, 2]], [[0, 1], [0, 2], [-1, 3], [-1, 4]]]; // left and down
+  place.sword = { dir: [-1, 1], edge: [1, 0], length: 8 }; // down to the bottom left corner
   return place;
 }
 
@@ -157,6 +169,7 @@ function inBucket(len) {
     return [Math.floor(dx + x0), Math.floor(y0 - dy)];
   };
   place.whiskers = [[[0, 0], [-1, 0], [-2, 1]], [[0, 1], [-1, 2], [-1, 3]]]; // left and down, over the bucket rim
+  place.sword = { dir: [-1, 0], edge: [0, 1], length: 4 }; // straight out to the left
   return place;
 }
 

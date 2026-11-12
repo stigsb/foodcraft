@@ -1,10 +1,10 @@
 {
   "format_version": 2,
   "header": {
-    "name": "Foodcraft Resource Pack v0.2.24",
+    "name": "Foodcraft Resource Pack v0.2.25",
     "description": "Pizza Night textures, models, names and sounds",
     "uuid": "21c9e746-cd73-41fd-a163-83955769e6c2",
-    "version": [0, 2, 24],
+    "version": [0, 2, 25],
     "min_engine_version": [1, 26, 60]
   },
   "modules": [
@@ -12,7 +12,7 @@
       "description": "Foodcraft resources",
       "type": "resources",
       "uuid": "6bb33493-8a0c-4438-9f00-7f4fca009c54",
-      "version": [0, 2, 24]
+      "version": [0, 2, 25]
     }
   ]
 }
