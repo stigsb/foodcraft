@@ -259,3 +259,10 @@ Tick a line only after seeing it work in the test world with an empty Content Lo
 - [ ] No heart berry bushes anywhere (new world, cherry grove); heart berries only come from a flowering heart flower; `/give @s foodcraft:heart_berry_bush` fails (v0.2.21)
 - [ ] Jam of Restoration and pancakes with it still work with heart berries from the heart flower (v0.2.21)
 - [ ] Pancakes with Jam of Restoration: Regeneration III for 15 s (v0.2.22)
+
+## Fish icons (v0.2.23)
+- [ ] Every raw fish icon: lies diagonally, head bottom left, tail top right, not cut off at the edges; each species looks different
+- [ ] Cooked fish icons: same shapes, browned
+- [ ] Fish bucket icons: the vanilla water bucket with the fish lying on top of the water, like the vanilla bucket of cod
+- [ ] Held in the hand, the fish looks right (not upside down or sideways)
+

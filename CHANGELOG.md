@@ -2,6 +2,12 @@
 
 Alle versjoner av Foodcraft, nyeste først. Hver gang versjonsnummeret økes, får versjonen en ny del her.
 
+## v0.2.23 – 12. november 2026
+
+- Alle fiskene har fått nye bilder i Minecraft-stil: de ligger på skrå med hodet ned til venstre, og hver fisk har sitt eget kjennetegn. Abboren har striper, gjedda er lang og tynn, pirajaen har rød buk og tenner, steinbiten har mørke bånd, tunfisken har gule småfinner, og sverdfisken har sverd.
+- Stekt fisk ser ut som den samme fisken, bare brun.
+- Fisk i bøtte ligger nå i en vanlig Minecraft-vannbøtte, slik som torsk i bøtte.
+
 ## v0.2.22 – 9. november 2026
 
 - Jam of Restoration gir nå Regeneration III i 15 sekunder, akkurat som pannekaker med Jam of Restoration. Hjertebær og syltetøyet av dem er det eneste som gir Regeneration III.
