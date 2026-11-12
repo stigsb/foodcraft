@@ -27,9 +27,8 @@ const SPECIES = {
     pattern: (a, b) => (b < 1 && a > 4 && a < 15 && Math.round(a * 2) % 5 < 2 ? "#3a521c" : undefined), fins: "#e0603a" },
   pike: { len: 27, body: 0.82, h: 2.6, tail: 2.6, back: "#4f6c32", belly: "#d8dc9a",
     pattern: (a, b) => (b < 0.8 && a > 5 && (Math.round(a * 3 + b * 5) % 6 === 0) ? "#c9d48a" : undefined) },
-  catfish: { len: 26, h: 3.8, tail: 3, back: "#5b5148", belly: "#a89a86", head: 1.1,
-    extra: [{ a: 0, b: 1.5, c: "#3a332c" }, { a: -0.5, b: 2.5, c: "#3a332c" }, { a: -1, b: 3.5, c: "#3a332c" },
-      { a: 0.5, b: 2.5, c: "#3a332c" }, { a: 1, b: 3.5, c: "#3a332c" }] },
+  // Catfish: moved up from the corner to make room for two long whiskers (barbels) hanging from the mouth.
+  catfish: { len: 21, h: 3.6, tail: 2.8, back: "#5b5148", belly: "#a89a86", head: 1.1, shift: 1.6, whiskers: "#2a221c" },
   piranha: { len: 19, h: 4.6, tail: 3.2, back: "#6f7e8e", belly: "#d13b2b",
     extra: [{ a: 0.5, b: 1, c: "#f4f4f4" }, { a: 1, b: 1.5, c: "#f4f4f4" }] },
   herring: { len: 22, h: 2.8, tail: 2.8, back: "#4e6a88", belly: "#e8eef4", mid: "#a9b8c8" },
@@ -118,13 +117,21 @@ function render(spec, place, colours) {
   for (const e of spec.extra ?? []) put(e.a, e.b, hex(C(e.c)));
   // Eye: dark, near the snout on the back side (a halibut has both eyes on top).
   put(2.4 * head, spec.eyeUp ? -1.4 : -0.7, [20, 20, 20, 255]);
+  // Whiskers: pixel lines from the mouth, drawn where the icon is still empty.
+  if (spec.whiskers) {
+    const [mx, my] = at(-0.4, 0.6); // just in front of the mouth
+    for (const line of place.whiskers) for (const [dx, dy] of line) {
+      const x = mx + dx, y = my + dy;
+      if (x >= 0 && x < 16 && y >= 0 && y < 16 && !px[y][x][3]) px[y][x] = hex(C(spec.whiskers));
+    }
+  }
   return px;
 }
 
 // Item icon: the fish on the diagonal, snout at the bottom left. Fish units are 1/F pixel.
 const F = 1.45, FB = 1.15; // along / across the fish: a bit shorter and plumper than fish units
-function diagonal(len) {
-  const s = Math.SQRT1_2, start = 7.4 - (len / F / 2) * s; // centre the fish on the icon, a bit towards the snout
+function diagonal(len, shift = 0) {
+  const s = Math.SQRT1_2, start = 7.4 - (len / F / 2) * s + shift * s; // centre the fish, a bit towards the snout
   const place = (x, y) => {
     const dx = x + 0.5 - start, dy = 15.5 - y - start + 0.5; // from the snout corner, y up
     return { a: (dx + dy) * s * F, b: (dx - dy) * s * FB };
@@ -133,6 +140,7 @@ function diagonal(len) {
     const dx = (a / F + b / FB) * s, dy = (a / F - b / FB) * s;
     return [Math.floor(dx + start), Math.floor(16 - dy - start)];
   };
+  place.whiskers = [[[0, 0], [-1, 0], [-2, 1], [-3, 1], [-4, 2]], [[0, 1], [0, 2], [-1, 3], [-1, 4]]]; // left and down
   return place;
 }
 
@@ -148,6 +156,7 @@ function inBucket(len) {
     const dx = u * ca + v * sa, dy = u * sa - v * ca;
     return [Math.floor(dx + x0), Math.floor(y0 - dy)];
   };
+  place.whiskers = [[[0, 0], [-1, 0], [-2, 1]], [[0, 1], [-1, 2], [-1, 3]]]; // left and down, over the bucket rim
   return place;
 }
 
@@ -174,8 +183,8 @@ const sheets = [];
 for (const id of Object.keys(FISH)) {
   const spec = SPECIES[id];
   if (!spec) throw new Error(`no drawing for fish ${id}`);
-  const raw = render(spec, diagonal(spec.len), identity);
-  const cooked = render(spec, diagonal(spec.len), browned);
+  const raw = render(spec, diagonal(spec.len, spec.shift), identity);
+  const cooked = render(spec, diagonal(spec.len, spec.shift), browned);
   const bucket = bucketWith(render(spec, inBucket(spec.len), identity));
   writePng(path.join(OUT, `foodcraft_${id}.png`), raw);
   writePng(path.join(OUT, `foodcraft_cooked_${id}.png`), cooked);

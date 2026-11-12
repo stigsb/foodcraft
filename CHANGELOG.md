@@ -2,6 +2,10 @@
 
 Alle versjoner av Foodcraft, nyeste først. Hver gang versjonsnummeret økes, får versjonen en ny del her.
 
+## v0.2.24 – 12. november 2026
+
+- Mallen har fått synlige skjeggtråder: to mørke tråder som henger ned fra munnen, både på fisken, den stekte fisken og mallen i bøtte.
+
 ## v0.2.23 – 12. november 2026
 
 - Alle fiskene har fått nye bilder i Minecraft-stil: de ligger på skrå med hodet ned til venstre, og hver fisk har sitt eget kjennetegn. Abboren har striper, gjedda er lang og tynn, pirajaen har rød buk og tenner, steinbiten har mørke bånd, tunfisken har gule småfinner, og sverdfisken har sverd.
